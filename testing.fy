@@ -1,1 +1,1 @@
-flow HelloWorld:
+flow HelloWorld -> default:
