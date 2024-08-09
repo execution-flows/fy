@@ -6,10 +6,11 @@ authors = ["PerisicJere <jereperisic@icloud.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.10"
 
 jinja2 = "3.1.4"
 pydantic = "2.8.2"
+mkdocs-material = "^9.5.31"
 
 [build-system]
 requires = ["poetry-core"]
