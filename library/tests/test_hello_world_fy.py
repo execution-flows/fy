@@ -17,4 +17,4 @@ class TestHelloWorldFy(TestCase):
 
             generated_py_file_lines = generated_py_file.read().split("\n")
 
-            self.assertEquals(expected, generated_py_file_lines)
+            self.assertListEqual(expected, generated_py_file_lines)
