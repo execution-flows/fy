@@ -10,7 +10,7 @@ class TestHelloWorldFy(TestCase):
         folder_to_parse = "tests/test_fy_files/hello_world"
         file_to_generate = "hello_world.py"
 
-        path = os.path.join(folder_to_parse, file_to_generate)
+        path_file_to_generate = os.path.join(folder_to_parse, file_to_generate)
 
         if os.path.exists(path):
             os.remove(path)
