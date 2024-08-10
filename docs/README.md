@@ -1,14 +1,15 @@
 ## Installation
 
-- It should be installed once you run `poetry install`
-- If not run 
-```shell
-poetry add mkdocs-material 
-```
+- It should be installed once you run `poetry install --with docs`
 
 ## Usage 
 
 - To start mkdocs server run 
 ```shell
 mkdocs serve
+```
+- Address will be listed in terminal
+- For example
+```
+http://127.0.0.1:8000/
 ```
