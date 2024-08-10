@@ -5,6 +5,8 @@ theme:
       - search.suggest
       - search.highlight
       - navigation.instant.preview
+      - toc.integrate
+      - navigation.footer
     icon:
         repo: fontawesome/brands/github
         logo: fontawesome/brands/pied-piper-alt
@@ -24,6 +26,7 @@ theme:
     language: en
     font:
         text: JetBrains Mono
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -37,7 +40,16 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.mark
   - attr_list
+  - def_list
+  - pymdownx.tasklist:
+        custom_checkbox: true
 
-repo_url: https://github.com/execution-flows/fy.git
+repo_url: https://github.com/execution-flows/fy
 repo_name: execution-flows/fy
 
+# Order of pages
+nav:
+  - index.md
+  - flow_reference.md
+  - property_reference.md
+  - method_reference.md
