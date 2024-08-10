@@ -1,5 +1,5 @@
 import abc
-import os
+from functools import cached_property
 from pathlib import Path
 from typing import List
 
@@ -10,7 +10,7 @@ class FyFilesToParse_UsingFilesDiscovery_PropertyMixin(
     With_FolderToParse_PropertyMixin_ABC,
     abc.ABC
 ):
-    @property
+    @cached_property
     def _fy_files_to_parse(self) -> List[Path]:
         fy_files_in_directory = list(Path(self._folder_to_parse).glob("**/*.fy"))
         return [
