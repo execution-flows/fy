@@ -10,5 +10,11 @@ class TestHelloWorldFy(TestCase):
             folder_to_parse="tests/test_fy_files/hello_world",
         )()
 
-        with open("tests/test_fy_files/hello_world/hello_world.py", "r") as generated_py_file:
-            pass
+        with open("library/tests/test_fy_files/hello_world/hello_world.py", "r") as generated_py_file:
+            expected = ['from base.execution_flow_base import ExecutionFlowBase', '', '',
+                        'class HelloWorld_Flow(ExecutionFlowBase[None]):', '    def __call__(self) -> None:',
+                        '        print("Hello world!")', '']
+
+            generated_py_file_lines = generated_py_file.read().split("\n")
+
+            self.assertEquals(expected, generated_py_file_lines)
