@@ -12,14 +12,14 @@ class TestHelloWorldFy(TestCase):
 
         path_file_to_generate = os.path.join(folder_to_parse, file_to_generate)
 
-        if os.path.exists(path):
-            os.remove(path)
+        if os.path.exists(path_file_to_generate):
+            os.remove(path_file_to_generate)
 
         Main_Flow(
             folder_to_parse=folder_to_parse,
         )()
 
-        with open(path, "r") as generated_py_file:
+        with open(path_file_to_generate, "r") as generated_py_file:
             expected = ['from base.execution_flow_base import ExecutionFlowBase', '', '',
                         'class HelloWorld_Flow(ExecutionFlowBase[None]):', '    def __call__(self) -> None:',
                         '        print("Hello world!")', '']
