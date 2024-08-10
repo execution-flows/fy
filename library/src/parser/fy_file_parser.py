@@ -11,7 +11,7 @@ class FyFileParser:
         flow_fy_regex = re.compile(
             r"flow (?P<flow_name>\w+):\n"
             r"\s*def -> (?P<return_type>\w+):\n"
-            r"(?P<flow_body>.*)",
+            r"(?P<flow_call_body>.*)",
             re.DOTALL
         )
         with file_path.open() as fy_file:
@@ -26,7 +26,7 @@ class FyFileParser:
             template_model=FlowTemplateModel(
                 flow_name=flow_fy_search.group("flow_name"),
                 return_type=flow_fy_search.group("return_type"),
-                flow_body=flow_fy_search.group("flow_body"),
+                flow_call_body=flow_fy_search.group("flow_call_body"),
             )
         )
         return parsed_fy_file

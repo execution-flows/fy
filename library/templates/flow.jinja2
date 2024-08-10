@@ -1,6 +1,6 @@
 from base.execution_flow_base import ExecutionFlowBase
 
 
-class {{ flow_name }}_Flow(ExecutionFlowBase[{{ return_type }}]):
+class {{ flow_name }}_Flow(ExecutionFlowBase[None]):
     def __call__(self) -> {{ return_type}}:
-{{ flow_body }}
+{{ flow_call_body }}
