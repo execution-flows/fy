@@ -8,8 +8,4 @@
 ```shell
 mkdocs serve
 ```
-- Address will be listed in terminal
-- For example
-```
-http://127.0.0.1:8000/
-```
+- Address will be listed in terminal. For example `http://127.0.0.1:8000/`.
