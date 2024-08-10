@@ -1,6 +1,6 @@
 ## Installation
 
-- It should be installed once you run `poetry install --with docs`
+- It should be installed once you run `poetry install`
 
 ## Usage 
 
