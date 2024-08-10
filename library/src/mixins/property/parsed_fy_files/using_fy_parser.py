@@ -1,5 +1,5 @@
 import abc
-import os
+from functools import cached_property
 from typing import List
 
 from domain.parsed_fy_file import ParsedFyFile
@@ -11,7 +11,7 @@ class ParsedFyFiles_UsingFyParser_PropertyMixin(
     With_FyFilesToParse_PropertyMixin_ABC,
     abc.ABC
 ):
-    @property
+    @cached_property
     def _parsed_fy_files(self) -> List[ParsedFyFile]:
         return [
             FyFileParser.parse(fy_file_path)
