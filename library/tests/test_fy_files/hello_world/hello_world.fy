@@ -1,3 +1,3 @@
 flow HelloWorld:
-    def __call__(self) -> None:
+    def -> None:
         print("Hello world!")
