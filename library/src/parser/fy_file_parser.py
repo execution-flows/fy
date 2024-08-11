@@ -1,6 +1,7 @@
 import re
 from pathlib import Path
 
+from domain.set_kind import ParsedFlowFyFile, ParsedPropertyFyFile
 from domain.template_models import FlowTemplateModel, PropertyTemplateModel
 from domain.parsed_fy_file import ParsedFyFile, ParsedFyFileKind
 
@@ -31,8 +32,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
 
     assert flow_fy_search is not None
 
-    parsed_fy_file = ParsedFyFile(
-        file_type=ParsedFyFileKind.FLOW,
+    parsed_fy_file = ParsedFlowFyFile(
         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
         template_model=FlowTemplateModel(
             flow_name=flow_fy_search.group("flow_name"),
@@ -56,8 +56,7 @@ def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
 
     assert property_fy_search is not None
 
-    parsed_fy_file = ParsedFyFile(
-        file_type=ParsedFyFileKind.ABSTRACT_PROPERTY,
+    parsed_fy_file = ParsedPropertyFyFile(
         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
         template_model=PropertyTemplateModel(
             property_name=property_fy_search.group("property_name"),
