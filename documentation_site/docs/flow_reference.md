@@ -6,7 +6,7 @@ The `Execution Flow (fy)` tool enables developers to achieve a high level of cod
 syntax that simplifies the construction of Python code. Below is a step-by-step guide to creating a simple "Hello World"
 Python program using the `Fy` declarative language syntax.
 
-```py linenums="1"
+```fy linenums="1"
 flow HelloWorld:
     def -> None:
         print("Hello world!")
