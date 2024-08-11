@@ -26,7 +26,7 @@ flow HelloWorld:
     - Actual operation performed by the function
 
 ## Conversion to Python
-When this flow is processed by `Execution Flow` tool, it generates the following Python code:
+When this flow is processed by the `fy` tool, it generates the following Python code:
 
 ```py hl_lines="1 4" linenums="1"
 from base.execution_flow_base import ExecutionFlowBase
