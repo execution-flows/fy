@@ -7,6 +7,7 @@ theme:
       - navigation.instant.preview
       - toc.integrate
       - navigation.footer
+      - content.code.copy
     icon:
         repo: fontawesome/brands/github
         logo: fontawesome/brands/pied-piper-alt

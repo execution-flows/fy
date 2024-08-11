@@ -28,7 +28,7 @@ flow HelloWorld:
 ## Conversion to Python
 When this flow is processed by the `fy` tool, it generates the following Python code:
 
-```py hl_lines="1 4" linenums="1"
+```py linenums="1"
 from base.execution_flow_base import ExecutionFlowBase
 
 
@@ -40,13 +40,13 @@ class HelloWorld_Flow(ExecutionFlowBase[None]):
 
 ## Breakdown
 1. `from base.execution_flow_base import ExecutionFlowBase`
-   - Essential for the flow's functionality.
+    - Essential for the flow's functionality.
 2. `class HelloWorld_Flow(ExecutionFlowBase[None]):`
-   - Defines the Python class and return the type of ExecutionFlowBase.
+    - Defines the Python class and return the type of ExecutionFlowBase.
 3. `def __call__(self) -> None:`
-   - The entry point of the flow when it is executed.
+    - The entry point of the flow when it is executed.
 4. `print("Hello world!")`
-   - Actual operation performed by the function.
+    - Actual operation performed by the function.
 
 ## How to use
 Once the `Execution Flow` tool has generated the Python code, you can execute the flow in your Python environment.
