@@ -4,7 +4,7 @@ from typing import Any
 
 from pydantic import BaseModel, model_validator
 
-from domain.flow_template_model import FlowTemplateModel
+from domain.template_models import FlowTemplateModel
 
 
 class ParsedFyFileKind(Enum):
