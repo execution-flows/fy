@@ -12,7 +12,7 @@ class FyFilesToParse_UsingFilesDiscovery_PropertyMixin(
 ):
     @cached_property
     def _fy_files_to_parse(self) -> List[Path]:
-        fy_files_in_directory = list(Path(self._folder_to_parse).glob("**/*.fy"))
+        fy_files_in_directory = list(self._folder_to_parse.glob("**/*.fy"))
         return [
             fy_file_path
             for fy_file_path in fy_files_in_directory

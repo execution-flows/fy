@@ -22,7 +22,7 @@ class ParsedFlowFyFile(ParsedFyFile):
 
     @model_validator(mode="before")
     @classmethod
-    def set_kind(cls, data: Any) -> Any:
+    def set_file_type(cls, data: Any) -> Any:
         if isinstance(data, dict):
-            data["kind"] = ParsedFyFileKind.FLOW
+            data["file_type"] = ParsedFyFileKind.FLOW
         return data

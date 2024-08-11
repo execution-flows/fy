@@ -1,0 +1,6 @@
+from base.execution_flow_base import ExecutionFlowBase
+
+
+class HelloWorld_Flow(ExecutionFlowBase[None]):
+    def __call__(self) -> None:
+        print("Hello world!")

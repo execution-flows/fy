@@ -1,0 +1,9 @@
+from base.execution_flow_base import ExecutionFlowBase
+
+
+class HelloInteger_Flow(ExecutionFlowBase[int]):
+    def __call__(self) -> int:
+        b = 12
+        c = 18
+        a = b + c
+        return a
