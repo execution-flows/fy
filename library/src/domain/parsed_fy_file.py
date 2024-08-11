@@ -9,6 +9,7 @@ from domain.flow_template_model import FlowTemplateModel
 
 class ParsedFyFileKind(Enum):
     FLOW = "flow"
+    ABSTRACT_PROPERTY = "property"
 
 
 class ParsedFyFile(BaseModel):
