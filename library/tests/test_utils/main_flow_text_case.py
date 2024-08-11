@@ -6,7 +6,7 @@ from entry.main_flow import Main_Flow
 
 class MainFlowTestCase(TestCase):
 
-    def main_flow_test_case(self, target_folder: str) -> None:
+    def _test_main_flow(self, target_folder: str) -> None:
         folder_to_parse = Path("tests/test_fy_files/", target_folder)
 
         file_to_generate = folder_to_parse / f"{target_folder}.py"
