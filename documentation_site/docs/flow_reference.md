@@ -2,7 +2,7 @@
 
 ## Hello World Example
 
-The `Execution Flow (fy)` tool enables developers to create workflows in a structured and modular way, using a unique 
+The `Execution Flow (fy)` tool enables developers to achieve a high level of code reusability by generating object-oriented Python code using a unique 
 syntax that simplifies the construction of Python code. Below is a step-by-step guide to creating a simple "Hello World"
 program using `Execution Flow`.
 
