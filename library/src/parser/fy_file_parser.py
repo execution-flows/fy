@@ -2,7 +2,7 @@ import re
 from pathlib import Path
 
 from domain.flow_template_model import FlowTemplateModel
-from domain.parsed_fy_file import ParsedFyFile, ParsedFyFileKind
+from domain.parsed_fy_file import ParsedFyFile, ParsedFlowFyFile
 
 
 class FyFileParser:
@@ -20,8 +20,7 @@ class FyFileParser:
 
         assert flow_fy_search is not None
 
-        parsed_fy_file = ParsedFyFile(
-            file_type=ParsedFyFileKind.FLOW,
+        parsed_fy_file = ParsedFlowFyFile(
             output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
             template_model=FlowTemplateModel(
                 flow_name=flow_fy_search.group("flow_name"),
