@@ -1,6 +1,6 @@
 from base.execution_flow_base import ExecutionFlowBase
 
 
-class {{ flow_name }}_Flow(ExecutionFlowBase[{{ return_type }}]):
+class {{ flow_name.pascal_case }}_Flow(ExecutionFlowBase[{{ return_type }}]):
     def __call__(self) -> {{ return_type}}:
 {{ flow_call_body }}

@@ -1,0 +1,9 @@
+import abc
+
+
+class With_{{ property_name.pascal_case }}_PropertyMixin_ABC(abc.ABC):
+    @property
+    @abc.abstractmethod
+    def _{{ property_name.snake_case }}(self) -> {{ return_type }}:
+        raise NotImplementedError()
+

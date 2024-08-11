@@ -9,18 +9,24 @@ class MainFlowTestCase(TestCase):
     def _test_main_flow(self, target_folder: str) -> None:
         folder_to_parse = Path("tests/test_fy_files/", target_folder)
 
-        file_to_generate = folder_to_parse / f"{target_folder}.py"
-        file_to_expect = folder_to_parse / f"{target_folder}.py.expected"
+        fy_files_in_directory = list(folder_to_parse.glob("**/*.fy"))
+        for fy_file_path in fy_files_in_directory:
+            if not fy_file_path.is_file():
+                continue
 
-        if file_to_generate.exists():
-            file_to_generate.unlink()
+            file_to_expect = folder_to_parse / f"{fy_file_path.stem}.py.expected"
+            file_to_generate = folder_to_parse / f"{fy_file_path.stem}.py"
 
-        Main_Flow(
-            folder_to_parse=folder_to_parse,
-        )()
+            if file_to_generate.exists():
+                file_to_generate.unlink()
+                assert not file_to_generate.exists()
 
-        with (
-            open(file_to_expect, 'r') as expected_py_file,
-            open(file_to_generate, 'r') as generated_py_file
-        ):
-            self.assertEqual(expected_py_file.read(), generated_py_file.read())
+            Main_Flow(
+                folder_to_parse=folder_to_parse,
+            )()
+
+            with (
+                open(file_to_expect, 'r') as expected_py_file,
+                open(file_to_generate, 'r') as generated_py_file
+            ):
+                self.assertEqual(expected_py_file.read(), generated_py_file.read())
