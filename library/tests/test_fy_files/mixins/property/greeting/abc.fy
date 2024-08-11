@@ -1,1 +1,1 @@
-property greeting -> str
+property greeting: str

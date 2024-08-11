@@ -1,9 +1,9 @@
 import abc
 
 
-class With_{{ property_name.capitalize() }}_PropertyMixin_ABC(abc.ABC):
+class With_{{ property_name.pascal_case }}_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _{{ property_name }}(self) -> {{ return_type }}:
+    def _{{ property_name.snake_case }}(self) -> {{ return_type }}:
         raise NotImplementedError()
 

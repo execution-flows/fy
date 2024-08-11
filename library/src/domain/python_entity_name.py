@@ -1,3 +1,4 @@
+import re
 from typing import Self
 
 from pydantic import BaseModel
@@ -16,6 +17,21 @@ class PythonEntityName(BaseModel):
             for snake_case_phrase in snake_case_phrases
         ]
         pascal_case_name = '_'.join(pascal_case_phrases)
+        return cls(
+            snake_case=snake_case_name,
+            pascal_case=pascal_case_name,
+        )
+
+    @classmethod
+    def from_pascal_case(cls, pascal_case_name: str) -> Self:
+        pascal_case_phrases = pascal_case_name.split('_')
+        snake_case_phrases = [
+            # TODO: make only the first letter lowercase
+            '_'.join(pascal_case_word.lower()
+                    for pascal_case_word in re.split('(?<=.)(?=[A-Z])', pascal_case_phrase))
+            for pascal_case_phrase in pascal_case_phrases
+        ]
+        snake_case_name = '__'.join(snake_case_phrases)
         return cls(
             snake_case=snake_case_name,
             pascal_case=pascal_case_name,
