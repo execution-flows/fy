@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Any
 
 from base.execution_flow_base import ExecutionFlowBase
@@ -21,7 +22,7 @@ class Main_Flow(
     def __init__(
         self,
         *args: Any,
-        folder_to_parse: str,
+        folder_to_parse: Path,
         **kwargs: Any,
     ):
         self._folder_to_parse = folder_to_parse
