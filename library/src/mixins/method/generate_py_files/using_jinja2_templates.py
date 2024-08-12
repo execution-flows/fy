@@ -1,4 +1,5 @@
 import abc
+import pathlib
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -7,14 +8,15 @@ from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin
 
 
 def load_jinja2_template(jinja2_template_name: str, parsed_fy_file: ParsedFyFile) -> None:
-    env = Environment(loader=FileSystemLoader("templates"))
+    templates_path = str(pathlib.Path(__file__).parent / "jinja2_templates")
+    env = Environment(loader=FileSystemLoader(templates_path))
     template = env.get_template(jinja2_template_name)
     content = template.render(parsed_fy_file.template_model.model_dump())
     with open(parsed_fy_file.output_py_file_path, "w", encoding="UTF-8") as output_py_file:
         output_py_file.write(content)
 
 
-class GeneratePyFiles_MethodMixin(
+class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
     With_ParsedFyFiles_PropertyMixin_ABC,
     abc.ABC
 ):

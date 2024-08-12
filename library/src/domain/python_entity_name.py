@@ -1,5 +1,4 @@
 import re
-from typing import Self
 
 from pydantic import BaseModel
 
@@ -9,7 +8,7 @@ class PythonEntityName(BaseModel):
     pascal_case: str
 
     @classmethod
-    def from_snake_case(cls, snake_case_name: str) -> Self:
+    def from_snake_case(cls, snake_case_name: str) -> "PythonEntityName":
         snake_case_phrases = snake_case_name.split('__')
         pascal_case_phrases = [
             ''.join(snake_case_word.capitalize()
@@ -23,7 +22,7 @@ class PythonEntityName(BaseModel):
         )
 
     @classmethod
-    def from_pascal_case(cls, pascal_case_name: str) -> Self:
+    def from_pascal_case(cls, pascal_case_name: str) -> "PythonEntityName":
         pascal_case_phrases = pascal_case_name.split('_')
         snake_case_phrases = [
             # TODO: make only the first letter lowercase
