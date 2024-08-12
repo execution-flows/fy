@@ -4,7 +4,7 @@
 `Execution Flow (fy)`, properties allow you to define class attributes that can be accessed in a controlled manner. These properties can either be abstract, requiring subclasses to implement them, returning a constant or computed value.
 
 ## Abstract Properties
-An Abstract property in `fy` is a property that is defined but not implemented, leaving the implementation for subclasses. This ensures that any class inheriting from the flow myst provide its own version of the property.
+An Abstract property in `fy` is a property that is defined but not implemented, leaving the implementation for subclasses. This ensures that any class inheriting from the flow must provide its own version of the property.
 
 ### Example
 ```fy title="Abstract Property" linenums="1"
@@ -12,7 +12,7 @@ property greeting: str
 ```
 ### Breakdown of Syntax
 1. `property greeting: str`
-    - Declares an abstract property named `greeting` with return type of `str`.
+    - Declares an abstract property named `greeting` with a return type of `str`.
     - Forces any subclass to implement this property, ensuring the flow can provide the required data.
 ### Conversion to Python
 ```py linenums="1"
@@ -67,4 +67,4 @@ class Greeting_UsingConstant_PropertyMixin:
     - Implements the property, returning the string `"Hello world!"`.
 
 ## Usage in Execution Flow
-Both abstract property and property in `Execution Flow` are designed to encapsulate data or computations, making it easier to manage and access the information within your flows. Abstract properties enforce consistent implementation across subclasses, while properties provided a direct way to return constant or computed values.
+Both abstract properties and properties in Execution Flow are designed to encapsulate data or computations, making managing and accessing the information within your flows easier. Abstract properties enforce consistent implementation across subclasses, while properties provide a direct way to return constant or computed values.
