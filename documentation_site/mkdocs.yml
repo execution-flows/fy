@@ -51,6 +51,10 @@ repo_name: execution-flows/fy
 nav:
   - Home: index.md
   - Tutorial:
-      - tutorial/flow.md
+      - Flow: tutorial/flow.md
       - Property: tutorial/property.md
       - Method: tutorial/method.md
+  - Reference:
+      - Flow: reference/flow.md
+      - Property: reference/property.md
+      - Method: reference/method.md
