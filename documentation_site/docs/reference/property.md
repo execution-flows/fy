@@ -3,7 +3,7 @@
 ## What are properties?
 `Execution Flow (fy)` properties allow you to define flow attributes that can be accessed in a controlled manner. These properties can either be abstract or implemented returning a constant or computed value.
 ## Abstract Properties
-An Abstract property in `fy` is a property that is defined but not implemented, leaving the implementation for subclasses. This ensures that any class inheriting from the flow must provide its own version of the property.
+An abstract property in `fy` is a property that is defined but not implemented. Abstract properties are exclusively used by base flows, methods, and other properties. The abstract property is the way for a base flow, method, or other property to request from a flow to provide the implementation of the abstract property.
 
 ### Example
 ```fy title="Abstract Property" linenums="1"
