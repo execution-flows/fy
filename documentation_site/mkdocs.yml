@@ -7,6 +7,8 @@ theme:
       - navigation.instant.preview
       - toc.integrate
       - navigation.footer
+      - navigation.path
+      - navigation.indexes
       - content.code.copy
     icon:
         repo: fontawesome/brands/github
@@ -50,7 +52,8 @@ repo_name: execution-flows/fy
 
 # Order of pages
 nav:
-  - index.md
-  - flow_reference.md
-  - property_reference.md
-  - method_reference.md
+  - Home: index.md
+  - Tutorial:
+    - Flow: flow_reference.md
+    - Property: property_reference.md
+    - Method: method_reference.md
