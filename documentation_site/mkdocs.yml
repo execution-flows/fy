@@ -52,9 +52,5 @@ nav:
   - Home: index.md
   - Tutorial:
     - Flow: flow_reference.md
-    - properties:
-      - properties/index.md
-      - Abstract Properties: properties/abc_property.md
-      - Properties: properties/property_reference.md
-      - Usage in Execution Flow: properties/end.md
+    - Property: property_reference.md
     - Method: method_reference.md
