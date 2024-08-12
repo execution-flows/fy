@@ -22,15 +22,12 @@ def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
     )
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
-        flow_fy_file = re.match(flow_match_regex, fy_file_content)
-        abstract_property_fy_file = re.match(abstract_property_match_regex, fy_file_content)
-        property_fy_file = re.match(property_match_regex, fy_file_content)
 
-    if flow_fy_file:
+    if re.match(flow_match_regex, fy_file_content):
         return ParsedFyFileKind.FLOW
-    elif abstract_property_fy_file:
+    elif re.match(abstract_property_match_regex, fy_file_content):
         return ParsedFyFileKind.ABSTRACT_PROPERTY
-    elif property_fy_file:
+    elif re.match(property_match_regex, fy_file_content):
         return ParsedFyFileKind.PROPERTY
 
 
