@@ -1,8 +1,9 @@
-from pydantic import model_validator
 from typing import Any
 
-from domain.flow_template_model import FlowTemplateModel
+from pydantic import model_validator
+
 from domain.parsed_fy_file import ParsedFyFile, ParsedFyFileKind
+from domain.template_models import FlowTemplateModel
 
 
 class ParsedFlowFyFile(ParsedFyFile):
