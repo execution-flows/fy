@@ -13,7 +13,7 @@ def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
         re.MULTILINE
     )
     abstract_property_match_regex = re.compile(
-        r"^property \w+: [\w\.]*$",
+        r"^property \w+: [\w.]*$",
         re.MULTILINE
     )
     property_match_regex = re.compile(
@@ -37,7 +37,7 @@ def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
 def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
     flow_fy_regex = re.compile(
         r"flow (?P<flow_name>\w+):\n"
-        r"\s+def -> (?P<return_type>[\w\.]+):\n"
+        r"\s+def -> (?P<return_type>[\w.]+):\n"
         r"(?P<flow_call_body>.*)",
         re.DOTALL
     )
@@ -63,7 +63,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
 def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_property_fy_regex = re.compile(
         r"property (?P<abstract_property_name>\w+)"
-        r": (?P<return_type>[\w\.]+)"
+        r": (?P<return_type>[\w.]+)"
     )
 
     with file_path.open() as fy_file:
@@ -86,7 +86,7 @@ def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
 def parse_property_fy_file(file_path: Path):
     property_fy_regex = re.compile(
         r"property (?P<property_name>\w+) using (?P<implementation_name>\w+):\n"
-        r"\s+def -> (?P<return_type>[\w\.]+):\n"
+        r"\s+def -> (?P<return_type>[\w.]+):\n"
         r"(?P<property_body>.*)",
         re.DOTALL
     )
@@ -99,8 +99,7 @@ def parse_property_fy_file(file_path: Path):
     parsed_fy_file = ParsedPropertyFyFile(
         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
         template_model=PropertyTemplateModel(
-            property_snake_name=PythonEntityName.from_snake_case(property_fy_search.group("property_name")),
-            property_pascal_name=PythonEntityName.from_pascal_case(property_fy_search.group("property_name")),
+            property_name=PythonEntityName.from_snake_case(property_fy_search.group("property_name")),
             implementation_name=PythonEntityName.from_snake_case(property_fy_search.group("implementation_name")),
             return_type=property_fy_search.group("return_type"),
             property_body=property_fy_search.group("property_body"),

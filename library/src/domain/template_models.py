@@ -15,8 +15,7 @@ class AbstractPropertyTemplateModel(BaseModel):
 
 
 class PropertyTemplateModel(BaseModel):
-    property_snake_name: PythonEntityName
-    property_pascal_name: PythonEntityName
+    property_name: PythonEntityName
     implementation_name: PythonEntityName
     return_type: str
     property_body: str
