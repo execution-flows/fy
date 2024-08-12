@@ -4,6 +4,7 @@ from typing import Any
 
 from pydantic import BaseModel, model_validator
 
+from domain.python_entity_name import PythonEntityName
 from domain.template_models import FlowTemplateModel, AbstractPropertyTemplateModel, PropertyTemplateModel
 
 
@@ -15,6 +16,7 @@ class ParsedFyFileKind(Enum):
 
 class ParsedFyFile(BaseModel):
     file_type: ParsedFyFileKind
+    input_fy_file_path: Path
     output_py_file_path: Path
     template_model: BaseModel
 

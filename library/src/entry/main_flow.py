@@ -6,6 +6,7 @@ from mixins.method.generate_py_files.using_jinja2_templates import GeneratePyFil
 from mixins.property.folder_to_parse.using_setter import FolderToParse_PropertyMixin
 from mixins.property.fy_files_to_parse.using_files_discovery import \
     FyFilesToParse_UsingFilesDiscovery_PropertyMixin
+from mixins.property.mixin_import_map.using_parsed_fy_files import MixinImportMap_UsingParsedFyFiles_PropertyMixin
 from mixins.property.parsed_fy_files.using_fy_parser import ParsedFyFiles_UsingFyParser_PropertyMixin
 
 
@@ -14,6 +15,7 @@ class Main_Flow(
     FolderToParse_PropertyMixin,
     FyFilesToParse_UsingFilesDiscovery_PropertyMixin,
     ParsedFyFiles_UsingFyParser_PropertyMixin,
+    MixinImportMap_UsingParsedFyFiles_PropertyMixin,
     # Methods
     GeneratePyFiles_UsingJinja2Templates_MethodMixin,
     # Base

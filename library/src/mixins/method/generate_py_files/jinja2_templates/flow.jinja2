@@ -1,6 +1,14 @@
 from base.execution_flow_base import ExecutionFlowBase
+{% for mixin_import in mixin_imports %}
+{{ mixin_import }}
+{% endfor %}
 
-
-class {{ flow_name.pascal_case }}_Flow(ExecutionFlowBase[{{ return_type }}]):
+class {{ python_class_name.pascal_case }}({% if properties %}
+    # Property Mixins{% for property in properties %}
+    {{ property.property_name.pascal_case }}_Using{{ property.implementation_name.pascal_case }}_PropertyMixin,{% endfor %}
+{% endif %}
+    # Base
+    ExecutionFlowBase[{{ return_type }}]
+):
     def __call__(self) -> {{ return_type}}:
 {{ flow_call_body }}
