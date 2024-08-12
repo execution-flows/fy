@@ -9,6 +9,14 @@ class FlowTemplateModel(BaseModel):
     flow_call_body: str
 
 
-class PropertyTemplateModel(BaseModel):
-    property_name: PythonEntityName
+class AbstractPropertyTemplateModel(BaseModel):
+    abstract_property_name: PythonEntityName
     return_type: str
+
+
+class PropertyTemplateModel(BaseModel):
+    property_snake_name: PythonEntityName
+    property_pascal_name: PythonEntityName
+    implementation_name: PythonEntityName
+    return_type: str
+    property_body: str

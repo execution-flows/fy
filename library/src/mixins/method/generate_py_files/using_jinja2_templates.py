@@ -26,4 +26,6 @@ class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
                 case ParsedFyFileKind.FLOW:
                     load_jinja2_template("flow.jinja2", parsed_fy_file)
                 case ParsedFyFileKind.ABSTRACT_PROPERTY:
+                    load_jinja2_template("abstract_property.jinja2", parsed_fy_file)
+                case ParsedFyFileKind.PROPERTY:
                     load_jinja2_template("property.jinja2", parsed_fy_file)
