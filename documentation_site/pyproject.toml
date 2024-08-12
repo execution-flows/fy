@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "fy"
+name = "fy_documentation"
 version = "0.1.0"
 description = ""
-authors = ["vinkobuble <vinkobuble@gmail.com>","PerisicJere <jereperisic@icloud.com>"]
+authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@icloud.com>"]
 readme = "README.md"
 package-mode = false
 

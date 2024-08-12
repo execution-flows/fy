@@ -12,6 +12,23 @@ files = [
 ]
 
 [[package]]
+name = "fy-library"
+version = "0.1.0"
+description = ""
+optional = false
+python-versions = ">=3.10"
+files = []
+develop = true
+
+[package.dependencies]
+jinja2 = "3.1.4"
+pydantic = "2.8.2"
+
+[package.source]
+type = "directory"
+url = "../library"
+
+[[package]]
 name = "jinja2"
 version = "3.1.4"
 description = "A very fast and expressive template engine."
@@ -234,4 +251,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10"
-content-hash = "1e8de9f7a8a79264cb8564a23bde1a424afab4090114d598078ea4fec278a3e1"
+content-hash = "f6b3bd6d3a98ce890d7fc02a6c7c10cef8b706b436b3e4a553acf9691f8b37cd"
