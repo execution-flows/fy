@@ -4,11 +4,8 @@ theme:
     features:
       - search.suggest
       - search.highlight
-      - navigation.instant.preview
       - toc.integrate
       - navigation.footer
-      - navigation.path
-      - navigation.indexes
       - content.code.copy
     icon:
         repo: fontawesome/brands/github
@@ -54,6 +51,10 @@ repo_name: execution-flows/fy
 nav:
   - Home: index.md
   - Tutorial:
-    - Flow: flow_reference.md
-    - Property: property_reference.md
-    - Method: method_reference.md
+      - Flow: tutorial/flow.md
+      - Property: tutorial/property.md
+      - Method: tutorial/method.md
+  - Reference:
+      - Flow: reference/flow.md
+      - Property: reference/property.md
+      - Method: reference/method.md
