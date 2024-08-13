@@ -35,3 +35,9 @@ class FlowTemplateModel(BaseTemplateModel):
     properties: List[PropertyMixinModel]
     return_type: str
     flow_call_body: str
+
+
+class AbstractMethodTemplateModel(BaseTemplateModel):
+    abstract_method_name: PythonEntityName
+    arguments: str
+    return_type: str

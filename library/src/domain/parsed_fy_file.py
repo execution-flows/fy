@@ -8,12 +8,14 @@ from typing import Any
 
 from pydantic import BaseModel, model_validator
 
-from domain.template_models import FlowTemplateModel, AbstractPropertyTemplateModel, PropertyTemplateModel
+from domain.template_models import FlowTemplateModel, AbstractPropertyTemplateModel, PropertyTemplateModel, \
+    AbstractMethodTemplateModel
 
 
 class ParsedFyFileKind(Enum):
     FLOW = "flow"
     ABSTRACT_PROPERTY = "abstract_property"
+    ABSTRACT_METHOD = "abstract_method"
     PROPERTY = "property"
 
 
@@ -54,4 +56,15 @@ class ParsedPropertyFyFile(ParsedFyFile):
     def set_file_type(cls, data: Any) -> Any:
         if isinstance(data, dict):
             data["file_type"] = ParsedFyFileKind.PROPERTY
+        return data
+
+
+class ParsedAbstractMethodFyFile(ParsedFyFile):
+    template_model: AbstractMethodTemplateModel
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_file_type(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            data["file_type"] = ParsedFyFileKind.ABSTRACT_METHOD
         return data
