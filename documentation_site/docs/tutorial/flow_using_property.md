@@ -24,7 +24,7 @@ The _Execution Flow_ tool generates following Python code.
 ```py linenums="1"
 from base.execution_flow_base import ExecutionFlowBase
 
-from .mixins.property.greeting.using_constant import Greeting_UsingConstant_PropertyMixin
+from mixins.property.greeting.using_constant import Greeting_UsingConstant_PropertyMixin
 
 
 class HelloWorld_Flow(
