@@ -12,13 +12,13 @@ flow HelloWorld:
 
 ## Breakdown of Syntax
 
-1. `flow HelloWorld:`
+1. `:::py flow HelloWorld:`
     - Declares a `flow` named HelloWorld.
-2. `method greet using constant`
+2. `:::py method greet using constant`
     - Declares a `method` named `greet` that uses a constant implementation.
-3. `def -> None:`
+3. `:::py def -> None:`
     - Begins the definition of a `method` that triggers the greet method.
-4. `self._greet()`
+4. `:::py self._greet()`
     - Calls the `_greet` method to execute its functionality.
 
 
@@ -28,7 +28,7 @@ The _Execution Flow_ tool generates the following Python code:
 ```py linenums="1"
 from base.execution_flow_base import ExecutionFlowBase
 
-from ..mixins.method.greet.using_constant import Greet_UsingConstant_MethodMixin
+from .mixins.method.greet.using_constant import Greet_UsingConstant_MethodMixin
 
 
 class HelloWorld_Flow(
@@ -42,9 +42,9 @@ class HelloWorld_Flow(
 
 ```
 ## Breakdown
-1. `Greet_UsingConstant_MethodMixin`
-    - Implements the `_greet` method with a constant (More in the [_Method Reference_](/reference/method)).
-2. `__call__`
+1. `:::py Greet_UsingConstant_MethodMixin`
+    - Adds a method mixin to the flow class, implementing the `_greet` method with a constant value. (More in the [_Method Reference_](/reference/method)).
+2. `:::py self._greet()`
     - Executes the flow, calling the `_greet` method.
 
 ## Using Generated Code
