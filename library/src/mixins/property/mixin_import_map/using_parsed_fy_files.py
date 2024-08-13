@@ -21,7 +21,7 @@ def parsed_file_key(parsed_fy_file: ParsedFyFile) -> str:
             abstract_property_template_model = cast(AbstractPropertyTemplateModel, parsed_fy_file.template_model)
             return abstract_property_template_model.property_name.snake_case
         case _:
-            raise NotImplementedError(f"Unimplemented file type: f{parsed_fy_file.file_type}")
+            raise NotImplementedError(f"Unimplemented file type: {parsed_fy_file.file_type}")
 
 
 def parsed_file_python_import(parsed_fy_file: ParsedFyFile) -> str:
