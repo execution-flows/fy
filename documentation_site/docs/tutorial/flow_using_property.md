@@ -20,11 +20,11 @@ flow HelloWorld:
     - The Python implementation of the `greeting` property.
 
 ## Conversion to Python
-The `Execution Flow` tool generates following Python code.
+The _Execution Flow_ tool generates following Python code.
 ```py linenums="1"
 from base.execution_flow_base import ExecutionFlowBase
 
-from ..mixins.property.greeting.using_constant import Greeting_UsingConstant_PropertyMixin
+from mixins.property.greeting.using_constant import Greeting_UsingConstant_PropertyMixin
 
 
 class HelloWorld_Flow(
@@ -40,7 +40,7 @@ class HelloWorld_Flow(
 ```
 ## Breakdown
 1. `Greeting_UsingConstant_PropertyMixin`
-    - _Property_ that returns `str` (more in the [_Property Reference_](/reference/property) chapter)
+    - _Property_ that returns `str` (More in the [_Property Reference_](/reference/property) chapter)
 2. `__call__`
     - Executes the flow, printing the value of `_greeting` property.
 
