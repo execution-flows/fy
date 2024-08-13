@@ -1,6 +1,6 @@
 # Property in Flow
 
-In the _fy_ syntax, a _property_ is a variable or attribute associated with a flow (similar to a class in Python) that stores data. Properties can be defined in different ways, depending on how the data is intended to be used or modified. For instance, a property can be defined using a constant, which means the value assigned to this property remains fixed throughout the flow's lifecycle.
+In the _fy_ syntax, a _property_ is a variable or attribute associated with a flow (similar to a class attributes in Python) that stores data. Properties can be defined in different ways, depending on how the data is intended to be used or modified. For instance, a property can be defined using a constant, which means the value assigned to this property remains fixed throughout the flow's lifecycle.
 
 ## Syntax
 
@@ -25,7 +25,7 @@ The `fy` tool automatically generates Python code from this flow definition.
 ## Generated Python Code
 ```py linenums="1"
 from base.execution_flow_base import ExecutionFlowBase
-from ..mixins.property.greeting.using_constant import Greeting_UsingConstant_PropertyMixin
+from mixins.property.greeting.using_constant import Greeting_UsingConstant_PropertyMixin
 
 class HelloWorld_Flow(
     # Property Mixins
