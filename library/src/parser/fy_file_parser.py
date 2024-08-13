@@ -198,7 +198,7 @@ def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
 def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
     method_fy_regex = re.compile(
         r"^method (?P<method_name>\w+) using (?P<implementation_name>\w+):\n"
-        r"\s+def\s+(?P<function>\w+)\((?P<arguments>[^)]*)\) -> (?P<return_type>\w+):\n"
+        r"\s+def(\((?P<arguments>[^)]*)\))? -> (?P<return_type>\w+):\n"
         r"(?P<method_body>.*)",
         re.DOTALL
     )
@@ -211,21 +211,20 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
 
     implementation_name_fy_search = method_fy_search.group("implementation_name")
     implementation_name = PythonEntityName.from_snake_case(implementation_name_fy_search)
-    function_name_fy_search = method_fy_search.group("function")
-    function_name = PythonEntityName.from_snake_case(function_name_fy_search)
+    method_name_fy_search = method_fy_search.group("method_name")
+    method_name = PythonEntityName.from_snake_case(method_name_fy_search)
 
     parsed_fy_file = ParsedMethodFyFile(
         input_fy_file_path=file_path,
         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
         template_model=MethodTemplateModel(
             python_class_name=PythonEntityName.from_pascal_case(
-                f"{function_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
+                f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
             ),
-            method_name=PythonEntityName.from_snake_case(method_fy_search.group("method_name")),
+            method_name=method_name,
             arguments=method_fy_search.group("arguments"),
             return_type=method_fy_search.group("return_type"),
             method_body=method_fy_search.group("method_body"),
-            function_name=function_name,
             implementation_name=PythonEntityName.from_snake_case(method_fy_search.group("implementation_name")),
         ),
     )

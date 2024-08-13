@@ -1,3 +1,3 @@
-method greeting using constant:
-    def greet() -> None:
+method greet using constant:
+    def -> None:
         print("Hello World!")
