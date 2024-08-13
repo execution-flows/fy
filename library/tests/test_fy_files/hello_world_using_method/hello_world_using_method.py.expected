@@ -1,0 +1,12 @@
+from base.execution_flow_base import ExecutionFlowBase
+
+
+class HelloWorld_Flow(
+    # Method Mixins
+    Greet_UsingConstant_MethodMixin,
+
+    # Base
+    ExecutionFlowBase[None]
+):
+    def __call__(self) -> None:
+        self._greet()

@@ -30,9 +30,15 @@ class PropertyMixinModel(BaseModel):
     implementation_name: PythonEntityName
 
 
+class MethodMixinModel(BaseModel):
+    method_name: PythonEntityName
+    implementation_name: PythonEntityName
+
+
 class FlowTemplateModel(BaseTemplateModel):
     flow_name: PythonEntityName
     properties: List[PropertyMixinModel]
+    methods: List[MethodMixinModel]
     return_type: str
     flow_call_body: str
 
