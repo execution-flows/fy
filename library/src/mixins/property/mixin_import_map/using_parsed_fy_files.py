@@ -13,16 +13,25 @@ from domain.template_models import PropertyTemplateModel, FlowTemplateModel, Abs
 from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
 
 
+def mixin_key(mixin_name__snake_case: str, mixin_implementation_name__snake_case: str) -> str:
+    return (f"{mixin_name__snake_case}."
+            f"{mixin_implementation_name__snake_case}")
+
+
 def parsed_file_key(parsed_fy_file: ParsedFyFile) -> str:
     match parsed_fy_file.file_type:
         case ParsedFyFileKind.PROPERTY:
             property_template_model = cast(PropertyTemplateModel, parsed_fy_file.template_model)
-            return (f"{property_template_model.property_name.snake_case}."
-                    f"{property_template_model.implementation_name.snake_case}")
+            return mixin_key(
+                property_template_model.property_name.snake_case,
+                property_template_model.implementation_name.snake_case
+                             )
         case ParsedFyFileKind.METHOD:
             method_template_model = cast(MethodTemplateModel, parsed_fy_file.template_model)
-            return (f"{method_template_model.method_name.snake_case}."
-                    f"{method_template_model.implementation_name.snake_case}")
+            return mixin_key(
+                method_template_model.method_name.snake_case,
+                method_template_model.implementation_name.snake_case
+            )
         case ParsedFyFileKind.FLOW:
             flow_template_model = cast(FlowTemplateModel, parsed_fy_file.template_model)
             return flow_template_model.flow_name.snake_case
