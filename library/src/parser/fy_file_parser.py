@@ -7,10 +7,10 @@ from pathlib import Path
 from typing import List
 
 from domain.parsed_fy_file import ParsedFyFile, ParsedFyFileKind, ParsedFlowFyFile, ParsedPropertyFyFile, \
-    ParsedAbstractPropertyFyFile, ParsedAbstractMethodFyFile
+    ParsedAbstractPropertyFyFile, ParsedAbstractMethodFyFile, ParsedMethodFyFile
 from domain.python_entity_name import PythonEntityName
 from domain.template_models import FlowTemplateModel, AbstractPropertyTemplateModel, PropertyTemplateModel, \
-    PropertyMixinModel, AbstractMethodTemplateModel
+    PropertyMixinModel, AbstractMethodTemplateModel, MethodTemplateModel
 
 
 def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
@@ -32,6 +32,11 @@ def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
         re.MULTILINE
     )
 
+    method_match_regex = re.compile(
+        r"^method \w+ using \w+:$",
+        re.MULTILINE
+    )
+
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
 
@@ -43,6 +48,8 @@ def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
         return ParsedFyFileKind.PROPERTY
     elif re.match(abstract_method_match_regex, fy_file_content):
         return ParsedFyFileKind.ABSTRACT_METHOD
+    elif re.match(method_match_regex, fy_file_content):
+        return ParsedFyFileKind.METHOD
 
 
 def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
@@ -188,6 +195,43 @@ def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
     return parsed_fy_file
 
 
+def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
+    method_fy_regex = re.compile(
+        r"^method (?P<method_name>\w+) using (?P<implementation_name>\w+):\n"
+        r"\s+def(\((?P<arguments>[^)]*)\))? -> (?P<return_type>\w+):\n"
+        r"(?P<method_body>.*)",
+        re.DOTALL
+    )
+
+    with file_path.open() as fy_file:
+        fy_file_content = fy_file.read()
+        method_fy_search = method_fy_regex.search(fy_file_content)
+
+    assert method_fy_search is not None, f"File {file_path} is invalid method fy file"
+
+    implementation_name_fy_search = method_fy_search.group("implementation_name")
+    implementation_name = PythonEntityName.from_snake_case(implementation_name_fy_search)
+    method_name_fy_search = method_fy_search.group("method_name")
+    method_name = PythonEntityName.from_snake_case(method_name_fy_search)
+
+    parsed_fy_file = ParsedMethodFyFile(
+        input_fy_file_path=file_path,
+        output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
+        template_model=MethodTemplateModel(
+            python_class_name=PythonEntityName.from_pascal_case(
+                f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
+            ),
+            method_name=method_name,
+            arguments=method_fy_search.group("arguments"),
+            return_type=method_fy_search.group("return_type"),
+            method_body=method_fy_search.group("method_body"),
+            implementation_name=PythonEntityName.from_snake_case(method_fy_search.group("implementation_name")),
+        ),
+    )
+
+    return parsed_fy_file
+
+
 class FyFileParser:
     @staticmethod
     def parse(file_path: Path) -> ParsedFyFile:
@@ -201,3 +245,5 @@ class FyFileParser:
                 return parse_property_fy_file(file_path)
             case ParsedFyFileKind.ABSTRACT_METHOD:
                 return parse_abc_method_fy_file(file_path)
+            case ParsedFyFileKind.METHOD:
+                return parse_method_fy_file(file_path)
