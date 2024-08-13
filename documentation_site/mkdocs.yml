@@ -58,6 +58,6 @@ nav:
   - Reference:
       - Flow: reference/flow.md
       - Property:
-        - Property & Abstract Property: reference/Property/property
+        - What are properties: reference/Property/property
         - Usage in Execution Flow: reference/Property/property_in_flow
       - Method: reference/method.md
