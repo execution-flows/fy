@@ -1,4 +1,4 @@
-# Using Properties in a Flow
+# Using Property in a Flow
 We will now take a look into the next _Execution Flows_ component - `property`. _Property_ in _Execution Flows_ serves a purpose of providing data to the flow code. 
 ## Syntax
 
