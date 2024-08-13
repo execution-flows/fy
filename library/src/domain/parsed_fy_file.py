@@ -1,10 +1,13 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 from enum import Enum
 from pathlib import Path
 from typing import Any
 
 from pydantic import BaseModel, model_validator
 
-from domain.python_entity_name import PythonEntityName
 from domain.template_models import FlowTemplateModel, AbstractPropertyTemplateModel, PropertyTemplateModel
 
 
