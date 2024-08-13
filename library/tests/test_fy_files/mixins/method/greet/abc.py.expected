@@ -1,0 +1,7 @@
+import abc
+
+
+class Greet(abc.ABC):
+    @abc.abstractmethod
+    def _greet(self, greeting: str) -> None:
+        raise NotImplementedError()

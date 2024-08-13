@@ -45,3 +45,5 @@ class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
                     load_jinja2_template("abstract_property.jinja2", [], parsed_fy_file)
                 case ParsedFyFileKind.PROPERTY:
                     load_jinja2_template("property.jinja2", [], parsed_fy_file)
+                case ParsedFyFileKind.ABSTRACT_METHOD:
+                    load_jinja2_template("abstract_method.jinja2", [], parsed_fy_file)
