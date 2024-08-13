@@ -30,6 +30,7 @@ theme:
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
+  - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - admonition
