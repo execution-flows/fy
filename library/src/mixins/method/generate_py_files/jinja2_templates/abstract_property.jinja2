@@ -1,7 +1,7 @@
 import abc
 
 
-class With_{{ abstract_property_name.pascal_case }}_PropertyMixin_ABC(abc.ABC):
+class {{ python_class_name.pascal_case }}(abc.ABC):
     @property
     @abc.abstractmethod
     def _{{ abstract_property_name.snake_case }}(self) -> {{ return_type }}:
