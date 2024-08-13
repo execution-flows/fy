@@ -14,9 +14,9 @@ flow HelloWorld:
 ## Breakdown of Syntax
 1. `flow HelloWorld:`
     - Declares a flow
-2. `property greeting using constant`
+2. `:::py property greeting using constant`
     - Declares a property named `greeting` that returns a constant value.
-3. `self._greeting` 
+3. `:::py self._greeting` 
     - The Python implementation of the `greeting` property.
 
 ## Conversion to Python
@@ -39,9 +39,9 @@ class HelloWorld_Flow(
 
 ```
 ## Breakdown
-1. `Greeting_UsingConstant_PropertyMixin`
-    - _Property_ that returns `str` (More in the [_Property Reference_](/reference/property) chapter)
-2. `__call__`
+1. `:::py Greeting_UsingConstant_PropertyMixin`
+    - _Property_ that returns `str` (More in the [_Property Reference_](/reference/Property/property) chapter)
+2. `:::py __call__`
     - Executes the flow, printing the value of `_greeting` property.
 
 This tutorial demonstrates how to declare and use _Property_ within the hosting flow, showcasing the power of properties in making your code modular.
