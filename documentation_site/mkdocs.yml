@@ -52,8 +52,8 @@ nav:
   - Home: index.md
   - Tutorial:
       - Flow: tutorial/flow.md
-      - Property: tutorial/property.md
-      - Method: tutorial/method.md
+      - Flow Using Property: tutorial/flow_using_property.md
+      - Flow Using Method: tutorial/flow_using_method.md
   - Reference:
       - Flow: reference/flow.md
       - Property: reference/property.md
