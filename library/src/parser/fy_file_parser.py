@@ -12,28 +12,37 @@ from domain.python_entity_name import PythonEntityName
 from domain.template_models import FlowTemplateModel, AbstractPropertyTemplateModel, PropertyTemplateModel, \
     PropertyMixinModel, AbstractMethodTemplateModel, MethodTemplateModel, MethodMixinModel
 
+PYTHON_ENTITY_CHAR_REGEX_STRING = r"[\w.\[\]]"
+PYTHON_MULTI_ENTITY_REGEX_STRING = (
+    rf"{PYTHON_ENTITY_CHAR_REGEX_STRING}|"
+    rf"{PYTHON_ENTITY_CHAR_REGEX_STRING}[\w.\[\]\s\|]*{PYTHON_ENTITY_CHAR_REGEX_STRING}"
+)
+PYTHON_ARGUMENTS_REGEX_STRING = r"\s*[^)]*\s*"
+FY_ENTITY_REGEX_STRING = r"\w+"
+
 
 def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
     flow_match_regex = re.compile(
-        r"^flow \w+( extends \w+)?:$",
+        rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*:\s*$",
         re.MULTILINE
     )
     abstract_property_match_regex = re.compile(
-        r"^property \w+: [\w.]*$",
+        rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
         re.MULTILINE
     )
     property_match_regex = re.compile(
-        r"^property \w+ using \w+:$",
+        rf"^property\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
         re.MULTILINE
     )
 
     abstract_method_match_regex = re.compile(
-        r"^method \w+\(\w*.: \w+\) -> \w+$",
+        rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
+        rf"\s*->\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
         re.MULTILINE
     )
 
     method_match_regex = re.compile(
-        r"^method \w+ using \w+:$",
+        rf"^method\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
         re.MULTILINE
     )
 
@@ -51,18 +60,23 @@ def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
     elif re.match(method_match_regex, fy_file_content):
         return ParsedFyFileKind.METHOD
 
+    raise ValueError(f"Undetected file type for {file_path}")
+
 
 def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
 
-    flow_file_split = re.split(r"flow (?P<flow_name>\w+):\n", fy_file_content)
+    flow_file_split = re.split(rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n", fy_file_content)
     flow_fy_search_name = flow_file_split[1]
 
     assert len(flow_file_split) == 3, f"Flow file length {len(flow_file_split)} is invalid."
 
-    mixins_body_split = re.split(r"\s+def -> (?P<return_type>[\w.]+):\n", flow_file_split[-1])
-    mixin_body = mixins_body_split[2]
+    mixins_body_split_regex = re.compile(rf"\s+def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n")
+    mixins_body_split = mixins_body_split_regex.split(
+        flow_file_split[-1]
+    )
+    flow_body = mixins_body_split[2]
     return_type = mixins_body_split[1]
 
     assert len(mixins_body_split) == 3, f"Flow file length {len(mixins_body_split)} is invalid."
@@ -75,7 +89,8 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
             continue
 
         flow_property_regex = re.compile(
-            r"^\s+property (?P<property_name>\w+) using (?P<implementation_name>\w+)$"
+            rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
+            rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
         )
         flow_property_fy_search = re.search(flow_property_regex, mixin_line)
         if flow_property_fy_search:
@@ -106,7 +121,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
             properties=properties,
             methods=methods,
             return_type=return_type,
-            flow_call_body=mixin_body,
+            flow_call_body=flow_body,
         )
     )
 
@@ -115,8 +130,9 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_property_fy_regex = re.compile(
-        r"^property (?P<abstract_property_name>\w+)"
-        r": (?P<return_type>[\w.]+)$",
+        rf"^property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+        r"\s*:\s*"
+        rf"(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
         re.MULTILINE
     )
 
@@ -147,8 +163,9 @@ def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
     property_fy_regex = re.compile(
-        r"^property (?P<property_name>\w+) using (?P<implementation_name>\w+):\n"
-        r"\s+def -> (?P<return_type>[\w.]+):\n"
+        rf"^property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
+        rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
+        rf"\s+def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
         r"(?P<property_body>.*)",
         re.DOTALL
     )
@@ -180,7 +197,9 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_method_fy_regex = re.compile(
-        r"^method (?P<abstract_method_name>\w+)\((?P<arguments>[^)]*)\) -> (?P<return_type>\w+)$",
+        rf"^method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
+        rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
+        rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
         re.MULTILINE
     )
 
@@ -210,9 +229,11 @@ def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
     method_fy_regex = re.compile(
-        r"^method (?P<method_name>\w+) using (?P<implementation_name>\w+):\n"
-        r"\s+def(\((?P<arguments>[^)]*)\))? -> (?P<return_type>\w+):\n"
-        r"(?P<method_body>.*)",
+        rf"^method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
+        rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
+        rf"\s+def\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
+        rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
+        rf"(?P<method_body>.*)",
         re.DOTALL
     )
 
