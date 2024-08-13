@@ -67,7 +67,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
             continue
 
         flow_property_regex = re.compile(
-            r"\s+property (?P<property_name>\w+) using (?P<implementation_name>\w+)"
+            r"^\s+property (?P<property_name>\w+) using (?P<implementation_name>\w+)$"
         )
         flow_property_fy_search = re.search(flow_property_regex, mixin_line)
 
@@ -95,8 +95,8 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_property_fy_regex = re.compile(
-        r"property (?P<abstract_property_name>\w+)"
-        r": (?P<return_type>[\w.]+)",
+        r"^property (?P<abstract_property_name>\w+)"
+        r": (?P<return_type>[\w.]+)$",
         re.MULTILINE
     )
 
@@ -127,7 +127,7 @@ def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
     property_fy_regex = re.compile(
-        r"property (?P<property_name>\w+) using (?P<implementation_name>\w+):\n"
+        r"^property (?P<property_name>\w+) using (?P<implementation_name>\w+):\n"
         r"\s+def -> (?P<return_type>[\w.]+):\n"
         r"(?P<property_body>.*)",
         re.DOTALL
