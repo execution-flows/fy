@@ -28,7 +28,7 @@ def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
     )
 
     abstract_method_match_regex = re.compile(
-        r"^method \w+\(\w*.: \w+\) -> \w+",
+        r"^method \w+\(\w*.: \w+\) -> \w+$",
         re.MULTILINE
     )
 
@@ -96,7 +96,8 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
 def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_property_fy_regex = re.compile(
         r"property (?P<abstract_property_name>\w+)"
-        r": (?P<return_type>[\w.]+)"
+        r": (?P<return_type>[\w.]+)",
+        re.MULTILINE
     )
 
     with file_path.open() as fy_file:
@@ -128,7 +129,8 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
     property_fy_regex = re.compile(
         r"property (?P<property_name>\w+) using (?P<implementation_name>\w+):\n"
         r"\s+def -> (?P<return_type>[\w.]+):\n"
-        r"(?P<property_body>.*)"
+        r"(?P<property_body>.*)",
+        re.DOTALL
     )
 
     with file_path.open() as fy_file:
@@ -158,14 +160,15 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_method_fy_regex = re.compile(
-        r"method (?P<abstract_method_name>\w+)\((?P<arguments>[^)]*)\) -> (?P<return_type>\w+)"
+        r"^method (?P<abstract_method_name>\w+)\((?P<arguments>[^)]*)\) -> (?P<return_type>\w+)$",
+        re.MULTILINE
     )
 
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
         abstract_method_fy_search = abstract_method_fy_regex.search(fy_file_content)
 
-    assert abstract_method_fy_search is not None, f"{abstract_method_fy_search}"
+    assert abstract_method_fy_search is not None, f"File {file_path} is invalid abstract method fy file"
 
     abstract_method_name_fy_search = abstract_method_fy_search.group("abstract_method_name")
     abstract_method_name = PythonEntityName.from_snake_case(abstract_method_name_fy_search)
@@ -174,10 +177,10 @@ def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
         input_fy_file_path=file_path,
         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
         template_model=AbstractMethodTemplateModel(
-            python_class_name=PythonEntityName.from_snake_case(
-                f"_{abstract_method_name.snake_case}"
+            python_class_name=PythonEntityName.from_pascal_case(
+                f"{abstract_method_name.pascal_case}_MethodMixin_ABC"
             ),
-            abstract_method_name=PythonEntityName.from_snake_case(abstract_method_fy_search.group("abstract_method_name")),
+            abstract_method_name=abstract_method_name,
             arguments=abstract_method_fy_search.group("arguments"),
             return_type=abstract_method_fy_search.group("return_type")
         )
