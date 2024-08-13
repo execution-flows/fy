@@ -41,3 +41,12 @@ class AbstractMethodTemplateModel(BaseTemplateModel):
     abstract_method_name: PythonEntityName
     arguments: str
     return_type: str
+
+
+class MethodTemplateModel(BaseTemplateModel):
+    method_name: PythonEntityName
+    implementation_name: PythonEntityName
+    function_name: PythonEntityName
+    arguments: str
+    return_type: str
+    method_body: str
