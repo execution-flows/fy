@@ -1,1 +1,1 @@
-method greet(greeting: str) -> None
+method greet(greeting: str) -> str | list[int] | None
