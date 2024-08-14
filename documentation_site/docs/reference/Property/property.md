@@ -1,6 +1,5 @@
-# Property & Abstract Property
+# What are properties?
 
-## What are properties?
 `Execution Flow (fy)` properties allow you to define flow attributes that can be accessed in a controlled manner. These properties can either be abstract or implemented returning a constant or computed value.
 ## Abstract Property Implementation
 An abstract property in `fy` is a property that is declared but not implemented. Abstract properties are exclusively used by base flows, methods, and other properties. The abstract property is the way for a base flow, method, or other property to request from a hosting flow to provide the implementation of the abstract property.
@@ -10,7 +9,7 @@ An abstract property in `fy` is a property that is declared but not implemented.
 property greeting: str
 ```
 ### Breakdown of Syntax
-1. `property greeting: str`
+1. `:::py property greeting: str`
     - Declares an abstract property named `greeting` with a return type of `str`.
     - Forces the hosting flow to use the property implementation, ensuring the data is provided to any code using the property.
 ### Conversion to Python
@@ -25,13 +24,13 @@ class With_Greeting_PropertyMixin_ABC(abc.ABC):
 
 ```
 ### Breakdown
-1. `class With_Greeting_PropertyMixin_ABC(abc.ABC):`
+1. `:::py class With_Greeting_PropertyMixin_ABC(abc.ABC):`
     - Defines a mixin class that inherits from `abc.ABC`, making it an abstract base class. 
-2. `@property`
+2. `:::py @property`
     - Marks `_greeting` as a property, meaning it can be accessed like an attribute.
-3. `@abc.abstractmethod`
+3. `:::py @abc.abstractmethod`
     - Designates `_greeting` as an abstract method, the hosting flow to use a property implementation.
-4. `raise NotImplementedError()`
+4. `:::py raise NotImplementedError()`
     - Ensures that if `_greeting` is accessed without an implementation, an error is raised.
 
 ## Property Implementation
@@ -43,10 +42,10 @@ property greeting using constant:
 ```
 
 ### Breakdown of Syntax
-1. `property greeting using constant:`
+1. `:::py property greeting using constant:`
     - Declares a simple property named `greeting` that returns a constant value. Note that `constant` is not a keyword, but an implementation name. 
        - Some examples of implementations can be: `using db_record` or `using hour_of_day`.
-2. `def -> str:`
+2. `:::py def -> str:`
     - Begins the definition of the property method that returns a `str`.
     - `return "Hello world!` is the value that property returns when accessed.
 
@@ -59,11 +58,11 @@ class Greeting_UsingConstant_PropertyMixin:
         return "Hello world!"
 ```
 ### Breakdown 
-1. `class Greeting_UsingConstant_PropertyMixin:`
+1. `:::py class Greeting_UsingConstant_PropertyMixin:`
     - Defines a mixin class that includes the property implementation.
-2. `@property`
+2. `:::py @property`
     - Indicates that `_greeting` is a property, accessed like an attribute.
-3. `def _greeting(self) -> str:`
+3. `:::py def _greeting(self) -> str:`
     - Implements the property, returning the string `"Hello world!"`.
 
 ## Usage in Execution Flow

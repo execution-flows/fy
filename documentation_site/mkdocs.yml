@@ -57,5 +57,7 @@ nav:
       - Flow Using Method: tutorial/flow_using_method.md
   - Reference:
       - Flow: reference/flow.md
-      - Property: reference/property.md
+      - Property:
+        - What are properties: reference/Property/property
+        - Usage in Execution Flow: reference/Property/property_in_flow
       - Method: reference/method.md
