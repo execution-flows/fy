@@ -37,7 +37,7 @@ def parsed_file_key(parsed_fy_file: ParsedFyFile) -> str:
             return flow_template_model.flow_name.snake_case
         case ParsedFyFileKind.ABSTRACT_PROPERTY:
             abstract_property_template_model = cast(AbstractPropertyTemplateModel, parsed_fy_file.template_model)
-            return abstract_property_template_model.property_name.snake_case
+            return abstract_property_template_model.abstract_property_name.snake_case
         case ParsedFyFileKind.ABSTRACT_METHOD:
             abstract_method_template_model = cast(AbstractMethodTemplateModel, parsed_fy_file.template_model)
             return abstract_method_template_model.abstract_method_name.snake_case
