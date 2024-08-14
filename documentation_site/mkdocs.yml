@@ -6,6 +6,8 @@ theme:
       - search.highlight
       - toc.integrate
       - navigation.footer
+      - navigation.tabs
+      - navigation.top
       - content.code.copy
     icon:
         repo: fontawesome/brands/github
@@ -52,13 +54,15 @@ repo_name: execution-flows/fy
 nav:
   - Home: index.md
   - Tutorial:
-      - Flow: tutorial/flow.md
+      - Flow:
+        - What is Flow: tutorial/flow/flow.md
       - Property:
-        - What are properties: tutorial/Property/property.md
-        - Usage in Execution Flow (example 1): tutorial/Property/property_in_flow.md
-        - Usage in Execution Flow (example 2): tutorial/Property/flow_using_property.md
+        - What are properties: tutorial/property/property.md
+        - Usage in Execution Flow (example 1): tutorial/property/property_in_flow.md
+        - Usage in Execution Flow (example 2): tutorial/property/flow_using_property.md
       - Method:
-        - Usage in Execution Flow: tutorial/Method/flow_using_method.md
+        - Method: tutorial/method/method.md
+        - Usage in Execution Flow: tutorial/method/flow_using_method.md
   - Reference:
       - Flow: reference/flow.md
-      - Method: reference/method.md
+
