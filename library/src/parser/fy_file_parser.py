@@ -101,7 +101,8 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
                 )
             )
         flow_method_regex = re.compile(
-            r"^\s+method (?P<method_name>\w+) using (?P<implementation_name>\w+)$"
+            rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
+            rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
         )
         flow_method_fy_search = re.search(flow_method_regex, mixin_line)
 
