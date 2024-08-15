@@ -92,7 +92,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
     ), f"Flow file length {len(flow_file_split)} is invalid."
 
     mixins_body_split_regex = re.compile(
-        rf"\s+def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
+        rf"\s*def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
     )
     mixins_body_split = mixins_body_split_regex.split(flow_file_split[-1])
     flow_body = mixins_body_split[2]
@@ -155,6 +155,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
             methods=methods,
             return_type=return_type,
             flow_call_body=flow_body,
+            user_imports=None,  # TODO: implement
         ),
     )
 
@@ -192,6 +193,7 @@ def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
             ),
             abstract_property_name=abstract_property_name,
             return_type=abstract_property_fy_search.group("return_type"),
+            user_imports=None,  # TODO: placeholder
         ),
     )
 
@@ -305,6 +307,7 @@ def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
             abstract_method_name=abstract_method_name,
             arguments=abstract_method_fy_search.group("arguments"),
             return_type=abstract_method_fy_search.group("return_type"),
+            user_imports=None,  # TODO: placeholder
         ),
     )
     return parsed_fy_file
@@ -332,7 +335,7 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
         rf"\s*def\s*(\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
     )
     method_body_split = method_body_split_regex.split(method_file_split[-1])
-    pass
+
     assert (
         len(method_body_split) == 5
     ), f"Method file length {len(method_body_split)} is invalid."
