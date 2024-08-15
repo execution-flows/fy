@@ -6,4 +6,6 @@
 # this file is accessible in projects that install `fy_library` package. Currently, CLI tool uses `Main_Flow` to run
 # the tool.
 
-from entry.main_flow import Main_Flow
+from entry.main_flow import Main_Flow  # noqa: F401
+
+__all__ = ["Main_Flow"]

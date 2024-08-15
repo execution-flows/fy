@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 150
+extend-ignore = E203
+
+extend-immutable-calls = ninja.Query, Query
+kwargs-ignore-function-pattern-extend = replace|assert*|NewType|order_by|PostGenerationMethodCall|

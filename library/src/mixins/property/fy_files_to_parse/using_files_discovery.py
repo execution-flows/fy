@@ -11,8 +11,7 @@ from mixins.property.folder_to_parse.abc import With_FolderToParse_PropertyMixin
 
 
 class FyFilesToParse_UsingFilesDiscovery_PropertyMixin(
-    With_FolderToParse_PropertyMixin_ABC,
-    abc.ABC
+    With_FolderToParse_PropertyMixin_ABC, abc.ABC
 ):
     @cached_property
     def _fy_files_to_parse(self) -> List[Path]:

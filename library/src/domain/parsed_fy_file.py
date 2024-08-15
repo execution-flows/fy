@@ -4,12 +4,18 @@
 
 from enum import Enum
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, model_validator
 
-from domain.template_models import FlowTemplateModel, AbstractPropertyTemplateModel, PropertyTemplateModel, \
-    AbstractMethodTemplateModel, MethodTemplateModel
+from domain.template_models import (
+    FlowTemplateModel,
+    AbstractPropertyTemplateModel,
+    PropertyTemplateModel,
+    AbstractMethodTemplateModel,
+    MethodTemplateModel,
+    BaseTemplateModel,
+)
 
 
 class ParsedFyFileKind(Enum):
@@ -24,59 +30,33 @@ class ParsedFyFile(BaseModel):
     file_type: ParsedFyFileKind
     input_fy_file_path: Path
     output_py_file_path: Path
-    template_model: BaseModel
+    template_model: BaseTemplateModel
 
 
 class ParsedFlowFyFile(ParsedFyFile):
+    file_type: Literal[ParsedFyFileKind.FLOW] = ParsedFyFileKind.FLOW
     template_model: FlowTemplateModel
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_file_type(cls, data: Any) -> Any:
-        if isinstance(data, dict):
-            data["file_type"] = ParsedFyFileKind.FLOW
-        return data
 
 
 class ParsedAbstractPropertyFyFile(ParsedFyFile):
+    file_type: Literal[ParsedFyFileKind.ABSTRACT_PROPERTY] = (
+        ParsedFyFileKind.ABSTRACT_PROPERTY
+    )
     template_model: AbstractPropertyTemplateModel
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_file_type(cls, data: Any) -> Any:
-        if isinstance(data, dict):
-            data["file_type"] = ParsedFyFileKind.ABSTRACT_PROPERTY
-        return data
 
 
 class ParsedPropertyFyFile(ParsedFyFile):
+    file_type: Literal[ParsedFyFileKind.PROPERTY] = ParsedFyFileKind.PROPERTY
     template_model: PropertyTemplateModel
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_file_type(cls, data: Any) -> Any:
-        if isinstance(data, dict):
-            data["file_type"] = ParsedFyFileKind.PROPERTY
-        return data
 
 
 class ParsedAbstractMethodFyFile(ParsedFyFile):
+    file_type: Literal[ParsedFyFileKind.ABSTRACT_METHOD] = (
+        ParsedFyFileKind.ABSTRACT_METHOD
+    )
     template_model: AbstractMethodTemplateModel
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_file_type(cls, data: Any) -> Any:
-        if isinstance(data, dict):
-            data["file_type"] = ParsedFyFileKind.ABSTRACT_METHOD
-        return data
 
 
 class ParsedMethodFyFile(ParsedFyFile):
+    file_type: Literal[ParsedFyFileKind.METHOD] = ParsedFyFileKind.METHOD
     template_model: MethodTemplateModel
-
-    @model_validator(mode="before")
-    @classmethod
-    def set_file_type(cls, data: Any) -> Any:
-        if isinstance(data, dict):
-            data["file_type"] = ParsedFyFileKind.METHOD
-        return data
