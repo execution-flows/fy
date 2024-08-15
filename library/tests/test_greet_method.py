@@ -6,5 +6,5 @@ from test_utils.main_flow_text_case import MainFlowTestCase
 
 
 class TestGreetMethod(MainFlowTestCase):
-    def test_greet_method(self):
+    def test_greet_method(self) -> None:
         self._test_main_flow(target_folder="mixins/method/greet")

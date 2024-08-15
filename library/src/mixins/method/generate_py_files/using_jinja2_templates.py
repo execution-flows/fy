@@ -8,27 +8,34 @@ from typing import cast, List
 
 from jinja2 import Environment, FileSystemLoader
 
-from domain.parsed_fy_file import ParsedFyFileKind, ParsedFyFile, ParsedFlowFyFile, ParsedMethodFyFile
+from domain.parsed_fy_file import (
+    ParsedFyFileKind,
+    ParsedFyFile,
+    ParsedFlowFyFile,
+    ParsedMethodFyFile,
+)
 from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
 from mixins.property.mixin_import_map.using_parsed_fy_files import mixin_key
 from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
 
 
-def load_jinja2_template(jinja2_template_name: str, mixin_imports: List[str], parsed_fy_file: ParsedFyFile) -> None:
+def load_jinja2_template(
+    jinja2_template_name: str, mixin_imports: List[str], parsed_fy_file: ParsedFyFile
+) -> None:
     templates_path = str(pathlib.Path(__file__).parent / "jinja2_templates")
     env = Environment(loader=FileSystemLoader(templates_path))
     template = env.get_template(jinja2_template_name)
     template_model = parsed_fy_file.template_model.model_dump()
     template_model["mixin_imports"] = mixin_imports
     content = template.render(template_model)
-    with open(parsed_fy_file.output_py_file_path, "w", encoding="UTF-8") as output_py_file:
+    with open(
+        parsed_fy_file.output_py_file_path, "w", encoding="UTF-8"
+    ) as output_py_file:
         output_py_file.write(content)
 
 
 class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
-    With_ParsedFyFiles_PropertyMixin_ABC,
-    With_MixinImportMap_PropertyMixin_ABC,
-    abc.ABC
+    With_ParsedFyFiles_PropertyMixin_ABC, With_MixinImportMap_PropertyMixin_ABC, abc.ABC
 ):
 
     def _generate_py_files(self) -> None:
@@ -39,18 +46,22 @@ class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
                         self._mixin_import_map[
                             mixin_key(
                                 property_mixin.property_name.snake_case,
-                                property_mixin.implementation_name.snake_case
-                                )
-                            ]
-                        for property_mixin in cast(ParsedFlowFyFile, parsed_fy_file).template_model.properties
+                                property_mixin.implementation_name.snake_case,
+                            )
+                        ]
+                        for property_mixin in cast(
+                            ParsedFlowFyFile, parsed_fy_file
+                        ).template_model.properties
                     ] + [
                         self._mixin_import_map[
                             mixin_key(
                                 method_mixin.method_name.snake_case,
-                                method_mixin.implementation_name.snake_case
+                                method_mixin.implementation_name.snake_case,
                             )
                         ]
-                        for method_mixin in cast(ParsedFlowFyFile, parsed_fy_file).template_model.methods
+                        for method_mixin in cast(
+                            ParsedFlowFyFile, parsed_fy_file
+                        ).template_model.methods
                     ]
                     load_jinja2_template("flow.jinja2", mixin_imports, parsed_fy_file)
                 case ParsedFyFileKind.ABSTRACT_PROPERTY:
@@ -64,6 +75,8 @@ class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
                         self._mixin_import_map[
                             abstract_property_mixin.property_name.snake_case
                         ]
-                        for abstract_property_mixin in cast(ParsedMethodFyFile, parsed_fy_file).template_model.abstract_property_mixins
+                        for abstract_property_mixin in cast(
+                            ParsedMethodFyFile, parsed_fy_file
+                        ).template_model.abstract_property_mixins
                     ]
                     load_jinja2_template("method.jinja2", mixin_imports, parsed_fy_file)
