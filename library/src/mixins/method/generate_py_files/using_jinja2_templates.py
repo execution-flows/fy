@@ -94,6 +94,13 @@ class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
                         for abstract_property_mixin in cast(
                             ParsedMethodFyFile, parsed_fy_file
                         ).template_model.abstract_property_mixins
+                    ] + [
+                        self._mixin_import_map[
+                            abstract_method_mixin.method_name.snake_case
+                        ]
+                        for abstract_method_mixin in cast(
+                            ParsedMethodFyFile, parsed_fy_file
+                        ).template_model.abstract_method_mixins
                     ]
                     load_jinja2_template(
                         jinja2_template_name="method.jinja2",
