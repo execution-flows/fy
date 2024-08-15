@@ -10,7 +10,7 @@ from domain.parsed_fy_file import ParsedFyFile, ParsedFyFileKind, ParsedFlowFyFi
     ParsedAbstractPropertyFyFile, ParsedAbstractMethodFyFile, ParsedMethodFyFile
 from domain.python_entity_name import PythonEntityName
 from domain.template_models import FlowTemplateModel, AbstractPropertyTemplateModel, PropertyTemplateModel, \
-    PropertyMixinModel, AbstractMethodTemplateModel, MethodTemplateModel, MethodMixinModel
+    PropertyMixinModel, AbstractMethodTemplateModel, MethodTemplateModel, MethodMixinModel, AbstractPropertyModel
 
 PYTHON_ENTITY_CHAR_REGEX_STRING = r"[\w.\[\]]"
 PYTHON_MULTI_ENTITY_REGEX_STRING = (
@@ -98,8 +98,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
                 property_name=PythonEntityName.from_snake_case(flow_property_fy_search.group("property_name")),
                 implementation_name=PythonEntityName.from_snake_case(
                     flow_property_fy_search.group("implementation_name")),
-                )
-            )
+            ))
         flow_method_regex = re.compile(
             rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
             rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
@@ -109,9 +108,9 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
         if flow_method_fy_search:
             methods.append(MethodMixinModel(
                 method_name=PythonEntityName.from_snake_case(flow_method_fy_search.group("method_name")),
-                implementation_name=PythonEntityName.from_snake_case(flow_method_fy_search.group("implementation_name")),
-                )
-            )
+                implementation_name=PythonEntityName.from_snake_case(
+                    flow_method_fy_search.group("implementation_name")),
+            ))
 
     parsed_fy_file = ParsedFlowFyFile(
         input_fy_file_path=file_path,
@@ -229,41 +228,66 @@ def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
 
 
 def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
-    method_fy_regex = re.compile(
-        rf"^method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
-        rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
-        rf"\s+def\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
-        rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
-        rf"(?P<method_body>.*)",
-        re.DOTALL
-    )
-
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
-        method_fy_search = method_fy_regex.search(fy_file_content)
 
-    assert method_fy_search is not None, f"File {file_path} is invalid method fy file"
+    method_file_split_regex = re.compile(
+        rf"method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+using\s+"
+        rf"(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
+    )
+    method_file_split = re.split(
+        method_file_split_regex,
+        fy_file_content
+    )
 
-    implementation_name_fy_search = method_fy_search.group("implementation_name")
-    implementation_name = PythonEntityName.from_snake_case(implementation_name_fy_search)
-    method_name_fy_search = method_fy_search.group("method_name")
-    method_name = PythonEntityName.from_snake_case(method_name_fy_search)
+    assert len(method_file_split) == 4, f"Method file length {len(method_file_split)} is invalid."
+
+    method_name = PythonEntityName.from_snake_case(method_file_split[1])
+    implementation_name = PythonEntityName.from_snake_case(method_file_split[2])
+
+    method_body_split_regex = re.compile(
+        rf"\s+def\s*(\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
+    )
+    method_body_split = method_body_split_regex.split(
+        method_file_split[-1]
+    )
+
+    assert len(method_body_split) == 5, f"Method file length {len(method_body_split)} is invalid."
+
+    arguments = method_body_split[2]
+    return_type = method_body_split[3]
+    method_body = method_body_split[4]
+    abstract_properties: List[AbstractPropertyModel] = []
+    mixin_lines = method_body_split[0].split('\n')
+    for mixin_line in mixin_lines:
+        if mixin_line == "":
+            continue
+
+        declared_abstract_property_mixin = re.search(
+            rf"^\s+with\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})",
+            mixin_line
+        )
+        if declared_abstract_property_mixin:
+            abstract_properties.append(AbstractPropertyModel(
+                property_name=PythonEntityName.from_snake_case(
+                    declared_abstract_property_mixin.group("property_name"))
+            ))
 
     parsed_fy_file = ParsedMethodFyFile(
         input_fy_file_path=file_path,
         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
         template_model=MethodTemplateModel(
+            method_name=method_name,
             python_class_name=PythonEntityName.from_pascal_case(
                 f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
             ),
-            method_name=method_name,
-            arguments=method_fy_search.group("arguments"),
-            return_type=method_fy_search.group("return_type"),
-            method_body=method_fy_search.group("method_body"),
-            implementation_name=PythonEntityName.from_snake_case(method_fy_search.group("implementation_name")),
-        ),
+            implementation_name=implementation_name,
+            abstract_property_mixins=abstract_properties,
+            arguments=arguments,
+            return_type=return_type,
+            method_body=method_body,
+        )
     )
-
     return parsed_fy_file
 
 
