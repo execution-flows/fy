@@ -1,6 +1,6 @@
 from base.execution_flow_base import ExecutionFlowBase
 
-from tests.test_fy_files.hello_world_using_property import Greeting_UsingConstant_PropertyMixin
+from test_fy_files.hello_world_using_property import Greeting_UsingConstant_PropertyMixin
 
 
 class HelloWorld_Flow(

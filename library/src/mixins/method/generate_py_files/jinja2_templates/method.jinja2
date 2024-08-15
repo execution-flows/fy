@@ -1,3 +1,12 @@
-class {{ python_class_name.pascal_case }}:
+{% if mixin_imports %}import abc
+{% for mixin_import in mixin_imports %}
+{{ mixin_import }}
+{% endfor %}
+
+{% endif %}class {{ python_class_name.pascal_case }}{% if abstract_property_mixins %}(
+    # Property_mixins{% for abstract_property in abstract_property_mixins %}
+    With_{{ abstract_property.property_name.pascal_case }}_PropertyMixin_ABC,{% endfor %}
+    abc.ABC
+){% endif %}:
     def _{{ method_name.snake_case }}(self{% if arguments %}, {{ arguments }}{% endif %}) -> {{ return_type }}:
 {{ method_body }}

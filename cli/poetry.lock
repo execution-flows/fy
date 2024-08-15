@@ -16,7 +16,7 @@ name = "fy-library"
 version = "0.1.0"
 description = ""
 optional = false
-python-versions = ">=3.10"
+python-versions = ">=3.10,<3.13"
 files = []
 develop = true
 
@@ -128,10 +128,7 @@ files = [
 [package.dependencies]
 annotated-types = ">=0.4.0"
 pydantic-core = "2.20.1"
-typing-extensions = [
-    {version = ">=4.12.2", markers = "python_version >= \"3.13\""},
-    {version = ">=4.6.1", markers = "python_version < \"3.13\""},
-]
+typing-extensions = {version = ">=4.6.1", markers = "python_version < \"3.13\""}
 
 [package.extras]
 email = ["email-validator (>=2.0.0)"]
@@ -250,5 +247,5 @@ files = [
 
 [metadata]
 lock-version = "2.0"
-python-versions = ">=3.10"
-content-hash = "f6b3bd6d3a98ce890d7fc02a6c7c10cef8b706b436b3e4a553acf9691f8b37cd"
+python-versions = ">=3.10,<3.13"
+content-hash = "1f82b41503ff803efe77c1c77da550149437aa3a290dfaf57e0f0a755c32e8f7"

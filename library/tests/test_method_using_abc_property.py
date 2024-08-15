@@ -5,6 +5,6 @@
 from test_utils.main_flow_text_case import MainFlowTestCase
 
 
-class TestGreetingProperty(MainFlowTestCase):
-    def test_greeting_property(self) -> None:
-        self._test_main_flow(target_folder="mixins/property/greeting")
+class TestMethodUsingAbcPropertyFy(MainFlowTestCase):
+    def test_method_using_abc_property_generates_file(self) -> None:
+        self._test_main_flow(target_folder="mixins/method/using_property")
