@@ -40,41 +40,37 @@ FY_ENTITY_REGEX_STRING = r"\w+"
 def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
     flow_match_regex = re.compile(
         rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*:\s*$",
-        flags=re.MULTILINE,
     )
     abstract_property_match_regex = re.compile(
-        rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
-        flags=re.MULTILINE,
+        rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
     )
     property_match_regex = re.compile(
         rf"^property\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
-        flags=re.MULTILINE,
     )
 
     abstract_method_match_regex = re.compile(
-        pattern=rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
-        rf"\s*->\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
-        flags=re.MULTILINE,
+        rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
+        rf"\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
     )
 
     method_match_regex = re.compile(
         rf"^method\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
-        flags=re.MULTILINE,
     )
 
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
 
-    if flow_match_regex.match(fy_file_content) is not None:
-        return ParsedFyFileKind.FLOW
-    elif abstract_property_match_regex.match(fy_file_content) is not None:
-        return ParsedFyFileKind.ABSTRACT_PROPERTY
-    elif property_match_regex.match(fy_file_content) is not None:
-        return ParsedFyFileKind.PROPERTY
-    elif abstract_method_match_regex.match(fy_file_content) is not None:
-        return ParsedFyFileKind.ABSTRACT_METHOD
-    elif method_match_regex.match(fy_file_content) is not None:
-        return ParsedFyFileKind.METHOD
+    for fy_line in fy_file_content.split("\n"):
+        if flow_match_regex.match(fy_line) is not None:
+            return ParsedFyFileKind.FLOW
+        elif abstract_property_match_regex.match(fy_line) is not None:
+            return ParsedFyFileKind.ABSTRACT_PROPERTY
+        elif property_match_regex.match(fy_line) is not None:
+            return ParsedFyFileKind.PROPERTY
+        elif abstract_method_match_regex.match(fy_line) is not None:
+            return ParsedFyFileKind.ABSTRACT_METHOD
+        elif method_match_regex.search(fy_line) is not None:
+            return ParsedFyFileKind.METHOD
 
     raise ValueError(f"Undetected file type for {file_path}")
 
@@ -159,6 +155,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
             methods=methods,
             return_type=return_type,
             flow_call_body=flow_body,
+            user_imports=None,  # TODO: implement
         ),
     )
 
@@ -196,6 +193,7 @@ def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
             ),
             abstract_property_name=abstract_property_name,
             return_type=abstract_property_fy_search.group("return_type"),
+            user_imports=None,  # TODO: placeholder
         ),
     )
 
@@ -217,6 +215,7 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
         len(property_file_split) == 4
     ), f"Property file length {len(property_file_split)} is invalid."
 
+    user_imports = property_file_split[0]
     property_name = PythonEntityName.from_snake_case(property_file_split[1])
     implementation_name = PythonEntityName.from_snake_case(property_file_split[2])
 
@@ -269,6 +268,7 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
             abstract_property_mixins=abstract_properties,
             return_type=return_type,
             property_body=property_body,
+            user_imports=user_imports,
         ),
     )
     return parsed_fy_file
@@ -307,6 +307,7 @@ def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
             abstract_method_name=abstract_method_name,
             arguments=abstract_method_fy_search.group("arguments"),
             return_type=abstract_method_fy_search.group("return_type"),
+            user_imports=None,  # TODO: placeholder
         ),
     )
     return parsed_fy_file
@@ -326,6 +327,7 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
         len(method_file_split) == 4
     ), f"Method file length {len(method_file_split)} is invalid."
 
+    user_imports = method_file_split[0]
     method_name = PythonEntityName.from_snake_case(method_file_split[1])
     implementation_name = PythonEntityName.from_snake_case(method_file_split[2])
 
@@ -394,6 +396,7 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
             arguments=arguments,
             return_type=return_type,
             method_body=method_body,
+            user_imports=user_imports,
         ),
     )
     return parsed_fy_file

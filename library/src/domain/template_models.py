@@ -11,6 +11,7 @@ from domain.python_entity_name import PythonEntityName
 
 class BaseTemplateModel(BaseModel):
     python_class_name: PythonEntityName
+    user_imports: str | None
 
 
 class AbstractPropertyTemplateModel(BaseTemplateModel):
