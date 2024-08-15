@@ -38,15 +38,15 @@ FY_ENTITY_REGEX_STRING = r"\w+"
 
 def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
     flow_match_regex = re.compile(
-        pattern=rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*:\s*$",
+        rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*:\s*$",
         flags=re.MULTILINE,
     )
     abstract_property_match_regex = re.compile(
-        pattern=rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
+        rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
         flags=re.MULTILINE,
     )
     property_match_regex = re.compile(
-        pattern=rf"^property\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
+        rf"^property\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
         flags=re.MULTILINE,
     )
 
@@ -57,7 +57,7 @@ def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
     )
 
     method_match_regex = re.compile(
-        pattern=rf"^method\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
+        rf"^method\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
         flags=re.MULTILINE,
     )
 
@@ -83,7 +83,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
         fy_file_content = fy_file.read()
 
     flow_file_split_regex = re.compile(
-        pattern=rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
+        rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
     )
 
     flow_file_split = flow_file_split_regex.split(fy_file_content)
