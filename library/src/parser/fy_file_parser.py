@@ -110,7 +110,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
     methods: List[MethodMixinModel] = []
     mixin_lines = mixins_body_split[0].split("\n")
     for mixin_line in mixin_lines:
-        if mixin_line == "":
+        if mixin_line.strip() == "":
             continue
 
         flow_property_regex = re.compile(
@@ -241,7 +241,7 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
 
     mixin_lines = property_body_split[0].split("\n")
     for mixin_line in mixin_lines:
-        if mixin_line == "":
+        if mixin_line.strip() == "":
             continue
 
         declared_abstract_property_mixin = abstract_property_mixin_regex.search(
@@ -393,7 +393,7 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
 
     mixin_lines = method_body_split[0].split("\n")
     for mixin_line in mixin_lines:
-        if mixin_line == "":
+        if mixin_line.strip() == "":
             continue
 
         declared_abstract_property_mixin = abstract_property_mixin_regex.search(
