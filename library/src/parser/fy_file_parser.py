@@ -92,7 +92,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
     ), f"Flow file length {len(flow_file_split)} is invalid."
 
     mixins_body_split_regex = re.compile(
-        rf"\s*def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
+        rf"\s+def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
     )
     mixins_body_split = mixins_body_split_regex.split(flow_file_split[-1])
     flow_body = mixins_body_split[2]
@@ -332,7 +332,7 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
     implementation_name = PythonEntityName.from_snake_case(method_file_split[2])
 
     method_body_split_regex = re.compile(
-        rf"\s*def\s*(\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
+        rf"\s+def\s*(\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
     )
     method_body_split = method_body_split_regex.split(method_file_split[-1])
 
