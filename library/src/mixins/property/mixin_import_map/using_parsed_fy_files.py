@@ -21,7 +21,7 @@ from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin
 def mixin_key(
     mixin_name__snake_case: str, mixin_implementation_name__snake_case: str
 ) -> str:
-    return f"{mixin_name__snake_case}." f"{mixin_implementation_name__snake_case}"
+    return f"{mixin_name__snake_case}.{mixin_implementation_name__snake_case}"
 
 
 def parsed_file_key(parsed_fy_file: ParsedFyFile) -> str:
@@ -31,16 +31,16 @@ def parsed_file_key(parsed_fy_file: ParsedFyFile) -> str:
                 PropertyTemplateModel, parsed_fy_file.template_model
             )
             return mixin_key(
-                property_template_model.property_name.snake_case,
-                property_template_model.implementation_name.snake_case,
+                mixin_name__snake_case=property_template_model.property_name.snake_case,
+                mixin_implementation_name__snake_case=property_template_model.implementation_name.snake_case,
             )
         case ParsedFyFileKind.METHOD:
             method_template_model = cast(
                 MethodTemplateModel, parsed_fy_file.template_model
             )
             return mixin_key(
-                method_template_model.method_name.snake_case,
-                method_template_model.implementation_name.snake_case,
+                mixin_name__snake_case=method_template_model.method_name.snake_case,
+                mixin_implementation_name__snake_case=method_template_model.implementation_name.snake_case,
             )
         case ParsedFyFileKind.FLOW:
             flow_template_model = cast(FlowTemplateModel, parsed_fy_file.template_model)
@@ -62,10 +62,11 @@ def parsed_file_key(parsed_fy_file: ParsedFyFile) -> str:
 
 
 def parsed_file_python_import(parsed_fy_file: ParsedFyFile) -> str:
-    relative_file_path = parsed_fy_file.input_fy_file_path.parent.relative_to(
+    relative_file_folder_path = parsed_fy_file.input_fy_file_path.parent.relative_to(
         Path.cwd()
     )
-    python_file_path = ".".join(relative_file_path.parts)
+    file_name = parsed_fy_file.input_fy_file_path.stem
+    python_file_path = ".".join(relative_file_folder_path.parts + (file_name,))
     return f"from {python_file_path} import {parsed_fy_file.template_model.python_class_name.pascal_case}"
 
 

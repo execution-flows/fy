@@ -1,8 +1,8 @@
 from base.execution_flow_base import ExecutionFlowBase
 
-from test_fy_files.flow_using_method_and_property_mixins import Greeting_UsingConstant_PropertyMixin
+from test_fy_files.flow_using_method_and_property_mixins.greeting import Greeting_UsingConstant_PropertyMixin
 
-from test_fy_files.flow_using_method_and_property_mixins import Greet_UsingGreeting_MethodMixin
+from test_fy_files.flow_using_method_and_property_mixins.greet import Greet_UsingGreeting_MethodMixin
 
 
 class HelloWorld_Flow(

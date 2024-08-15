@@ -1,6 +1,6 @@
 import abc
 
-from test_fy_files.mixins.method.using_property import With_Greeting_PropertyMixin_ABC
+from test_fy_files.mixins.method.using_property.abc import With_Greeting_PropertyMixin_ABC
 
 
 class Greet_UsingGreeting_MethodMixin(
