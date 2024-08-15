@@ -62,11 +62,11 @@ def parsed_file_key(parsed_fy_file: ParsedFyFile) -> str:
 
 
 def parsed_file_python_import(parsed_fy_file: ParsedFyFile) -> str:
-    relative_file_path = parsed_fy_file.input_fy_file_path.parent.relative_to(
+    relative_file_folder_path = parsed_fy_file.input_fy_file_path.parent.relative_to(
         Path.cwd()
     )
-    file_name = parsed_fy_file.input_fy_file_path.relative_to(Path.cwd()).stem
-    python_file_path = ".".join(relative_file_path.parts + (file_name,))
+    file_name = parsed_fy_file.input_fy_file_path.stem
+    python_file_path = ".".join(relative_file_folder_path.parts + (file_name,))
     return f"from {python_file_path} import {parsed_fy_file.template_model.python_class_name.pascal_case}"
 
 
