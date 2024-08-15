@@ -7,4 +7,4 @@ from test_utils.main_flow_text_case import MainFlowTestCase
 
 class TestBothMixins(MainFlowTestCase):
     def test_both_mixins(self):
-        self._test_main_flow(target_folder="both_mixins")
+        self._test_main_flow(target_folder="flow_using_method_and_property_mixin")

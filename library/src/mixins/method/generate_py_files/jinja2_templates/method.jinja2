@@ -3,9 +3,9 @@
 {{ mixin_import }}
 {% endfor %}
 
-{% endif %}class {{ python_class_name.pascal_case }}{% if properties %}(
-    # Property_mixins{% for property in properties %}
-    With_{{ property.property_name.pascal_case }}_PropertyMixin_ABC,{% endfor %}
+{% endif %}class {{ python_class_name.pascal_case }}{% if abstract_property_mixins %}(
+    # Property_mixins{% for abstract_property in abstract_property_mixins %}
+    With_{{ abstract_property.property_name.pascal_case }}_PropertyMixin_ABC,{% endfor %}
     abc.ABC
 ){% endif %}:
     def _{{ method_name.snake_case }}(self{% if arguments %}, {{ arguments }}{% endif %}) -> {{ return_type }}:

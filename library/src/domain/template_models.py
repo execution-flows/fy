@@ -35,7 +35,7 @@ class MethodMixinModel(BaseModel):
     implementation_name: PythonEntityName
 
 
-class MethodPropertyModel(BaseModel):
+class AbstractPropertyModel(BaseModel):
     property_name: PythonEntityName
 
 
@@ -56,7 +56,7 @@ class AbstractMethodTemplateModel(BaseTemplateModel):
 class MethodTemplateModel(BaseTemplateModel):
     method_name: PythonEntityName
     implementation_name: PythonEntityName
-    properties: List[MethodPropertyModel]
+    abstract_property_mixins: List[AbstractPropertyModel]
     arguments: str | None
     return_type: str
     method_body: str
