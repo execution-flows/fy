@@ -44,7 +44,7 @@ class HelloWorld_Flow(
     - This mixin provides the logic to handle the `greeting` property, initialized as a constant.
 3. `:::py ExecutionFlowBase[None]`
     - The base class for _flow_, with `None` as a return type.
-4. `:::py __call__`
+4. `:::py self._greeting`
     - Flow's main behavior.
 
 ## Summary

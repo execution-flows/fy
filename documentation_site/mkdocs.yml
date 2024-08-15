@@ -53,11 +53,12 @@ nav:
   - Home: index.md
   - Tutorial:
       - Flow: tutorial/flow.md
-      - Flow Using Property: tutorial/flow_using_property.md
-      - Flow Using Method: tutorial/flow_using_method.md
+      - Property:
+        - What are properties: tutorial/Property/property.md
+        - Usage in Execution Flow (example 1): tutorial/Property/property_in_flow.md
+        - Usage in Execution Flow (example 2): tutorial/Property/flow_using_property.md
+      - Method:
+        - Usage in Execution Flow: tutorial/Method/flow_using_method.md
   - Reference:
       - Flow: reference/flow.md
-      - Property:
-        - What are properties: reference/Property/property
-        - Usage in Execution Flow: reference/Property/property_in_flow
       - Method: reference/method.md

@@ -41,7 +41,7 @@ class HelloWorld_Flow(
 ## Breakdown
 1. `:::py Greeting_UsingConstant_PropertyMixin`
     - _Property_ that returns `str` (More in the [_Property Reference_](/reference/Property/property) chapter)
-2. `:::py __call__`
+2. `:::py self._greeting`
     - Executes the flow, printing the value of `_greeting` property.
 
 This tutorial demonstrates how to declare and use _Property_ within the hosting flow, showcasing the power of properties in making your code modular.
