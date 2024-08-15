@@ -203,41 +203,113 @@ def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
 
 
 def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
-    property_fy_regex = re.compile(
-        pattern=rf"^property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
-        rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
-        rf"\s+def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
-        r"(?P<property_body>.*)",
-        flags=re.DOTALL,
-    )
-
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
-        property_fy_search = property_fy_regex.search(fy_file_content)
-    assert (
-        property_fy_search is not None
-    ), f"File {file_path} is invalid property fy file"
 
-    property_name_fy_search = property_fy_search.group("property_name")
-    property_name = PythonEntityName.from_snake_case(property_name_fy_search)
-    implementation_name = PythonEntityName.from_snake_case(
-        property_fy_search.group("implementation_name")
+    property_file_split_regex = re.compile(
+        rf"property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+using\s+"
+        rf"(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
     )
+
+    property_file_split = property_file_split_regex.split(fy_file_content)
+
+    assert (
+        len(property_file_split) == 4
+    ), f"Property file length {len(property_file_split)} is invalid."
+
+    property_name = PythonEntityName.from_snake_case(property_file_split[1])
+    implementation_name = PythonEntityName.from_snake_case(property_file_split[2])
+
+    property_body_split_regex = re.compile(
+        rf"\s+def\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
+    )
+
+    property_body_split = property_body_split_regex.split(property_file_split[-1])
+
+    assert (
+        len(property_body_split) == 3
+    ), f"Property file length {len(property_body_split)} is invalid."
+
+    return_type = property_body_split[1]
+    property_body = property_body_split[2]
+
+    abstract_properties: List[AbstractPropertyModel] = []
+
+    abstract_property_mixin_regex = re.compile(
+        rf"^\s+with\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+    )
+
+    mixin_lines = property_body_split[0].split("\n")
+    for mixin_line in mixin_lines:
+        if mixin_line == "":
+            continue
+
+        declared_abstract_property_mixin = abstract_property_mixin_regex.search(
+            mixin_line
+        )
+
+        if declared_abstract_property_mixin:
+            abstract_properties.append(
+                AbstractPropertyModel(
+                    property_name=PythonEntityName.from_snake_case(
+                        declared_abstract_property_mixin.group("abstract_property_name")
+                    )
+                )
+            )
 
     parsed_fy_file = ParsedPropertyFyFile(
         input_fy_file_path=file_path,
         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
         template_model=PropertyTemplateModel(
+            property_name=property_name,
             python_class_name=PythonEntityName.from_pascal_case(
                 f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"
             ),
-            property_name=property_name,
             implementation_name=implementation_name,
-            return_type=property_fy_search.group("return_type"),
-            property_body=property_fy_search.group("property_body"),
+            abstract_property_mixins=abstract_properties,
+            return_type=return_type,
+            property_body=property_body,
         ),
     )
     return parsed_fy_file
+
+
+# def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
+#     property_fy_regex = re.compile(
+#         pattern=rf"^property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
+#         rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
+#         rf"\s+def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
+#         r"(?P<property_body>.*)",
+#         flags=re.DOTALL,
+#     )
+#
+#     with file_path.open() as fy_file:
+#         fy_file_content = fy_file.read()
+#         property_fy_search = property_fy_regex.search(fy_file_content)
+#     assert (
+#         property_fy_search is not None
+#     ), f"File {file_path} is invalid property fy file"
+#
+#     property_name_fy_search = property_fy_search.group("property_name")
+#     property_name = PythonEntityName.from_snake_case(property_name_fy_search)
+#     implementation_name = PythonEntityName.from_snake_case(
+#         property_fy_search.group("implementation_name")
+#     )
+#
+#     parsed_fy_file = ParsedPropertyFyFile(
+#         input_fy_file_path=file_path,
+#         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
+#         template_model=PropertyTemplateModel(
+#             python_class_name=PythonEntityName.from_pascal_case(
+#                 f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"
+#             ),
+#             property_name=property_name,
+#             implementation_name=implementation_name,
+#             return_type=property_fy_search.group("return_type"),
+#             property_body=property_fy_search.group("property_body"),
+#         ),
+#     )
+#     return parsed_fy_file
 
 
 def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:

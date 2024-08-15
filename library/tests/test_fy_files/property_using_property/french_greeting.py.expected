@@ -1,0 +1,13 @@
+import abc
+
+from test_fy_files.property_using_property.abc import With_FrenchGreeting_PropertyMixin_ABC
+
+
+class Greeting_UsingFrenchGreeting_PropertyMixin(
+    # Property_mixins
+    With_FrenchGreeting_PropertyMixin_ABC,
+    abc.ABC
+):
+   @property
+   def _greeting(self) -> str:
+        return self._french_greeting

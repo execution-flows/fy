@@ -18,13 +18,6 @@ class AbstractPropertyTemplateModel(BaseTemplateModel):
     return_type: str
 
 
-class PropertyTemplateModel(BaseTemplateModel):
-    property_name: PythonEntityName
-    implementation_name: PythonEntityName
-    return_type: str
-    property_body: str
-
-
 class PropertyMixinModel(BaseModel):
     property_name: PythonEntityName
     implementation_name: PythonEntityName
@@ -65,3 +58,11 @@ class MethodTemplateModel(BaseTemplateModel):
     arguments: str | None
     return_type: str
     method_body: str
+
+
+class PropertyTemplateModel(BaseTemplateModel):
+    property_name: PythonEntityName
+    implementation_name: PythonEntityName
+    abstract_property_mixins: List[AbstractPropertyModel]
+    return_type: str
+    property_body: str
