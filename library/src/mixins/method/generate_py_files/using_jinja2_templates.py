@@ -13,6 +13,7 @@ from domain.parsed_fy_file import (
     ParsedFyFile,
     ParsedFlowFyFile,
     ParsedMethodFyFile,
+    ParsedPropertyFyFile,
 )
 from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
 from mixins.property.mixin_import_map.using_parsed_fy_files import mixin_key
@@ -75,9 +76,17 @@ class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
                         parsed_fy_file=parsed_fy_file,
                     )
                 case ParsedFyFileKind.PROPERTY:
+                    mixin_imports = [
+                        self._mixin_import_map[
+                            abstract_property_mixin.property_name.snake_case
+                        ]
+                        for abstract_property_mixin in cast(
+                            ParsedPropertyFyFile, parsed_fy_file
+                        ).template_model.abstract_property_mixins
+                    ]
                     load_jinja2_template(
                         jinja2_template_name="property.jinja2",
-                        mixin_imports=[],
+                        mixin_imports=mixin_imports,
                         parsed_fy_file=parsed_fy_file,
                     )
                 case ParsedFyFileKind.ABSTRACT_METHOD:
