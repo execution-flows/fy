@@ -274,44 +274,6 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
     return parsed_fy_file
 
 
-# def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
-#     property_fy_regex = re.compile(
-#         pattern=rf"^property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
-#         rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
-#         rf"\s+def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
-#         r"(?P<property_body>.*)",
-#         flags=re.DOTALL,
-#     )
-#
-#     with file_path.open() as fy_file:
-#         fy_file_content = fy_file.read()
-#         property_fy_search = property_fy_regex.search(fy_file_content)
-#     assert (
-#         property_fy_search is not None
-#     ), f"File {file_path} is invalid property fy file"
-#
-#     property_name_fy_search = property_fy_search.group("property_name")
-#     property_name = PythonEntityName.from_snake_case(property_name_fy_search)
-#     implementation_name = PythonEntityName.from_snake_case(
-#         property_fy_search.group("implementation_name")
-#     )
-#
-#     parsed_fy_file = ParsedPropertyFyFile(
-#         input_fy_file_path=file_path,
-#         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
-#         template_model=PropertyTemplateModel(
-#             python_class_name=PythonEntityName.from_pascal_case(
-#                 f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"
-#             ),
-#             property_name=property_name,
-#             implementation_name=implementation_name,
-#             return_type=property_fy_search.group("return_type"),
-#             property_body=property_fy_search.group("property_body"),
-#         ),
-#     )
-#     return parsed_fy_file
-
-
 def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_method_fy_regex = re.compile(
         pattern=rf"^method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
