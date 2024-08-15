@@ -25,6 +25,7 @@ from domain.template_models import (
     MethodTemplateModel,
     MethodMixinModel,
     AbstractPropertyModel,
+    AbstractMethodModel,
 )
 
 PYTHON_ENTITY_CHAR_REGEX_STRING = r"[\w.\[\]]"
@@ -306,10 +307,16 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
     arguments = method_body_split[2]
     return_type = method_body_split[3]
     method_body = method_body_split[4]
+
     abstract_properties: List[AbstractPropertyModel] = []
+    abstract_methods: List[AbstractMethodModel] = []
 
     abstract_property_mixin_regex = re.compile(
-        rf"^\s+with\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
+        rf"^\s+with\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+    )
+
+    abstract_method_mixin_regex = re.compile(
+        rf"^\s+with\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
     )
 
     mixin_lines = method_body_split[0].split("\n")
@@ -320,12 +327,21 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
         declared_abstract_property_mixin = abstract_property_mixin_regex.search(
             mixin_line
         )
-
+        declared_abstract_method_mixin = abstract_method_mixin_regex.search(mixin_line)
         if declared_abstract_property_mixin:
             abstract_properties.append(
                 AbstractPropertyModel(
                     property_name=PythonEntityName.from_snake_case(
-                        declared_abstract_property_mixin.group("property_name")
+                        declared_abstract_property_mixin.group("abstract_property_name")
+                    )
+                )
+            )
+
+        if declared_abstract_method_mixin:
+            abstract_methods.append(
+                AbstractMethodModel(
+                    method_name=PythonEntityName.from_snake_case(
+                        declared_abstract_method_mixin.group("abstract_method_name")
                     )
                 )
             )
@@ -340,6 +356,7 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
             ),
             implementation_name=implementation_name,
             abstract_property_mixins=abstract_properties,
+            abstract_method_mixins=abstract_methods,
             arguments=arguments,
             return_type=return_type,
             method_body=method_body,
