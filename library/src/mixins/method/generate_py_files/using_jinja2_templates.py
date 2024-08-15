@@ -8,7 +8,12 @@ from typing import cast, List
 
 from jinja2 import Environment, FileSystemLoader
 
-from domain.parsed_fy_file import ParsedFyFileKind, ParsedFyFile, ParsedFlowFyFile, ParsedMethodFyFile
+from domain.parsed_fy_file import (
+    ParsedFyFileKind,
+    ParsedFyFile,
+    ParsedFlowFyFile,
+    ParsedMethodFyFile,
+)
 from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
 from mixins.property.mixin_import_map.using_parsed_fy_files import mixin_key
 from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
@@ -70,6 +75,8 @@ class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
                         self._mixin_import_map[
                             abstract_property_mixin.property_name.snake_case
                         ]
-                        for abstract_property_mixin in cast(ParsedMethodFyFile, parsed_fy_file).template_model.abstract_property_mixins
+                        for abstract_property_mixin in cast(
+                            ParsedMethodFyFile, parsed_fy_file
+                        ).template_model.abstract_property_mixins
                     ]
                     load_jinja2_template("method.jinja2", mixin_imports, parsed_fy_file)
