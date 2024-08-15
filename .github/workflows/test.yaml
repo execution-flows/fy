@@ -1,0 +1,36 @@
+name: _Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+env:
+  PYTHON_VERSION: "3.10"
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Poetry
+        run: pipx install poetry
+        shell: bash
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: poetry
+
+      - name: Install dependencies
+        working-directory: library
+        shell: bash
+        run: poetry install --with dev
+
+      - name: Test
+        run: poetry run python -m unittest
+        working-directory: library/tests
