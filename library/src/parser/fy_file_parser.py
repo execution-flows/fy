@@ -38,41 +38,41 @@ FY_ENTITY_REGEX_STRING = r"\w+"
 
 def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
     flow_match_regex = re.compile(
-        rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*:\s*$",
-        re.MULTILINE,
+        pattern=rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*:\s*$",
+        flags=re.MULTILINE,
     )
     abstract_property_match_regex = re.compile(
-        rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
-        re.MULTILINE,
+        pattern=rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
+        flags=re.MULTILINE,
     )
     property_match_regex = re.compile(
-        rf"^property\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
-        re.MULTILINE,
+        pattern=rf"^property\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
+        flags=re.MULTILINE,
     )
 
     abstract_method_match_regex = re.compile(
-        rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
+        pattern=rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
         rf"\s*->\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
-        re.MULTILINE,
+        flags=re.MULTILINE,
     )
 
     method_match_regex = re.compile(
-        rf"^method\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
-        re.MULTILINE,
+        pattern=rf"^method\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
+        flags=re.MULTILINE,
     )
 
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
 
-    if re.match(flow_match_regex, fy_file_content) is not None:
+    if flow_match_regex.match(fy_file_content) is not None:
         return ParsedFyFileKind.FLOW
-    elif re.match(abstract_property_match_regex, fy_file_content) is not None:
+    elif abstract_property_match_regex.match(fy_file_content) is not None:
         return ParsedFyFileKind.ABSTRACT_PROPERTY
-    elif re.match(property_match_regex, fy_file_content) is not None:
+    elif property_match_regex.match(fy_file_content) is not None:
         return ParsedFyFileKind.PROPERTY
-    elif re.match(abstract_method_match_regex, fy_file_content) is not None:
+    elif abstract_method_match_regex.match(fy_file_content) is not None:
         return ParsedFyFileKind.ABSTRACT_METHOD
-    elif re.match(method_match_regex, fy_file_content) is not None:
+    elif method_match_regex.match(fy_file_content) is not None:
         return ParsedFyFileKind.METHOD
 
     raise ValueError(f"Undetected file type for {file_path}")
@@ -82,9 +82,12 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
 
-    flow_file_split = re.split(
-        rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n", fy_file_content
+    flow_file_split_regex = re.compile(
+        pattern=rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
     )
+
+    flow_file_split = flow_file_split_regex.split(fy_file_content)
+
     flow_fy_search_name = flow_file_split[1]
 
     assert (
@@ -110,10 +113,10 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
             continue
 
         flow_property_regex = re.compile(
-            rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
+            pattern=rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
             rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
         )
-        flow_property_fy_search = re.search(flow_property_regex, mixin_line)
+        flow_property_fy_search = flow_property_regex.search(mixin_line)
         if flow_property_fy_search:
             properties.append(
                 PropertyMixinModel(
@@ -126,10 +129,10 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
                 )
             )
         flow_method_regex = re.compile(
-            rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
+            pattern=rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
             rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
         )
-        flow_method_fy_search = re.search(flow_method_regex, mixin_line)
+        flow_method_fy_search = flow_method_regex.search(mixin_line)
 
         if flow_method_fy_search:
             methods.append(
@@ -163,10 +166,10 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_property_fy_regex = re.compile(
-        rf"^property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+        pattern=rf"^property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
         r"\s*:\s*"
         rf"(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
-        re.MULTILINE,
+        flags=re.MULTILINE,
     )
 
     with file_path.open() as fy_file:
@@ -200,11 +203,11 @@ def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
     property_fy_regex = re.compile(
-        rf"^property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
+        pattern=rf"^property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
         rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
         rf"\s+def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
         r"(?P<property_body>.*)",
-        re.DOTALL,
+        flags=re.DOTALL,
     )
 
     with file_path.open() as fy_file:
@@ -238,10 +241,10 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_method_fy_regex = re.compile(
-        rf"^method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
+        pattern=rf"^method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
         rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
         rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
-        re.MULTILINE,
+        flags=re.MULTILINE,
     )
 
     with file_path.open() as fy_file:
@@ -282,7 +285,7 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
         rf"method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+using\s+"
         rf"(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
     )
-    method_file_split = re.split(method_file_split_regex, fy_file_content)
+    method_file_split = method_file_split_regex.split(fy_file_content)
 
     assert (
         len(method_file_split) == 4
@@ -304,15 +307,20 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
     return_type = method_body_split[3]
     method_body = method_body_split[4]
     abstract_properties: List[AbstractPropertyModel] = []
+
+    abstract_property_mixin_regex = re.compile(
+        rf"^\s+with\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
+    )
+
     mixin_lines = method_body_split[0].split("\n")
     for mixin_line in mixin_lines:
         if mixin_line == "":
             continue
 
-        declared_abstract_property_mixin = re.search(
-            rf"^\s+with\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})",
-            mixin_line,
+        declared_abstract_property_mixin = abstract_property_mixin_regex.search(
+            mixin_line
         )
+
         if declared_abstract_property_mixin:
             abstract_properties.append(
                 AbstractPropertyModel(
