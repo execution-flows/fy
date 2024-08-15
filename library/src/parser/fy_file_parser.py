@@ -51,7 +51,7 @@ def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
     )
 
     abstract_method_match_regex = re.compile(
-        rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
+        pattern=rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
         rf"\s*->\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
         flags=re.MULTILINE,
     )
@@ -113,7 +113,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
             continue
 
         flow_property_regex = re.compile(
-            rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
+            pattern=rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
             rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
         )
         flow_property_fy_search = flow_property_regex.search(mixin_line)
@@ -129,7 +129,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
                 )
             )
         flow_method_regex = re.compile(
-            rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
+            pattern=rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
             rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
         )
         flow_method_fy_search = flow_method_regex.search(mixin_line)
@@ -166,7 +166,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_property_fy_regex = re.compile(
-        rf"^property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+        pattern=rf"^property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
         r"\s*:\s*"
         rf"(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
         flags=re.MULTILINE,
@@ -241,7 +241,7 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_method_fy_regex = re.compile(
-        rf"^method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
+        pattern=rf"^method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
         rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
         rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
         flags=re.MULTILINE,
