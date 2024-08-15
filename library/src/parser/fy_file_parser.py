@@ -40,41 +40,37 @@ FY_ENTITY_REGEX_STRING = r"\w+"
 def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
     flow_match_regex = re.compile(
         rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*:\s*$",
-        flags=re.MULTILINE,
     )
     abstract_property_match_regex = re.compile(
-        rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
-        flags=re.MULTILINE,
+        rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
     )
     property_match_regex = re.compile(
         rf"^property\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
-        flags=re.MULTILINE,
     )
 
     abstract_method_match_regex = re.compile(
-        pattern=rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
-        rf"\s*->\s*{PYTHON_MULTI_ENTITY_REGEX_STRING}\s*$",
-        flags=re.MULTILINE,
+        rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
+        rf"\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
     )
 
     method_match_regex = re.compile(
         rf"^method\s+{FY_ENTITY_REGEX_STRING}\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
-        flags=re.MULTILINE,
     )
 
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
 
-    if flow_match_regex.match(fy_file_content) is not None:
-        return ParsedFyFileKind.FLOW
-    elif abstract_property_match_regex.match(fy_file_content) is not None:
-        return ParsedFyFileKind.ABSTRACT_PROPERTY
-    elif property_match_regex.match(fy_file_content) is not None:
-        return ParsedFyFileKind.PROPERTY
-    elif abstract_method_match_regex.match(fy_file_content) is not None:
-        return ParsedFyFileKind.ABSTRACT_METHOD
-    elif method_match_regex.match(fy_file_content) is not None:
-        return ParsedFyFileKind.METHOD
+    for fy_line in fy_file_content.split("\n"):
+        if flow_match_regex.match(fy_line) is not None:
+            return ParsedFyFileKind.FLOW
+        elif abstract_property_match_regex.match(fy_line) is not None:
+            return ParsedFyFileKind.ABSTRACT_PROPERTY
+        elif property_match_regex.match(fy_line) is not None:
+            return ParsedFyFileKind.PROPERTY
+        elif abstract_method_match_regex.match(fy_line) is not None:
+            return ParsedFyFileKind.ABSTRACT_METHOD
+        elif method_match_regex.search(fy_line) is not None:
+            return ParsedFyFileKind.METHOD
 
     raise ValueError(f"Undetected file type for {file_path}")
 
@@ -217,6 +213,7 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
         len(property_file_split) == 4
     ), f"Property file length {len(property_file_split)} is invalid."
 
+    user_imports = property_file_split[0]
     property_name = PythonEntityName.from_snake_case(property_file_split[1])
     implementation_name = PythonEntityName.from_snake_case(property_file_split[2])
 
@@ -269,47 +266,10 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
             abstract_property_mixins=abstract_properties,
             return_type=return_type,
             property_body=property_body,
+            user_imports=user_imports,
         ),
     )
     return parsed_fy_file
-
-
-# def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
-#     property_fy_regex = re.compile(
-#         pattern=rf"^property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
-#         rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
-#         rf"\s+def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
-#         r"(?P<property_body>.*)",
-#         flags=re.DOTALL,
-#     )
-#
-#     with file_path.open() as fy_file:
-#         fy_file_content = fy_file.read()
-#         property_fy_search = property_fy_regex.search(fy_file_content)
-#     assert (
-#         property_fy_search is not None
-#     ), f"File {file_path} is invalid property fy file"
-#
-#     property_name_fy_search = property_fy_search.group("property_name")
-#     property_name = PythonEntityName.from_snake_case(property_name_fy_search)
-#     implementation_name = PythonEntityName.from_snake_case(
-#         property_fy_search.group("implementation_name")
-#     )
-#
-#     parsed_fy_file = ParsedPropertyFyFile(
-#         input_fy_file_path=file_path,
-#         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
-#         template_model=PropertyTemplateModel(
-#             python_class_name=PythonEntityName.from_pascal_case(
-#                 f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"
-#             ),
-#             property_name=property_name,
-#             implementation_name=implementation_name,
-#             return_type=property_fy_search.group("return_type"),
-#             property_body=property_fy_search.group("property_body"),
-#         ),
-#     )
-#     return parsed_fy_file
 
 
 def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
@@ -364,14 +324,15 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
         len(method_file_split) == 4
     ), f"Method file length {len(method_file_split)} is invalid."
 
+    user_imports = method_file_split[0]
     method_name = PythonEntityName.from_snake_case(method_file_split[1])
     implementation_name = PythonEntityName.from_snake_case(method_file_split[2])
 
     method_body_split_regex = re.compile(
-        rf"\s+def\s*(\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
+        rf"\s*def\s*(\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
     )
     method_body_split = method_body_split_regex.split(method_file_split[-1])
-
+    pass
     assert (
         len(method_body_split) == 5
     ), f"Method file length {len(method_body_split)} is invalid."
@@ -432,6 +393,7 @@ def parse_method_fy_file(file_path: Path) -> ParsedFyFile:
             arguments=arguments,
             return_type=return_type,
             method_body=method_body,
+            user_imports=user_imports,
         ),
     )
     return parsed_fy_file

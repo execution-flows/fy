@@ -58,11 +58,13 @@ class MethodTemplateModel(BaseTemplateModel):
     arguments: str | None
     return_type: str
     method_body: str
+    user_imports: str | None
 
 
 class PropertyTemplateModel(BaseTemplateModel):
     property_name: PythonEntityName
     implementation_name: PythonEntityName
     abstract_property_mixins: List[AbstractPropertyModel]
+    user_imports: str | None
     return_type: str
     property_body: str
