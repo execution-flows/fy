@@ -1,4 +1,4 @@
-method greet using greeting:
+method greet using encrypt:
     with method encrypt
 
     def -> None:
