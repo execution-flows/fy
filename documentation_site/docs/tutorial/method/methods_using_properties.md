@@ -9,7 +9,7 @@ Let's walk through how you can define a method that leverages a property, focusi
 #### Implementing a Flow
 Consider the following _Execution Flows_ setup, where a `greeting` _property_ is defined as a constant and a `greet` _method_ uses this property:
 ```fy linenums="1"
-flow HelloWorld_Flow:
+flow HelloWorld:
     property greeting using constant
     method greet using greeting
 
@@ -35,13 +35,14 @@ property greeting using constant:
     def -> str:
         return "Hello world!"
 ```
-#### Implementing a Abstract 
+#### Adding the Abstract Property 
+Since the method `greet` is using the abstract `greeting` property, it needs an abstract declaration of the same property so it can be properly converted into Python code.
 ```fy title="Declaring a Abstract Property"
 property greeting: str
 ```
 
 ### Generated Python Code
-The _Execution Flow_ tool automatically converts the above definitions into Python classes and mixins. Here’s how the generated Python code looks.
+The _Execution Flow_ tool converts the above definitions into Python classes and mixins that look like the following code.
 #### Main Flow Class
 ```py linenums="1"
 from base.execution_flow_base import ExecutionFlowBase
