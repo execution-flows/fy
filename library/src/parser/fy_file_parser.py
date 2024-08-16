@@ -280,7 +280,6 @@ def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
         rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
         rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
         rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
-        flags=re.MULTILINE,
     )
 
     with file_path.open() as fy_file:
