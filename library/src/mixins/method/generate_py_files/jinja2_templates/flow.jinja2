@@ -1,14 +1,23 @@
-{% if user_imports %}{{ user_imports }}{% endif %}from base.execution_flow_base import ExecutionFlowBase
+{% if user_imports -%}
+    {{ user_imports }}
+{%- endif -%}
+from base.execution_flow_base import ExecutionFlowBase
 {% for mixin_import in mixin_imports %}
 {{ mixin_import }}
 {% endfor %}
 
-class {{ python_class_name.pascal_case }}({% if properties %}
-    # Property Mixins{% for property in properties %}
-    {{ property.property_name.pascal_case }}_Using{{ property.implementation_name.pascal_case }}_PropertyMixin,{% endfor %}
-{% endif %}{% if methods %}
-    # Method Mixins{% for method in methods %}
-    {{ method.method_name.pascal_case }}_Using{{ method.implementation_name.pascal_case }}_MethodMixin,{% endfor %}
+class {{ python_class_name.pascal_case }}(
+{%- if properties %}
+    # Property Mixins
+    {%- for property in properties %}
+    {{ property.property_name.pascal_case }}_Using{{ property.implementation_name.pascal_case }}_PropertyMixin,
+    {%- endfor %}
+{% endif -%}
+{%- if methods %}
+    # Method Mixins
+    {%- for method in methods %}
+    {{ method.method_name.pascal_case }}_Using{{ method.implementation_name.pascal_case }}_MethodMixin,
+{%- endfor %}
 {% endif %}
     # Base
     ExecutionFlowBase[{{ return_type }}]
