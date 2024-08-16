@@ -6,7 +6,8 @@ from base.execution_flow_base import ExecutionFlowBase
 {{ mixin_import }}
 {% endfor %}
 
-class {{ python_class_name.pascal_case }}({% if properties %}
+class {{ python_class_name.pascal_case }}(
+{%- if properties %}
     # Property Mixins
     {%- for property in properties %}
     {{ property.property_name.pascal_case }}_Using{{ property.implementation_name.pascal_case }}_PropertyMixin,
