@@ -277,7 +277,7 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_method_fy_regex = re.compile(
-        pattern=rf"^method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
+        rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
         rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
         rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
         flags=re.MULTILINE,
@@ -285,15 +285,15 @@ def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
 
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
-        abstract_method_fy_search = abstract_method_fy_regex.search(fy_file_content)
+        abstract_method_fy_search = abstract_method_fy_regex.split(fy_file_content)
 
     assert (
-        abstract_method_fy_search is not None
-    ), f"File {file_path} is invalid abstract method fy file"
+        len(abstract_method_fy_search) == 6
+    ), f"Abstract method fy search is {abstract_method_fy_search} length."
 
-    abstract_method_name_fy_search = abstract_method_fy_search.group(
-        "abstract_method_name"
-    )
+    user_imports = abstract_method_fy_search[0]
+    abstract_method_name_fy_search = abstract_method_fy_search[1]
+
     abstract_method_name = PythonEntityName.from_snake_case(
         abstract_method_name_fy_search
     )
@@ -306,9 +306,9 @@ def parse_abc_method_fy_file(file_path: Path) -> ParsedFyFile:
                 f"{abstract_method_name.pascal_case}_MethodMixin_ABC"
             ),
             abstract_method_name=abstract_method_name,
-            arguments=abstract_method_fy_search.group("arguments"),
-            return_type=abstract_method_fy_search.group("return_type"),
-            user_imports=None,  # TODO: placeholder
+            arguments=abstract_method_fy_search[3],
+            return_type=abstract_method_fy_search[4],
+            user_imports=user_imports,
         ),
     )
     return parsed_fy_file

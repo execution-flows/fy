@@ -1,4 +1,4 @@
-import abc
+{% if user_imports %}{{ user_imports }}{% endif %}import abc
 
 
 class {{ python_class_name.pascal_case }}(abc.ABC):
