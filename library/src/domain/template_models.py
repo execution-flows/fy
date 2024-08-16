@@ -67,3 +67,4 @@ class PropertyTemplateModel(BaseTemplateModel):
     abstract_property_mixins: List[AbstractPropertyModel]
     return_type: str
     property_body: str
+    property_annotation: str | None

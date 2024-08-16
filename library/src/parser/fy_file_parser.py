@@ -235,7 +235,7 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
     )
 
     mixin_lines = property_body_split[0].split("\n")
-    for mixin_line in mixin_lines:
+    for mixin_line in mixin_lines[:-1]:
         if mixin_line.strip() == "":
             continue
 
@@ -252,6 +252,12 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
                 )
             )
 
+    check_if_cached_regex = re.compile(r"^\s+(?P<property_annotation>@cached)\s*$")
+
+    check_if_cached = None
+    if mixin_lines[-1] is not None:
+        check_if_cached = check_if_cached_regex.search(mixin_lines[-1])
+
     parsed_fy_file = ParsedPropertyFyFile(
         input_fy_file_path=file_path,
         output_py_file_path=file_path.with_name(f"{file_path.stem}.py"),
@@ -265,6 +271,11 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
             return_type=return_type,
             property_body=property_body,
             user_imports=user_imports,
+            property_annotation=(
+                f"{check_if_cached.group(0).strip()}_property"
+                if check_if_cached
+                else None
+            ),
         ),
     )
     return parsed_fy_file
