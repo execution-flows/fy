@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from base.execution_flow_base import ExecutionFlowBase
 
 
@@ -6,4 +8,5 @@ class HelloWorld_Flow(
     ExecutionFlowBase[None]
 ):
     def __call__(self) -> None:
+        datetime.now()
         print("Hello world!")
