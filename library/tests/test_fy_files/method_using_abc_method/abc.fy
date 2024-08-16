@@ -1,1 +1,3 @@
-method encrypt(message: str) -> str
+import datetime
+
+method encrypt(message: str) -> datetime.datetime
