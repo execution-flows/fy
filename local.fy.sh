@@ -8,6 +8,6 @@ LOCAL_FY_CLI_DIR="${SCRIPT_DIR}/../local-fy-cli/cli"
 
 pushd "${LOCAL_FY_CLI_DIR}" >> /dev/null
 
-poetry run fy --root "${SCRIPT_DIR}/library/src" "$1"
+poetry run fy --root "${SCRIPT_DIR}/library/src" "${SCRIPT_DIR}/library/src"
 
 popd
