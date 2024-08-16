@@ -1,6 +1,6 @@
 import datetime
 
-
+from functools import cached_property
 import abc
 
 from test_fy_files.property_using_property.abc import With_FrenchGreeting_PropertyMixin_ABC
@@ -11,6 +11,6 @@ class Greeting_UsingFrenchGreeting_PropertyMixin(
     With_FrenchGreeting_PropertyMixin_ABC,
     abc.ABC
 ):
-   @property
+   @cached_property
    def _greeting(self) -> str:
         return self._french_greeting
