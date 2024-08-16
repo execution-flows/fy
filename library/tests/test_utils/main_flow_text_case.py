@@ -30,6 +30,7 @@ class MainFlowTestCase(TestCase):
 
             Main_Flow(
                 folder_to_parse=folder_to_parse,
+                project_root_folder=Path(__file__).parent.parent,
             )()
 
             with (
