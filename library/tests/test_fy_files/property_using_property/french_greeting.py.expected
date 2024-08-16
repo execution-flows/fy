@@ -11,6 +11,6 @@ class Greeting_UsingFrenchGreeting_PropertyMixin(
     With_FrenchGreeting_PropertyMixin_ABC,
     abc.ABC
 ):
-   @cached_property
-   def _greeting(self) -> str:
+    @cached_property
+    def _greeting(self) -> str:
         return self._french_greeting
