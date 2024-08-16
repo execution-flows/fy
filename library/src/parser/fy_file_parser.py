@@ -165,22 +165,17 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
 
 def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
     abstract_property_fy_regex = re.compile(
-        pattern=rf"^property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+        rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
         r"\s*:\s*"
         rf"(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
-        flags=re.MULTILINE,
     )
 
     with file_path.open() as fy_file:
         fy_file_content = fy_file.read()
-        abstract_property_fy_search = abstract_property_fy_regex.search(fy_file_content)
-    assert (
-        abstract_property_fy_search is not None
-    ), f"File {file_path} is invalid abstract property fy file."
+        abstract_property_fy_search = abstract_property_fy_regex.split(fy_file_content)
 
-    abstract_property_name_fy_search = abstract_property_fy_search.group(
-        "abstract_property_name"
-    )
+    user_imports = abstract_property_fy_search[0]
+    abstract_property_name_fy_search = abstract_property_fy_search[1]
 
     abstract_property_name = PythonEntityName.from_snake_case(
         abstract_property_name_fy_search
@@ -193,8 +188,8 @@ def parse_abc_property_fy_file(file_path: Path) -> ParsedFyFile:
                 f"With_{abstract_property_name.pascal_case}_PropertyMixin_ABC"
             ),
             abstract_property_name=abstract_property_name,
-            return_type=abstract_property_fy_search.group("return_type"),
-            user_imports=None,  # TODO: placeholder
+            return_type=abstract_property_fy_search[2],
+            user_imports=user_imports,
         ),
     )
 
