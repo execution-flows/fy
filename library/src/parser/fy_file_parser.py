@@ -85,11 +85,12 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
 
     flow_file_split = flow_file_split_regex.split(fy_file_content)
 
-    flow_fy_search_name = flow_file_split[1]
-
     assert (
         len(flow_file_split) == 3
     ), f"Flow file length {len(flow_file_split)} is invalid."
+
+    user_imports = flow_file_split[0]
+    flow_fy_search_name = flow_file_split[1]
 
     mixins_body_split_regex = re.compile(
         rf"\s+def\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*\n"
@@ -155,7 +156,7 @@ def parse_flow_fy_file(file_path: Path) -> ParsedFyFile:
             methods=methods,
             return_type=return_type,
             flow_call_body=flow_body,
-            user_imports=None,  # TODO: implement
+            user_imports=user_imports,
         ),
     )
 

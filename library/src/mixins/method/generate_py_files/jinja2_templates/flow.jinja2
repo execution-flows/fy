@@ -1,4 +1,4 @@
-from base.execution_flow_base import ExecutionFlowBase
+{% if user_imports %}{{ user_imports }}{% endif %}from base.execution_flow_base import ExecutionFlowBase
 {% for mixin_import in mixin_imports %}
 {{ mixin_import }}
 {% endfor %}
