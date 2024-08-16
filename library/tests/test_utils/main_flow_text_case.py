@@ -13,7 +13,7 @@ class MainFlowTestCase(TestCase):
     def _test_main_flow(self, target_folder: str) -> None:
         folder_to_parse = Path(__file__).parent.parent / "test_fy_files" / target_folder
 
-        fy_files_in_directory = list(folder_to_parse.glob("**/*.fy"))
+        fy_files_in_directory = list(folder_to_parse.rglob("*.fy"))
 
         assert len(fy_files_in_directory) > 0, f"Folder {folder_to_parse} is empty"
 
