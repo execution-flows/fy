@@ -1,1 +1,3 @@
-property greeting: str
+import datetime
+
+property greeting: datetime
