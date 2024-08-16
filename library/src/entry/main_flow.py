@@ -19,11 +19,15 @@ from mixins.property.mixin_import_map.using_parsed_fy_files import (
 from mixins.property.parsed_fy_files.using_fy_parser import (
     ParsedFyFiles_UsingFyParser_PropertyMixin,
 )
+from mixins.property.project_root_folder.using_setter import (
+    ProjectRootFolder_PropertyMixin,
+)
 
 
 class Main_Flow(
     # Properties
     FolderToParse_PropertyMixin,
+    ProjectRootFolder_PropertyMixin,
     FyFilesToParse_UsingFilesDiscovery_PropertyMixin,
     ParsedFyFiles_UsingFyParser_PropertyMixin,
     MixinImportMap_UsingParsedFyFiles_PropertyMixin,
@@ -36,9 +40,11 @@ class Main_Flow(
         self,
         *args: Any,
         folder_to_parse: Path,
+        project_root_folder: Path,
         **kwargs: Any,
     ):
         self._folder_to_parse = folder_to_parse
+        self._project_root_folder = project_root_folder
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> None:

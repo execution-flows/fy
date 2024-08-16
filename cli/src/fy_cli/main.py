@@ -10,10 +10,20 @@ from fy_library import Main_Flow
 
 def main() -> int:
     folder_to_parse = "."
+    project_root_folder: str | None = None
     if len(sys.argv) > 1:
-        folder_to_parse = sys.argv[1]
+        folder_to_parse_index = 1
+        if sys.argv[1] == "--root":
+            folder_to_parse_index = 3
+            project_root_folder = sys.argv[2]
+        folder_to_parse = sys.argv[folder_to_parse_index]
 
-    Main_Flow(folder_to_parse=Path(folder_to_parse))()
+    Main_Flow(
+        folder_to_parse=Path(folder_to_parse),
+        project_root_folder=(
+            Path(project_root_folder) if project_root_folder is not None else Path.cwd()
+        ),
+    )()
     return 0
 
 
