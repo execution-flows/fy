@@ -21,8 +21,8 @@ class MainFlowTestCase(TestCase):
             if not fy_file_path.is_file():
                 continue
 
-            file_to_expect = folder_to_parse / f"{fy_file_path.stem}.py.expected"
-            file_to_generate = folder_to_parse / f"{fy_file_path.stem}.py"
+            file_to_expect = fy_file_path.parent / f"{fy_file_path.stem}.py.expected"
+            file_to_generate = fy_file_path.parent / f"{fy_file_path.stem}.py"
 
             if file_to_generate.exists():
                 file_to_generate.unlink()
