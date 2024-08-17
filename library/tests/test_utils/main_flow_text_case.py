@@ -37,4 +37,8 @@ class MainFlowTestCase(TestCase):
                 file_to_expect.open() as expected_py_file,
                 file_to_generate.open() as generated_py_file,
             ):
-                self.assertEqual(expected_py_file.read(), generated_py_file.read())
+                self.assertEqual(
+                    expected_py_file.read(),
+                    generated_py_file.read(),
+                    f"Comparing {fy_file_path}",
+                )
