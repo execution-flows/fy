@@ -22,7 +22,7 @@ class {{ python_class_name.pascal_case }}
 {%- for abstract_property in abstract_property_mixins %}
     With_{{ abstract_property.property_name.pascal_case }}_PropertyMixin_ABC,
 {%- endfor %}
-    abc.ABC
+    abc.ABC,
 )
 {%- endif %}:
 {%- if property_annotation %}

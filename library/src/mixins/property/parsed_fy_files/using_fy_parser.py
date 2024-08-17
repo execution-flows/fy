@@ -3,6 +3,7 @@ from functools import cached_property
 import abc
 
 from mixins.property.fy_files_to_parse.abc import With_FyFilesToParse_PropertyMixin_ABC
+
 from typing import List
 
 from domain.parsed_fy_file import ParsedFyFile

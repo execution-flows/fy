@@ -3,6 +3,7 @@ from functools import cached_property
 import abc
 
 from mixins.property.folder_to_parse.abc import With_FolderToParse_PropertyMixin_ABC
+
 from pathlib import Path
 from typing import List
 

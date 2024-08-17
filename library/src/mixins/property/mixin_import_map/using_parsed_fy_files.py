@@ -6,6 +6,7 @@ from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin
 from mixins.property.project_root_folder.abc import (
     With_ProjectRootFolder_PropertyMixin_ABC,
 )
+
 from typing import Dict, cast
 
 from domain.parsed_fy_file import ParsedFyFile, ParsedFyFileKind
