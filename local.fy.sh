@@ -6,6 +6,8 @@ set -e
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 LOCAL_FY_CLI_DIR="${SCRIPT_DIR}/../local-fy-cli/cli"
 
+echo "directory=$SCRIPT_DIR"
+
 pushd "${LOCAL_FY_CLI_DIR}" >> /dev/null
 
 poetry run fy --root "${SCRIPT_DIR}/library/src" "${SCRIPT_DIR}/library/src"

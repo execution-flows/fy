@@ -3,7 +3,7 @@
 {%-  endif -%}
 {%- if property_annotation -%}
 from functools import cached_property
-{%- endif -%}
+{% endif -%}
 {%- if mixin_imports %}
 import abc
 {% for mixin_import in mixin_imports %}

@@ -4,7 +4,7 @@ from typing import List
 property fy_files_to_parse using files_discovery:
 
     @cached
-    def -> List[Path]
+    def -> List[Path]:
         fy_files_in_directory = list(self._folder_to_parse.rglob("*.fy"))
         return [
             fy_file_path

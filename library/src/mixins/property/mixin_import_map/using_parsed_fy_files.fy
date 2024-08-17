@@ -1,9 +1,19 @@
 from typing import Dict, cast
 
+from domain.parsed_fy_file import ParsedFyFile, ParsedFyFileKind
+from domain.template_models import (
+    PropertyTemplateModel,
+    FlowTemplateModel,
+    AbstractPropertyTemplateModel,
+    MethodTemplateModel,
+    AbstractMethodTemplateModel,
+)
+
+
 property mixin_import_map using parsed_fy_files:
 
     @cached
-    def -> Dict[str, str]
+    def -> Dict[str, str]:
         mixin_import_map = {
             self.__parsed_file_key(parsed_fy_file): self.__parsed_file_python_import(
                 parsed_fy_file
