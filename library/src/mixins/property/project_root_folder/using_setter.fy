@@ -1,3 +1,6 @@
+from pathlib import Path
+
+
 property project_root_folder using setter:
     def -> Path:
         return self._project_root_folder
