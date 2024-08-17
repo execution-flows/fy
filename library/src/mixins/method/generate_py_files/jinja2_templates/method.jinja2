@@ -5,6 +5,9 @@ import abc
 {%- endfor -%}
 {%- endif -%}
 {%- if user_imports -%}
+{%- if mixin_imports %}
+
+{% endif -%}
 {{ user_imports }}
 {%- elif mixin_imports %}
 {{ '\n' }}

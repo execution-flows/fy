@@ -8,6 +8,9 @@ import abc
 {%- endfor -%}
 {%- endif -%}
 {% if user_imports %}
+{%- if property_annotation or mixin_imports %}
+
+{% endif -%}
 {{ user_imports }}
 {%- elif property_annotation or mixin_imports %}
 

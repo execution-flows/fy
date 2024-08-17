@@ -2,6 +2,8 @@ import abc
 
 from test_fy_files.mixins.method.using_property.abc import With_Greeting_PropertyMixin_ABC
 
+import datetime
+
 
 class Greet_UsingGreeting_MethodMixin(
     # Property_mixins
@@ -9,4 +11,5 @@ class Greet_UsingGreeting_MethodMixin(
     abc.ABC
 ):
     def _greet(self, argument: str) -> None:
+        datetime.datetime.now()
         print(self._greeting)
