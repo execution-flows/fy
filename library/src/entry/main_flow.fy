@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Any
 
+
 flow Main:
     property folder_to_parse using setter
     property project_root_folder using setter

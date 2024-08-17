@@ -1,6 +1,6 @@
-from typing import Dict
-
 import abc
+
+from typing import Dict
 
 
 class With_MixinImportMap_PropertyMixin_ABC(abc.ABC):

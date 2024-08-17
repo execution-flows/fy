@@ -5,12 +5,13 @@ from functools import cached_property
 import abc
 {% for mixin_import in mixin_imports %}
 {{ mixin_import }}
-{% endfor -%}
+{%- endfor -%}
 {%- endif -%}
-{% if user_imports -%}
+{% if user_imports %}
 {{ user_imports }}
-{%- endif -%}
-{%- if not user_imports and (property_annotation or mixin_imports) %}{{ '\n\n' }}{% endif -%}
+{%- elif property_annotation or mixin_imports %}
+
+{% endif -%}
 class {{ python_class_name.pascal_case }}
 {%- if abstract_property_mixins -%}
 (

@@ -3,7 +3,6 @@ from functools import cached_property
 import abc
 
 from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
-
 from mixins.property.project_root_folder.abc import (
     With_ProjectRootFolder_PropertyMixin_ABC,
 )

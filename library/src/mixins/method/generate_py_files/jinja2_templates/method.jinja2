@@ -2,12 +2,13 @@
 import abc
 {% for mixin_import in mixin_imports %}
 {{ mixin_import }}
-{% endfor %}
-{%- endif %}
+{%- endfor -%}
+{%- endif -%}
 {%- if user_imports -%}
 {{ user_imports }}
-{%-  endif -%}
-{%- if not user_imports and mixin_imports %}{{ '\n\n' }}{% endif -%}
+{%- elif mixin_imports %}
+{{ '\n' }}
+{% endif -%}
 class {{ python_class_name.pascal_case }}
 {%- if abstract_property_mixins -%}
     (

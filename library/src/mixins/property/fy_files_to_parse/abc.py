@@ -1,7 +1,7 @@
+import abc
+
 from pathlib import Path
 from typing import List
-
-import abc
 
 
 class With_FyFilesToParse_PropertyMixin_ABC(abc.ABC):

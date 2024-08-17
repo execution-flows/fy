@@ -1,3 +1,7 @@
+import abc
+
+from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
+from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
 import pathlib
 from typing import cast, List
 
@@ -11,13 +15,6 @@ from domain.parsed_fy_file import (
     ParsedFyFile,
 )
 from mixins.property.mixin_import_map.using_parsed_fy_files import mixin_key
-
-
-import abc
-
-from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
-
-from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
 
 
 class GeneratePyFiles_UsingJinja2Templates_MethodMixin(

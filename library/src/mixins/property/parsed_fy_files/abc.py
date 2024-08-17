@@ -1,9 +1,8 @@
+import abc
+
 from typing import List
 
 from domain.parsed_fy_file import ParsedFyFile
-
-
-import abc
 
 
 class With_ParsedFyFiles_PropertyMixin_ABC(abc.ABC):

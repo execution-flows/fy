@@ -1,6 +1,6 @@
-from pathlib import Path
-
 import abc
+
+from pathlib import Path
 
 
 class With_FolderToParse_PropertyMixin_ABC(abc.ABC):
