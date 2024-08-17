@@ -12,6 +12,12 @@ from mixins.property.fy_files_to_parse.using_files_discovery import (
 from mixins.property.parsed_fy_files.using_fy_parser import (
     ParsedFyFiles_UsingFyParser_PropertyMixin,
 )
+from mixins.property.parse_fy_files_map_by_key.using_parsed_fy_files import (
+    ParseFyFilesMapByKey_UsingParsedFyFiles_PropertyMixin,
+)
+from mixins.property.required_property_setters.using_parsed_fy_files import (
+    RequiredPropertySetters_UsingParsedFyFiles_PropertyMixin,
+)
 from mixins.property.mixin_import_map.using_parsed_fy_files import (
     MixinImportMap_UsingParsedFyFiles_PropertyMixin,
 )
@@ -29,6 +35,8 @@ class Main_Flow(
     ProjectRootFolder_UsingSetter_PropertyMixin,
     FyFilesToParse_UsingFilesDiscovery_PropertyMixin,
     ParsedFyFiles_UsingFyParser_PropertyMixin,
+    ParseFyFilesMapByKey_UsingParsedFyFiles_PropertyMixin,
+    RequiredPropertySetters_UsingParsedFyFiles_PropertyMixin,
     MixinImportMap_UsingParsedFyFiles_PropertyMixin,
     # Method Mixins
     GeneratePyFiles_UsingJinja2Templates_MethodMixin,

@@ -235,7 +235,16 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
     )
 
     mixin_lines = property_body_split[0].split("\n")
-    for mixin_line in mixin_lines[:-1]:
+
+    check_if_cached = None
+    check_if_cached_regex = re.compile(r"^\s+(?P<property_annotation>@cached)\s*$")
+    if mixin_lines[-1] is not None:
+        check_if_cached = check_if_cached_regex.search(mixin_lines[-1])
+
+    if check_if_cached is not None:
+        mixin_lines = mixin_lines[:-1]
+
+    for mixin_line in mixin_lines:
         if mixin_line.strip() == "":
             continue
 
@@ -251,12 +260,10 @@ def parse_property_fy_file(file_path: Path) -> ParsedFyFile:
                     )
                 )
             )
-
-    check_if_cached_regex = re.compile(r"^\s+(?P<property_annotation>@cached)\s*$")
-
-    check_if_cached = None
-    if mixin_lines[-1] is not None:
-        check_if_cached = check_if_cached_regex.search(mixin_lines[-1])
+        else:
+            raise ValueError(
+                f"Property fy file {file_path} has invalid mixin line {mixin_line}"
+            )
 
     parsed_fy_file = ParsedPropertyFyFile(
         input_fy_file_path=file_path,
@@ -423,3 +430,5 @@ class FyFileParser:
                 return parse_abc_method_fy_file(file_path)
             case ParsedFyFileKind.METHOD:
                 return parse_method_fy_file(file_path)
+            case ParsedFyFileKind.PROPERTY_SETTER:
+                raise ValueError(f"Unexpected fy_file_kind={fy_file_kind}")

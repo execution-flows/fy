@@ -3,16 +3,22 @@ from typing import cast, List
 
 from jinja2 import Environment, FileSystemLoader
 
+from domain.template_models import mixin_key
+
 from domain.parsed_fy_file import ParsedFyFileKind, ParsedFlowFyFile, ParsedPropertyFyFile, ParsedMethodFyFile, \
     ParsedFyFile
-from mixins.property.mixin_import_map.using_parsed_fy_files import mixin_key
 
 
 method generate_py_files using jinja2_templates:
     with property parsed_fy_files
+    with property required_property_setters
     with property mixin_import_map
 
     def -> None:
+        self.__generate_py_files__using_parsed_fy_files()
+        self.__generate_py_files__using_required_property_setters()
+
+    def __generate_py_files__using_parsed_fy_files(self) -> None:
         for parsed_fy_file in self._parsed_fy_files:
             match parsed_fy_file.file_type:
                 case ParsedFyFileKind.FLOW:
@@ -89,6 +95,14 @@ method generate_py_files using jinja2_templates:
                         mixin_imports=mixin_imports,
                         parsed_fy_file=parsed_fy_file,
                     )
+
+    def __generate_py_files__using_required_property_setters(self) -> None:
+        for parsed_fy_file in self._required_property_setters:
+            load_jinja2_template(
+                jinja2_template_name="property_setter.jinja2",
+                mixin_imports=[],
+                parsed_fy_file=parsed_fy_file,
+            )
 
 
 def load_jinja2_template(
