@@ -5,6 +5,7 @@ from parser.fy_file_parser import FyFileParser
 
 
 property parsed_fy_files using fy_parser:
+    with property fy_files_to_parse
 
     @cached
     def -> List[ParsedFyFile]:

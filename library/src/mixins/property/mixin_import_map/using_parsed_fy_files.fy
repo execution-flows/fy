@@ -11,6 +11,8 @@ from domain.template_models import (
 
 
 property mixin_import_map using parsed_fy_files:
+    with property parsed_fy_files
+    with property project_root_folder
 
     @cached
     def -> Dict[str, str]:
@@ -71,6 +73,7 @@ property mixin_import_map using parsed_fy_files:
         file_name = parsed_fy_file.input_fy_file_path.stem
         python_file_path = ".".join(relative_file_folder_path.parts + (file_name,))
         return f"from {python_file_path} import {parsed_fy_file.template_model.python_class_name.pascal_case}"
+
 
 def mixin_key(
     mixin_name__snake_case: str, mixin_implementation_name__snake_case: str

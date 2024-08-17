@@ -89,6 +89,7 @@ method generate_py_files using jinja2_templates:
                         parsed_fy_file=parsed_fy_file,
                     )
 
+
 def load_jinja2_template(
     jinja2_template_name: str, mixin_imports: List[str], parsed_fy_file: ParsedFyFile
 ) -> None:
