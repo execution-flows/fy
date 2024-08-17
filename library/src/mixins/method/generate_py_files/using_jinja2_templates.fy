@@ -1,30 +1,18 @@
-import abc
-
-from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
-from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
-
 import pathlib
 from typing import cast, List
 
 from jinja2 import Environment, FileSystemLoader
 
-from domain.parsed_fy_file import (
-    ParsedFyFileKind,
-    ParsedFlowFyFile,
-    ParsedPropertyFyFile,
-    ParsedMethodFyFile,
-    ParsedFyFile,
-)
+from domain.parsed_fy_file import ParsedFyFileKind, ParsedFlowFyFile, ParsedPropertyFyFile, ParsedMethodFyFile, \
+    ParsedFyFile
 from mixins.property.mixin_import_map.using_parsed_fy_files import mixin_key
 
 
-class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
-    # Property_mixins
-    With_ParsedFyFiles_PropertyMixin_ABC,
-    With_MixinImportMap_PropertyMixin_ABC,
-    abc.ABC,
-):
-    def _generate_py_files(self) -> None:
+method generate_py_files using jinja2_templates:
+    with property parsed_fy_files
+    with property mixin_import_map
+
+    def -> None:
         for parsed_fy_file in self._parsed_fy_files:
             match parsed_fy_file.file_type:
                 case ParsedFyFileKind.FLOW:

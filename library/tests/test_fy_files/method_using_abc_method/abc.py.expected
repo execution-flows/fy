@@ -1,6 +1,6 @@
-import datetime
-
 import abc
+
+import datetime
 
 
 class Encrypt_MethodMixin_ABC(abc.ABC):

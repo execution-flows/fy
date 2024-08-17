@@ -1,12 +1,3 @@
-from functools import cached_property
-
-import abc
-
-from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
-from mixins.property.project_root_folder.abc import (
-    With_ProjectRootFolder_PropertyMixin_ABC,
-)
-
 from typing import Dict, cast
 
 from domain.parsed_fy_file import ParsedFyFile, ParsedFyFileKind
@@ -19,14 +10,12 @@ from domain.template_models import (
 )
 
 
-class MixinImportMap_UsingParsedFyFiles_PropertyMixin(
-    # Property_mixins
-    With_ParsedFyFiles_PropertyMixin_ABC,
-    With_ProjectRootFolder_PropertyMixin_ABC,
-    abc.ABC,
-):
-    @cached_property
-    def _mixin_import_map(self) -> Dict[str, str]:
+property mixin_import_map using parsed_fy_files:
+    with property parsed_fy_files
+    with property project_root_folder
+
+    @cached
+    def -> Dict[str, str]:
         mixin_import_map = {
             self.__parsed_file_key(parsed_fy_file): self.__parsed_file_python_import(
                 parsed_fy_file

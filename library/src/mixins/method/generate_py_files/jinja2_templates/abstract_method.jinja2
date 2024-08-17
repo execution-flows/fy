@@ -1,9 +1,8 @@
-{% if user_imports -%}
+import abc
+{% if user_imports %}
 {{ user_imports }}
 {%- endif -%}
-import abc
-
-
+{%- if not user_imports %}{{ '\n\n' }}{% endif -%}
 class {{ python_class_name.pascal_case }}(abc.ABC):
     @abc.abstractmethod
     def _{{ abstract_method_name.snake_case }}(self{% if arguments %}, {{ arguments }}{% endif %}) -> {{ return_type }}:

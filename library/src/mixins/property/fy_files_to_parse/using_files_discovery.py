@@ -1,17 +1,17 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from functools import cached_property
 
 import abc
-from functools import cached_property
-from pathlib import Path
-from typing import List
 
 from mixins.property.folder_to_parse.abc import With_FolderToParse_PropertyMixin_ABC
 
+from pathlib import Path
+from typing import List
+
 
 class FyFilesToParse_UsingFilesDiscovery_PropertyMixin(
-    With_FolderToParse_PropertyMixin_ABC, abc.ABC
+    # Property_mixins
+    With_FolderToParse_PropertyMixin_ABC,
+    abc.ABC,
 ):
     @cached_property
     def _fy_files_to_parse(self) -> List[Path]:

@@ -1,9 +1,8 @@
 from pathlib import Path
 
 
-class ProjectRootFolder_UsingSetter_PropertyMixin:
-    @property
-    def _project_root_folder(self) -> Path:
+property project_root_folder using setter:
+    def -> Path:
         return self.__project_root_folder
 
     @_project_root_folder.setter

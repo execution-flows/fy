@@ -1,12 +1,16 @@
-{% if user_imports -%}
-{{ user_imports }}
-{%  endif -%}
 {%- if mixin_imports -%}
 import abc
 {% for mixin_import in mixin_imports %}
 {{ mixin_import }}
-{% endfor %}
+{%- endfor -%}
+{%- endif -%}
+{%- if user_imports -%}
+{%- if mixin_imports %}
 
+{% endif -%}
+{{ user_imports }}
+{%- elif mixin_imports %}
+{{ '\n' }}
 {% endif -%}
 class {{ python_class_name.pascal_case }}
 {%- if abstract_property_mixins -%}
@@ -22,7 +26,7 @@ class {{ python_class_name.pascal_case }}
     {{ abstract_method.method_name.pascal_case }}_MethodMixin_ABC,{% endfor -%}
 {%- endif -%}
 {%- if abstract_property_mixins or  abstract_method_mixins%}
-    abc.ABC
+    abc.ABC,
 ){% endif %}:
     def _{{ method_name.snake_case }}(self{% if arguments %}, {{ arguments }}{% endif %}) -> {{ return_type }}:
 {{ method_body }}

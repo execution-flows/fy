@@ -1,14 +1,18 @@
-{% if user_imports -%}
-{{ user_imports }}
-{%-  endif -%}
 {%- if property_annotation -%}
 from functools import cached_property
-{%- endif -%}
+{% endif -%}
 {%- if mixin_imports %}
 import abc
 {% for mixin_import in mixin_imports %}
 {{ mixin_import }}
-{% endfor %}
+{%- endfor -%}
+{%- endif -%}
+{% if user_imports %}
+{%- if property_annotation or mixin_imports %}
+
+{% endif -%}
+{{ user_imports }}
+{%- elif property_annotation or mixin_imports %}
 
 {% endif -%}
 class {{ python_class_name.pascal_case }}
@@ -18,7 +22,7 @@ class {{ python_class_name.pascal_case }}
 {%- for abstract_property in abstract_property_mixins %}
     With_{{ abstract_property.property_name.pascal_case }}_PropertyMixin_ABC,
 {%- endfor %}
-    abc.ABC
+    abc.ABC,
 )
 {%- endif %}:
 {%- if property_annotation %}

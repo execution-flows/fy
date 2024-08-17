@@ -1,11 +1,15 @@
-{% if user_imports -%}
-    {{ user_imports }}
-{%- endif -%}
 from base.execution_flow_base import ExecutionFlowBase
+{%- if mixin_imports %}
 {% for mixin_import in mixin_imports %}
 {{ mixin_import }}
-{% endfor %}
+{%- endfor -%}
+{%- endif -%}
+{%- if user_imports %}
 
+{{ user_imports }}
+{%- else %}
+{{ '\n' }}
+{% endif -%}
 class {{ python_class_name.pascal_case }}(
 {%- if properties %}
     # Property Mixins

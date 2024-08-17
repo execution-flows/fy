@@ -1,9 +1,8 @@
 from pathlib import Path
 
 
-class FolderToParse_UsingSetter_PropertyMixin:
-    @property
-    def _folder_to_parse(self) -> Path:
+property folder_to_parse using setter:
+    def -> Path:
         return self.__folder_to_parse
 
     @_folder_to_parse.setter
