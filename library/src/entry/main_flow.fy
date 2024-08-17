@@ -7,6 +7,8 @@ flow Main:
     property project_root_folder using setter
     property fy_files_to_parse using files_discovery
     property parsed_fy_files using fy_parser
+    property parse_fy_files_map_by_key using parsed_fy_files
+    property required_property_setters using parsed_fy_files
     property mixin_import_map using parsed_fy_files
 
     method generate_py_files using jinja2_templates
