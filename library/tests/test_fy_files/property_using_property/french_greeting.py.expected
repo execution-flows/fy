@@ -10,7 +10,7 @@ import datetime
 class Greeting_UsingFrenchGreeting_PropertyMixin(
     # Property_mixins
     With_FrenchGreeting_PropertyMixin_ABC,
-    abc.ABC
+    abc.ABC,
 ):
     @cached_property
     def _greeting(self) -> str:
