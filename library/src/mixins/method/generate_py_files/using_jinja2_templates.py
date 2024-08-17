@@ -11,7 +11,7 @@ from typing import cast, List
 
 from jinja2 import Environment, FileSystemLoader
 
-from domain.template_models import mixin_key
+from domain.template_models import entity_key
 
 from domain.parsed_fy_file import (
     ParsedFyFileKind,
@@ -39,7 +39,7 @@ class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
                 case ParsedFyFileKind.FLOW:
                     mixin_imports = [
                         self._mixin_import_map[
-                            mixin_key(
+                            entity_key(
                                 mixin_name__snake_case=property_mixin.property_name.snake_case,
                                 mixin_implementation_name__snake_case=property_mixin.implementation_name.snake_case,
                             )
@@ -49,7 +49,7 @@ class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
                         ).template_model.properties
                     ] + [
                         self._mixin_import_map[
-                            mixin_key(
+                            entity_key(
                                 mixin_name__snake_case=method_mixin.method_name.snake_case,
                                 mixin_implementation_name__snake_case=method_mixin.implementation_name.snake_case,
                             )

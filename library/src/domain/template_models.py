@@ -9,7 +9,7 @@ from pydantic import BaseModel, computed_field
 from domain.python_entity_name import PythonEntityName
 
 
-def mixin_key(
+def entity_key(
     mixin_name__snake_case: str, mixin_implementation_name__snake_case: str
 ) -> str:
     return f"{mixin_name__snake_case}.{mixin_implementation_name__snake_case}"
@@ -21,7 +21,7 @@ class BaseTemplateModel(BaseModel, abc.ABC):
 
     @property
     @abc.abstractmethod
-    def mixin_key(self) -> str:
+    def entity_key(self) -> str:
         raise NotImplementedError()
 
 
@@ -31,7 +31,7 @@ class AbstractPropertyTemplateModel(BaseTemplateModel):
 
     @computed_field
     @property
-    def mixin_key(self) -> str:
+    def entity_key(self) -> str:
         return self.abstract_property_name.snake_case
 
 
@@ -41,8 +41,8 @@ class PropertySetterTemplateModel(BaseTemplateModel):
 
     @computed_field
     @property
-    def mixin_key(self) -> str:
-        return mixin_key(
+    def entity_key(self) -> str:
+        return entity_key(
             mixin_name__snake_case=self.property_name.snake_case,
             mixin_implementation_name__snake_case="setter",
         )
@@ -75,7 +75,7 @@ class FlowTemplateModel(BaseTemplateModel):
 
     @computed_field
     @property
-    def mixin_key(self) -> str:
+    def entity_key(self) -> str:
         return self.flow_name.snake_case
 
 
@@ -86,7 +86,7 @@ class AbstractMethodTemplateModel(BaseTemplateModel):
 
     @computed_field
     @property
-    def mixin_key(self) -> str:
+    def entity_key(self) -> str:
         return self.abstract_method_name.snake_case
 
 
@@ -101,8 +101,8 @@ class MethodTemplateModel(BaseTemplateModel):
 
     @computed_field
     @property
-    def mixin_key(self) -> str:
-        return mixin_key(
+    def entity_key(self) -> str:
+        return entity_key(
             mixin_name__snake_case=self.method_name.snake_case,
             mixin_implementation_name__snake_case=self.implementation_name.snake_case,
         )
@@ -118,8 +118,8 @@ class PropertyTemplateModel(BaseTemplateModel):
 
     @computed_field
     @property
-    def mixin_key(self) -> str:
-        return mixin_key(
+    def entity_key(self) -> str:
+        return entity_key(
             mixin_name__snake_case=self.property_name.snake_case,
             mixin_implementation_name__snake_case=self.implementation_name.snake_case,
         )

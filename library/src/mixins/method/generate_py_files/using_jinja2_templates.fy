@@ -15,8 +15,8 @@ method generate_py_files using jinja2_templates:
     with property mixin_import_map
 
     def -> None:
-        self.__generate_py_files__using_required_property_setters()
         self.__generate_py_files__using_parsed_fy_files()
+        self.__generate_py_files__using_required_property_setters()
 
     def __generate_py_files__using_parsed_fy_files(self) -> None:
         for parsed_fy_file in self._parsed_fy_files:
