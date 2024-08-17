@@ -1,8 +1,3 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-import abc
 import pathlib
 from typing import cast, List
 
@@ -10,35 +5,27 @@ from jinja2 import Environment, FileSystemLoader
 
 from domain.parsed_fy_file import (
     ParsedFyFileKind,
-    ParsedFyFile,
     ParsedFlowFyFile,
-    ParsedMethodFyFile,
     ParsedPropertyFyFile,
+    ParsedMethodFyFile,
+    ParsedFyFile,
 )
-from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
 from mixins.property.mixin_import_map.using_parsed_fy_files import mixin_key
+
+
+import abc
+
 from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
 
-
-def load_jinja2_template(
-    jinja2_template_name: str, mixin_imports: List[str], parsed_fy_file: ParsedFyFile
-) -> None:
-    templates_path = str(pathlib.Path(__file__).parent / "jinja2_templates")
-    env = Environment(loader=FileSystemLoader(templates_path))
-    template = env.get_template(jinja2_template_name)
-    template_model = parsed_fy_file.template_model.model_dump()
-    template_model["mixin_imports"] = mixin_imports
-    content = template.render(template_model)
-    with open(
-        file=parsed_fy_file.output_py_file_path, mode="w", encoding="UTF-8"
-    ) as output_py_file:
-        output_py_file.write(content)
+from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
 
 
 class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
-    With_ParsedFyFiles_PropertyMixin_ABC, With_MixinImportMap_PropertyMixin_ABC, abc.ABC
+    # Property_mixins
+    With_ParsedFyFiles_PropertyMixin_ABC,
+    With_MixinImportMap_PropertyMixin_ABC,
+    abc.ABC,
 ):
-
     def _generate_py_files(self) -> None:
         for parsed_fy_file in self._parsed_fy_files:
             match parsed_fy_file.file_type:
@@ -116,3 +103,18 @@ class GeneratePyFiles_UsingJinja2Templates_MethodMixin(
                         mixin_imports=mixin_imports,
                         parsed_fy_file=parsed_fy_file,
                     )
+
+
+def load_jinja2_template(
+    jinja2_template_name: str, mixin_imports: List[str], parsed_fy_file: ParsedFyFile
+) -> None:
+    templates_path = str(pathlib.Path(__file__).parent / "jinja2_templates")
+    env = Environment(loader=FileSystemLoader(templates_path))
+    template = env.get_template(jinja2_template_name)
+    template_model = parsed_fy_file.template_model.model_dump()
+    template_model["mixin_imports"] = mixin_imports
+    content = template.render(template_model)
+    with open(
+        file=parsed_fy_file.output_py_file_path, mode="w", encoding="UTF-8"
+    ) as output_py_file:
+        output_py_file.write(content)

@@ -1,9 +1,12 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from functools import cached_property
 
 import abc
-from functools import cached_property
+
+from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
+
+from mixins.property.project_root_folder.abc import (
+    With_ProjectRootFolder_PropertyMixin_ABC,
+)
 from typing import Dict, cast
 
 from domain.parsed_fy_file import ParsedFyFile, ParsedFyFileKind
@@ -14,19 +17,10 @@ from domain.template_models import (
     MethodTemplateModel,
     AbstractMethodTemplateModel,
 )
-from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin_ABC
-from mixins.property.project_root_folder.abc import (
-    With_ProjectRootFolder_PropertyMixin_ABC,
-)
-
-
-def mixin_key(
-    mixin_name__snake_case: str, mixin_implementation_name__snake_case: str
-) -> str:
-    return f"{mixin_name__snake_case}.{mixin_implementation_name__snake_case}"
 
 
 class MixinImportMap_UsingParsedFyFiles_PropertyMixin(
+    # Property_mixins
     With_ParsedFyFiles_PropertyMixin_ABC,
     With_ProjectRootFolder_PropertyMixin_ABC,
     abc.ABC,
@@ -90,3 +84,9 @@ class MixinImportMap_UsingParsedFyFiles_PropertyMixin(
         file_name = parsed_fy_file.input_fy_file_path.stem
         python_file_path = ".".join(relative_file_folder_path.parts + (file_name,))
         return f"from {python_file_path} import {parsed_fy_file.template_model.python_class_name.pascal_case}"
+
+
+def mixin_key(
+    mixin_name__snake_case: str, mixin_implementation_name__snake_case: str
+) -> str:
+    return f"{mixin_name__snake_case}.{mixin_implementation_name__snake_case}"
