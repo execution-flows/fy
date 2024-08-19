@@ -1,1 +1,1 @@
-property greeting: datetime
+property greeting: None

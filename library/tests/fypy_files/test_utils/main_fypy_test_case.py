@@ -14,7 +14,7 @@ class MainFyPyTestCase(TestCase):
         )
 
         # TODO: change to FyPy_Main_Flow once we have it
-        # Main_Flow(
+        # FyPy_Main_Flow(
         #     folder_to_parse=folder_to_parse,
         #     project_root_folder=Path(__file__).parent.parent,
         # )()

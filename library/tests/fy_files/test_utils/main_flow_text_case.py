@@ -16,7 +16,7 @@ class MainFlowTestCase(TestCase):
 
         Main_Flow(
             folder_to_parse=folder_to_parse,
-            project_root_folder=Path(__file__).parent.parent,
+            project_root_folder=Path(__file__).parent.parent.parent,
         )()
 
         self.__test_fy_files_in_directory(folder_to_parse)
