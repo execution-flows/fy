@@ -13,14 +13,15 @@ import abc
 {{ '\n' }}
 {% endif -%}
 class {{ python_class_name.pascal_case }}
-{%- if abstract_property_mixins -%}
+{%- if abstract_property_mixins or  abstract_method_mixins -%}
     (
+{%- endif %}
+{%- if abstract_property_mixins %}
     # Property_mixins
     {%- for abstract_property in abstract_property_mixins %}
     With_{{ abstract_property.property_name.pascal_case }}_PropertyMixin_ABC,
     {%- endfor %}{% endif -%}
-{%- if abstract_method_mixins  -%}
-    (
+{%- if abstract_method_mixins  %}
     # Method_mixins
     {%- for abstract_method in abstract_method_mixins %}
     {{ abstract_method.method_name.pascal_case }}_MethodMixin_ABC,{% endfor -%}
