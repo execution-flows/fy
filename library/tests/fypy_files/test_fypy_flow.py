@@ -5,6 +5,6 @@
 from fypy_files.test_utils.main_fypy_test_case import MainFyPyTestCase
 
 
-class TestFlowUsingCustomSetterFy(MainFyPyTestCase):
+class TestFlowFyPyGeneratesFile(MainFyPyTestCase):
     def test_fypy_flow_generates_files(self) -> None:
         self._test_main_flow(target_folder="hello_world")
