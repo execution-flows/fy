@@ -1,3 +1,0 @@
-class Greet_UsingConstant_MethodMixin:
-    def _greet(self) -> str | list[int] | None:
-        print("Hello World!")
