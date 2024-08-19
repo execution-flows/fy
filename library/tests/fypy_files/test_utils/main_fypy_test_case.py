@@ -13,7 +13,7 @@ class MainFyPyTestCase(TestCase):
             Path(__file__).parent.parent / "test_fypy_files" / target_folder
         )
 
-        # TODO: change to FyPy_Main_Flow once we have it
+        # TODO: Remove the comment when FyPy_Main_Flow is ready
         # FyPy_Main_Flow(
         #     folder_to_parse=folder_to_parse,
         #     project_root_folder=Path(__file__).parent.parent,
