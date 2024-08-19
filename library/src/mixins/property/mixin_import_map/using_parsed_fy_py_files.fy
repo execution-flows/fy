@@ -1,7 +1,5 @@
 from typing import Dict
 
-from domain.parsed_fy_py_file import ParsedFyPyFile
-
 
 property mixin_import_map using parsed_fy_py_files:
     with property parsed_fy_py_files
