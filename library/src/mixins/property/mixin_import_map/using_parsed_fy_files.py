@@ -36,7 +36,7 @@ class MixinImportMap_UsingParsedFyFiles_PropertyMixin(
     def __parsed_file_python_import(self, parsed_fy_file: ParsedFyFile) -> str:
         relative_file_folder_path = (
             parsed_fy_file.output_py_file_path.parent.relative_to(
-                self._project_root_folder.parent
+                self._project_root_folder
             )
         )
         file_name = parsed_fy_file.output_py_file_path.stem
