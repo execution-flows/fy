@@ -5,9 +5,9 @@
 import sys
 from pathlib import Path
 
-from flows.fypy_main import FyPy_Main_Flow
+# from flows.fypy_main import FyPy_Main_Flow
 
-# from fy_library import Main_Flow
+from fy_library import Main_Flow
 
 
 def main() -> int:
@@ -20,7 +20,7 @@ def main() -> int:
             project_root_folder = sys.argv[2]
         folder_to_parse = sys.argv[folder_to_parse_index]
 
-    FyPy_Main_Flow(
+    Main_Flow(
         folder_to_parse=Path(folder_to_parse),
         project_root_folder=(
             Path(project_root_folder) if project_root_folder is not None else Path.cwd()
