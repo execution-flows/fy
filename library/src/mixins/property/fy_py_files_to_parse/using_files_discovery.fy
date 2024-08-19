@@ -16,5 +16,5 @@ property fy_py_files_to_parse using files_discovery:
                 if first_six_bytes == "\"\"\"fy\n":
                     fy_py_files.append(fy_py_file)
                 else:
-                    raise SyntaxError(f"File {fy_py_file} doesn't obey Fy syntax")
+                    raise SyntaxError(f"File {fy_py_file} does not start with '\"\"\"fy\\n'"")
         return fy_py_files
