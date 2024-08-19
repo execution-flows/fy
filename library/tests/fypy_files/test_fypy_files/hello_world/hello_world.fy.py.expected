@@ -17,6 +17,7 @@ class HelloWorld_Flow(
     # Base
     ExecutionFlowBase[None]
 ):
-    # fy:end <<<===
+
     def __call__(self) -> None:
+        # fy:end <<<===
         print("Hello world!")

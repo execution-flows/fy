@@ -19,7 +19,7 @@ class MainFyPyTestCase(TestCase):
         #     project_root_folder=Path(__file__).parent.parent,
         # )()
 
-        self.__test_fy_files_in_directory(folder_to_parse)
+        self.__test_fy_py_files_in_directory(folder_to_parse)
 
     def __assert_files_equal(
         self, file_to_expect: Path, file_to_generate: Path, comparing_file_path: Path
@@ -34,7 +34,7 @@ class MainFyPyTestCase(TestCase):
                 f"Comparing {comparing_file_path}",
             )
 
-    def __test_fy_files_in_directory(self, folder_to_parse: Path) -> None:
+    def __test_fy_py_files_in_directory(self, folder_to_parse: Path) -> None:
         fy_files_in_directory = list(folder_to_parse.rglob("*.fy.py"))
 
         assert len(fy_files_in_directory) > 0, f"Folder {folder_to_parse} is empty"
@@ -44,7 +44,7 @@ class MainFyPyTestCase(TestCase):
                 continue
 
             self.__assert_files_equal(
-                file_to_expect=fy_file_path.parent / f"{fy_file_path.stem}.py.expected",
-                file_to_generate=fy_file_path.parent / f"{fy_file_path.stem}.py",
+                file_to_expect=fy_file_path.with_name(f"{fy_file_path.name}.expected"),
+                file_to_generate=fy_file_path,
                 comparing_file_path=fy_file_path,
             )
