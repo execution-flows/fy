@@ -1,7 +1,6 @@
 from typing import List
 
 from domain.parsed_fy_py_file import ParsedFyPyFile
-from parser.fy_py_file_parser import FyPYFileParser
 
 
 property parsed_fy_py_files using fy_py_parser:

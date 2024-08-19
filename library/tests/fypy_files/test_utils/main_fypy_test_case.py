@@ -5,6 +5,8 @@
 from pathlib import Path
 from unittest import TestCase
 
+from flows.fypy_main import FyPy_Main_Flow
+
 
 class MainFyPyTestCase(TestCase):
 
@@ -13,11 +15,10 @@ class MainFyPyTestCase(TestCase):
             Path(__file__).parent.parent / "test_fypy_files" / target_folder
         )
 
-        # TODO: Remove the comment when FyPy_Main_Flow is ready
-        # FyPy_Main_Flow(
-        #     folder_to_parse=folder_to_parse,
-        #     project_root_folder=Path(__file__).parent.parent,
-        # )()
+        FyPy_Main_Flow(
+            folder_to_parse=folder_to_parse,
+            project_root_folder=Path(__file__).parent.parent,
+        )()
 
         self.__test_fy_files_in_directory(folder_to_parse)
 
