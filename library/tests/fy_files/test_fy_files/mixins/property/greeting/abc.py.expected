@@ -1,7 +1,5 @@
 import abc
 
-import datetime
-
 
 class With_Greeting_PropertyMixin_ABC(abc.ABC):
     @property

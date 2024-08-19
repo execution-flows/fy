@@ -1,3 +1,3 @@
 method greet using constant:
-    def -> str | list[int] | None:
+    def -> None:
         print("Hello World!")

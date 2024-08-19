@@ -1,6 +1,7 @@
 from functools import cached_property
 
 import abc
+
 from fy_files.test_fy_files.property_using_property.abc import (
     With_FrenchGreeting_PropertyMixin_ABC,
 )
