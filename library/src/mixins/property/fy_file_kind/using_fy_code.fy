@@ -9,11 +9,12 @@ property fy_file_kind using fy_code:
 
     def -> ParsedFyPyFileKind:
         flow_match_regex = re.compile(
-            rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*$",
+            rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*"
+            rf"->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*$",
         )
 
         for fy_code_line in self._fy_code.split('\n'):
             if flow_match_regex.match(fy_code_line):
                 return ParsedFyPyFileKind.FLOW
 
-        raise ValueError(f"Undetected file type for {}")
+        raise ValueError(f"Undetected file type for {self._fy_file_kind}")
