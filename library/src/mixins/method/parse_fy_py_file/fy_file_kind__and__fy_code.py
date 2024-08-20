@@ -13,4 +13,6 @@ class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
     abc.ABC,
 ):
     def _parse_fy_py_file(self) -> ParsedFyPyFile:
-        pass
+        print(self._fy_code)
+        print(self._fy_file_kind)
+        return self._parse_fy_py_file()

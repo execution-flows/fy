@@ -3,8 +3,8 @@ import abc
 from pathlib import Path
 
 
-class With_FypyFileToParse_PropertyMixin_ABC(abc.ABC):
+class With_FyPyFileToParse_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _fypy_file_to_parse(self) -> Path:
+    def _fy_py_file_to_parse(self) -> Path:
         raise NotImplementedError()

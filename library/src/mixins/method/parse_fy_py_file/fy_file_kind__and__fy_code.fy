@@ -6,4 +6,6 @@ method parse_fy_py_file using fy_file_kind__and__fy_code:
     with property fy_file_kind
 
     def -> ParsedFyPyFile:
-        pass
+        print(self._fy_code)
+        print(self._fy_file_kind)
+        return self._parse_fy_py_file()
