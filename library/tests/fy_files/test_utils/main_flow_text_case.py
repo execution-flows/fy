@@ -5,7 +5,7 @@
 from unittest import TestCase
 from pathlib import Path
 
-from entry.main_flow import Main_Flow
+from fy_library import fy
 
 
 class MainFlowTestCase(TestCase):
@@ -14,10 +14,10 @@ class MainFlowTestCase(TestCase):
         folder_to_parse = Path(__file__).parent.parent / "test_fy_files" / target_folder
         self.__delete_py_files(folder_to_parse)
 
-        Main_Flow(
+        fy(
             folder_to_parse=folder_to_parse,
             project_root_folder=Path(__file__).parent.parent.parent,
-        )()
+        )
 
         self.__test_fy_files_in_directory(folder_to_parse)
         self.__test_property_using_setter_py_files(folder_to_parse)

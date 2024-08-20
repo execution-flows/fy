@@ -5,10 +5,10 @@
 import sys
 from pathlib import Path
 
-from fy_library import Main_Flow
+from fy_library import fy
 
 
-def main() -> int:
+def fy_cli() -> int:
     folder_to_parse = "."
     project_root_folder: str | None = None
     if len(sys.argv) > 1:
@@ -18,14 +18,14 @@ def main() -> int:
             project_root_folder = sys.argv[2]
         folder_to_parse = sys.argv[folder_to_parse_index]
 
-    Main_Flow(
+    fy(
         folder_to_parse=Path(folder_to_parse),
         project_root_folder=(
             Path(project_root_folder) if project_root_folder is not None else Path.cwd()
         ),
-    )()
+    )
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(fy_cli())
