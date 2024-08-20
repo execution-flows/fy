@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List
 
+FY_PY_FILE_SIGNATURE = '"""fy\n'
 
 property fy_py_files_to_parse using files_discovery:
     with property folder_to_parse
@@ -12,9 +13,9 @@ property fy_py_files_to_parse using files_discovery:
 
         for fy_py_file in fy_py_files_in_directory:
             with open(file=fy_py_file, mode='r') as file:
-                first_six_bytes = file.read(6)
-                if first_six_bytes == "\"\"\"fy\n":
+                first_six_bytes = file.read(len(FY_PY_FILE_SIGNATURE))
+                if first_six_bytes == FY_PY_FILE_SIGNATURE:
                     fy_py_files.append(fy_py_file)
                 else:
-                    raise SyntaxError(f"File {fy_py_file} does not start with '\"\"\"fy\\n'"")
+                    raise SyntaxError(f"File {fy_py_file} does not start with {FY_PY_FILE_SIGNATURE}")
         return fy_py_files
