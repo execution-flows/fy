@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 from typing import List
 
+from constants import FY_ENTITY_REGEX_STRING
 from domain.parsed_fy_file import (
     ParsedFyFile,
     ParsedFyFileKind,
@@ -34,7 +35,6 @@ PYTHON_MULTI_ENTITY_REGEX_STRING = (
     rf"{PYTHON_ENTITY_CHAR_REGEX_STRING}[\w.\[\]\s\|\,]*{PYTHON_ENTITY_CHAR_REGEX_STRING}"
 )
 PYTHON_ARGUMENTS_REGEX_STRING = r"\s*[^)]*\s*"
-FY_ENTITY_REGEX_STRING = r"\w+"
 
 
 def detect_fy_file_kind(file_path: Path) -> ParsedFyFileKind:
