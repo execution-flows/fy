@@ -17,4 +17,6 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
     abc.ABC,
 ):
     def _generate_and_save_fy_py_files(self) -> None:
-        pass
+        print(self._parsed_fy_py_files)
+        print(self._required_property_setters_fy_py)
+        print(self._mixin_import_map)

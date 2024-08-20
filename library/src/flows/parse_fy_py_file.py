@@ -13,6 +13,11 @@ from mixins.method.parse_fy_py_file.fy_file_kind__and__fy_code import (
     ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin,
 )
 
+from pathlib import Path
+from typing import Any
+
+from domain.parsed_fy_py_file import ParsedFyPyFile
+
 
 class ParseFyPyFile_Flow(
     # Property Mixins
@@ -22,7 +27,16 @@ class ParseFyPyFile_Flow(
     # Method Mixins
     ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin,
     # Base
-    ExecutionFlowBase[None],
+    ExecutionFlowBase[ParsedFyPyFile],
 ):
-    def __call__(self) -> None:
-        self._parse_fy_py_file()
+    def __call__(self) -> ParsedFyPyFile:
+        return self._parse_fy_py_file()
+
+    def __init__(
+        self,
+        *args: Any,
+        fy_py_file_to_parse: Path,
+        **kwargs: Any,
+    ):
+        self._fy_py_file_to_parse = fy_py_file_to_parse
+        super().__init__(*args, **kwargs)
