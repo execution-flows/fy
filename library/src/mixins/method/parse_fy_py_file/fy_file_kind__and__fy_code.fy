@@ -8,4 +8,4 @@ method parse_fy_py_file using fy_file_kind__and__fy_code:
     def -> ParsedFyPyFile:
         print(self._fy_code)
         print(self._fy_file_kind)
-        return self._parse_fy_py_file()
+        return ParsedFyPyFile()

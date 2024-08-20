@@ -44,7 +44,6 @@ class FyPy_Main_Flow(
     ExecutionFlowBase[None],
 ):
     def __call__(self) -> None:
-        print(self._fy_py_files_to_parse)
         self._generate_and_save_fy_py_files()
 
     def __init__(
