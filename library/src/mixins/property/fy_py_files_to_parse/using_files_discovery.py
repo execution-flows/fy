@@ -21,12 +21,10 @@ class FyPyFilesToParse_UsingFilesDiscovery_PropertyMixin(
         fy_py_files: List[Path] = []
 
         for fy_py_file in fy_py_files_in_directory:
-            with open(file=fy_py_file, mode="r") as file:
-                first_six_bytes = file.read(len(FY_PY_FILE_SIGNATURE))
-                if first_six_bytes == FY_PY_FILE_SIGNATURE:
+            with open(file=fy_py_file, mode='r') as file:
+                current_fy_py_file_signature = file.read(len(FY_PY_FILE_SIGNATURE))
+                if current_fy_py_file_signature == FY_PY_FILE_SIGNATURE:
                     fy_py_files.append(fy_py_file)
                 else:
-                    raise SyntaxError(
-                        f"File {fy_py_file} does not start with {FY_PY_FILE_SIGNATURE}"
-                    )
+                    raise SyntaxError(f"File {fy_py_file} does not start with {FY_PY_FILE_SIGNATURE}")
         return fy_py_files

@@ -13,8 +13,8 @@ property fy_py_files_to_parse using files_discovery:
 
         for fy_py_file in fy_py_files_in_directory:
             with open(file=fy_py_file, mode='r') as file:
-                first_six_bytes = file.read(len(FY_PY_FILE_SIGNATURE))
-                if first_six_bytes == FY_PY_FILE_SIGNATURE:
+                current_fy_py_file_signature = file.read(len(FY_PY_FILE_SIGNATURE))
+                if current_fy_py_file_signature == FY_PY_FILE_SIGNATURE:
                     fy_py_files.append(fy_py_file)
                 else:
                     raise SyntaxError(f"File {fy_py_file} does not start with {FY_PY_FILE_SIGNATURE}")

@@ -30,7 +30,12 @@ property required_property_setters using parsed_fy_files:
                 ].input_fy_file_path.with_name("using_setter.py"),
                 template_model=PropertySetterTemplateModel(
                     property_name=flow_property.property_name,
-                    user_imports=None,
+                    user_imports=cast(
+                        AbstractPropertyTemplateModel,
+                        self._parse_fy_files_map_by_key[
+                            flow_property.property_name.snake_case
+                        ].template_model
+                                      ).user_imports,
                     python_class_name=PythonEntityName.from_pascal_case(
                         f"{flow_property.property_name.pascal_case}_UsingSetter_PropertyMixin"
                     ),
