@@ -1,12 +1,14 @@
+from base.execution_flow_base import ExecutionFlowBase
+
+from mixins.property.fy_code.using_setter import FyCode_UsingSetter_PropertyMixin
+
 import re
 from typing import Any
 
-from base.execution_flow_base import ExecutionFlowBase
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import FlowTemplateModel
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFlowFyPyFile
 from domain.python_entity_name import PythonEntityName
-from mixins.property.fy_code.using_setter import FyCode_UsingSetter_PropertyMixin
 
 
 class ParseFlowFyCode_Flow(
