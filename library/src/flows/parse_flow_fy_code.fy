@@ -25,7 +25,6 @@ flow ParseFlowFyCode:
         user_imports = flow_file_split[0]
         flow_name = PythonEntityName.from_snake_case(flow_file_split[1])
         return_type = flow_file_split[2]
-        # flow_string_body = flow_file_split[-1]
 
         parsed_fy_py_file = ParsedFlowFyPyFile(
             template_model=FlowTemplateModel(
