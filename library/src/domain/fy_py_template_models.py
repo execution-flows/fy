@@ -1,15 +1,33 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from pydantic import BaseModel
+import abc
+
+from pydantic import BaseModel, computed_field
 
 from domain.python_entity_name import PythonEntityName
 
 
-class BaseTemplateModel(BaseModel):
+def entity_key(
+    mixin_name__snake_case: str, mixin_implementation_name__snake_case: str
+) -> str:
+    return f"{mixin_name__snake_case}.{mixin_implementation_name__snake_case}"
+
+
+class BaseTemplateModel(BaseModel, abc.ABC):
     user_imports: str | None
+
+    @property
+    @abc.abstractmethod
+    def entity_key(self) -> str:
+        raise NotImplementedError()
 
 
 class FlowTemplateModel(BaseTemplateModel):
     flow_name: PythonEntityName
     return_type: str
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return self.flow_name.snake_case
