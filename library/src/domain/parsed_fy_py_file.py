@@ -14,6 +14,12 @@ class ParsedFyPyFileKind(Enum):
     FLOW = "flow"
 
 
+class FyPyFileParts(BaseModel):
+    fy_code: str
+    pre_marker_file_content: str
+    post_marker_file_content: str
+
+
 class ParsedFyPyFile(BaseModel):
     file_type: ParsedFyPyFileKind
     file_path: Path
