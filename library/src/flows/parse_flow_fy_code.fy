@@ -46,9 +46,9 @@ flow ParseFlowFyCode:
         self,
         *args: Any,
         fy_code: str,
-        fy_py_file_path: Path,
+        fy_py_file_to_parse: Path,
         **kwargs: Any,
     ):
         self._fy_code = fy_code
-        self._fy_py_file_to_parse = fy_py_file_path
+        self._fy_py_file_to_parse = fy_py_file_to_parse
         super().__init__(*args, **kwargs)
