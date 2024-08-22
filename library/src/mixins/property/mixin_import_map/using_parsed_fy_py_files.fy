@@ -11,7 +11,7 @@ property mixin_import_map using parsed_fy_py_files:
     def -> Dict[str, str]:
         mixin_import_map = {
             parsed_fy_py_file.template_model.entity_key: self.__parsed_file_python_import(
-               parsed_fy_py_file
+                parsed_fy_py_file
             )
             for parsed_fy_py_file in self._parsed_fy_py_files
         }
@@ -19,10 +19,10 @@ property mixin_import_map using parsed_fy_py_files:
 
     def __parsed_file_python_import(self, parsed_fy_py_file: ParsedFyPyFile) -> str:
         relative_file_folder_path = (
-            parsed_fy_py_file.fy_py_file_path.parent.relative_to(
+            parsed_fy_py_file.file_path.parent.relative_to(
                 self._project_root_folder
             )
         )
-        file_name = parsed_fy_py_file.fy_py_file_path.stem.split('.')
-        python_file_path = ".".join(relative_file_folder_path.parts + (file_name[0],))
+        file_name = parsed_fy_py_file.file_path.name[:-len(".fy.py")]
+        python_file_path = ".".join(relative_file_folder_path.parts + (file_name,))
         return f"from {python_file_path} import {parsed_fy_py_file.template_model.python_class_name.pascal_case}"

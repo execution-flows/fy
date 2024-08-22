@@ -34,11 +34,9 @@ class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(
         return mixin_import_map
 
     def __parsed_file_python_import(self, parsed_fy_py_file: ParsedFyPyFile) -> str:
-        relative_file_folder_path = (
-            parsed_fy_py_file.fy_py_file_path.parent.relative_to(
-                self._project_root_folder
-            )
+        relative_file_folder_path = parsed_fy_py_file.file_path.parent.relative_to(
+            self._project_root_folder
         )
-        file_name = parsed_fy_py_file.fy_py_file_path.stem.split(".")
-        python_file_path = ".".join(relative_file_folder_path.parts + (file_name[0],))
+        file_name = parsed_fy_py_file.file_path.name[: -len(".fy.py")]
+        python_file_path = ".".join(relative_file_folder_path.parts + (file_name,))
         return f"from {python_file_path} import {parsed_fy_py_file.template_model.python_class_name.pascal_case}"

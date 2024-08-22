@@ -16,7 +16,7 @@ class ParsedFyPyFileKind(Enum):
 
 class ParsedFyPyFile(BaseModel):
     file_type: ParsedFyPyFileKind
-    fy_py_file_path: Path
+    file_path: Path
     template_model: BaseTemplateModel
 
 

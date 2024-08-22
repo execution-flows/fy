@@ -10,6 +10,7 @@ from domain.python_entity_name import PythonEntityName
 
 flow ParseFlowFyCode:
     property fy_code using setter
+    property fy_py_file_to_parse using setter
 
     def -> ParsedFyPyFile:
         flow_string_split_regex = re.compile(

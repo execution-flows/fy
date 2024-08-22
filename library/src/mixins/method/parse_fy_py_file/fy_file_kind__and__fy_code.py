@@ -21,7 +21,7 @@ class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
         match self._fy_file_kind:
             case ParsedFyPyFileKind.FLOW:
                 parse_fy_code = ParseFlowFyCode_Flow(
-                    fy_code=self._fy_code, fy_py_file_path=self._fy_py_file_to_parse
+                    fy_code=self._fy_code, fy_py_file_to_parse=self._fy_py_file_to_parse
                 )
             case _:
                 raise NotImplementedError(

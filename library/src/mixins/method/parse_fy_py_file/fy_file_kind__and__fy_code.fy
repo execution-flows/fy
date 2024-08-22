@@ -10,7 +10,7 @@ method parse_fy_py_file using fy_file_kind__and__fy_code:
     def -> ParsedFyPyFile:
         match self._fy_file_kind:
             case ParsedFyPyFileKind.FLOW:
-                parse_fy_code = ParseFlowFyCode_Flow(fy_code=self._fy_code, fy_py_file_path=self._fy_py_file_to_parse)
+                parse_fy_code = ParseFlowFyCode_Flow(fy_code=self._fy_code, fy_py_file_to_parse=self._fy_py_file_to_parse)
             case _:
                 raise NotImplementedError(f"Unimplemented fy file kind parser for {self._fy_file_kind}")
 
