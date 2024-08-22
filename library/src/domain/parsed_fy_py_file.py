@@ -16,8 +16,8 @@ class ParsedFyPyFileKind(Enum):
 
 class FyPyFileParts(BaseModel):
     fy_code: str
-    pre_marker: str | None
-    post_marker: str | None
+    pre_marker: str
+    post_marker: str
 
 
 class ParsedFyPyFile(BaseModel):

@@ -10,13 +10,13 @@ from constants import FY_PY_FILE_SIGNATURE, FY_CODE_FILE_END_SIGNATURE
 from domain.parsed_fy_py_file import FyPyFileParts
 
 
-class FyPyFilesParts_UsingFyFileToParseDocstring_PropertyMixin(
+class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
     # Property_mixins
     With_FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
     @property
-    def _fy_py_files_parts(self) -> FyPyFileParts:
+    def _fy_py_file_parts(self) -> FyPyFileParts:
         fy_code_regex = re.compile(
             rf"^{FY_PY_FILE_SIGNATURE}"
             rf"(?P<fy_code>.*)"

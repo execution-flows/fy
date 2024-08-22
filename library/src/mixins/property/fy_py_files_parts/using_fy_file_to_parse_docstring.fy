@@ -3,7 +3,7 @@ import re
 from constants import FY_PY_FILE_SIGNATURE, FY_CODE_FILE_END_SIGNATURE
 from domain.parsed_fy_py_file import FyPyFileParts
 
-property fy_py_files_parts using fy_file_to_parse_docstring:
+property fy_py_file_parts using fy_file_to_parse_docstring:
     with property fy_py_file_to_parse
 
     def -> FyPyFileParts:

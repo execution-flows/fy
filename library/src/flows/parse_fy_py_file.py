@@ -4,7 +4,7 @@ from mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )
 from mixins.property.fy_py_files_parts.using_fy_file_to_parse_docstring import (
-    FyPyFilesParts_UsingFyFileToParseDocstring_PropertyMixin,
+    FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin,
 )
 from mixins.property.fy_code.fy_py_file_parts import (
     FyCode_UsingFyPyFileParts_PropertyMixin,
@@ -25,7 +25,7 @@ from domain.parsed_fy_py_file import ParsedFyPyFile
 class ParseFyPyFile_Flow(
     # Property Mixins
     FyPyFileToParse_UsingSetter_PropertyMixin,
-    FyPyFilesParts_UsingFyFileToParseDocstring_PropertyMixin,
+    FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin,
     FyCode_UsingFyPyFileParts_PropertyMixin,
     FyFileKind_UsingFyCode_PropertyMixin,
     # Method Mixins
