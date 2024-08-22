@@ -4,6 +4,7 @@ from mixins.property.fy_code.using_setter import FyCode_UsingSetter_PropertyMixi
 
 import re
 from typing import Any
+from pathlib import Path
 
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import FlowTemplateModel
@@ -32,14 +33,17 @@ class ParseFlowFyCode_Flow(
         user_imports = flow_file_split[0]
         flow_name = PythonEntityName.from_snake_case(flow_file_split[1])
         return_type = flow_file_split[2]
-        # flow_string_body = flow_file_split[-1]
 
         parsed_fy_py_file = ParsedFlowFyPyFile(
+            fy_py_file_path=self._fy_py_file_to_parse,
             template_model=FlowTemplateModel(
                 user_imports=user_imports,
+                python_class_name=PythonEntityName.from_pascal_case(
+                    f"{flow_name}_Flow"
+                ),
                 flow_name=flow_name,
                 return_type=return_type,
-            )
+            ),
         )
 
         return parsed_fy_py_file
@@ -48,7 +52,9 @@ class ParseFlowFyCode_Flow(
         self,
         *args: Any,
         fy_code: str,
+        fy_py_file_path: Path,
         **kwargs: Any,
     ):
         self._fy_code = fy_code
+        self._fy_py_file_to_parse = fy_py_file_path
         super().__init__(*args, **kwargs)

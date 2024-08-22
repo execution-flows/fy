@@ -15,6 +15,7 @@ def entity_key(
 
 
 class BaseTemplateModel(BaseModel, abc.ABC):
+    python_class_name: PythonEntityName
     user_imports: str | None
 
     @property
