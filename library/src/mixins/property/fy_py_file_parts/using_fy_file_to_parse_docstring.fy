@@ -22,8 +22,8 @@ property fy_py_file_parts using fy_file_to_parse_docstring:
 
         fy_py_file_parts = FyPyFileParts(
             fy_code=fy_code,
-            pre_marker="",
-            post_marker="",
+            pre_marker_file_content="",
+            post_marker_file_content="",
         )
 
         return fy_py_file_parts
