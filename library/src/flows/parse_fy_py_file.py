@@ -9,6 +9,12 @@ from mixins.property.fy_py_file_parts.using_fy_file_to_parse_docstring import (
 from mixins.property.fy_code.fy_py_file_parts import (
     FyCode_UsingFyPyFileParts_PropertyMixin,
 )
+from mixins.property.post_marker_file_content.fy_py_file_parts import (
+    PostMarkerFileContent_UsingFyPyFileParts_PropertyMixin,
+)
+from mixins.property.pre_marker_file_content.fy_py_file_parts import (
+    PreMarkerFileContent_UsingFyPyFileParts_PropertyMixin,
+)
 from mixins.property.fy_file_kind.using_fy_code import (
     FyFileKind_UsingFyCode_PropertyMixin,
 )
@@ -27,6 +33,8 @@ class ParseFyPyFile_Flow(
     FyPyFileToParse_UsingSetter_PropertyMixin,
     FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin,
     FyCode_UsingFyPyFileParts_PropertyMixin,
+    PostMarkerFileContent_UsingFyPyFileParts_PropertyMixin,
+    PreMarkerFileContent_UsingFyPyFileParts_PropertyMixin,
     FyFileKind_UsingFyCode_PropertyMixin,
     # Method Mixins
     ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin,

@@ -1,0 +1,1 @@
+property post_marker_file_content: str
