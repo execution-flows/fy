@@ -5,7 +5,7 @@ import abc
 from mixins.property.parsed_fy_py_files.abc import (
     With_ParsedFyPyFiles_PropertyMixin_ABC,
 )
-from mixins.property.parse_fy_py_files_map_by_key.abc import (
+from mixins.property.parsed_fy_py_files_map_by_key.abc import (
     With_ParseFyPyFilesMapByKey_PropertyMixin_ABC,
 )
 
