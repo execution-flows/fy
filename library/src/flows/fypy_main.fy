@@ -7,7 +7,7 @@ flow FyPy_Main:
     property project_root_folder using setter
     property fy_py_files_to_parse using files_discovery
     property parsed_fy_py_files using fy_py_parser
-    property parse_fy_py_files_map_by_key using parsed_fy_py_files
+    property parsed_fy_py_files_map_by_key using parsed_fy_py_files
     property required_property_setters_fy_py using parsed_fy_py_files
     property mixin_import_map using parsed_fy_py_files
 
