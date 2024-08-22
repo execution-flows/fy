@@ -12,8 +12,8 @@ from mixins.property.fy_py_files_to_parse.using_files_discovery import (
 from mixins.property.parsed_fy_py_files.using_fy_py_parser import (
     ParsedFyPyFiles_UsingFyPyParser_PropertyMixin,
 )
-from mixins.property.parse_fy_py_files_map_by_key.using_parsed_fy_py_files import (
-    ParseFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin,
+from mixins.property.parsed_fy_py_files_map_by_key.using_parsed_fy_py_files import (
+    ParsedFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin,
 )
 from mixins.property.required_property_setters_fy_py.using_parsed_fy_py_files import (
     RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin,
@@ -35,7 +35,7 @@ class FyPy_Main_Flow(
     ProjectRootFolder_UsingSetter_PropertyMixin,
     FyPyFilesToParse_UsingFilesDiscovery_PropertyMixin,
     ParsedFyPyFiles_UsingFyPyParser_PropertyMixin,
-    ParseFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin,
+    ParsedFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin,
     RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin,
     MixinImportMap_UsingParsedFyPyFiles_PropertyMixin,
     # Method Mixins
