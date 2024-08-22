@@ -29,7 +29,7 @@ flow ParseFlowFyCode:
         return_type = flow_file_split[2]
 
         parsed_fy_py_file = ParsedFlowFyPyFile(
-            fy_py_file_path=self._fy_py_file_to_parse,
+            file_path=self._fy_py_file_to_parse,
             template_model=FlowTemplateModel(
                 user_imports=user_imports,
                 python_class_name=PythonEntityName.from_pascal_case(

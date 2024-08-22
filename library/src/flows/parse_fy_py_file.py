@@ -3,7 +3,7 @@ from base.execution_flow_base import ExecutionFlowBase
 from mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )
-from mixins.property.fy_py_files_parts.using_fy_file_to_parse_docstring import (
+from mixins.property.fy_py_file_parts.using_fy_file_to_parse_docstring import (
     FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin,
 )
 from mixins.property.fy_code.fy_py_file_parts import (
