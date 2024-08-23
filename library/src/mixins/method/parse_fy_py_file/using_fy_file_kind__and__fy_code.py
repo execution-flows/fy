@@ -1,5 +1,6 @@
 import abc
 
+from flows.parse_abstract_method_fy_code import ParseAbstractMethodFyCode_Flow
 from mixins.property.fy_py_file_to_parse.abc import (
     With_FyPyFileToParse_PropertyMixin_ABC,
 )
@@ -39,6 +40,13 @@ class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
                 )
             case ParsedFyPyFileKind.METHOD:
                 parse_fy_code = ParseMethodFyCode_Flow(
+                    fy_code=self._fy_code,
+                    pre_marker_file_content=self._pre_marker_file_content,
+                    post_marker_file_content=self._post_marker_file_content,
+                    fy_py_file_to_parse=self._fy_py_file_to_parse,
+                )
+            case ParsedFyPyFileKind.ABSTRACT_METHOD:
+                parse_fy_code = ParseAbstractMethodFyCode_Flow(
                     fy_code=self._fy_code,
                     pre_marker_file_content=self._pre_marker_file_content,
                     post_marker_file_content=self._post_marker_file_content,

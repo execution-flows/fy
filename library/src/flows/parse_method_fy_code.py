@@ -44,7 +44,7 @@ class ParseMethodFyCode_Flow(
 
         assert (
             len(method_file_split)
-        ) == 7, f"Method file length {len(method_file_split)} is invalid."
+        ) == 7, f"Method file split length {len(method_file_split)} is invalid."
 
         method_name = PythonEntityName.from_snake_case(method_file_split[1])
         arguments = method_file_split[3]

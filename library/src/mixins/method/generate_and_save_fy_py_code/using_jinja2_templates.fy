@@ -64,6 +64,15 @@ method generate_and_save_fy_py_files using jinja2_templates:
                     ),
                     mixin_imports
                 )
+            case ParsedFyPyFileKind.ABSTRACT_METHOD:
+                mixin_imports = ["import abc"]
+                return (
+                    generated_fy_py_code(
+                        jinja2_template="abstract_method.jinja2",
+                        parsed_fy_py_file=parsed_fy_py_file,
+                    ),
+                    mixin_imports,
+                )
         raise ValueError(f"No Execution Flow kind for {parsed_fy_py_file.file_type}")
 
 

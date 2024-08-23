@@ -12,16 +12,19 @@ from mixins.property.fy_py_file_to_parse.using_setter import (
 )
 
 import re
-from typing import Any
 from pathlib import Path
-
-from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
-from domain.fy_py_template_models import FlowTemplateModel
-from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFlowFyPyFile
+from typing import Any
+from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedAbstractMethodFyPyFile
+from constants import (
+    FY_ENTITY_REGEX_STRING,
+    PYTHON_MULTI_ENTITY_REGEX_STRING,
+    PYTHON_ARGUMENTS_REGEX_STRING,
+)
 from domain.python_entity_name import PythonEntityName
+from domain.fy_py_template_models import AbstractMethodTemplateModel
 
 
-class ParseFlowFyCode_Flow(
+class ParseAbstractMethodFyCode_Flow(
     # Property Mixins
     FyCode_UsingSetter_PropertyMixin,
     PreMarkerFileContent_UsingSetter_PropertyMixin,
@@ -31,30 +34,35 @@ class ParseFlowFyCode_Flow(
     ExecutionFlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
-        flow_string_split_regex = re.compile(
-            rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s+->"
-            rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
+        abstract_method_regex = re.compile(
+            rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
+            rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
+            rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
         )
 
-        flow_file_split = flow_string_split_regex.split(self._fy_code)
+        abstract_method_file_split = abstract_method_regex.split(self._fy_code)
 
         assert (
-            len(flow_file_split)
-        ) == 4, f"Flow file split length {len(flow_file_split)} is invalid."
+            len(abstract_method_file_split) == 6
+        ), f"Abstract Method file split length {len(abstract_method_file_split)} is invalid"
 
-        flow_name = PythonEntityName.from_snake_case(flow_file_split[1])
-        return_type = flow_file_split[2]
+        abstract_method_name = PythonEntityName.from_snake_case(
+            abstract_method_file_split[1]
+        )
+        arguments = abstract_method_file_split[3]
+        return_type = abstract_method_file_split[4]
 
-        parsed_fy_py_file = ParsedFlowFyPyFile(
+        parsed_fy_py_file = ParsedAbstractMethodFyPyFile(
             fy_code=self._fy_code,
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
-            template_model=FlowTemplateModel(
+            template_model=AbstractMethodTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
-                    f"{flow_name.pascal_case}_Flow"
+                    f"{abstract_method_name.pascal_case}_MethodMixin_ABC"
                 ),
-                flow_name=flow_name,
+                abstract_method_name=abstract_method_name,
+                arguments=arguments,
                 return_type=return_type,
             ),
         )
