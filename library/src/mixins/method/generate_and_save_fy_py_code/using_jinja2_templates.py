@@ -1,26 +1,23 @@
 import abc
-import pathlib
-import re
-from typing import List, Tuple, Set
 
-from jinja2 import Environment, FileSystemLoader
-
-from constants import (
-    FY_PY_FILE_SIGNATURE,
-    FY_CODE_FILE_END_SIGNATURE,
-    FY_END_MARKER,
-    FY_START_MARKER,
-)
-from domain.parsed_fy_py_file import (
-    ParsedFyPyFileKind,
-    ParsedFyPyFile,
-)
-from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
 from mixins.property.parsed_fy_py_files.abc import (
     With_ParsedFyPyFiles_PropertyMixin_ABC,
 )
 from mixins.property.required_property_setters_fy_py.abc import (
     With_RequiredPropertySettersFyPy_PropertyMixin_ABC,
+)
+from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
+
+from typing import List, Tuple, Set
+import re
+from jinja2 import Environment, FileSystemLoader
+import pathlib
+from domain.parsed_fy_py_file import ParsedFyPyFileKind, ParsedFyPyFile
+from constants import (
+    FY_PY_FILE_SIGNATURE,
+    FY_CODE_FILE_END_SIGNATURE,
+    FY_END_MARKER,
+    FY_START_MARKER,
 )
 
 

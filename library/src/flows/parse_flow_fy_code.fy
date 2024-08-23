@@ -23,14 +23,14 @@ flow ParseFlowFyCode:
         flow_file_split = flow_string_split_regex.split(self._fy_code)
 
         assert (
-                   len(flow_file_split)
-               ) == 4, f"Flow file length {len(flow_file_split)} is invalid."
+            len(flow_file_split)
+        ) == 4, f"Flow file length {len(flow_file_split)} is invalid."
 
         user_imports = flow_file_split[0]
         flow_name = PythonEntityName.from_snake_case(flow_file_split[1])
         return_type = flow_file_split[2]
 
-        parsed_fy_py_file = ParsedFyPyFile(
+        parsed_fy_py_file = ParsedFlowFyPyFile(
             fy_code=self._fy_code,
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
