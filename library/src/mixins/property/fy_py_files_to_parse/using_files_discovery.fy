@@ -1,14 +1,14 @@
 from pathlib import Path
 from typing import List
+from constants import FY_PY_FILE_SIGNATURE, FY_PY_FILE_EXTENSION
 
-FY_PY_FILE_SIGNATURE = '"""fy\n'
 
 property fy_py_files_to_parse using files_discovery:
     with property folder_to_parse
 
     @cached
     def -> List[Path]:
-        fy_py_files_in_directory = list(self._folder_to_parse.rglob("*.fy.py"))
+        fy_py_files_in_directory = list(self._folder_to_parse.rglob(f"*{FY_PY_FILE_EXTENSION}"))
         fy_py_files: List[Path] = []
 
         for fy_py_file in fy_py_files_in_directory:

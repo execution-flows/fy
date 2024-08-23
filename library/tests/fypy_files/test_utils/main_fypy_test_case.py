@@ -5,6 +5,7 @@
 from pathlib import Path
 from unittest import TestCase
 
+from constants import FY_PY_FILE_EXTENSION
 from flows.fypy_main import FyPy_Main_Flow
 
 
@@ -36,7 +37,7 @@ class MainFyPyTestCase(TestCase):
             )
 
     def __test_fy_py_files_in_directory(self, folder_to_parse: Path) -> None:
-        fy_files_in_directory = list(folder_to_parse.rglob("*.fy.py"))
+        fy_files_in_directory = list(folder_to_parse.rglob(f"*{FY_PY_FILE_EXTENSION}"))
 
         assert len(fy_files_in_directory) > 0, f"Folder {folder_to_parse} is empty"
 
