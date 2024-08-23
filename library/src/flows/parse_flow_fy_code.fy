@@ -26,7 +26,6 @@ flow ParseFlowFyCode:
             len(flow_file_split)
         ) == 4, f"Flow file length {len(flow_file_split)} is invalid."
 
-        user_imports = flow_file_split[0]
         flow_name = PythonEntityName.from_snake_case(flow_file_split[1])
         return_type = flow_file_split[2]
 
@@ -36,7 +35,6 @@ flow ParseFlowFyCode:
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
             template_model=FlowTemplateModel(
-                user_imports=user_imports,
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{flow_name.pascal_case}_Flow"
                 ),

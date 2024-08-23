@@ -31,7 +31,7 @@ property fy_py_file_parts using fy_file_to_parse_docstring:
         ]
 
         pre_marker_file_content = non_fy_code.split(f"{FY_START_MARKER}\n")[0]
-        post_marker_file_content = non_fy_code.split(f"{FY_END_MARKER}\n")[1]
+        post_marker_file_content = non_fy_code.split(f"{FY_END_MARKER}\n")[-1]
 
         fy_py_file_parts = FyPyFileParts(
             fy_code=fy_code,
