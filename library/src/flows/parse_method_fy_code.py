@@ -1,15 +1,4 @@
-import re
-from pathlib import Path
-from typing import Any
-from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedMethodFyPyFile
 from base.execution_flow_base import ExecutionFlowBase
-from constants import (
-    FY_ENTITY_REGEX_STRING,
-    PYTHON_MULTI_ENTITY_REGEX_STRING,
-    PYTHON_ARGUMENTS_REGEX_STRING,
-)
-from domain.fy_py_template_models import MethodTemplateModel
-from domain.python_entity_name import PythonEntityName
 
 from mixins.property.fy_code.using_setter import FyCode_UsingSetter_PropertyMixin
 from mixins.property.pre_marker_file_content.using_setter import (
@@ -21,6 +10,18 @@ from mixins.property.post_marker_file_content.using_setter import (
 from mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )
+
+import re
+from pathlib import Path
+from typing import Any
+from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedMethodFyPyFile
+from constants import (
+    FY_ENTITY_REGEX_STRING,
+    PYTHON_MULTI_ENTITY_REGEX_STRING,
+    PYTHON_ARGUMENTS_REGEX_STRING,
+)
+from domain.fy_py_template_models import MethodTemplateModel
+from domain.python_entity_name import PythonEntityName
 
 
 class ParseMethodFyCode_Flow(

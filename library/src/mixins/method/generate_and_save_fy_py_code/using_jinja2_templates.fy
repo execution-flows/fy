@@ -12,7 +12,7 @@ method generate_and_save_fy_py_files using jinja2_templates:
     with property mixin_import_map
 
     def -> None:
-                for parsed_fy_py_file in self._parsed_fy_py_files:
+        for parsed_fy_py_file in self._parsed_fy_py_files:
             generated_python_code, mixin_imports = (
                 self.__match_kind__and__load_fy_py_files(parsed_fy_py_file)
             )

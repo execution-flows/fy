@@ -7,7 +7,6 @@ from mixins.property.fy_code.abc import With_FyCode_PropertyMixin_ABC
 
 from domain.parsed_fy_py_file import ParsedFyPyFileKind
 import re
-
 from constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,

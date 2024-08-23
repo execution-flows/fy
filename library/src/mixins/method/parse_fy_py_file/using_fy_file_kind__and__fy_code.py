@@ -1,8 +1,5 @@
 import abc
-from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
-from flows.parse_flow_fy_code import ParseFlowFyCode_Flow
-from base.execution_flow_base import ExecutionFlowBase
-from flows.parse_method_fy_code import ParseMethodFyCode_Flow
+
 from mixins.property.fy_py_file_to_parse.abc import (
     With_FyPyFileToParse_PropertyMixin_ABC,
 )
@@ -14,6 +11,11 @@ from mixins.property.post_marker_file_content.abc import (
     With_PostMarkerFileContent_PropertyMixin_ABC,
 )
 from mixins.property.fy_file_kind.abc import With_FyFileKind_PropertyMixin_ABC
+
+from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
+from flows.parse_flow_fy_code import ParseFlowFyCode_Flow
+from base.execution_flow_base import ExecutionFlowBase
+from flows.parse_method_fy_code import ParseMethodFyCode_Flow
 
 
 class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(

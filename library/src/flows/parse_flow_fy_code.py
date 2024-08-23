@@ -12,14 +12,13 @@ from mixins.property.fy_py_file_to_parse.using_setter import (
 )
 
 import re
+from typing import Any
+from pathlib import Path
 
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import FlowTemplateModel
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFlowFyPyFile
 from domain.python_entity_name import PythonEntityName
-
-from pathlib import Path
-from typing import Any
 
 
 class ParseFlowFyCode_Flow(
