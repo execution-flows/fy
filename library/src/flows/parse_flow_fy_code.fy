@@ -24,7 +24,7 @@ flow ParseFlowFyCode:
 
         assert (
             len(flow_file_split)
-        ) == 4, f"Flow file length {len(flow_file_split)} is invalid."
+        ) == 4, f"Flow file split length {len(flow_file_split)} is invalid."
 
         flow_name = PythonEntityName.from_snake_case(flow_file_split[1])
         return_type = flow_file_split[2]

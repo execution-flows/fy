@@ -28,6 +28,13 @@ method parse_fy_py_file using fy_file_kind__and__fy_code:
                     post_marker_file_content=self._post_marker_file_content,
                     fy_py_file_to_parse=self._fy_py_file_to_parse,
                 )
+            case ParsedFyPyFileKind.ABSTRACT_METHOD:
+                parse_fy_code = ParseAbstractMethodFyCode_Flow(
+                    fy_code=self._fy_code,
+                    pre_marker_file_content=self._pre_marker_file_content,
+                    post_marker_file_content=self._post_marker_file_content,
+                    fy_py_file_to_parse=self._fy_py_file_to_parse,
+                )
             case _:
                 raise NotImplementedError(
                     f"Unimplemented fy file kind parser for {self._fy_file_kind}"

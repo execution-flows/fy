@@ -23,10 +23,16 @@ property fy_file_kind using fy_code:
             rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*$"
         )
 
+        abstract_method_regex = re.compile(
+            rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
+            rf"\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
+        )
         for fy_code_line in self._fy_code.split("\n"):
             if flow_match_regex.match(fy_code_line) is not None:
                 return ParsedFyPyFileKind.FLOW
             if method_match_regex.match(fy_code_line) is not None:
                 return ParsedFyPyFileKind.METHOD
+            if abstract_method_regex.match(fy_code_line) is not None:
+                return ParsedFyPyFileKind.ABSTRACT_METHOD
 
         raise ValueError(f"Undetected file type for {self._fy_py_file_to_parse}")

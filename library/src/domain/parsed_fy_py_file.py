@@ -11,12 +11,14 @@ from domain.fy_py_template_models import (
     FlowTemplateModel,
     BaseTemplateModel,
     MethodTemplateModel,
+    AbstractMethodTemplateModel,
 )
 
 
 class ParsedFyPyFileKind(Enum):
     FLOW = "flow"
     METHOD = "method"
+    ABSTRACT_METHOD = "abstract_method"
 
 
 class FyPyFileParts(BaseModel):
@@ -39,3 +41,10 @@ class ParsedFlowFyPyFile(ParsedFyPyFile):
 class ParsedMethodFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.METHOD] = ParsedFyPyFileKind.METHOD
     template_model: MethodTemplateModel
+
+
+class ParsedAbstractMethodFyPyFile(ParsedFyPyFile):
+    file_type: Literal[ParsedFyPyFileKind.ABSTRACT_METHOD] = (
+        ParsedFyPyFileKind.ABSTRACT_METHOD
+    )
+    template_model: AbstractMethodTemplateModel
