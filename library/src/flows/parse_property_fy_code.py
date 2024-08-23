@@ -16,12 +16,12 @@ from pathlib import Path
 from typing import Any
 
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
-from domain.fy_py_template_models import AbstractPropertyTemplateModel
-from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedAbstractPropertyFyPyFile
+from domain.fy_py_template_models import PropertyTemplateModel
+from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedPropertyFyPyFile
 from domain.python_entity_name import PythonEntityName
 
 
-class ParseAbstractPropertyFyCode_Flow(
+class ParsePropertyFyCode_Flow(
     # Property Mixins
     FyCode_UsingSetter_PropertyMixin,
     PreMarkerFileContent_UsingSetter_PropertyMixin,
@@ -31,32 +31,33 @@ class ParseAbstractPropertyFyCode_Flow(
     ExecutionFlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
-        abstract_property_regex = re.compile(
-            rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
-            rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
+        property_regex = re.compile(
+            rf"property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
+            rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*"
+            rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
         )
 
-        abstract_property_file_split = abstract_property_regex.split(self._fy_code)
+        property_file_split = property_regex.split(self._fy_code)
 
         assert (
-            len(abstract_property_file_split) == 4
-        ), f"Abstract property file split length {len(abstract_property_file_split)} is invalid"
+            len(property_file_split) == 5
+        ), f"Property file split length {len(property_file_split)} is invalid"
 
-        abstract_property_name = PythonEntityName.from_snake_case(
-            abstract_property_file_split[1]
-        )
-        property_type = abstract_property_file_split[2]
+        property_name = PythonEntityName.from_snake_case(property_file_split[1])
+        property_type = property_file_split[2]
+        implementation_name = PythonEntityName.from_snake_case(property_file_split[3])
 
-        parsed_fy_py_file = ParsedAbstractPropertyFyPyFile(
+        parsed_fy_py_file = ParsedPropertyFyPyFile(
             fy_code=self._fy_code,
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
-            template_model=AbstractPropertyTemplateModel(
+            template_model=PropertyTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
-                    f"With_{abstract_property_name.pascal_case}_PropertyMixin_ABC"
+                    f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"
                 ),
-                abstract_property_name=abstract_property_name,
+                property_name=property_name,
+                implementation_name=implementation_name,
                 property_type=property_type,
             ),
         )

@@ -42,7 +42,10 @@ class MethodTemplateModel(BaseTemplateModel):
     @computed_field
     @property
     def entity_key(self) -> str:
-        return self.method_name.snake_case
+        return entity_key(
+            mixin_name__snake_case=self.method_name.snake_case,
+            mixin_implementation_name__snake_case=self.implementation_name.snake_case,
+        )
 
 
 class AbstractMethodTemplateModel(BaseTemplateModel):
@@ -64,3 +67,17 @@ class AbstractPropertyTemplateModel(BaseTemplateModel):
     @property
     def entity_key(self) -> str:
         return self.abstract_property_name.snake_case
+
+
+class PropertyTemplateModel(BaseTemplateModel):
+    property_name: PythonEntityName
+    implementation_name: PythonEntityName
+    property_type: str
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return entity_key(
+            mixin_name__snake_case=self.property_name.snake_case,
+            mixin_implementation_name__snake_case=self.implementation_name.snake_case,
+        )

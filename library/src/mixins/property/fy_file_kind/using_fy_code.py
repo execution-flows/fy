@@ -39,6 +39,9 @@ class FyFileKind_UsingFyCode_PropertyMixin(
         abstract_property_regex = re.compile(
             rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
         )
+        property_regex = re.compile(
+            rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
+        )
 
         for fy_code_line in self._fy_code.split("\n"):
             if flow_match_regex.match(fy_code_line) is not None:
@@ -49,5 +52,7 @@ class FyFileKind_UsingFyCode_PropertyMixin(
                 return ParsedFyPyFileKind.ABSTRACT_METHOD
             if abstract_property_regex.match(fy_code_line) is not None:
                 return ParsedFyPyFileKind.ABSTRACT_PROPERTY
+            if property_regex.match(fy_code_line) is not None:
+                return ParsedFyPyFileKind.PROPERTY
 
         raise ValueError(f"Undetected file type for {self._fy_py_file_to_parse}")
