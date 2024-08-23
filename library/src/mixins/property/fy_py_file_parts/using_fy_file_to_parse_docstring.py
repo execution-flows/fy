@@ -1,3 +1,5 @@
+from functools import cached_property
+
 import abc
 
 from mixins.property.fy_py_file_to_parse.abc import (
@@ -20,7 +22,7 @@ class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
     With_FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _fy_py_file_parts(self) -> FyPyFileParts:
         fy_code_regex = re.compile(
             rf"^{FY_PY_FILE_SIGNATURE}"
