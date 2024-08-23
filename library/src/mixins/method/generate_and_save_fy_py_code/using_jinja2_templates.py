@@ -51,7 +51,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                 f"{parsed_fy_py_file.pre_marker_file_content}"
                 f"{mixin_imports_code}"
                 f"{FY_START_MARKER}\n"
-                f"{generated_python_code}\n"
+                f"{generated_python_code}"
                 f"{FY_END_MARKER}\n"
                 f"{parsed_fy_py_file.post_marker_file_content}"
             )
