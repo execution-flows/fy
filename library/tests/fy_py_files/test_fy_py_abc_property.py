@@ -5,6 +5,6 @@
 from fy_py_files.test_utils.main_fypy_test_case import MainFyPyTestCase
 
 
-class TestAbcMethodFyPyGeneratesFile(MainFyPyTestCase):
-    def test_fy_py_abc_method_generates_files(self) -> None:
-        self._test_main_flow(target_folder="abstract_method")
+class TestABCPropertyFyPyGeneratesFile(MainFyPyTestCase):
+    def test_fy_py_abc_property_generates_files(self) -> None:
+        self._test_main_flow(target_folder="abstract_property")

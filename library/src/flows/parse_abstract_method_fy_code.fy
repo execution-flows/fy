@@ -22,15 +22,15 @@ flow ParseAbstractMethodFyCode:
 
         abstract_method_file_split = abstract_method_regex.split(self._fy_code)
 
-        print(abstract_method_file_split)
+        assert (
+            len(abstract_method_file_split) == 6
+        ), f"Abstract Method file split length {len(abstract_method_file_split)} is invalid"
 
-        assert len(
-            abstract_method_file_split
-        ) == 6, f"Abstract Method file split length {len(abstract_method_file_split)} is invalid"
-
-        abstract_method_name = PythonEntityName.from_snake_case(abstract_method_file_split[1])
-        arguments = abstract_method_name[3]
-        return_type = abstract_method_name[4]
+        abstract_method_name = PythonEntityName.from_snake_case(
+            abstract_method_file_split[1]
+        )
+        arguments = abstract_method_file_split[3]
+        return_type = abstract_method_file_split[4]
 
         parsed_fy_py_file = ParsedAbstractMethodFyPyFile(
             fy_code=self._fy_code,
@@ -39,9 +39,9 @@ flow ParseAbstractMethodFyCode:
             file_path=self._fy_py_file_to_parse,
             template_model=AbstractMethodTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
-                    f"{abstract_method_name.pascal_case}_MethodMixin_ABC"
+                    f"With_{abstract_method_name.pascal_case}_MethodMixin_ABC"
                 ),
-                flow_name=abstract_method_name,
+                abstract_method_name=abstract_method_name,
                 arguments=arguments,
                 return_type=return_type,
             ),

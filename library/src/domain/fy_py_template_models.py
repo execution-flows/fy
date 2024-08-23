@@ -54,3 +54,13 @@ class AbstractMethodTemplateModel(BaseTemplateModel):
     @property
     def entity_key(self) -> str:
         return self.abstract_method_name.snake_case
+
+
+class AbstractPropertyTemplateModel(BaseTemplateModel):
+    abstract_property_name: PythonEntityName
+    property_type: str
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return self.abstract_property_name.snake_case

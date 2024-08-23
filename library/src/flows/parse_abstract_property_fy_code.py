@@ -14,17 +14,14 @@ from mixins.property.fy_py_file_to_parse.using_setter import (
 import re
 from pathlib import Path
 from typing import Any
-from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedAbstractMethodFyPyFile
-from constants import (
-    FY_ENTITY_REGEX_STRING,
-    PYTHON_MULTI_ENTITY_REGEX_STRING,
-    PYTHON_ARGUMENTS_REGEX_STRING,
-)
+
+from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
+from domain.fy_py_template_models import AbstractPropertyTemplateModel
+from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedAbstractPropertyFyPyFile
 from domain.python_entity_name import PythonEntityName
-from domain.fy_py_template_models import AbstractMethodTemplateModel
 
 
-class ParseAbstractMethodFyCode_Flow(
+class ParseAbstractPropertyFyCode_Flow(
     # Property Mixins
     FyCode_UsingSetter_PropertyMixin,
     PreMarkerFileContent_UsingSetter_PropertyMixin,
@@ -34,36 +31,36 @@ class ParseAbstractMethodFyCode_Flow(
     ExecutionFlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
-        abstract_method_regex = re.compile(
-            rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
-            rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
-            rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
+        abstract_property_regex = re.compile(
+            rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+            r"\s*:\s*"
+            rf"(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
         )
 
-        abstract_method_file_split = abstract_method_regex.split(self._fy_code)
+        abstract_property_file_split = abstract_property_regex.split(self._fy_code)
+
+        print(abstract_property_file_split)
 
         assert (
-            len(abstract_method_file_split) == 6
-        ), f"Abstract Method file split length {len(abstract_method_file_split)} is invalid"
+            len(abstract_property_file_split) == 4
+        ), f"Abstract property file split length {len(abstract_property_file_split)} is invalid"
 
-        abstract_method_name = PythonEntityName.from_snake_case(
-            abstract_method_file_split[1]
+        abstract_property_name = PythonEntityName.from_snake_case(
+            abstract_property_file_split[1]
         )
-        arguments = abstract_method_file_split[3]
-        return_type = abstract_method_file_split[4]
+        property_type = abstract_property_file_split[2]
 
-        parsed_fy_py_file = ParsedAbstractMethodFyPyFile(
+        parsed_fy_py_file = ParsedAbstractPropertyFyPyFile(
             fy_code=self._fy_code,
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
-            template_model=AbstractMethodTemplateModel(
+            template_model=AbstractPropertyTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
-                    f"With_{abstract_method_name.pascal_case}_MethodMixin_ABC"
+                    f"With_{abstract_property_name.pascal_case}_PropertyMixin_ABC"
                 ),
-                abstract_method_name=abstract_method_name,
-                arguments=arguments,
-                return_type=return_type,
+                abstract_property_name=abstract_property_name,
+                property_type=property_type,
             ),
         )
 
