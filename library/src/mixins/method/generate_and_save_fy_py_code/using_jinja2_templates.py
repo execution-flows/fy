@@ -32,17 +32,17 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
 ):
     def _generate_and_save_fy_py_files(self) -> None:
         for parsed_fy_py_file in self._parsed_fy_py_files:
-            generated_python_code = self.__match_kind__and__load_fy_py_files(
-                parsed_fy_py_file
+            generated_python_code, mixin_imports = (
+                self.__match_kind__and__load_fy_py_files(parsed_fy_py_file)
             )
-            mixin_imports = "\n".join(generated_python_code[1]) + "\n"
+            mixin_imports_code = "\n".join(mixin_imports)
             fy_py_file_content = (
                 f"{FY_PY_FILE_SIGNATURE}"
                 f"{parsed_fy_py_file.fy_code}"
                 f"{FY_CODE_FILE_END_SIGNATURE}\n"
-                f"{mixin_imports}"
+                f"{mixin_imports_code}\n"
                 f"{FY_START_MARKER}\n"
-                f"{generated_python_code[0]}\n"
+                f"{generated_python_code}\n"
                 f"{FY_END_MARKER}\n"
                 f"{parsed_fy_py_file.post_marker_file_content}\n"
             )
