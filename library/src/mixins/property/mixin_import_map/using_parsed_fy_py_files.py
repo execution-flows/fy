@@ -2,6 +2,7 @@ from functools import cached_property
 
 import abc
 
+from constants import FY_PY_FILE_EXTENSION
 from mixins.property.parsed_fy_py_files.abc import (
     With_ParsedFyPyFiles_PropertyMixin_ABC,
 )
@@ -37,6 +38,6 @@ class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(
         relative_file_folder_path = parsed_fy_py_file.file_path.parent.relative_to(
             self._project_root_folder
         )
-        file_name = parsed_fy_py_file.file_path.name[: -len(".fy.py")]
+        file_name = parsed_fy_py_file.file_path.name[: -len(FY_PY_FILE_EXTENSION)]
         python_file_path = ".".join(relative_file_folder_path.parts + (file_name,))
         return f"from {python_file_path} import {parsed_fy_py_file.template_model.python_class_name.pascal_case}"

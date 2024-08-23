@@ -2,12 +2,11 @@ from functools import cached_property
 
 import abc
 
+from constants import FY_PY_FILE_SIGNATURE, FY_PY_FILE_EXTENSION
 from mixins.property.folder_to_parse.abc import With_FolderToParse_PropertyMixin_ABC
 
 from pathlib import Path
 from typing import List
-
-FY_PY_FILE_SIGNATURE = '"""fy\n'
 
 
 class FyPyFilesToParse_UsingFilesDiscovery_PropertyMixin(
@@ -17,7 +16,9 @@ class FyPyFilesToParse_UsingFilesDiscovery_PropertyMixin(
 ):
     @cached_property
     def _fy_py_files_to_parse(self) -> List[Path]:
-        fy_py_files_in_directory = list(self._folder_to_parse.rglob("*.fy.py"))
+        fy_py_files_in_directory = list(
+            self._folder_to_parse.rglob(f"*{FY_PY_FILE_EXTENSION}")
+        )
         fy_py_files: List[Path] = []
 
         for fy_py_file in fy_py_files_in_directory:
