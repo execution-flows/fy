@@ -7,11 +7,16 @@ from typing import Literal
 from pydantic import BaseModel
 from enum import Enum
 
-from domain.fy_py_template_models import FlowTemplateModel, BaseTemplateModel
+from domain.fy_py_template_models import (
+    FlowTemplateModel,
+    BaseTemplateModel,
+    MethodTemplateModel,
+)
 
 
 class ParsedFyPyFileKind(Enum):
     FLOW = "flow"
+    METHOD = "method"
 
 
 class FyPyFileParts(BaseModel):
@@ -29,3 +34,8 @@ class ParsedFyPyFile(FyPyFileParts):
 class ParsedFlowFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.FLOW] = ParsedFyPyFileKind.FLOW
     template_model: FlowTemplateModel
+
+
+class ParsedMethodFyPyFile(ParsedFyPyFile):
+    file_type: Literal[ParsedFyPyFileKind.METHOD] = ParsedFyPyFileKind.METHOD
+    template_model: MethodTemplateModel

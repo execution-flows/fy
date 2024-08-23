@@ -31,3 +31,15 @@ class FlowTemplateModel(BaseTemplateModel):
     @property
     def entity_key(self) -> str:
         return self.flow_name.snake_case
+
+
+class MethodTemplateModel(BaseTemplateModel):
+    method_name: PythonEntityName
+    implementation_name: PythonEntityName
+    arguments: str | None
+    return_type: str
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return self.method_name.snake_case

@@ -55,7 +55,15 @@ method generate_and_save_fy_py_files using jinja2_templates:
                     ),
                     mixin_imports,
                 )
-
+            case ParsedFyPyFileKind.METHOD:
+                mixin_imports = []
+                return (
+                    generated_fy_py_code(
+                        jinja2_template="method.jinja2",
+                        parsed_fy_py_file=parsed_fy_py_file,
+                    ),
+                    mixin_imports
+                )
         raise ValueError(f"No Execution Flow kind for {parsed_fy_py_file.file_type}")
 
 
@@ -96,4 +104,3 @@ def generated_fy_py_code(
     template_model = parsed_fy_py_file.template_model.model_dump()
     content = template.render(template_model)
     return content
-
