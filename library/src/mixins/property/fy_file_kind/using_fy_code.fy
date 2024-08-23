@@ -17,4 +17,4 @@ property fy_file_kind using fy_code:
             if flow_match_regex.match(fy_code_line):
                 return ParsedFyPyFileKind.FLOW
 
-        raise ValueError(f"Undetected file type for {self._fy_file_kind}")
+        raise ValueError(f"Undetected file type for {self._fy_py_file_to_parse}")

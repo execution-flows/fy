@@ -20,7 +20,7 @@ class FyPyFileParts(BaseModel):
     post_marker_file_content: str
 
 
-class ParsedFyPyFile(BaseModel):
+class ParsedFyPyFile(FyPyFileParts):
     file_type: ParsedFyPyFileKind
     file_path: Path
     template_model: BaseTemplateModel
