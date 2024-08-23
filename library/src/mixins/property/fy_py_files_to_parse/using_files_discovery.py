@@ -2,11 +2,11 @@ from functools import cached_property
 
 import abc
 
-from constants import FY_PY_FILE_SIGNATURE, FY_PY_FILE_EXTENSION
 from mixins.property.folder_to_parse.abc import With_FolderToParse_PropertyMixin_ABC
 
 from pathlib import Path
 from typing import List
+from constants import FY_PY_FILE_SIGNATURE, FY_PY_FILE_EXTENSION
 
 
 class FyPyFilesToParse_UsingFilesDiscovery_PropertyMixin(

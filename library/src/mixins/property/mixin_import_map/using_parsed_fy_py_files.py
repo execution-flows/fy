@@ -2,7 +2,6 @@ from functools import cached_property
 
 import abc
 
-from constants import FY_PY_FILE_EXTENSION
 from mixins.property.parsed_fy_py_files.abc import (
     With_ParsedFyPyFiles_PropertyMixin_ABC,
 )
@@ -15,6 +14,7 @@ from mixins.property.project_root_folder.abc import (
 
 from typing import Dict
 from domain.parsed_fy_py_file import ParsedFyPyFile
+from constants import FY_PY_FILE_EXTENSION
 
 
 class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(

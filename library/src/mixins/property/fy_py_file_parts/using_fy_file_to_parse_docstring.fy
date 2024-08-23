@@ -11,6 +11,7 @@ from domain.parsed_fy_py_file import FyPyFileParts
 property fy_py_file_parts using fy_file_to_parse_docstring:
     with property fy_py_file_to_parse
 
+    @cached
     def -> FyPyFileParts:
         fy_code_regex = re.compile(
             rf"^{FY_PY_FILE_SIGNATURE}"
