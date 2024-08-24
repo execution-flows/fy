@@ -39,7 +39,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
 
     def _generate_and_save_fy_py_files(self) -> None:
         self.__generate_fy_py_files_()
-        self.__generate_fy_py_files__using_required_property_setters()
+        self.__generate_and_save_fy_py_files__using_required_property_setters()
 
     def __generate_fy_py_files_(self) -> None:
         for parsed_fy_py_file in self._parsed_fy_py_files:
@@ -217,15 +217,15 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                 )
         raise ValueError(f"No Execution Flow kind for {parsed_fy_py_file.file_type}")
 
-    def __generate_fy_py_files__using_required_property_setters(self) -> None:
+    def __generate_and_save_fy_py_files__using_required_property_setters(self) -> None:
         for parsed_fy_py_file in self._required_property_setters_fy_py:
             generated_python_code = generated_fy_py_code(
                 jinja2_template="property_setter.jinja2",
                 parsed_fy_py_file=parsed_fy_py_file,
             )
             fy_py_file_content = (
-                f"{parsed_fy_py_file.user_imports}"
                 f"{FY_START_MARKER}\n"
+                f"{parsed_fy_py_file.user_imports}"
                 f"{generated_python_code}"
                 f"{FY_END_MARKER}\n"
                 f"{parsed_fy_py_file.post_marker_file_content}"

@@ -1,7 +1,7 @@
+# fy:start <<<===
 import datetime
 
 
-# fy:start <<<===
 class Greeting_UsingSetter_PropertyMixin:
     @property
     def _greeting(self) -> datetime.datetime:
