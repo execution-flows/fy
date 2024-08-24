@@ -14,4 +14,4 @@ PYTHON_MULTI_ENTITY_REGEX_STRING = (
 )
 FY_START_MARKER = "# fy:start <<<==="
 FY_END_MARKER = f"{' '*8}# fy:end <<<==="
-FY_PY_FILE_EXTENSION = ".fy.py"
+FY_PY_FILE_EXTENSION = "_fy.py"

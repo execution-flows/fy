@@ -1,6 +1,5 @@
 from typing import Dict
 from domain.parsed_fy_py_file import ParsedFyPyFile
-from constants import FY_PY_FILE_EXTENSION
 
 
 property mixin_import_map using parsed_fy_py_files:
@@ -24,6 +23,6 @@ property mixin_import_map using parsed_fy_py_files:
                 self._project_root_folder
             )
         )
-        file_name = parsed_fy_py_file.file_path.name[:-len(FY_PY_FILE_EXTENSION)]
+        file_name = parsed_fy_py_file.file_path.stem
         python_file_path = ".".join(relative_file_folder_path.parts + (file_name,))
         return f"from {python_file_path} import {parsed_fy_py_file.template_model.python_class_name.pascal_case}"

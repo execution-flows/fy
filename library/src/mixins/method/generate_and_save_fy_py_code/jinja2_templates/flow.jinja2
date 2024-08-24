@@ -10,7 +10,7 @@ class {{ python_class_name.pascal_case }}(
     {%- for method in methods %}
     {{ method.method_name.pascal_case }}_Using{{ method.implementation_name.pascal_case }}_MethodMixin,
 {%- endfor %}
-{% endif %}
+{%- endif %}
     # Base
     ExecutionFlowBase[{{ return_type }}]
 ):

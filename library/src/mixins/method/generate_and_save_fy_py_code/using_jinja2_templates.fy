@@ -1,8 +1,9 @@
-from typing import List, Tuple, Set
+from typing import List, Tuple, Set, cast
 import re
 from jinja2 import Environment, FileSystemLoader
 import pathlib
-from domain.parsed_fy_py_file import ParsedFyPyFileKind, ParsedFyPyFile
+from domain.fy_py_template_models import entity_key
+from domain.parsed_fy_py_file import ParsedFyPyFileKind, ParsedFyPyFile, ParsedFlowFyPyFile
 from constants import FY_PY_FILE_SIGNATURE, FY_CODE_FILE_END_SIGNATURE, FY_END_MARKER, FY_START_MARKER
 
 
@@ -45,9 +46,37 @@ method generate_and_save_fy_py_files using jinja2_templates:
     ) -> Tuple[str, List[str]]:
         match parsed_fy_py_file.file_type:
             case ParsedFyPyFileKind.FLOW:
-                mixin_imports = [
-                    "from base.execution_flow_base import ExecutionFlowBase",
-                ]
+                mixin_imports = (
+                    [
+                        # static imports
+                        "from base.execution_flow_base import ExecutionFlowBase",
+                    ]
+                    + [
+                        # property mixins
+                        self._mixin_import_map[
+                            entity_key(
+                                mixin_name__snake_case=property_mixin.property_name.snake_case,
+                                mixin_implementation_name__snake_case=property_mixin.implementation_name.snake_case,
+                            )
+                        ]
+                        for property_mixin in cast(
+                            ParsedFlowFyPyFile, parsed_fy_py_file
+                        ).template_model.properties
+                    ]
+                    + [
+                        # method mixins
+                        self._mixin_import_map[
+                            entity_key(
+                                mixin_name__snake_case=method_mixin.method_name.snake_case,
+                                mixin_implementation_name__snake_case=method_mixin.implementation_name.snake_case,
+                            )
+                        ]
+                        for method_mixin in cast(
+                            ParsedFlowFyPyFile, parsed_fy_py_file
+                        ).template_model.methods
+                    ]
+                )
+
                 return (
                     generated_fy_py_code(
                         jinja2_template="flow.jinja2",
@@ -62,7 +91,7 @@ method generate_and_save_fy_py_files using jinja2_templates:
                         jinja2_template="method.jinja2",
                         parsed_fy_py_file=parsed_fy_py_file,
                     ),
-                    mixin_imports
+                    mixin_imports,
                 )
             case ParsedFyPyFileKind.ABSTRACT_METHOD:
                 mixin_imports = ["import abc"]

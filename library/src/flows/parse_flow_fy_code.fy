@@ -1,9 +1,9 @@
 import re
-from typing import Any
+from typing import Any, List
 from pathlib import Path
 
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
-from domain.fy_py_template_models import FlowTemplateModel
+from domain.fy_py_template_models import FlowTemplateModel, PropertyMixinModel, MethodMixinModel
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFlowFyPyFile
 from domain.python_entity_name import PythonEntityName
 
@@ -29,6 +29,47 @@ flow ParseFlowFyCode:
         flow_name = PythonEntityName.from_snake_case(flow_file_split[1])
         return_type = flow_file_split[2]
 
+        properties: List[PropertyMixinModel] = []
+        methods: List[MethodMixinModel] = []
+        mixin_lines = flow_file_split[3].split("\n")
+        for mixin_line in mixin_lines:
+            if mixin_line.strip() == "":
+                continue
+
+            flow_property_regex = re.compile(
+                pattern=rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
+                        rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
+            )
+            flow_property_fy_search = flow_property_regex.search(mixin_line)
+            if flow_property_fy_search:
+                properties.append(
+                    PropertyMixinModel(
+                        property_name=PythonEntityName.from_snake_case(
+                            flow_property_fy_search.group("property_name")
+                        ),
+                        implementation_name=PythonEntityName.from_snake_case(
+                            flow_property_fy_search.group("implementation_name")
+                        ),
+                    )
+                )
+            flow_method_regex = re.compile(
+                pattern=rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
+                        rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
+            )
+            flow_method_fy_search = flow_method_regex.search(mixin_line)
+
+            if flow_method_fy_search:
+                methods.append(
+                    MethodMixinModel(
+                        method_name=PythonEntityName.from_snake_case(
+                            flow_method_fy_search.group("method_name")
+                        ),
+                        implementation_name=PythonEntityName.from_snake_case(
+                            flow_method_fy_search.group("implementation_name")
+                        ),
+                    )
+                )
+
         parsed_fy_py_file = ParsedFlowFyPyFile(
             fy_code=self._fy_code,
             pre_marker_file_content=self._pre_marker_file_content,
@@ -40,6 +81,8 @@ flow ParseFlowFyCode:
                 ),
                 flow_name=flow_name,
                 return_type=return_type,
+                properties=properties,
+                methods=methods,
             ),
         )
 
