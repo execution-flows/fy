@@ -32,6 +32,7 @@ class ParsePropertyFyCode_Flow(
 ):
     def __call__(self) -> ParsedFyPyFile:
         property_regex = re.compile(
+            rf"(?P<property_annotation>@cached)?\s*\n*"
             rf"property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
             rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*"
             rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
@@ -40,12 +41,13 @@ class ParsePropertyFyCode_Flow(
         property_file_split = property_regex.split(self._fy_code)
 
         assert (
-            len(property_file_split) == 5
+            len(property_file_split) == 6
         ), f"Property file split length {len(property_file_split)} is invalid"
 
-        property_name = PythonEntityName.from_snake_case(property_file_split[1])
-        property_type = property_file_split[2]
-        implementation_name = PythonEntityName.from_snake_case(property_file_split[3])
+        user_imports = property_file_split[0]
+        property_name = PythonEntityName.from_snake_case(property_file_split[2])
+        property_type = property_file_split[3]
+        implementation_name = PythonEntityName.from_snake_case(property_file_split[4])
 
         abstract_properties: List[AbstractPropertyModel] = []
 
@@ -53,9 +55,9 @@ class ParsePropertyFyCode_Flow(
             rf"^\s+with\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
         )
 
-        check_if_cached = property_file_split[0]
+        check_if_cached = property_file_split[1]
 
-        mixin_lines = property_file_split[4].split("\n")
+        mixin_lines = property_file_split[5].split("\n")
         for mixin_line in mixin_lines:
             if mixin_line.strip() == "":
                 continue
@@ -80,6 +82,7 @@ class ParsePropertyFyCode_Flow(
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
+            user_imports=user_imports,
             template_model=PropertyTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"

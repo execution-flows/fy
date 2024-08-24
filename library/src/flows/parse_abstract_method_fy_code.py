@@ -46,6 +46,7 @@ class ParseAbstractMethodFyCode_Flow(
             len(abstract_method_file_split) == 6
         ), f"Abstract Method file split length {len(abstract_method_file_split)} is invalid"
 
+        user_imports = abstract_method_file_split[0]
         abstract_method_name = PythonEntityName.from_snake_case(
             abstract_method_file_split[1]
         )
@@ -57,6 +58,7 @@ class ParseAbstractMethodFyCode_Flow(
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
+            user_imports=user_imports,
             template_model=AbstractMethodTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"With_{abstract_method_name.pascal_case}_MethodMixin_ABC"

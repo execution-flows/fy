@@ -34,6 +34,7 @@ class FyPyFileParts(BaseModel):
 class ParsedFyPyFile(FyPyFileParts):
     file_type: ParsedFyPyFileKind
     file_path: Path
+    user_imports: str
     template_model: BaseTemplateModel
 
 
