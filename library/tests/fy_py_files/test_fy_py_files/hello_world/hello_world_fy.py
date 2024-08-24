@@ -6,7 +6,7 @@ from base.execution_flow_base import ExecutionFlowBase
 
 
 # fy:start <<<===
-class Helloworld_Flow(
+class HelloWorld_Flow(
     # Base
     ExecutionFlowBase[None]
 ):

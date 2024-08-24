@@ -10,7 +10,7 @@ class {{ python_class_name.pascal_case }}
 {%- if abstract_method_mixins  %}
     # Method_mixins
     {%- for abstract_method in abstract_method_mixins %}
-    {{ abstract_method.method_name.pascal_case }}_MethodMixin_ABC,{% endfor -%}
+    With_{{ abstract_method.method_name.pascal_case }}_MethodMixin_ABC,{% endfor -%}
 {%- endif -%}
 {%- if abstract_property_mixins or  abstract_method_mixins%}
     abc.ABC,

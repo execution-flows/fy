@@ -13,12 +13,12 @@ class MainFyPyTestCase(TestCase):
 
     def _test_main_flow(self, target_folder: str) -> None:
         folder_to_parse = (
-            Path(__file__).parent.parent / "test_fypy_files" / target_folder
+            Path(__file__).parent.parent / "test_fy_py_files" / target_folder
         )
 
         FyPy_Main_Flow(
             folder_to_parse=folder_to_parse,
-            project_root_folder=Path(__file__).parent.parent,
+            project_root_folder=Path(__file__).parent.parent.parent,
         )()
 
         self.__test_fy_py_files_in_directory(folder_to_parse)

@@ -1,0 +1,17 @@
+class {{ python_class_name.pascal_case }}
+{%- if abstract_property_mixins -%}
+(
+    # Property_mixins
+{%- for abstract_property in abstract_property_mixins %}
+    With_{{ abstract_property.property_name.pascal_case }}_PropertyMixin_ABC,
+{%- endfor %}
+    abc.ABC,
+)
+{%- endif %}:
+{%- if property_annotation %}
+    {{ property_annotation }}
+{%- else %}
+    @property
+{%- endif %}
+    def _{{ property_name.snake_case }}(self) -> {{ property_type }}:
+

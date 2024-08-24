@@ -59,7 +59,7 @@ class ParseAbstractMethodFyCode_Flow(
             file_path=self._fy_py_file_to_parse,
             template_model=AbstractMethodTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
-                    f"{abstract_method_name.pascal_case}_MethodMixin_ABC"
+                    f"With_{abstract_method_name.pascal_case}_MethodMixin_ABC"
                 ),
                 abstract_method_name=abstract_method_name,
                 arguments=arguments,

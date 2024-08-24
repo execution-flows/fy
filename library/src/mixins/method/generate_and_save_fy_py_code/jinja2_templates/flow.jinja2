@@ -4,13 +4,13 @@ class {{ python_class_name.pascal_case }}(
     {%- for property in properties %}
     {{ property.property_name.pascal_case }}_Using{{ property.implementation_name.pascal_case }}_PropertyMixin,
     {%- endfor %}
-{% endif -%}
+{%- endif -%}
 {%- if methods %}
     # Method Mixins
     {%- for method in methods %}
     {{ method.method_name.pascal_case }}_Using{{ method.implementation_name.pascal_case }}_MethodMixin,
 {%- endfor %}
-{% endif %}
+{%- endif %}
     # Base
     ExecutionFlowBase[{{ return_type }}]
 ):
