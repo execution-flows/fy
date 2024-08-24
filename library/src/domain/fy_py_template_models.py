@@ -95,6 +95,7 @@ class AbstractPropertyTemplateModel(BaseTemplateModel):
 class PropertyTemplateModel(BaseTemplateModel):
     property_name: PythonEntityName
     implementation_name: PythonEntityName
+    abstract_property_mixins: List[AbstractPropertyModel]
     property_type: str
 
     @computed_field

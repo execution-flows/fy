@@ -3,7 +3,7 @@ import re
 from jinja2 import Environment, FileSystemLoader
 import pathlib
 from domain.fy_py_template_models import entity_key
-from domain.parsed_fy_py_file import ParsedFyPyFileKind, ParsedFyPyFile, ParsedFlowFyPyFile, ParsedMethodFyPyFile
+from domain.parsed_fy_py_file import ParsedFyPyFileKind, ParsedFyPyFile, ParsedFlowFyPyFile, ParsedMethodFyPyFile, ParsedPropertyFyPyFile
 from constants import FY_PY_FILE_SIGNATURE, FY_CODE_FILE_END_SIGNATURE, FY_END_MARKER, FY_START_MARKER
 
 
@@ -144,7 +144,27 @@ method generate_and_save_fy_py_files using jinja2_templates:
                     mixin_imports,
                 )
             case ParsedFyPyFileKind.PROPERTY:
-                mixin_imports = []
+                static_imports = (
+                    ["import abc"]
+                    if (
+                        cast(
+                            ParsedPropertyFyPyFile, parsed_fy_py_file
+                        ).template_model.abstract_property_mixins
+                    )
+                    else []
+                )
+                mixin_imports = (
+                    static_imports
+                    + [
+                        # property mixins
+                        self._mixin_import_map[
+                            abstract_property_mixin.property_name.snake_case
+                        ]
+                        for abstract_property_mixin in cast(
+                            ParsedPropertyFyPyFile, parsed_fy_py_file
+                        ).template_model.abstract_property_mixins
+                    ]
+                )
                 return (
                     generated_fy_py_code(
                         jinja2_template="property.jinja2",
