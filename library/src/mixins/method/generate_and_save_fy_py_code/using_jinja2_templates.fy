@@ -124,7 +124,7 @@ method generate_and_save_fy_py_files using jinja2_templates:
 
 
 IMPORT_REGEX = re.compile(
-    r"^(?P<from>from [\w.]+) import .*$|^(?P<import>import [\w.]+)$"
+    r"^(?P<from>from [\w.]+) import .*$|^(?P<import>import [\w.]+)$", flags=re.DOTALL
 )
 
 

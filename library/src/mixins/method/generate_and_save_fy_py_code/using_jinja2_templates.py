@@ -145,7 +145,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
 
 
 IMPORT_REGEX = re.compile(
-    r"^(?P<from>from [\w.]+) import .*$|^(?P<import>import [\w.]+)$"
+    r"^(?P<from>from [\w.]+) import .*$|^(?P<import>import [\w.]+)$", flags=re.DOTALL
 )
 
 
