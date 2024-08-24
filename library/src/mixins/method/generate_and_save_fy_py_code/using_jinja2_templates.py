@@ -219,14 +219,21 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
 
     def __generate_fy_py_files__using_required_property_setters(self) -> None:
         for parsed_fy_py_file in self._required_property_setters_fy_py:
-            content = generated_fy_py_code(
+            generated_python_code = generated_fy_py_code(
                 jinja2_template="property_setter.jinja2",
                 parsed_fy_py_file=parsed_fy_py_file,
+            )
+            fy_py_file_content = (
+                f"{parsed_fy_py_file.user_imports}"
+                f"{FY_START_MARKER}\n"
+                f"{generated_python_code}"
+                f"{FY_END_MARKER}\n"
+                f"{parsed_fy_py_file.post_marker_file_content}"
             )
             with open(
                 file=parsed_fy_py_file.file_path, mode="w", encoding="UTF-8"
             ) as setter_file:
-                setter_file.write(content)
+                setter_file.write(fy_py_file_content)
 
 
 IMPORT_REGEX = re.compile(

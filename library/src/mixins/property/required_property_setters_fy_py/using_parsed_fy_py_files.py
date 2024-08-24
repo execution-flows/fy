@@ -7,10 +7,7 @@ from domain.fy_py_template_models import (
     AbstractPropertyTemplateModel,
 )
 from domain.python_entity_name import PythonEntityName
-from mixins.property.fy_code.abc import With_FyCode_PropertyMixin_ABC
-from mixins.property.fy_py_files_to_parse.abc import (
-    With_FyPyFilesToParse_PropertyMixin_ABC,
-)
+
 from mixins.property.parsed_fy_py_files.abc import (
     With_ParsedFyPyFiles_PropertyMixin_ABC,
 )
@@ -36,19 +33,17 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
 ):
     @cached_property
     def _required_property_setters_fy_py(self) -> List[ParsedFyPyFile]:
-        print(self._parsed_fy_py_files_map_by_key)
         required_setters = {
             flow_property.property_name.snake_case: PropertySetterFyPyFile(
-                fy_code=f"property {flow_property.property_name} using setter:",
-                pre_marker_file_content=(
-                    self._parsed_fy_py_files_map_by_key[
-                        flow_property.property_name.snake_case
-                    ].pre_marker_file_content
-                ),
+                fy_code="",
+                pre_marker_file_content="",
                 post_marker_file_content="",
                 file_path=self._parsed_fy_py_files_map_by_key[
                     flow_property.property_name.snake_case
                 ].file_path.with_name("using_setter.py"),
+                user_imports=self._parsed_fy_py_files_map_by_key[
+                    flow_property.property_name.snake_case
+                ].user_imports,
                 template_model=PropertySetterTemplateModel(
                     property_name=flow_property.property_name,
                     python_class_name=PythonEntityName.from_pascal_case(
