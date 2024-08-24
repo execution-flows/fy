@@ -106,3 +106,16 @@ class PropertyTemplateModel(BaseTemplateModel):
             mixin_name__snake_case=self.property_name.snake_case,
             mixin_implementation_name__snake_case=self.implementation_name.snake_case,
         )
+
+
+class PropertySetterTemplateModel(BaseTemplateModel):
+    property_name: PythonEntityName
+    property_type: str
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return entity_key(
+            mixin_name__snake_case=self.property_name.snake_case,
+            mixin_implementation_name__snake_case="setter",
+        )

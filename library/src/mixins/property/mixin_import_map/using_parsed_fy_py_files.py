@@ -30,6 +30,7 @@ class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(
                 parsed_fy_py_file
             )
             for parsed_fy_py_file in self._parsed_fy_py_files
+            + self._required_property_setters_fy_py
         }
         return mixin_import_map
 

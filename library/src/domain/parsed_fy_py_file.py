@@ -14,6 +14,7 @@ from domain.fy_py_template_models import (
     AbstractMethodTemplateModel,
     AbstractPropertyTemplateModel,
     PropertyTemplateModel,
+    PropertySetterTemplateModel,
 )
 
 
@@ -23,6 +24,7 @@ class ParsedFyPyFileKind(Enum):
     ABSTRACT_METHOD = "abstract_method"
     ABSTRACT_PROPERTY = "abstract_property"
     PROPERTY = "property"
+    PROPERTY_SETTER = "property_setter"
 
 
 class FyPyFileParts(BaseModel):
@@ -65,3 +67,10 @@ class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):
 class ParsedPropertyFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.PROPERTY] = ParsedFyPyFileKind.PROPERTY
     template_model: PropertyTemplateModel
+
+
+class PropertySetterFyPyFile(ParsedFyPyFile):
+    file_type: Literal[ParsedFyPyFileKind.PROPERTY_SETTER] = (
+        ParsedFyPyFileKind.PROPERTY_SETTER
+    )
+    template_model: PropertySetterTemplateModel
