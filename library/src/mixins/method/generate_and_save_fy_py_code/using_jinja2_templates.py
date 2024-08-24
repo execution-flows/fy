@@ -25,6 +25,7 @@ from constants import (
     FY_CODE_FILE_END_SIGNATURE,
     FY_END_MARKER,
     FY_START_MARKER,
+    NEW_LINE,
 )
 
 
@@ -45,15 +46,17 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                 pre_marker_file_content=parsed_fy_py_file.pre_marker_file_content,
             )
             mixin_imports_code = "\n".join(
-                filtered_mixin_imports
-                + (["", "", ""] if filtered_mixin_imports else [])
+                sorted(filtered_mixin_imports)
+                + ([""] if filtered_mixin_imports else [])
             )
+
             fy_py_file_content = (
                 f"{FY_PY_FILE_SIGNATURE}"
                 f"{parsed_fy_py_file.fy_code}"
                 f"{FY_CODE_FILE_END_SIGNATURE}\n"
                 f"{parsed_fy_py_file.pre_marker_file_content}"
                 f"{mixin_imports_code}"
+                f"{NEW_LINE * 2 if not parsed_fy_py_file.pre_marker_file_content else ''}"
                 f"{FY_START_MARKER}\n"
                 f"{generated_python_code}"
                 f"{FY_END_MARKER}\n"
@@ -176,15 +179,28 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                     )
                     else []
                 )
-                mixin_imports = static_imports + [
-                    # property mixins
-                    self._mixin_import_map[
-                        abstract_property_mixin.property_name.snake_case
+                cached_import = (
+                    ["from functools import cached_property"]
+                    if (
+                        cast(
+                            ParsedPropertyFyPyFile, parsed_fy_py_file
+                        ).template_model.property_annotation
+                    )
+                    else []
+                )
+                mixin_imports = (
+                    cached_import
+                    + static_imports
+                    + [
+                        # property mixins
+                        self._mixin_import_map[
+                            abstract_property_mixin.property_name.snake_case
+                        ]
+                        for abstract_property_mixin in cast(
+                            ParsedPropertyFyPyFile, parsed_fy_py_file
+                        ).template_model.abstract_property_mixins
                     ]
-                    for abstract_property_mixin in cast(
-                        ParsedPropertyFyPyFile, parsed_fy_py_file
-                    ).template_model.abstract_property_mixins
-                ]
+                )
                 return (
                     generated_fy_py_code(
                         jinja2_template="property.jinja2",
