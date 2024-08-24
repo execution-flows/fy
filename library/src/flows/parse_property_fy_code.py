@@ -32,7 +32,7 @@ class ParsePropertyFyCode_Flow(
 ):
     def __call__(self) -> ParsedFyPyFile:
         property_regex = re.compile(
-            rf"(?P<property_annotation>@cached)?\s*\n*"
+            rf"(?P<property_annotation>@cached)?\s*"
             rf"property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
             rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*"
             rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
