@@ -73,7 +73,7 @@ flow ParsePropertyFyCode:
                 abstract_property_mixins=abstract_properties,
                 property_type=property_type,
                 property_annotation=(
-                    f"{property_file_split[0].strip()}_property"
+                    "@cached_property"
                     if check_if_cached
                     else None
                 ),
