@@ -37,6 +37,8 @@ flow ParsePropertyFyCode:
             rf"^\s+with\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
         )
 
+        check_if_cached = property_file_split[0]
+
         mixin_lines = property_file_split[4].split("\n")
         for mixin_line in mixin_lines:
             if mixin_line.strip() == "":
@@ -70,6 +72,11 @@ flow ParsePropertyFyCode:
                 implementation_name=implementation_name,
                 abstract_property_mixins=abstract_properties,
                 property_type=property_type,
+                property_annotation=(
+                    "@cached_property"
+                    if check_if_cached
+                    else None
+                ),
             ),
         )
 

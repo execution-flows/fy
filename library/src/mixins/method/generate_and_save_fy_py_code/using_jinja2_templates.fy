@@ -4,7 +4,7 @@ from jinja2 import Environment, FileSystemLoader
 import pathlib
 from domain.fy_py_template_models import entity_key
 from domain.parsed_fy_py_file import ParsedFyPyFileKind, ParsedFyPyFile, ParsedFlowFyPyFile, ParsedMethodFyPyFile, ParsedPropertyFyPyFile
-from constants import FY_PY_FILE_SIGNATURE, FY_CODE_FILE_END_SIGNATURE, FY_END_MARKER, FY_START_MARKER
+from constants import FY_PY_FILE_SIGNATURE, FY_CODE_FILE_END_SIGNATURE, FY_END_MARKER, FY_START_MARKER, NEW_LINE,
 
 
 method generate_and_save_fy_py_files using jinja2_templates:
@@ -22,15 +22,17 @@ method generate_and_save_fy_py_files using jinja2_templates:
                 pre_marker_file_content=parsed_fy_py_file.pre_marker_file_content,
             )
             mixin_imports_code = "\n".join(
-                filtered_mixin_imports
-                + (["", "", ""] if filtered_mixin_imports else [])
+                sorted(filtered_mixin_imports)
+                + ([""] if filtered_mixin_imports else [])
             )
+
             fy_py_file_content = (
                 f"{FY_PY_FILE_SIGNATURE}"
                 f"{parsed_fy_py_file.fy_code}"
                 f"{FY_CODE_FILE_END_SIGNATURE}\n"
                 f"{parsed_fy_py_file.pre_marker_file_content}"
                 f"{mixin_imports_code}"
+                f"{NEW_LINE * 2 if not parsed_fy_py_file.pre_marker_file_content else ''}"
                 f"{FY_START_MARKER}\n"
                 f"{generated_python_code}"
                 f"{FY_END_MARKER}\n"
@@ -153,8 +155,18 @@ method generate_and_save_fy_py_files using jinja2_templates:
                     )
                     else []
                 )
+                cached_import = (
+                    ["from functools import cached_property"]
+                    if (
+                        cast(
+                            ParsedPropertyFyPyFile, parsed_fy_py_file
+                        ).template_model.property_annotation
+                    )
+                    else []
+                )
                 mixin_imports = (
-                    static_imports
+                    cached_import
+                    + static_imports
                     + [
                         # property mixins
                         self._mixin_import_map[
