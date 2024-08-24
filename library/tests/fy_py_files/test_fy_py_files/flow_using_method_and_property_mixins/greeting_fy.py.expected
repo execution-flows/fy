@@ -2,6 +2,7 @@
 property greeting: str using constant:
 """
 
+
 # fy:start <<<===
 class Greeting_UsingConstant_PropertyMixin:
     @property
