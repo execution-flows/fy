@@ -25,6 +25,14 @@ class MethodMixinModel(BaseModel):
     implementation_name: PythonEntityName
 
 
+class AbstractPropertyModel(BaseModel):
+    property_name: PythonEntityName
+
+
+class AbstractMethodModel(BaseModel):
+    method_name: PythonEntityName
+
+
 class BaseTemplateModel(BaseModel, abc.ABC):
     python_class_name: PythonEntityName
 
@@ -49,6 +57,8 @@ class FlowTemplateModel(BaseTemplateModel):
 class MethodTemplateModel(BaseTemplateModel):
     method_name: PythonEntityName
     implementation_name: PythonEntityName
+    abstract_property_mixins: List[AbstractPropertyModel]
+    abstract_method_mixins: List[AbstractMethodModel]
     arguments: str | None
     return_type: str
 

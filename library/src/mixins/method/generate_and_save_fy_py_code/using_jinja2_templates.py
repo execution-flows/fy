@@ -17,6 +17,7 @@ from domain.parsed_fy_py_file import (
     ParsedFyPyFileKind,
     ParsedFyPyFile,
     ParsedFlowFyPyFile,
+    ParsedMethodFyPyFile,
 )
 from constants import (
     FY_PY_FILE_SIGNATURE,
@@ -106,7 +107,39 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                     mixin_imports,
                 )
             case ParsedFyPyFileKind.METHOD:
-                mixin_imports = []
+                static_imports = (
+                    ["import abc"]
+                    if (
+                        cast(
+                            ParsedMethodFyPyFile, parsed_fy_py_file
+                        ).template_model.abstract_property_mixins
+                        or cast(
+                            ParsedMethodFyPyFile, parsed_fy_py_file
+                        ).template_model.abstract_method_mixins
+                    )
+                    else []
+                )
+                mixin_imports = (
+                    static_imports
+                    + [
+                        # property mixins
+                        self._mixin_import_map[
+                            abstract_property_mixin.property_name.snake_case
+                        ]
+                        for abstract_property_mixin in cast(
+                            ParsedMethodFyPyFile, parsed_fy_py_file
+                        ).template_model.abstract_property_mixins
+                    ]
+                    + [
+                        # method mixins
+                        self._mixin_import_map[
+                            abstract_method_mixin.method_name.snake_case
+                        ]
+                        for abstract_method_mixin in cast(
+                            ParsedMethodFyPyFile, parsed_fy_py_file
+                        ).template_model.abstract_method_mixins
+                    ]
+                )
                 return (
                     generated_fy_py_code(
                         jinja2_template="method.jinja2",

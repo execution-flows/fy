@@ -5,6 +5,6 @@
 from fy_py_files.test_utils.main_fypy_test_case import MainFyPyTestCase
 
 
-class TestHelloWorldUsingMethodFlowFyPyGeneratesFile(MainFyPyTestCase):
-    def test_fy_py_hello_world_using_method_flow_generates_files(self) -> None:
-        self._test_main_flow(target_folder="hello_world_using_method")
+class TestMixinsMethodGreetFyPyGeneratesFile(MainFyPyTestCase):
+    def test_fy_py_mixins_method_greet_generates_files(self) -> None:
+        self._test_main_flow(target_folder="mixins/method/greet")
