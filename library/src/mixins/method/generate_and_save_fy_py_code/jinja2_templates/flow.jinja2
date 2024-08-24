@@ -4,7 +4,7 @@ class {{ python_class_name.pascal_case }}(
     {%- for property in properties %}
     {{ property.property_name.pascal_case }}_Using{{ property.implementation_name.pascal_case }}_PropertyMixin,
     {%- endfor %}
-{% endif -%}
+{%- endif -%}
 {%- if methods %}
     # Method Mixins
     {%- for method in methods %}
