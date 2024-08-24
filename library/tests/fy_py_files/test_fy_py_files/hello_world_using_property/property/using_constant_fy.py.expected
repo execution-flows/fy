@@ -3,6 +3,7 @@ from pathlib import Path
 
 property greeting: Path using constant:
 """
+
 from pathlib import Path
 
 
