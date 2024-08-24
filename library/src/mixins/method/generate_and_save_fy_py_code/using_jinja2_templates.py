@@ -44,6 +44,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
             filtered_mixin_imports = remove_existing_imports(
                 mixin_imports=mixin_imports,
                 pre_marker_file_content=parsed_fy_py_file.pre_marker_file_content,
+                user_imports=parsed_fy_py_file.user_imports,
             )
             mixin_imports_code = "\n".join(
                 sorted(filtered_mixin_imports)
@@ -56,7 +57,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                 f"{FY_CODE_FILE_END_SIGNATURE}\n"
                 f"{parsed_fy_py_file.pre_marker_file_content}"
                 f"{mixin_imports_code}"
-                f"{NEW_LINE * 2 if not parsed_fy_py_file.pre_marker_file_content else ''}"
+                f"{NEW_LINE * 2 if not parsed_fy_py_file.pre_marker_file_content or mixin_imports_code else ''}"
                 f"{FY_START_MARKER}\n"
                 f"{generated_python_code}"
                 f"{FY_END_MARKER}\n"
@@ -217,7 +218,7 @@ IMPORT_REGEX = re.compile(
 
 
 def remove_existing_imports(
-    mixin_imports: List[str], pre_marker_file_content: str
+    mixin_imports: List[str], pre_marker_file_content: str, user_imports: str
 ) -> List[str]:
     pre_marker_imports: Set[str] = set()
     for pre_marker_line in pre_marker_file_content.split("\n"):
@@ -236,7 +237,18 @@ def remove_existing_imports(
         if import_part not in pre_marker_imports:
             mixin_imports_result.append(mixin_import)
 
-    return mixin_imports_result
+    user_imports_results = []
+    for user_import in user_imports.split("\n"):
+        if user_import == "":
+            continue
+        import_regex_result = IMPORT_REGEX.search(user_import)
+        import_part = import_regex_result.group("from") or import_regex_result.group(
+            "import"
+        )
+        if import_part not in pre_marker_imports:
+            user_imports_results.append(user_import)
+
+    return mixin_imports_result + user_imports_results
 
 
 def generated_fy_py_code(

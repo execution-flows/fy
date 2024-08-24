@@ -50,6 +50,7 @@ class ParseMethodFyCode_Flow(
             len(method_file_split)
         ) == 7, f"Method file split length {len(method_file_split)} is invalid."
 
+        user_imports = method_file_split[0]
         method_name = PythonEntityName.from_snake_case(method_file_split[1])
         arguments = method_file_split[3]
         return_type = method_file_split[4]
@@ -104,6 +105,7 @@ class ParseMethodFyCode_Flow(
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
+            user_imports=user_imports,
             template_model=MethodTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
