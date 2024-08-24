@@ -46,7 +46,7 @@ class ParseFlowFyCode_Flow(
             len(flow_file_split)
         ) == 4, f"Flow file split length {len(flow_file_split)} is invalid."
 
-        flow_name = PythonEntityName.from_snake_case(flow_file_split[1])
+        flow_name = PythonEntityName.from_pascal_case(flow_file_split[1])
         return_type = flow_file_split[2]
 
         properties: List[PropertyMixinModel] = []

@@ -1,12 +1,16 @@
 """fy
 flow HelloWorld -> None:
     property greeting using constant
+    method greet using greeting
 """
 
 from base.execution_flow_base import ExecutionFlowBase
 
-from fy_py_files.test_fy_py_files.hello_world_using_property.property.using_constant_fy import (
+from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.greeting_fy import (
     Greeting_UsingConstant_PropertyMixin,
+)
+from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.greet_fy import (
+    Greet_UsingGreeting_MethodMixin,
 )
 
 
@@ -14,9 +18,11 @@ from fy_py_files.test_fy_py_files.hello_world_using_property.property.using_cons
 class HelloWorld_Flow(
     # Property Mixins
     Greeting_UsingConstant_PropertyMixin,
+    # Method Mixins
+    Greet_UsingGreeting_MethodMixin,
     # Base
     ExecutionFlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        print(self._greeting)
+        self._greet()
