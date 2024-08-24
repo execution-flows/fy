@@ -6,7 +6,7 @@ authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@iclou
 readme = "README.md"
 
 [tool.poetry.scripts]
-fy = "fy_cli.main:main"
+fy = "fy_cli.main:fy_cli"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
