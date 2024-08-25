@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from flows.fypy_main import FyPy_Main_Flow
+from flows.fypy_main_fy import FyPy_Main_Flow
 
 
 def fy(

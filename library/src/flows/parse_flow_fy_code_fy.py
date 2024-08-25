@@ -1,20 +1,21 @@
-from base.execution_flow_base import ExecutionFlowBase
-
-from mixins.property.fy_code.using_setter import FyCode_UsingSetter_PropertyMixin
-from mixins.property.pre_marker_file_content.using_setter import (
-    PreMarkerFileContent_UsingSetter_PropertyMixin,
-)
-from mixins.property.post_marker_file_content.using_setter import (
-    PostMarkerFileContent_UsingSetter_PropertyMixin,
-)
-from mixins.property.fy_py_file_to_parse.using_setter import (
-    FyPyFileToParse_UsingSetter_PropertyMixin,
-)
-
+"""fy
 import re
 from typing import Any, List
 from pathlib import Path
+from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
+from domain.fy_py_template_models import FlowTemplateModel, PropertyMixinModel, MethodMixinModel
+from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFlowFyPyFile
+from domain.python_entity_name import PythonEntityName
 
+
+flow ParseFlowFyCode -> ParsedFyPyFile:
+    property fy_code using setter
+    property pre_marker_file_content using setter
+    property post_marker_file_content using setter
+    property fy_py_file_to_parse using setter
+"""
+
+from base.execution_flow_base import ExecutionFlowBase
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import (
     FlowTemplateModel,
@@ -23,8 +24,24 @@ from domain.fy_py_template_models import (
 )
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFlowFyPyFile
 from domain.python_entity_name import PythonEntityName
+from mixins.property.fy_code.using_setter import (
+    FyCode_UsingSetter_PropertyMixin,
+)
+from mixins.property.fy_py_file_to_parse.using_setter import (
+    FyPyFileToParse_UsingSetter_PropertyMixin,
+)
+from mixins.property.post_marker_file_content.using_setter import (
+    PostMarkerFileContent_UsingSetter_PropertyMixin,
+)
+from mixins.property.pre_marker_file_content.using_setter import (
+    PreMarkerFileContent_UsingSetter_PropertyMixin,
+)
+from pathlib import Path
+from typing import Any, List
+import re
 
 
+# fy:start <<<===
 class ParseFlowFyCode_Flow(
     # Property Mixins
     FyCode_UsingSetter_PropertyMixin,
@@ -35,6 +52,7 @@ class ParseFlowFyCode_Flow(
     ExecutionFlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
+        # fy:end <<<===
         flow_string_split_regex = re.compile(
             rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s+->"
             rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
