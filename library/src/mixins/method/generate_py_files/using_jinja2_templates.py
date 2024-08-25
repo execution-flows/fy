@@ -4,7 +4,9 @@ from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin
 from mixins.property.required_property_setters.abc import (
     With_RequiredPropertySetters_PropertyMixin_ABC,
 )
-from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
+from mixins.property.mixin_import_map.abc_fy import (
+    With_MixinImportMap_PropertyMixin_ABC,
+)
 
 import pathlib
 from typing import cast, List

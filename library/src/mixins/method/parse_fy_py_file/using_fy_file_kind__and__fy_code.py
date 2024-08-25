@@ -1,13 +1,13 @@
 import abc
 
-from mixins.property.fy_py_file_to_parse.abc import (
+from mixins.property.fy_py_file_to_parse.abc_fy import (
     With_FyPyFileToParse_PropertyMixin_ABC,
 )
 from mixins.property.fy_code.abc_fy import With_FyCode_PropertyMixin_ABC
-from mixins.property.pre_marker_file_content.abc import (
+from mixins.property.pre_marker_file_content.abc_fy import (
     With_PreMarkerFileContent_PropertyMixin_ABC,
 )
-from mixins.property.post_marker_file_content.abc import (
+from mixins.property.post_marker_file_content.abc_fy import (
     With_PostMarkerFileContent_PropertyMixin_ABC,
 )
 from mixins.property.fy_file_kind.abc_fy import With_FyFileKind_PropertyMixin_ABC

@@ -1,6 +1,6 @@
 import abc
 
-from mixins.property.fy_py_file_to_parse.abc import (
+from mixins.property.fy_py_file_to_parse.abc_fy import (
     With_FyPyFileToParse_PropertyMixin_ABC,
 )
 from mixins.property.fy_code.abc_fy import With_FyCode_PropertyMixin_ABC

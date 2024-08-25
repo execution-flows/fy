@@ -2,7 +2,7 @@ from functools import cached_property
 
 import abc
 
-from mixins.property.fy_py_files_to_parse.abc import (
+from mixins.property.fy_py_files_to_parse.abc_fy import (
     With_FyPyFilesToParse_PropertyMixin_ABC,
 )
 

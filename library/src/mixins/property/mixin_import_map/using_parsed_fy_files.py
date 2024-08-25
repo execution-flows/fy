@@ -6,7 +6,7 @@ from mixins.property.parsed_fy_files.abc import With_ParsedFyFiles_PropertyMixin
 from mixins.property.required_property_setters.abc import (
     With_RequiredPropertySetters_PropertyMixin_ABC,
 )
-from mixins.property.project_root_folder.abc import (
+from mixins.property.project_root_folder.abc_fy import (
     With_ProjectRootFolder_PropertyMixin_ABC,
 )
 
