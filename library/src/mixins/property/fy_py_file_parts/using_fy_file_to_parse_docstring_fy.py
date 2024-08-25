@@ -1,12 +1,13 @@
-from functools import cached_property
-
-import abc
-
-from mixins.property.fy_py_file_to_parse.abc_fy import (
-    With_FyPyFileToParse_PropertyMixin_ABC,
-)
-
+"""fy
 import re
+from constants import FY_PY_FILE_SIGNATURE, FY_CODE_FILE_END_SIGNATURE, FY_START_MARKER, FY_END_MARKER
+from domain.parsed_fy_py_file import FyPyFileParts
+
+
+@cached
+property fy_py_file_parts: FyPyFileParts using fy_file_to_parse_docstring:
+    with property fy_py_file_to_parse
+"""
 
 from constants import (
     FY_PY_FILE_SIGNATURE,
@@ -15,8 +16,15 @@ from constants import (
     FY_END_MARKER,
 )
 from domain.parsed_fy_py_file import FyPyFileParts
+from functools import cached_property
+from mixins.property.fy_py_file_to_parse.abc_fy import (
+    With_FyPyFileToParse_PropertyMixin_ABC,
+)
+import abc
+import re
 
 
+# fy:start <<<===
 class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
     # Property_mixins
     With_FyPyFileToParse_PropertyMixin_ABC,
@@ -24,6 +32,7 @@ class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
 ):
     @cached_property
     def _fy_py_file_parts(self) -> FyPyFileParts:
+        # fy:end <<<===
         fy_code_regex = re.compile(
             rf"^{FY_PY_FILE_SIGNATURE}"
             rf"(?P<fy_code>.*)"
