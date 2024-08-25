@@ -1,19 +1,31 @@
-import abc
-
-from mixins.property.fy_py_file_to_parse.abc_fy import (
-    With_FyPyFileToParse_PropertyMixin_ABC,
-)
-from mixins.property.fy_code.abc_fy import With_FyCode_PropertyMixin_ABC
-
+"""fy
 from domain.parsed_fy_py_file import ParsedFyPyFileKind
 import re
+from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING, PYTHON_ARGUMENTS_REGEX_STRING
+
+
+property fy_file_kind: ParsedFyPyFileKind using fy_code:
+    with property fy_py_file_to_parse
+    with property fy_code
+"""
+
 from constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,
     PYTHON_ARGUMENTS_REGEX_STRING,
 )
+from domain.parsed_fy_py_file import ParsedFyPyFileKind
+from mixins.property.fy_code.abc_fy import (
+    With_FyCode_PropertyMixin_ABC,
+)
+from mixins.property.fy_py_file_to_parse.abc_fy import (
+    With_FyPyFileToParse_PropertyMixin_ABC,
+)
+import abc
+import re
 
 
+# fy:start <<<===
 class FyFileKind_UsingFyCode_PropertyMixin(
     # Property_mixins
     With_FyPyFileToParse_PropertyMixin_ABC,
@@ -22,6 +34,7 @@ class FyFileKind_UsingFyCode_PropertyMixin(
 ):
     @property
     def _fy_file_kind(self) -> ParsedFyPyFileKind:
+        # fy:end <<<===
         flow_match_regex = re.compile(
             rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*"
             rf"->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*$",

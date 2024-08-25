@@ -1,30 +1,40 @@
-from functools import cached_property
+"""fy
+from typing import List, cast
+from domain.fy_py_template_models import PropertySetterTemplateModel, AbstractPropertyTemplateModel
+from domain.parsed_fy_py_file import ParsedFyPyFile, PropertySetterFyPyFile, ParsedFyPyFileKind, ParsedFlowFyPyFile
 
-import abc
+from domain.python_entity_name import PythonEntityName
+
+
+@cached
+property required_property_setters_fy_py: List[ParsedFyPyFile] using parsed_fy_py_files:
+    with property parsed_fy_py_files
+    with property parsed_fy_py_files_map_by_key
+"""
 
 from domain.fy_py_template_models import (
     PropertySetterTemplateModel,
     AbstractPropertyTemplateModel,
 )
+from domain.parsed_fy_py_file import (
+    ParsedFyPyFile,
+    PropertySetterFyPyFile,
+    ParsedFyPyFileKind,
+    ParsedFlowFyPyFile,
+)
 from domain.python_entity_name import PythonEntityName
-
+from functools import cached_property
 from mixins.property.parsed_fy_py_files.abc_fy import (
     With_ParsedFyPyFiles_PropertyMixin_ABC,
 )
 from mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     With_ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
-
 from typing import List, cast
-
-from domain.parsed_fy_py_file import (
-    ParsedFyPyFile,
-    ParsedFlowFyPyFile,
-    PropertySetterFyPyFile,
-    ParsedFyPyFileKind,
-)
+import abc
 
 
+# fy:start <<<===
 class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
     # Property_mixins
     With_ParsedFyPyFiles_PropertyMixin_ABC,
@@ -33,6 +43,7 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
 ):
     @cached_property
     def _required_property_setters_fy_py(self) -> List[ParsedFyPyFile]:
+        # fy:end <<<===
         required_setters = {
             flow_property.property_name.snake_case: PropertySetterFyPyFile(
                 fy_code="",
