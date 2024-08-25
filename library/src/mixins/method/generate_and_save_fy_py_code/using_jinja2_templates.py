@@ -1,12 +1,14 @@
 import abc
 
-from mixins.property.parsed_fy_py_files.abc import (
+from mixins.property.parsed_fy_py_files.abc_fy import (
     With_ParsedFyPyFiles_PropertyMixin_ABC,
 )
-from mixins.property.required_property_setters_fy_py.abc import (
+from mixins.property.required_property_setters_fy_py.abc_fy import (
     With_RequiredPropertySettersFyPy_PropertyMixin_ABC,
 )
-from mixins.property.mixin_import_map.abc import With_MixinImportMap_PropertyMixin_ABC
+from mixins.property.mixin_import_map.abc_fy import (
+    With_MixinImportMap_PropertyMixin_ABC,
+)
 
 from typing import List, Tuple, Set, cast
 import re

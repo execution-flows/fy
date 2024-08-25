@@ -8,10 +8,10 @@ from domain.fy_py_template_models import (
 )
 from domain.python_entity_name import PythonEntityName
 
-from mixins.property.parsed_fy_py_files.abc import (
+from mixins.property.parsed_fy_py_files.abc_fy import (
     With_ParsedFyPyFiles_PropertyMixin_ABC,
 )
-from mixins.property.parsed_fy_py_files_map_by_key.abc import (
+from mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     With_ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
 

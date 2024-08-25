@@ -1,6 +1,6 @@
 import abc
 
-from mixins.property.fy_py_file_parts.abc import With_FyPyFileParts_PropertyMixin_ABC
+from mixins.property.fy_py_file_parts.abc_fy import With_FyPyFileParts_PropertyMixin_ABC
 
 
 class PreMarkerFileContent_UsingFyPyFileParts_PropertyMixin(
