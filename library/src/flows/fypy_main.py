@@ -21,7 +21,7 @@ from mixins.property.required_property_setters_fy_py.using_parsed_fy_py_files_fy
 from mixins.property.mixin_import_map.using_parsed_fy_py_files_fy import (
     MixinImportMap_UsingParsedFyPyFiles_PropertyMixin,
 )
-from mixins.method.generate_and_save_fy_py_code.using_jinja2_templates import (
+from mixins.method.generate_and_save_fy_py_code.using_jinja2_templates_fy import (
     GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin,
 )
 
