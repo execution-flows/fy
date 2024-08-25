@@ -18,7 +18,7 @@ from mixins.property.pre_marker_file_content.fy_py_file_parts_fy import (
 from mixins.property.fy_file_kind.using_fy_code_fy import (
     FyFileKind_UsingFyCode_PropertyMixin,
 )
-from mixins.method.parse_fy_py_file.using_fy_file_kind__and__fy_code import (
+from mixins.method.parse_fy_py_file.using_fy_file_kind__and__fy_code_fy import (
     ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin,
 )
 
