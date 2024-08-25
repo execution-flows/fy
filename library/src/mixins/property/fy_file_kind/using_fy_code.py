@@ -3,7 +3,7 @@ import abc
 from mixins.property.fy_py_file_to_parse.abc import (
     With_FyPyFileToParse_PropertyMixin_ABC,
 )
-from mixins.property.fy_code.abc import With_FyCode_PropertyMixin_ABC
+from mixins.property.fy_code.abc_fy import With_FyCode_PropertyMixin_ABC
 
 from domain.parsed_fy_py_file import ParsedFyPyFileKind
 import re
