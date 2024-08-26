@@ -1,1 +1,0 @@
-property greeting: None

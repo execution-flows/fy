@@ -8,94 +8,43 @@ Let's walk through how you can define a method that leverages a property, focusi
 
 #### Implementing a Flow
 Consider the following _Execution Flows_ setup, where a `greeting` _property_ is defined as a constant and a `greet` _method_ uses this property:
-```fy linenums="1"
-flow HelloWorld:
-    property greeting using constant
-    method greet using greeting
-
-    def -> None:
-        self._greet()
-```
-### Method and Property Definitions
-#### Implementing a method
-The `greet` _method_ is defined to utilize the `greeting` _property_. Here’s how the method is structured:
-```fy  linenums="1"
-method greet using greeting:
+```py linenums="1"
+"""fy
+method greet -> None using greeting:
     with property greeting
+"""
 
-    def -> None:
-        print(self._greeting)
-```
-1. `:::py with property greeting`
-
-   - Specifies that this _method_ will use the `greeting` _property_ within its logic.
-#### Implementing a property
-```fy linenums="1"
-property greeting using constant:
-    def -> str:
-        return "Hello world!"
-```
-#### Adding the Abstract Property 
-Since the method `greet` is using the abstract `greeting` property, it needs an abstract declaration of the same property so it can be properly converted into Python code.
-```fy title="Declaring a Abstract Property"
-property greeting: str
-```
-
-### Generated Python Code
-The _Execution Flow_ tool converts the above definitions into Python classes and mixins that look like the following code.
-#### Main Flow Class
-```py linenums="1"
-from base.execution_flow_base import ExecutionFlowBase
-from tests.test_fy_files.both_mixins import Greeting_UsingConstant_PropertyMixin
-from tests.test_fy_files.both_mixins import Greet_UsingGreeting_MethodMixin
-
-class HelloWorld_Flow(
-    # Property Mixins
-    Greeting_UsingConstant_PropertyMixin,
-    # Method Mixins
-    Greet_UsingGreeting_MethodMixin,
-    # Base
-    ExecutionFlowBase[None]
-):
-    def __call__(self) -> None:
-        self._greet()
-```
-#### Method Mixin
-The _method_ `greet` is encapsulated in a mixin that ensures the method has access to the `greeting` _property_.
-```py linenums="1"
 import abc
-from tests.test_fy_files.both_mixins import With_Greeting_PropertyMixin_ABC
 
+from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.abc_fy import (
+    With_Greeting_PropertyMixin_ABC,
+)
+
+
+# fy:start <<<===
 class Greet_UsingGreeting_MethodMixin(
     # Property Mixins
     With_Greeting_PropertyMixin_ABC,
-    abc.ABC
+    abc.ABC,
 ):
     def _greet(self) -> None:
-        print(self._greeting) 
+        # fy:end <<<===
+        print(self._greeting)
 ```
-#### Property Mixin
-The constant `greeting` _property_ is implemented in its own mixin.
-
-```py linenums="1"
-class Greeting_UsingConstant_PropertyMixin:
-   @property
-   def _greeting(self) -> str:
-        return "Hello world!"
-```
-
-#### Abstract Property Mixin
-The abstract base for the `greeting` _property_ is defined as follows.
-```py linenums="1"
-import abc
-
-class With_Greeting_PropertyMixin_ABC(abc.ABC):
-    @property
-    @abc.abstractmethod
-    def _greeting(self) -> str:
-        raise NotImplementedError()
-```
+### Breakdown
+1. `:::py method greet -> None using greeting:`
+    - **Method Declaration:** Defines an implementation of a method named `:::py greet`.
+    - **Return Type:** `:::py -> None` specifies that the method does not return any value. 
+    - **Using Property:** `:::py using greeting` indicates that the method will utilize the `:::py greeting` property. ==Note that `greeting` in `using greeting` is not correlated with `greeting` in `with property greeting`. The former can be any arbitrary name. The second is a reference to an existing abstract property in the project.==
+2. `:::py with property greeting`
+    - **Property Usage:** Specifies that the method will use the `:::py greeting` property in its implementation.
+3. Code Generation:
+    - **Automatic Code Generation:** The `fy` tool generates code between `:::py # fy:start` and `:::py # fy:end`, including the class definition and the method declaration. 
+    - **Imports:** Includes necessary imports, such as `:::py With_Greeting_PropertyMixin_ABC`, which contains the `:::py greeting` property, and `:::py abc.ABC` for abstract base class functionality.
+4. Class Greet_UsingGreeting_MethodMixin 
+    - **Base Class:** Inherits from With_Greeting_PropertyMixin_ABC and abc.ABC. This setup ensures that the class will have access to the greeting property implementation. 
+    - **Method Implementation:** The `:::py _greet` method is defined to print the value of the `:::py _greeting` property, demonstrating how the method utilizes the property.
 
 ### Summary
 
-This detailed tutorial illustrates how _Execution Flows_ enables seamless integration of properties with methods. By allowing methods to utilize properties, you can create dynamic, reusable, and modular code. The generated Python code maintains a clean separation of concerns, with properties and methods organized into mixins, ensuring that your code is both powerful and maintainable. This approach allows you to build complex logic while keeping your codebase organized and consistent.
+This detailed tutorial illustrates how _Execution Flows_ enables seamless integration of properties with methods. By allowing methods to utilize properties, you can create dynamic, reusable, and modular code. The generated Python code maintains a clean separation of concerns, with properties and methods organized into mixins, ensuring that your code is both complex and maintainable. This approach allows you to build complex logic while keeping your codebase organized and consistent.
