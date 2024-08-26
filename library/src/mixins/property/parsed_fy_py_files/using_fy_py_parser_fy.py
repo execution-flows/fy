@@ -2,7 +2,6 @@
 from typing import List
 
 from domain.parsed_fy_py_file import ParsedFyPyFile
-from flows.parse_fy_py_file import ParseFyPyFile_Flow
 
 
 @cached
@@ -11,7 +10,7 @@ property parsed_fy_py_files: List[ParsedFyPyFile] using fy_py_parser:
 """
 
 from domain.parsed_fy_py_file import ParsedFyPyFile
-from flows.parse_fy_py_file import ParseFyPyFile_Flow
+from flows.parse_fy_py_file_fy import ParseFyPyFile_Flow
 from functools import cached_property
 from mixins.property.fy_py_files_to_parse.abc_fy import (
     With_FyPyFilesToParse_PropertyMixin_ABC,

@@ -1,29 +1,47 @@
-from base.execution_flow_base import ExecutionFlowBase
-
-from mixins.property.fy_code.using_setter import FyCode_UsingSetter_PropertyMixin
-from mixins.property.pre_marker_file_content.using_setter import (
-    PreMarkerFileContent_UsingSetter_PropertyMixin,
-)
-from mixins.property.post_marker_file_content.using_setter import (
-    PostMarkerFileContent_UsingSetter_PropertyMixin,
-)
-from mixins.property.fy_py_file_to_parse.using_setter import (
-    FyPyFileToParse_UsingSetter_PropertyMixin,
-)
-
+"""fy
 import re
 from pathlib import Path
 from typing import Any
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedAbstractMethodFyPyFile
+from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING, PYTHON_ARGUMENTS_REGEX_STRING
+from domain.python_entity_name import PythonEntityName
+from domain.fy_py_template_models import AbstractMethodTemplateModel
+
+
+flow ParseAbstractMethodFyCode -> ParsedFyPyFile:
+    property fy_code using setter
+    property pre_marker_file_content using setter
+    property post_marker_file_content using setter
+    property fy_py_file_to_parse using setter
+"""
+
+from base.execution_flow_base import ExecutionFlowBase
 from constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,
     PYTHON_ARGUMENTS_REGEX_STRING,
 )
-from domain.python_entity_name import PythonEntityName
 from domain.fy_py_template_models import AbstractMethodTemplateModel
+from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedAbstractMethodFyPyFile
+from domain.python_entity_name import PythonEntityName
+from mixins.property.fy_code.using_setter import (
+    FyCode_UsingSetter_PropertyMixin,
+)
+from mixins.property.fy_py_file_to_parse.using_setter import (
+    FyPyFileToParse_UsingSetter_PropertyMixin,
+)
+from mixins.property.post_marker_file_content.using_setter import (
+    PostMarkerFileContent_UsingSetter_PropertyMixin,
+)
+from mixins.property.pre_marker_file_content.using_setter import (
+    PreMarkerFileContent_UsingSetter_PropertyMixin,
+)
+from pathlib import Path
+from typing import Any
+import re
 
 
+# fy:start <<<===
 class ParseAbstractMethodFyCode_Flow(
     # Property Mixins
     FyCode_UsingSetter_PropertyMixin,
@@ -34,6 +52,7 @@ class ParseAbstractMethodFyCode_Flow(
     ExecutionFlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
+        # fy:end <<<===
         abstract_method_regex = re.compile(
             rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
             rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"

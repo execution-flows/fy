@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest import TestCase
 
 from constants import FY_PY_FILE_EXTENSION
-from flows.fypy_main import FyPy_Main_Flow
+from flows.fypy_main_fy import FyPy_Main_Flow
 
 
 class MainFyPyTestCase(TestCase):
