@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fy_library"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@icloud.com>"]
 readme = "README.md"
