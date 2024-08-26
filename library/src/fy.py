@@ -3,7 +3,6 @@ from pathlib import Path
 from flows.fy_py_main_fy import FyPy_Main_Flow
 
 
-
 def fy(
     folder_to_parse: Path,
     project_root_folder: Path,
