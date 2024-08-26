@@ -1,7 +1,5 @@
 """fy
 from domain.parsed_fy_py_file import ParsedFyPyFileKind
-import re
-from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING, PYTHON_ARGUMENTS_REGEX_STRING
 
 
 property fy_file_kind: ParsedFyPyFileKind using fy_code:

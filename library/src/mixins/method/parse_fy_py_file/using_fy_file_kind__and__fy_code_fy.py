@@ -1,5 +1,6 @@
 """fy
-from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
+from domain.parsed_fy_py_file import ParsedFyPyFile
+
 
 method parse_fy_py_file -> ParsedFyPyFile using fy_file_kind__and__fy_code:
     with property fy_py_file_to_parse

@@ -1,11 +1,5 @@
 """fy
-import re
-from pathlib import Path
-from typing import Any, List
-from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
-from domain.fy_py_template_models import PropertyTemplateModel, AbstractPropertyModel
-from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedPropertyFyPyFile
-from domain.python_entity_name import PythonEntityName
+from domain.parsed_fy_py_file import ParsedFyPyFile
 
 
 flow ParsePropertyFyCode -> ParsedFyPyFile:
