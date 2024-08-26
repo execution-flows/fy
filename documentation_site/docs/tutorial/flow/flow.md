@@ -11,13 +11,13 @@ Python program using the `Fy` declarative language syntax.
 flow HelloWorld -> None:
 """
 
-from base.execution_flow_base import ExecutionFlowBase
+from base.flow_base import FlowBase
 
 
 # fy:start <<<===
 class HelloWorld_Flow(
     # Base
-    ExecutionFlowBase[None]
+    FlowBase[None]
 ):
     def __call__(self) -> None:
         # fy:end <<<===

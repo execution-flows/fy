@@ -9,7 +9,7 @@ flow ParseFlowFyCode -> ParsedFyPyFile:
     property fy_py_file_to_parse using setter
 """
 
-from base.execution_flow_base import ExecutionFlowBase
+from base.flow_base import FlowBase
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import (
     FlowTemplateModel,
@@ -43,7 +43,7 @@ class ParseFlowFyCode_Flow(
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
     # Base
-    ExecutionFlowBase[ParsedFyPyFile],
+    FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
