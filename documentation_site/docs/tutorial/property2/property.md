@@ -101,6 +101,6 @@ class Greeting_UsingHelloWorldList_PropertyMixin:
 All properties in _Execution Flows_ are "lazy," meaning they are computed or initialized only when first accessed. This comes from the nature of how _Execution Flows_ are constructed - using property and method mixins. Unless someone calls a property or method, it does not get executed.
 
 ## Usage in Execution Flow
-Properties in Execution Flow are designed to encapsulate data or computations, simplifying the management and access of information within your flows. Abstract properties ensure consistent implementation across flows, while implemented properties provide direct access to constant or computed values. Cached properties offer efficient computation and caching for expensive operations.
 
-This structured approach to properties helps maintain clean and manageable code while leveraging the capabilities of the **_fy_** tool for code generation and property management.
+Both abstract properties and properties in Execution Flow are designed to encapsulate data or computations, making managing and accessing the information within your flows easier. Abstract properties enforce consistent implementation across flows, while properties provide a direct way to return constant or computed values.
+

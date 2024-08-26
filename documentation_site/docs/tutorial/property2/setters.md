@@ -1,4 +1,4 @@
-In Execution Flow (fy), writing a property setter manually involves defining a property and then adding a `@<property_name>.setter` method to manage how the property value is assigned. Alternatively, the `fy` tool simplifies this process by generating the necessary boilerplate code. You can declare an abstract property and include `property <property_name> using setter` in the flow mixins, allowing the tool to automatically handle the setter implementation. This approach streamlines property management in your code.
+When using the _Execution Flows_ `fy` tool, writing a property setter manually involves defining a property and then adding a `@<property_name>.setter` method to manage how the property value is assigned. Alternatively, the `fy` tool simplifies this process by generating the necessary boilerplate code. You can declare an abstract property and include `property <property_name> using setter` in the flow mixins, allowing the tool to automatically handle the setter implementation. This approach streamlines property management in your code.
 
 
 ## Automatically Generated Setter Implementation
