@@ -1,6 +1,7 @@
 site_name: Execution Flows
 theme:
     name: material
+    favicon: ef-logo.svg
     features:
       - search.suggest
       - search.highlight
@@ -55,7 +56,7 @@ repo_name: execution-flows/fy
 
 # Order of pages
 nav:
-  - Home: index.md
+  - Introduction: index.md
   - Getting Started:
       - Installation and setup: getting_started/installation.md
       - Project Structure: getting_started/project_structure.md
