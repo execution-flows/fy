@@ -14,7 +14,7 @@ The solution lies in creating code that is both modular and versatile, allowing 
 
 The challenge is not that OOP and FP are inadequate but that the current tools are ill-equipped to manage the vast number of granular components required for such flexibility. The size of classes and functions is dictated by two factors: how many you can write and how easily you can find the one you need.
 
-This is where the Execution Flows paradigm comes into play. It offers a solution for managing the myriad OOP and FP building blocks necessary to support extensive use-case variation. By enabling the fine-grained control and composition of code, Execution Flows empowers developers to create adaptable, reusable software without the constraints of traditional abstractions.
+This is where the Execution Flows paradigm comes into play. It offers a solution for managing the myriad OOP and FP building blocks necessary to support extensive use-case variation. By enabling the fine-grained control and composition of code, _Execution Flows_ empowers developers to create adaptable, reusable software without the constraints of traditional abstractions.
 
 ## Execution Flows Paradigm Explained
 
@@ -29,7 +29,7 @@ def func() -> None:
     pass
 ```
 
-Later, when we delve into advanced _Execution Flows_ patterns, we will explore why this definition is significant and how it facilitates various use cases.
+Later, when we delve into advanced _Execution Flows_ concepts, we will explore why this definition is significant and how it facilitates various use cases.
 
 In the context of the _fy_ tool, a _flow_ is a callable class that inherits from the `FlowBase` class and implements a `:::py def __call__(self) -> <return type>:` _method_. _Flows_ determine which implementations of _properties_ and _methods_ are used for the specific use case they address.
 
