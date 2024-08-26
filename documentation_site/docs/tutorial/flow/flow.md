@@ -39,10 +39,10 @@ class HelloWorld_Flow(FlowBase[None]):
 ```
 
 ## Breakdown
-1. `from base.execution_flow_base import ExecutionFlowBase`
+1. `from base.execution_flow_base import FlowBase`
     - Essential for the flow's functionality.
-2. `class HelloWorld_Flow(ExecutionFlowBase[None]):`
-    - Defines the Python class and return the type of ExecutionFlowBase.
+2. `class HelloWorld_Flow(FlowBase[None]):`
+    - Defines the Python class and return the type of FlowBase.
 3. `def __call__(self) -> None:`
     - The entry point of the flow when it is executed.
 4. `print("Hello world!")`

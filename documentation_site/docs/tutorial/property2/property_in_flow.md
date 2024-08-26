@@ -44,7 +44,7 @@ class HelloWorld_Flow(
     - `fy` takes care of user specified, and generated imports.
 2. `:::py Greeting_UsingConstant_PropertyMixin`
     - This mixin provides the logic to handle the `greeting` property, initialized as a constant.
-3. `:::py ExecutionFlowBase[None]`
+3. `:::py FlowBase[None]`
     - The base class for _flow_, with `None` as a return type.
 4. `:::py self._greeting`
     - Flow's main behavior.
