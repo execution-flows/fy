@@ -1,7 +1,6 @@
 """fy
 from pathlib import Path
 from typing import List
-from constants import FY_PY_FILE_SIGNATURE, FY_PY_FILE_EXTENSION
 
 
 @cached

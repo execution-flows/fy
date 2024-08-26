@@ -1,9 +1,6 @@
 """fy
-from typing import List, cast
-from domain.fy_py_template_models import PropertySetterTemplateModel, AbstractPropertyTemplateModel
-from domain.parsed_fy_py_file import ParsedFyPyFile, PropertySetterFyPyFile, ParsedFyPyFileKind, ParsedFlowFyPyFile
-
-from domain.python_entity_name import PythonEntityName
+from typing import List
+from domain.parsed_fy_py_file import ParsedFyPyFile
 
 
 @cached
