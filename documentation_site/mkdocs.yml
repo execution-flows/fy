@@ -59,6 +59,8 @@ nav:
       - Property:
         - What are properties: tutorial/property2/property.md
         - Usage in Execution Flow: tutorial/property2/property_in_flow.md
+        - Property with Property: tutorial/property2/property_with_property.md
+        - What are Setters: tutorial/property2/setters.md
       - Method:
         - Method: tutorial/method2/method.md
         - Usage in Execution Flow: tutorial/method2/flow_using_method.md
