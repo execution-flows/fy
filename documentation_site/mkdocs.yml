@@ -1,17 +1,16 @@
 site_name: Execution Flows
 theme:
     name: material
+    favicon: ef-logo.svg
     features:
       - search.suggest
       - search.highlight
-      - toc.integrate
       - navigation.footer
-      - navigation.tabs
       - navigation.top
       - content.code.copy
     icon:
         repo: fontawesome/brands/github
-        logo: fontawesome/brands/pied-piper-alt
+    logo: ef-logo.svg
     palette:
         - scheme: slate
           toggle:
@@ -40,9 +39,14 @@ markdown_extensions:
       generic: true
   - footnotes
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.mark
   - attr_list
+  - md_in_html
   - def_list
   - pymdownx.tasklist:
         custom_checkbox: true
@@ -52,16 +56,21 @@ repo_name: execution-flows/fy
 
 # Order of pages
 nav:
-  - Home: index.md
+  - Introduction: index.md
+  - Getting Started:
+      - Installation and setup: getting_started/installation.md
+      - Project Structure: getting_started/project_structure.md
   - Tutorial:
       - Flow:
         - What is Flow: tutorial/flow/flow.md
       - Property:
         - What are properties: tutorial/property2/property.md
         - Usage in Execution Flow: tutorial/property2/property_in_flow.md
+        - Property with Property: tutorial/property2/property_with_property.md
+        - What are Setters: tutorial/property2/setters.md
       - Method:
         - Method: tutorial/method2/method.md
         - Usage in Execution Flow: tutorial/method2/flow_using_method.md
         - Properties in Methods: tutorial/method2/methods_using_properties.md
-  - Reference:
-      - Flow: reference/flow.md
+#  - Reference:
+#      - Flow: reference/flow.md
