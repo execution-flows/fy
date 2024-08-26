@@ -4,14 +4,12 @@ theme:
     features:
       - search.suggest
       - search.highlight
-      - toc.integrate
       - navigation.footer
-      - navigation.tabs
       - navigation.top
       - content.code.copy
     icon:
         repo: fontawesome/brands/github
-        logo: fontawesome/brands/pied-piper-alt
+    logo: ef-logo.svg
     palette:
         - scheme: slate
           toggle:
@@ -40,19 +38,27 @@ markdown_extensions:
       generic: true
   - footnotes
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.mark
   - attr_list
   - def_list
   - pymdownx.tasklist:
         custom_checkbox: true
-
+extra_css:
+  - styles.css
 repo_url: https://github.com/execution-flows/fy
 repo_name: execution-flows/fy
 
 # Order of pages
 nav:
   - Home: index.md
+  - Getting Started:
+      - Installation and setup: getting_started/installation.md
+      - Project Structure: getting_started/project_structure.md
   - Tutorial:
       - Flow:
         - What is Flow: tutorial/flow/flow.md
@@ -65,5 +71,5 @@ nav:
         - Method: tutorial/method2/method.md
         - Usage in Execution Flow: tutorial/method2/flow_using_method.md
         - Properties in Methods: tutorial/method2/methods_using_properties.md
-  - Reference:
-      - Flow: reference/flow.md
+#  - Reference:
+#      - Flow: reference/flow.md
