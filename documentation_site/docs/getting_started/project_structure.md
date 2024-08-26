@@ -1,6 +1,5 @@
 The `fy` tool's project structure is organized into specific packages and directories to maintain clarity and ease of use. Here's an overview:
 
-### Directory Structure
 ```
 ├── fy
 │   ├── flows

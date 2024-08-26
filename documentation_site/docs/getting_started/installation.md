@@ -18,9 +18,9 @@ poetry install
 ```bash
 ./local.fy.sh <path to folder you want to transform>
 ```
-==Note:== The local.fy.sh script is configured with /library/src as the project root folder. Only files within this folder can be processed.
+==Note:== The local.fy.sh script is configured with `/library/src` as the project root folder. Only files within this folder can be processed.
 
-!!! info "Keep Local fy CLI Up to Date"
+!!! warning "Keep Local fy CLI Up to Date"
     Regularly update the local-fy-cli repository to ensure it remains in sync with the primary development fy repo:
 
     ```bash

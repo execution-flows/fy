@@ -45,11 +45,11 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.mark
   - attr_list
+  - md_in_html
   - def_list
   - pymdownx.tasklist:
         custom_checkbox: true
-extra_css:
-  - styles.css
+
 repo_url: https://github.com/execution-flows/fy
 repo_name: execution-flows/fy
 
