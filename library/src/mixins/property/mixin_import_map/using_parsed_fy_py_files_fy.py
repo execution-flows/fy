@@ -1,6 +1,5 @@
 """fy
 from typing import Dict
-from domain.parsed_fy_py_file import ParsedFyPyFile
 
 
 @cached

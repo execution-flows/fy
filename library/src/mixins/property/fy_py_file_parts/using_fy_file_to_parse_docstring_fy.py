@@ -1,6 +1,4 @@
 """fy
-import re
-from constants import FY_PY_FILE_SIGNATURE, FY_CODE_FILE_END_SIGNATURE, FY_START_MARKER, FY_END_MARKER
 from domain.parsed_fy_py_file import FyPyFileParts
 
 
