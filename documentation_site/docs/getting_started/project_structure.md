@@ -25,8 +25,8 @@ The `flows` package contains all flow-related files. Each file must end with the
 
 The `mixins` package is organized into two sub-packages:
 
-- **Method Mixins:** Contains mixins related to methods. Files in this sub-package must end with `_fy.py`. For example, `using_hello_world_fy.py` is located under `mixins/method/greet/`.
+- **Method Mixins:** Contains directories and files related to method mixins. Files in this sub-package must end with `_fy.py`. For example an implementation of the method `greet` is located under `mixins/method/greet/` and is named by its implementation name - `using_hello_world_fy.py`.
 
-- **Property Mixins:** Contains mixins related to properties. Files in this sub-package must also end with `_fy.py`. For example, `abc_fy.py` and `greeting_fy.py` are located under `mixins/property/greeting/`.
+- **Property Mixins:** Contains directories and files related to property mixins. Files in this sub-package must also end with `_fy.py`. For example, `abc_fy.py` and `greeting_fy.py` are located under `mixins/property/greeting/`.
 
 This structure ensures that flow files and mixin files are consistently named and organized, making the project easier to manage and navigate.

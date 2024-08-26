@@ -18,7 +18,7 @@ cd local-fy-cli/cli
 poetry env use 3.10
 poetry install
 ```
-### 3. Run the local.fy.sh Script
+### 3. Run the fy.sh Script
 ```bash
 ./fy.sh <path to folder you want to transform>
 ```
