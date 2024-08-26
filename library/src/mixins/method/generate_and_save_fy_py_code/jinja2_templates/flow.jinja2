@@ -12,7 +12,7 @@ class {{ python_class_name.pascal_case }}(
 {%- endfor %}
 {%- endif %}
     # Base
-    ExecutionFlowBase[{{ return_type }}]
+    FlowBase[{{ return_type }}]
 ):
     def __call__(self) -> {{ return_type}}:
 

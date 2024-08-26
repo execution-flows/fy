@@ -10,7 +10,7 @@ method parse_fy_py_file -> ParsedFyPyFile using fy_file_kind__and__fy_code:
     with property fy_file_kind
 """
 
-from base.execution_flow_base import ExecutionFlowBase
+from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
 from flows.parse_abstract_method_fy_code_fy import ParseAbstractMethodFyCode_Flow
 from flows.parse_abstract_property_fy_code_fy import ParseAbstractPropertyFyCode_Flow
@@ -47,7 +47,7 @@ class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
 ):
     def _parse_fy_py_file(self) -> ParsedFyPyFile:
         # fy:end <<<===
-        parse_fy_code: ExecutionFlowBase[ParsedFyPyFile]
+        parse_fy_code: FlowBase[ParsedFyPyFile]
         match self._fy_file_kind:
             case ParsedFyPyFileKind.FLOW:
                 parse_fy_code = ParseFlowFyCode_Flow(

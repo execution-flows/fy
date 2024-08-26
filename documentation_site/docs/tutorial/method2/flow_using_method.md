@@ -25,8 +25,9 @@ flow HelloWorld:
 ## Conversion to Python
 
 The _Execution Flow_ tool generates the following Python code:
+
 ```py linenums="1"
-from base.execution_flow_base import ExecutionFlowBase
+from base.flow_base import FlowBase
 
 from mixins.method.greet.using_constant import Greet_UsingConstant_MethodMixin
 
@@ -35,7 +36,7 @@ class HelloWorld_Flow(
     # Method Mixins
     Greet_UsingConstant_MethodMixin,
     # Base
-    ExecutionFlowBase[None]
+    FlowBase[None]
 ):
     def __call__(self) -> None:
         self._greet()

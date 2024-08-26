@@ -44,10 +44,12 @@ property greeting: str
 ### Generated Python Code
 The _Execution Flow_ tool converts the above definitions into Python classes and mixins that look like the following code.
 #### Main Flow Class
+
 ```py linenums="1"
-from base.execution_flow_base import ExecutionFlowBase
+from base.flow_base import FlowBase
 from tests.test_fy_files.both_mixins import Greeting_UsingConstant_PropertyMixin
 from tests.test_fy_files.both_mixins import Greet_UsingGreeting_MethodMixin
+
 
 class HelloWorld_Flow(
     # Property Mixins
@@ -55,7 +57,7 @@ class HelloWorld_Flow(
     # Method Mixins
     Greet_UsingGreeting_MethodMixin,
     # Base
-    ExecutionFlowBase[None]
+    FlowBase[None]
 ):
     def __call__(self) -> None:
         self._greet()

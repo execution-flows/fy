@@ -29,10 +29,10 @@ flow HelloWorld:
 When this flow is processed by the `fy` tool, it generates the following Python code:
 
 ```py linenums="1"
-from base.execution_flow_base import ExecutionFlowBase
+from base.flow_base import FlowBase
 
 
-class HelloWorld_Flow(ExecutionFlowBase[None]):
+class HelloWorld_Flow(FlowBase[None]):
     def __call__(self) -> None:
         print("Hello world!")
 

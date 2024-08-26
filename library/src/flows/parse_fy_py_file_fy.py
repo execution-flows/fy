@@ -13,7 +13,7 @@ flow ParseFyPyFile -> ParsedFyPyFile:
     method parse_fy_py_file using fy_file_kind__and__fy_code
 """
 
-from base.execution_flow_base import ExecutionFlowBase
+from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
 from mixins.method.parse_fy_py_file.using_fy_file_kind__and__fy_code_fy import (
     ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin,
@@ -52,7 +52,7 @@ class ParseFyPyFile_Flow(
     # Method Mixins
     ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin,
     # Base
-    ExecutionFlowBase[ParsedFyPyFile],
+    FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
