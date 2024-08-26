@@ -96,7 +96,7 @@ class Greeting_UsingHelloWorldList_PropertyMixin:
 4. User Input:
     - The user writes the `property` declaration and can use decorators like `:::py @cached` to manage cached evaluation. The `fy` tool handles the rest of the code generation.
 
-# Lazy Properties
+## Lazy Properties
 
 All properties in _Execution Flows_ are "lazy," meaning they are computed or initialized only when first accessed. This comes from the nature of how _Execution Flows_ are constructed - using property and method mixins. Unless someone calls a property or method, it does not get executed.
 

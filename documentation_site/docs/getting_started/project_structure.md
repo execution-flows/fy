@@ -1,10 +1,11 @@
-The `fy` tool's project structure is organized into specific packages and directories to maintain clarity and ease of use. Here's an overview:
+Here's the recommended structure of a project managed by the `fy` tool:
 
 ```
-├── fy
-│   ├── flows
-│   │   ├── main_flow_fy.py
-│   │   ├──mixins
+├── <project directory>
+│   ├── src
+│   │   ├── flows
+│   │   │   ├── main_flow_fy.py
+│   │   ├── mixins
 │   │   │   ├── method
 │   │   │   │   ├── greet
 │   │   │   │   │   ├── using_hello_world_fy.py
@@ -13,15 +14,12 @@ The `fy` tool's project structure is organized into specific packages and direct
 │   │   │   │   │   ├── abc_fy.py
 │   │   │   │   │   ├── greeting_fy.py
 ├── local-fy-cli
-│   ├── cli
-│   ├── documentation_site
-│   ├── library
-│   ├── local.fy.sh
+│   ├── fy.sh
 ```
 
 ### Python Package for Flows
 
-The `flows` package contains all flow-related files. Each file must end with the suffix `_fy.py`, as illustrated by `main_flow_fy.py`.
+The `flows` package contains all flow-related files. Each file must end with the suffix `_fy.py`.
 
 ### Python Package for Mixins
 

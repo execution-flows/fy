@@ -11,20 +11,15 @@ git clone git@github.com:execution-flows/fy.git local-fy-cli
 Navigate to the local-fy-cli/cli directory and set up the Python environment using Poetry:
 ```bash
 cd local-fy-cli/cli
+```
+!!! info
+    The `fy` tool also supports Python 3.11 and 3.12. If you do not have Python 3.10 installed, change `poetry env use` to a version that you have installed.
+```bash
 poetry env use 3.10
 poetry install
 ```
 ### 3. Run the local.fy.sh Script
 ```bash
-./local.fy.sh <path to folder you want to transform>
+./fy.sh <path to folder you want to transform>
 ```
-==Note:== The local.fy.sh script is configured with `/library/src` as the project root folder. Only files within this folder can be processed.
 
-!!! warning "Keep Local fy CLI Up to Date"
-    Regularly update the local-fy-cli repository to ensure it remains in sync with the primary development fy repo:
-
-    ```bash
-    Copy code
-    cd local-fy-cli
-    git pull origin main
-    ```
