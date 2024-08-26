@@ -1,6 +1,7 @@
 site_name: Execution Flows
 theme:
     name: material
+    favicon: ef-logo.svg
     features:
       - search.suggest
       - search.highlight
