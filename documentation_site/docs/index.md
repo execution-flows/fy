@@ -82,4 +82,4 @@ This code signals to the hosting flow that it must provide an implementation for
 
 Unlike _methods_, _properties_ can only utilize other _properties_ in their computations.
 
-The "Tutorial" chapter provides more details on what development using the _fy_ tool looks like.
+The ["Tutorial"](/tutorial/flow/flow) chapter provides more details on what development using the _fy_ tool looks like.
