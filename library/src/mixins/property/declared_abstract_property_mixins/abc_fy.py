@@ -13,9 +13,9 @@ import abc
 
 
 # fy:start <<<===
-class With_DeclaredAbstractPropertyMixin_PropertyMixin_ABC(abc.ABC):
+class With_DeclaredAbstractPropertyMixins_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _declared_abstract_property_mixin(self) -> List[AbstractPropertyModel]:
+    def _declared_abstract_property_mixins(self) -> List[AbstractPropertyModel]:
         raise NotImplementedError()
         # fy:end <<<===
