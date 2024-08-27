@@ -7,14 +7,10 @@ flow ParseAbstractMethodFyCode -> ParsedFyPyFile:
     property pre_marker_file_content using setter
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
+    property abstract_method_file_split using abstract_method_regex
 """
 
 from base.flow_base import FlowBase
-from constants import (
-    FY_ENTITY_REGEX_STRING,
-    PYTHON_MULTI_ENTITY_REGEX_STRING,
-    PYTHON_ARGUMENTS_REGEX_STRING,
-)
 from domain.fy_py_template_models import AbstractMethodTemplateModel
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedAbstractMethodFyPyFile
 from domain.python_entity_name import PythonEntityName
@@ -32,7 +28,11 @@ from mixins.property.pre_marker_file_content.using_setter import (
 )
 from pathlib import Path
 from typing import Any
-import re
+
+
+from mixins.property.abstract_method_file_split.using_abstract_method_regex_fy import (
+    AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin,
+)
 
 
 # fy:start <<<===
@@ -42,22 +42,13 @@ class ParseAbstractMethodFyCode_Flow(
     PreMarkerFileContent_UsingSetter_PropertyMixin,
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
+    AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
-        abstract_method_regex = re.compile(
-            rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
-            rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
-            rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
-        )
-
-        abstract_method_file_split = abstract_method_regex.split(self._fy_code)
-
-        assert (
-            len(abstract_method_file_split) == 6
-        ), f"Abstract Method file split length {len(abstract_method_file_split)} is invalid"
+        abstract_method_file_split = self._abstract_method_file_split
 
         user_imports = abstract_method_file_split[0]
         abstract_method_name = PythonEntityName.from_snake_case(
