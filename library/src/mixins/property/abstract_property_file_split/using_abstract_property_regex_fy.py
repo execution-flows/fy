@@ -32,4 +32,8 @@ class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
 
         abstract_property_file_split = abstract_property_regex.split(self._fy_code)
 
+        assert (
+            len(abstract_property_file_split) == 4
+        ), f"Abstract property file split length {len(abstract_property_file_split)} is invalid"
+
         return abstract_property_file_split
