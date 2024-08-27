@@ -5,9 +5,11 @@ _Execution Flows_ `fy` tool generates Python class mixins code using a simple de
 Easily and quickly break down your code into reusable parts - property and methods mixins, 
 and put them up together into **flows** - a top-level class for use case implementations.
 
-1. [Introduction](https://execution-flows.github.io/fy/)
-2. [Installation](https://execution-flows.github.io/fy/getting_started/installation)
-3. [Tutorial](https://execution-flows.github.io/fy/tutorial/flow/flow/)
+To learn more, check out these topics in the documentation: 
+
+* [Introduction](https://execution-flows.github.io/fy/)
+* [Installation](https://execution-flows.github.io/fy/getting_started/installation)
+* [Tutorial](https://execution-flows.github.io/fy/tutorial/flow/flow/)
 
 # Contributing
 
