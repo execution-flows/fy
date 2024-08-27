@@ -8,8 +8,8 @@ property parsed_method_fy_py_file: ParsedMethodFyPyFile using parsed_fy_py_file:
     with property post_marker_file_content
     with property fy_py_file_to_parse
     with property method_file_split
-    with property declared_abstract_property_mixin
-    with property declared_abstract_method_mixin
+    with property declared_abstract_property_mixins
+    with property declared_abstract_method_mixins
 """
 
 import abc
@@ -17,11 +17,11 @@ import abc
 from domain.fy_py_template_models import MethodTemplateModel
 from domain.parsed_fy_py_file import ParsedMethodFyPyFile
 from domain.python_entity_name import PythonEntityName
-from mixins.property.declared_abstract_method_mixin.abc_fy import (
-    With_DeclaredAbstractMethodMixin_PropertyMixin_ABC,
+from mixins.property.declared_abstract_method_mixins.abc_fy import (
+    With_DeclaredAbstractMethodMixins_PropertyMixin_ABC,
 )
-from mixins.property.declared_abstract_property_mixin.abc_fy import (
-    With_DeclaredAbstractPropertyMixin_PropertyMixin_ABC,
+from mixins.property.declared_abstract_property_mixins.abc_fy import (
+    With_DeclaredAbstractPropertyMixins_PropertyMixin_ABC,
 )
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
@@ -48,8 +48,8 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     With_PostMarkerFileContent_PropertyMixin_ABC,
     With_FyPyFileToParse_PropertyMixin_ABC,
     With_MethodFileSplit_PropertyMixin_ABC,
-    With_DeclaredAbstractPropertyMixin_PropertyMixin_ABC,
-    With_DeclaredAbstractMethodMixin_PropertyMixin_ABC,
+    With_DeclaredAbstractPropertyMixins_PropertyMixin_ABC,
+    With_DeclaredAbstractMethodMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @property
@@ -73,8 +73,8 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 ),
                 method_name=method_name,
                 implementation_name=implementation_name,
-                abstract_property_mixins=self._declared_abstract_property_mixin,
-                abstract_method_mixins=self._declared_abstract_method_mixin,
+                abstract_property_mixins=self._declared_abstract_property_mixins,
+                abstract_method_mixins=self._declared_abstract_method_mixins,
                 arguments=self._method_file_split[3],
                 return_type=self._method_file_split[4],
             ),

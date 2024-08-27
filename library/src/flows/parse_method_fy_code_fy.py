@@ -10,17 +10,14 @@ flow ParseMethodFyCode -> ParsedFyPyFile:
     property method_file_split using method_regex
     property declared_abstract_property_mixins using mixin_lines
     property declared_abstract_method_mixins using mixin_lines
+    property parsed_method_fy_py_file using parsed_fy_py_file
 """
 
 from pathlib import Path
 from typing import Any
 
 from base.flow_base import FlowBase
-from domain.fy_py_template_models import (
-    MethodTemplateModel,
-)
-from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedMethodFyPyFile
-from domain.python_entity_name import PythonEntityName
+from domain.parsed_fy_py_file import ParsedFyPyFile
 from mixins.property.declared_abstract_method_mixins.using_mixin_lines_fy import (
     DeclaredAbstractMethodMixins_UsingMixinLines_PropertyMixin,
 )
@@ -35,6 +32,9 @@ from mixins.property.fy_py_file_to_parse.using_setter import (
 )
 from mixins.property.method_file_split.using_method_regex_fy import (
     MethodFileSplit_UsingMethodRegex_PropertyMixin,
+)
+from mixins.property.parsed_method_fy_py_file.parsed_fy_py_file_fy import (
+    ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin,
 )
 from mixins.property.post_marker_file_content.using_setter import (
     PostMarkerFileContent_UsingSetter_PropertyMixin,
@@ -54,38 +54,13 @@ class ParseMethodFyCode_Flow(
     MethodFileSplit_UsingMethodRegex_PropertyMixin,
     DeclaredAbstractPropertyMixins_UsingMixinLines_PropertyMixin,
     DeclaredAbstractMethodMixins_UsingMixinLines_PropertyMixin,
+    ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
-        user_imports = self._method_file_split[0]
-        method_name = PythonEntityName.from_snake_case(self._method_file_split[1])
-        arguments = self._method_file_split[3]
-        return_type = self._method_file_split[4]
-        implementation_name = PythonEntityName.from_snake_case(
-            self._method_file_split[5]
-        )
-
-        parsed_fy_py_file = ParsedMethodFyPyFile(
-            fy_code=self._fy_code,
-            pre_marker_file_content=self._pre_marker_file_content,
-            post_marker_file_content=self._post_marker_file_content,
-            file_path=self._fy_py_file_to_parse,
-            user_imports=user_imports,
-            template_model=MethodTemplateModel(
-                python_class_name=PythonEntityName.from_pascal_case(
-                    f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
-                ),
-                method_name=method_name,
-                implementation_name=implementation_name,
-                abstract_property_mixins=self._declared_abstract_property_mixins,
-                abstract_method_mixins=self._declared_abstract_method_mixins,
-                arguments=arguments,
-                return_type=return_type,
-            ),
-        )
-        return parsed_fy_py_file
+        return self._parsed_method_fy_py_file
 
     def __init__(
         self,
