@@ -7,13 +7,19 @@ flow ParseAbstractPropertyFyCode -> ParsedFyPyFile:
     property pre_marker_file_content using setter
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
+    property abstract_property_file_split using abstract_property_regex
 """
 
+from pathlib import Path
+from typing import Any
+
 from base.flow_base import FlowBase
-from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import AbstractPropertyTemplateModel
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedAbstractPropertyFyPyFile
 from domain.python_entity_name import PythonEntityName
+from mixins.property.abstract_property_file_split.using_abstract_property_regex_fy import (
+    AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin,
+)
 from mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,
 )
@@ -26,9 +32,6 @@ from mixins.property.post_marker_file_content.using_setter import (
 from mixins.property.pre_marker_file_content.using_setter import (
     PreMarkerFileContent_UsingSetter_PropertyMixin,
 )
-from pathlib import Path
-from typing import Any
-import re
 
 
 # fy:start <<<===
@@ -38,27 +41,22 @@ class ParseAbstractPropertyFyCode_Flow(
     PreMarkerFileContent_UsingSetter_PropertyMixin,
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
+    AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
-        abstract_property_regex = re.compile(
-            rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
-            rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
-        )
-
-        abstract_property_file_split = abstract_property_regex.split(self._fy_code)
 
         assert (
-            len(abstract_property_file_split) == 4
-        ), f"Abstract property file split length {len(abstract_property_file_split)} is invalid"
+            len(self._abstract_property_file_split) == 4
+        ), f"Abstract property file split length {len(self._abstract_property_file_split)} is invalid"
 
-        user_imports = abstract_property_file_split[0]
+        user_imports = self._abstract_property_file_split[0]
         abstract_property_name = PythonEntityName.from_snake_case(
-            abstract_property_file_split[1]
+            self._abstract_property_file_split[1]
         )
-        property_type = abstract_property_file_split[2]
+        property_type = self._abstract_property_file_split[2]
 
         parsed_fy_py_file = ParsedAbstractPropertyFyPyFile(
             fy_code=self._fy_code,
