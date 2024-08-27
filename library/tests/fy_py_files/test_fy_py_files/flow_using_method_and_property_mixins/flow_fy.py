@@ -20,7 +20,7 @@ class HelloWorld_Flow(
     # Method Mixins
     Greet_UsingGreeting_MethodMixin,
     # Base
-    FlowBase[None],
+    FlowBase[None]
 ):
     def __call__(self) -> None:
         # fy:end <<<===

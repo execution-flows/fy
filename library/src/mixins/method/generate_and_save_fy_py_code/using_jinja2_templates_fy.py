@@ -90,7 +90,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                 mixin_imports = (
                     [
                         # static imports
-                        "from base.execution_flow_base import ExecutionFlowBase",
+                        "from base.flow_base import FlowBase",
                     ]
                     + [
                         # property mixins
