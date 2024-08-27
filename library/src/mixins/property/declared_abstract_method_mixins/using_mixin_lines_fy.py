@@ -23,13 +23,13 @@ import abc
 
 
 # fy:start <<<===
-class DeclaredAbstractMethodMixin_UsingMixinLines_PropertyMixin(
+class DeclaredAbstractMethodMixins_UsingMixinLines_PropertyMixin(
     # Property_mixins
     With_MethodFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):
     @property
-    def _declared_abstract_method_mixin(self) -> List[AbstractMethodModel]:
+    def _declared_abstract_method_mixins(self) -> List[AbstractMethodModel]:
         # fy:end <<<===
         abstract_method_mixin_regex = re.compile(
             rf"^\s+with\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
