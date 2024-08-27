@@ -1,22 +1,18 @@
-## Execution Flows Development Paradigm
+# Introduction to Execution Flows
 
-The evolution of programming languages has largely focused on improving code reusability. Initially, procedural languages provided the ability to organize code into subroutines or functions. This approach is straightforward: supply the function with the necessary data, invoke it, and gather the results. The same function can be reused across different data sets, making it a simple yet powerful tool.
+## Background
 
-[Object-Oriented Programming (OOP)](https://en.wikipedia.org/wiki/Object-oriented_programming) was the next major paradigm shift, where data and the functions that process it are encapsulated together in objects. This approach fosters code reusability by allowing data and behavior to coexist within objects. Following OOP, [Functional Programming (FP)](https://en.wikipedia.org/wiki/Functional_programming) emerged, elevating functions to first-class citizens. In FP, functions are treated like objects, allowing us to pass, return, and manipulate them, often with data bundled closely together via closures and similar constructs.
+The motivation behind the creation of the _Execution Flows_ `fy` tool stems from the need to deliver large, complex projects with hundreds of different use cases. These are common in Enterprise Software, where you often need to:
 
-However, as software systems grow in complexity, especially with expanding use cases, the limitations of OOP and FP become apparent. While these paradigms provide powerful tools for code reuse, they often fall short. Developers still resort to code duplication or create abstractions that can limit flexibility and hinder future expansion.
+1. Deliver customizations for your customers.
+2. Integrate with various external vendors, automation tools, CRMs, payment systems, data feeds, communication channels, etc.
+3. Support similar use cases for different user groups, such as customer support, operations, billing and finance, regulatory compliance, security, and more.
 
-[Design patterns](https://en.wikipedia.org/wiki/Design_Patterns) offer structured solutions for code reuse, but they, too, suffer from the same pitfalls. Patterns and abstractions inherently reduce the potential for functional variation, making codebases less adaptable to change. As a result, premature abstraction can stifle a project's ability to evolve rapidly. This is why early-stage startups often favor code duplication over abstraction—it’s quicker to copy, modify, and move forward.
+This is particularly important where there is a need for a high level of reusability at the sub-line-of-code level. In such cases, implementing variations of use cases often leads to significant code duplication because the required changes are subtle, affecting almost every line of code.
 
-Yet, delaying abstraction often means it never happens. Refactoring and rewriting become costly, non-functional endeavors that organizations are reluctant to undertake. So, how can we achieve highly reusable code without the constraints imposed by traditional abstractions?
+To address this challenge, the _Execution Flows_ approach takes the well-known Object-oriented programming (OOP) concept of class mixins to the extreme by allowing you to break up your code into the smallest chunks imaginable. These mixins are then assembled into what is called a `flow` class. The `fy` tool generates a Python code for both the mixin classes and the top-level flow classes, enabling greater flexibility by allowing for the maximum reduction in code duplication.
 
-The solution lies in creating code that is both modular and versatile, allowing for execution in various contexts without the limitations of rigid abstractions. OOP and FP provide mechanisms for combining data and behavior. Still, they struggle when we need to decompose code into its smallest units—down to individual lines or even parts of lines. At this level, managing the sheer number of classes and functions becomes unfeasible.
-
-The challenge is not that OOP and FP are inadequate but that the current tools are ill-equipped to manage the vast number of granular components required for such flexibility. The size of classes and functions is dictated by two factors: how many you can write and how easily you can find the one you need.
-
-This is where the Execution Flows paradigm comes into play. It offers a solution for managing the myriad OOP and FP building blocks necessary to support extensive use-case variation. By enabling the fine-grained control and composition of code, _Execution Flows_ empowers developers to create adaptable, reusable software without the constraints of traditional abstractions.
-
-## Execution Flows Paradigm Explained
+## _Execution Flows_ Explained
 
 The strength of the _Execution Flows_ paradigm lies in its simplicity, centering around just three core entities: _flows_, _methods_, and _properties_. _Flows_ define a single use-case implementation in its entirety, utilizing _properties_ and _methods_ to achieve this. _Properties_ supply data, while _methods_ provide actions.
 
