@@ -21,13 +21,13 @@ import abc
 
 
 # fy:start <<<===
-class DeclaredAbstractPropertyMixin_UsingMixinLines_PropertyMixin(
+class DeclaredAbstractPropertyMixins_UsingMixinLines_PropertyMixin(
     # Property_mixins
     With_MethodFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):
     @property
-    def _declared_abstract_property_mixin(self) -> List[AbstractPropertyModel]:
+    def _declared_abstract_property_mixins(self) -> List[AbstractPropertyModel]:
         # fy:end <<<===
         abstract_property_mixin_regex = re.compile(
             rf"^\s+with\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"

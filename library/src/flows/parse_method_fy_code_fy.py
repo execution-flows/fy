@@ -25,9 +25,7 @@ from domain.fy_py_template_models import (
 )
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedMethodFyPyFile
 from domain.python_entity_name import PythonEntityName
-from mixins.property.declared_abstract_property_mixins.using_mixin_lines_fy import (
-    DeclaredAbstractPropertyMixin_UsingMixinLines_PropertyMixin,
-)
+
 from mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,
 )
@@ -45,6 +43,11 @@ from mixins.property.pre_marker_file_content.using_setter import (
 )
 
 
+from mixins.property.declared_abstract_property_mixins.using_mixin_lines_fy import (
+    DeclaredAbstractPropertyMixins_UsingMixinLines_PropertyMixin,
+)
+
+
 # fy:start <<<===
 class ParseMethodFyCode_Flow(
     # Property Mixins
@@ -53,7 +56,7 @@ class ParseMethodFyCode_Flow(
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
     MethodFileSplit_UsingMethodRegex_PropertyMixin,
-    DeclaredAbstractPropertyMixin_UsingMixinLines_PropertyMixin,
+    DeclaredAbstractPropertyMixins_UsingMixinLines_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
@@ -103,7 +106,7 @@ class ParseMethodFyCode_Flow(
                 ),
                 method_name=method_name,
                 implementation_name=implementation_name,
-                abstract_property_mixins=self._declared_abstract_property_mixin,
+                abstract_property_mixins=self._declared_abstract_property_mixins,
                 abstract_method_mixins=abstract_methods,
                 arguments=arguments,
                 return_type=return_type,
