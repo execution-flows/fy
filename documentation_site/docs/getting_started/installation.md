@@ -35,4 +35,4 @@ Use your project's source root directory as a working directory and run the `fy/
 !!! info
     It is important to run the `fy/fy.sh` script from your source root directory since the script is taking the working script as the Python project root and generating Python imports based on that directory.
 
-It is a good practice to connect the script to a shortcut inside your IDE so you can run it as often as you write some code that needs to be processed.
+It is a good practice to connect the script to a shortcut inside your IDE so you can run it as often as you write some ___fy___ code that needs to be processed.

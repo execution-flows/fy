@@ -62,7 +62,7 @@ class HelloWorld_Flow(
         self._greet()
 ```
 
-For details on how to write the ___fy___ code and generate the corresponding Python code check out the [Tutorial](tutorial/flow/flow/).
+For details on how to write the ___fy___ code and generate the corresponding Python code check out the [Tutorial](./tutorial/flow/flow/).
 
 ### Methods and Properties
 
@@ -109,4 +109,4 @@ This code signals to the hosting flow that it must include an implementation for
 
 Unlike _methods_, _properties_ can only utilize other _properties_ in their computations.
 
-The ["Tutorial"](/tutorial/flow/flow) chapter provides more details on what development using the ___fy___ tool looks like.
+The ["Tutorial"](./tutorial/flow/flow) chapter provides more details on what development using the ___fy___ tool looks like.
