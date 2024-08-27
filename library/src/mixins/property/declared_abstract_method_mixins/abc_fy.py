@@ -3,7 +3,7 @@ from domain.fy_py_template_models import AbstractMethodModel
 from typing import List
 
 
-property declared_abstract_method_mixin: List[AbstractMethodModel]
+property declared_abstract_method_mixins: List[AbstractMethodModel]
 """
 
 from domain.fy_py_template_models import AbstractMethodModel
