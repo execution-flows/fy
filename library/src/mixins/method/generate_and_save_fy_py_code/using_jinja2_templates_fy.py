@@ -46,13 +46,19 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
 ):
     def _generate_and_save_fy_py_files(self) -> None:
         # fy:end <<<===
+        self.__generate_fy_py_files_()
+        self.__generate_and_save_fy_py_files__using_required_property_setters()
+
+    def __generate_fy_py_files_(self) -> None:
         for parsed_fy_py_file in self._parsed_fy_py_files:
             generated_python_code, mixin_imports = (
                 self.__match_kind__and__load_fy_py_files(parsed_fy_py_file)
             )
+
             filtered_mixin_imports = remove_existing_imports(
                 mixin_imports=mixin_imports,
                 pre_marker_file_content=parsed_fy_py_file.pre_marker_file_content,
+                user_imports=parsed_fy_py_file.user_imports,
             )
             mixin_imports_code = "\n".join(
                 sorted(filtered_mixin_imports)
@@ -65,7 +71,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                 f"{FY_CODE_FILE_END_SIGNATURE}\n"
                 f"{parsed_fy_py_file.pre_marker_file_content}"
                 f"{mixin_imports_code}"
-                f"{NEW_LINE * 2 if not parsed_fy_py_file.pre_marker_file_content else ''}"
+                f"{NEW_LINE * 2 if not parsed_fy_py_file.pre_marker_file_content or mixin_imports_code else ''}"
                 f"{FY_START_MARKER}\n"
                 f"{generated_python_code}"
                 f"{FY_END_MARKER}\n"
@@ -219,6 +225,24 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                 )
         raise ValueError(f"No Execution Flow kind for {parsed_fy_py_file.file_type}")
 
+    def __generate_and_save_fy_py_files__using_required_property_setters(self) -> None:
+        for parsed_fy_py_file in self._required_property_setters_fy_py:
+            generated_python_code = generated_fy_py_code(
+                jinja2_template="property_setter.jinja2",
+                parsed_fy_py_file=parsed_fy_py_file,
+            )
+            fy_py_file_content = (
+                f"{FY_START_MARKER}\n"
+                f"{parsed_fy_py_file.user_imports}"
+                f"{generated_python_code}"
+                f"{FY_END_MARKER}\n"
+                f"{parsed_fy_py_file.post_marker_file_content}"
+            )
+            with open(
+                file=parsed_fy_py_file.file_path, mode="w", encoding="UTF-8"
+            ) as setter_file:
+                setter_file.write(fy_py_file_content)
+
 
 IMPORT_REGEX = re.compile(
     r"^(?P<from>from [\w.]+) import .*$|^(?P<import>import [\w.]+)$", flags=re.DOTALL
@@ -226,7 +250,7 @@ IMPORT_REGEX = re.compile(
 
 
 def remove_existing_imports(
-    mixin_imports: List[str], pre_marker_file_content: str
+    mixin_imports: List[str], pre_marker_file_content: str, user_imports: str
 ) -> List[str]:
     pre_marker_imports: Set[str] = set()
     for pre_marker_line in pre_marker_file_content.split("\n"):
@@ -245,7 +269,18 @@ def remove_existing_imports(
         if import_part not in pre_marker_imports:
             mixin_imports_result.append(mixin_import)
 
-    return mixin_imports_result
+    user_imports_results = []
+    for user_import in user_imports.split("\n"):
+        if user_import == "":
+            continue
+        import_regex_result = IMPORT_REGEX.search(user_import)
+        import_part = import_regex_result.group("from") or import_regex_result.group(
+            "import"
+        )
+        if import_part not in pre_marker_imports:
+            user_imports_results.append(user_import)
+
+    return mixin_imports_result + user_imports_results
 
 
 def generated_fy_py_code(
