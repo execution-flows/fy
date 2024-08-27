@@ -9,23 +9,24 @@ flow ParseMethodFyCode -> ParsedFyPyFile:
     property fy_py_file_to_parse using setter
     property method_file_split using method_regex
     property declared_abstract_property_mixins using mixin_lines
+    property declared_abstract_method_mixins using mixin_lines
 """
 
-import re
 from pathlib import Path
-from typing import Any, List
+from typing import Any
 
 from base.flow_base import FlowBase
-from constants import (
-    FY_ENTITY_REGEX_STRING,
-)
 from domain.fy_py_template_models import (
     MethodTemplateModel,
-    AbstractMethodModel,
 )
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedMethodFyPyFile
 from domain.python_entity_name import PythonEntityName
-
+from mixins.property.declared_abstract_method_mixins.using_mixin_lines_fy import (
+    DeclaredAbstractMethodMixins_UsingMixinLines_PropertyMixin,
+)
+from mixins.property.declared_abstract_property_mixins.using_mixin_lines_fy import (
+    DeclaredAbstractPropertyMixins_UsingMixinLines_PropertyMixin,
+)
 from mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,
 )
@@ -43,11 +44,6 @@ from mixins.property.pre_marker_file_content.using_setter import (
 )
 
 
-from mixins.property.declared_abstract_property_mixins.using_mixin_lines_fy import (
-    DeclaredAbstractPropertyMixins_UsingMixinLines_PropertyMixin,
-)
-
-
 # fy:start <<<===
 class ParseMethodFyCode_Flow(
     # Property Mixins
@@ -57,6 +53,7 @@ class ParseMethodFyCode_Flow(
     FyPyFileToParse_UsingSetter_PropertyMixin,
     MethodFileSplit_UsingMethodRegex_PropertyMixin,
     DeclaredAbstractPropertyMixins_UsingMixinLines_PropertyMixin,
+    DeclaredAbstractMethodMixins_UsingMixinLines_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
@@ -69,30 +66,6 @@ class ParseMethodFyCode_Flow(
         implementation_name = PythonEntityName.from_snake_case(
             self._method_file_split[5]
         )
-
-        abstract_methods: List[AbstractMethodModel] = []
-
-        abstract_method_mixin_regex = re.compile(
-            rf"^\s+with\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
-        )
-
-        mixin_lines = self._method_file_split[6].split("\n")
-        for mixin_line in mixin_lines:
-            if mixin_line.strip() == "":
-                continue
-
-            declared_abstract_method_mixin = abstract_method_mixin_regex.search(
-                mixin_line
-            )
-            if declared_abstract_method_mixin is not None:
-                abstract_methods.append(
-                    AbstractMethodModel(
-                        method_name=PythonEntityName.from_snake_case(
-                            declared_abstract_method_mixin.group("abstract_method_name")
-                        )
-                    )
-                )
-                continue
 
         parsed_fy_py_file = ParsedMethodFyPyFile(
             fy_code=self._fy_code,
@@ -107,7 +80,7 @@ class ParseMethodFyCode_Flow(
                 method_name=method_name,
                 implementation_name=implementation_name,
                 abstract_property_mixins=self._declared_abstract_property_mixins,
-                abstract_method_mixins=abstract_methods,
+                abstract_method_mixins=self._declared_abstract_method_mixins,
                 arguments=arguments,
                 return_type=return_type,
             ),

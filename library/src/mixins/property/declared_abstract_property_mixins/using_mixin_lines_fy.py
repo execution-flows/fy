@@ -42,6 +42,7 @@ class DeclaredAbstractPropertyMixins_UsingMixinLines_PropertyMixin(
             declared_abstract_property_mixin = abstract_property_mixin_regex.search(
                 mixin_line
             )
+
             if declared_abstract_property_mixin is not None:
                 abstract_properties.append(
                     AbstractPropertyModel(
