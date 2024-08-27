@@ -3,7 +3,7 @@ from domain.parsed_fy_py_file import ParsedAbstractPropertyFyPyFile
 
 
 property parsed_abstract_property_fy_py_file: ParsedAbstractPropertyFyPyFile using parsed_fy_py_file:
-    with property fy_code using
+    with property fy_code
     with property pre_marker_file_content
     with property post_marker_file_content
     with property fy_py_file_to_parse
