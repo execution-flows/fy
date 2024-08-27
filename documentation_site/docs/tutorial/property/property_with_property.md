@@ -1,7 +1,10 @@
 # Property with another Property
-In this code, the `fy` tool is used to define a property with specific behaviors and integrations. The property `greeting` uses another property, `french_greeting`, to provide its value. This approach allows for modular and reusable property definitions across different classes. Here’s how each part of the code is defined and how it works:
+
+In this code, the `fy` tool is used to define a property with specific behaviors and integrations. The property `greeting` uses another property, `french_greeting`, to provide its value. This approach allows for modular and reusable property definitions. Here’s how each part of the code is defined and how it works:
+
 ## Syntax
-```py linenums="1"
+
+```py title="mixins/property/greeting/using_french_greeting_fy.py" linenums="1"
 """fy
 property greeting: str using french_greeting:
     with property french_greeting
@@ -9,7 +12,7 @@ property greeting: str using french_greeting:
 
 import abc
 
-from fy_py_files.test_fy_py_files.property_with_property.abc_fy import (
+from mixins.property.french_greeting.abc_fy import (
     With_FrenchGreeting_PropertyMixin_ABC,
 )
 
@@ -27,9 +30,10 @@ class Greeting_UsingFrenchGreeting_PropertyMixin(
 ```
 
 ## Breakdown of Syntax
+
 1. `:::py property greeting: str using french_greeting:`
     - **Property Declaration:** Defines a property named `greeting` with a type of `:::py str` (string). 
-    - **Using Another Property:** `using french_greeting` declares the name of the specific property implementation. In this case, it tells us that the `greeting` property will use a French greeting.
+    - **Implementation Name:** `using french_greeting` declares the name of the specific property implementation that is then referenced by the hosting flow when included in a flow.
 2. `:::py with property french_greeting` 
     - **Property Integration:** Indicates that the `greeting` property depends on the `french_greeting` property. This means the value or behavior of `greeting` is derived from `french_greeting`. 
 3. Code Generation:
