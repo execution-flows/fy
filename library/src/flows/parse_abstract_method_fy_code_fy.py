@@ -8,12 +8,11 @@ flow ParseAbstractMethodFyCode -> ParsedFyPyFile:
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
     property abstract_method_file_split using abstract_method_regex
+    property parsed_abstract_method_fy_py_file using parsed_fy_py_file
 """
 
 from base.flow_base import FlowBase
-from domain.fy_py_template_models import AbstractMethodTemplateModel
-from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedAbstractMethodFyPyFile
-from domain.python_entity_name import PythonEntityName
+from domain.parsed_fy_py_file import ParsedFyPyFile
 from mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,
 )
@@ -35,6 +34,11 @@ from mixins.property.abstract_method_file_split.using_abstract_method_regex_fy i
 )
 
 
+from mixins.property.parsed_abstract_method_fy_py_file.parsed_fy_py_file_fy import (
+    ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin,
+)
+
+
 # fy:start <<<===
 class ParseAbstractMethodFyCode_Flow(
     # Property Mixins
@@ -43,37 +47,13 @@ class ParseAbstractMethodFyCode_Flow(
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
     AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin,
+    ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
-        abstract_method_file_split = self._abstract_method_file_split
-
-        user_imports = abstract_method_file_split[0]
-        abstract_method_name = PythonEntityName.from_snake_case(
-            abstract_method_file_split[1]
-        )
-        arguments = abstract_method_file_split[3]
-        return_type = abstract_method_file_split[4]
-
-        parsed_fy_py_file = ParsedAbstractMethodFyPyFile(
-            fy_code=self._fy_code,
-            pre_marker_file_content=self._pre_marker_file_content,
-            post_marker_file_content=self._post_marker_file_content,
-            file_path=self._fy_py_file_to_parse,
-            user_imports=user_imports,
-            template_model=AbstractMethodTemplateModel(
-                python_class_name=PythonEntityName.from_pascal_case(
-                    f"With_{abstract_method_name.pascal_case}_MethodMixin_ABC"
-                ),
-                abstract_method_name=abstract_method_name,
-                arguments=arguments,
-                return_type=return_type,
-            ),
-        )
-
-        return parsed_fy_py_file
+        return self._parsed_abstract_method_fy_py_file
 
     def __init__(
         self,
