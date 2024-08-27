@@ -7,13 +7,16 @@ flow ParseMethodFyCode -> ParsedFyPyFile:
     property pre_marker_file_content using setter
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
+    property method_file_split using method_regex
 """
+
+import re
+from pathlib import Path
+from typing import Any, List
 
 from base.flow_base import FlowBase
 from constants import (
     FY_ENTITY_REGEX_STRING,
-    PYTHON_MULTI_ENTITY_REGEX_STRING,
-    PYTHON_ARGUMENTS_REGEX_STRING,
 )
 from domain.fy_py_template_models import (
     MethodTemplateModel,
@@ -28,15 +31,15 @@ from mixins.property.fy_code.using_setter import (
 from mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )
+from mixins.property.method_file_split.using_method_regex_fy import (
+    MethodFileSplit_UsingMethodRegex_PropertyMixin,
+)
 from mixins.property.post_marker_file_content.using_setter import (
     PostMarkerFileContent_UsingSetter_PropertyMixin,
 )
 from mixins.property.pre_marker_file_content.using_setter import (
     PreMarkerFileContent_UsingSetter_PropertyMixin,
 )
-from pathlib import Path
-from typing import Any, List
-import re
 
 
 # fy:start <<<===
@@ -46,28 +49,19 @@ class ParseMethodFyCode_Flow(
     PreMarkerFileContent_UsingSetter_PropertyMixin,
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
+    MethodFileSplit_UsingMethodRegex_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
-        method_string_split_regex = re.compile(
-            rf"method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s*"
-            rf"(?P<arguments>\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s+->"
-            rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s+"
-            rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
+        user_imports = self._method_file_split[0]
+        method_name = PythonEntityName.from_snake_case(self._method_file_split[1])
+        arguments = self._method_file_split[3]
+        return_type = self._method_file_split[4]
+        implementation_name = PythonEntityName.from_snake_case(
+            self._method_file_split[5]
         )
-        method_file_split = method_string_split_regex.split(self._fy_code)
-
-        assert (
-            len(method_file_split)
-        ) == 7, f"Method file split length {len(method_file_split)} is invalid."
-
-        user_imports = method_file_split[0]
-        method_name = PythonEntityName.from_snake_case(method_file_split[1])
-        arguments = method_file_split[3]
-        return_type = method_file_split[4]
-        implementation_name = PythonEntityName.from_snake_case(method_file_split[5])
 
         abstract_properties: List[AbstractPropertyModel] = []
         abstract_methods: List[AbstractMethodModel] = []
@@ -80,7 +74,7 @@ class ParseMethodFyCode_Flow(
             rf"^\s+with\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
         )
 
-        mixin_lines = method_file_split[6].split("\n")
+        mixin_lines = self._method_file_split[6].split("\n")
         for mixin_line in mixin_lines:
             if mixin_line.strip() == "":
                 continue
