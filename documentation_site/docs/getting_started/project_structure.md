@@ -1,6 +1,6 @@
 # Recommended Project Structure
 
-Here's the recommended structure of a project utilizing the `fy` tool:
+Here's the recommended structure of a project utilizing the ___fy___ tool:
 
 ```
 ├── <project directory>
