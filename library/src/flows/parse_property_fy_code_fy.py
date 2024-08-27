@@ -49,10 +49,6 @@ class ParsePropertyFyCode_Flow(
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
-        assert (
-            len(self._property_file_split) == 6
-        ), f"Property file split length {len(self._property_file_split)} is invalid"
-
         user_imports = self._property_file_split[0]
         property_name = PythonEntityName.from_snake_case(self._property_file_split[2])
         property_type = self._property_file_split[3]
