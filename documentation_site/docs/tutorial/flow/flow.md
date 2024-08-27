@@ -4,9 +4,9 @@
 
 The `Execution Flow (fy)` tool enables developers to achieve a high level of code reusability by generating object-oriented Python code using a unique 
 syntax that simplifies its construction. Below is a step-by-step guide to creating a simple "Hello World"
-Python program using the `Fy` declarative language syntax.
+Python program using the `fy` declarative language syntax.
 
-```py linenums="1"
+```py title="flows/hello_world_fy.py" linenums="1"
 """fy
 flow HelloWorld -> None:
 """
@@ -23,6 +23,8 @@ class HelloWorld_Flow(
         # fy:end <<<===
         print("Hello, World!")
 ```
+
+Each file containing `fy` code must end with the `_fy.py` suffix. The `fy` tool relies on this suffix to identify the files it needs to process. In large projects, this approach significantly reduces execution time.
 
 ##  Breakdown of Syntax
 1. `:::py flow HelloWorld -> None:` 
