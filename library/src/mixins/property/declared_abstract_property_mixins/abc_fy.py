@@ -3,7 +3,7 @@ from domain.fy_py_template_models import AbstractPropertyModel
 from typing import List
 
 
-property declared_abstract_property_mixin: List[AbstractPropertyModel]
+property declared_abstract_property_mixins: List[AbstractPropertyModel]
 """
 
 from typing import List

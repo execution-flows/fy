@@ -8,7 +8,7 @@ flow ParseMethodFyCode -> ParsedFyPyFile:
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
     property method_file_split using method_regex
-    property declared_abstract_property_mixin using mixin_lines
+    property declared_abstract_property_mixins using mixin_lines
 """
 
 import re
@@ -25,7 +25,7 @@ from domain.fy_py_template_models import (
 )
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedMethodFyPyFile
 from domain.python_entity_name import PythonEntityName
-from mixins.property.declared_abstract_property_mixin.using_mixin_lines_fy import (
+from mixins.property.declared_abstract_property_mixins.using_mixin_lines_fy import (
     DeclaredAbstractPropertyMixin_UsingMixinLines_PropertyMixin,
 )
 from mixins.property.fy_code.using_setter import (
