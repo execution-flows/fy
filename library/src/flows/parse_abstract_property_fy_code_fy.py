@@ -47,14 +47,12 @@ class ParseAbstractPropertyFyCode_Flow(
     FyPyFileToParse_UsingSetter_PropertyMixin,
     AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin,
     ParsedAbstractPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin,
-
     # Base
     FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
         return self._parsed_abstract_property_fy_py_file
-
 
     def __init__(
         self,
