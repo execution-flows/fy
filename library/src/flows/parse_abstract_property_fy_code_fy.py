@@ -9,6 +9,7 @@ flow ParseAbstractPropertyFyCode -> ParsedFyPyFile:
     property fy_py_file_to_parse using setter
     property abstract_property_file_split using abstract_property_regex
     property parsed_abstract_property_fy_py_file using parsed_fy_py_file
+
 """
 
 from pathlib import Path
@@ -16,6 +17,7 @@ from typing import Any
 
 from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
+
 from mixins.property.abstract_property_file_split.using_abstract_property_regex_fy import (
     AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin,
 )
@@ -45,12 +47,14 @@ class ParseAbstractPropertyFyCode_Flow(
     FyPyFileToParse_UsingSetter_PropertyMixin,
     AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin,
     ParsedAbstractPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin,
+
     # Base
     FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
         return self._parsed_abstract_property_fy_py_file
+
 
     def __init__(
         self,
