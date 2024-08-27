@@ -1,6 +1,6 @@
 # Property with another Property
 
-In this code, the `fy` tool is used to define a property with specific behaviors and integrations. The property `greeting` uses another property, `french_greeting`, to provide its value. This approach allows for modular and reusable property definitions. Here’s how each part of the code is defined and how it works:
+In this code, the ___fy___ code is used to define a property with specific behaviors and integrations. The property `greeting` uses another property, `french_greeting`, to provide its value. This approach allows for modular and reusable property definitions. Here’s how each part of the code is defined and how it works:
 
 ## Syntax
 
@@ -37,5 +37,8 @@ class Greeting_UsingFrenchGreeting_PropertyMixin(
 2. `:::py with property french_greeting` 
     - **Property Integration:** Indicates that the `greeting` property depends on the `french_greeting` property. This means the value or behavior of `greeting` is derived from `french_greeting`. 
 3. Code Generation:
-    - **Automatic Code Generation:** The `fy` tool generates the code between `:::py # fy:start` and `:::py # fy:end`. This includes the class definition and the property implementations. 
+    - **Automatic Code Generation:** The ___fy___ tool generates the code between `:::py # fy:start` and `:::py # fy:end`. This includes the class definition and the `:::py @property` method annotation and declaration. 
     - **Base classes:** `:::py With_FrenchGreeting_PropertyMixin_ABC` base class ensures the `:::py french_greeting` property is available. `:::py abc.ABC` is required because `:::py With_FrenchGreeting_PropertyMixin_ABC` is an abstract class.
+4. User Input:
+    - The only code the user needs to write is the `:::py property` definition within the `"""fy` block.
+    - After boilerplate code generation, the user can add custom functionality, such as `:::py return self._french_greeting` to the property method body.
