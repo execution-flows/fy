@@ -8,9 +8,10 @@ The motivation behind the creation of the _Execution Flows_ `fy` tool stems from
 2. Integrate with various external vendors, automation tools, CRMs, payment systems, data feeds, communication channels, etc.
 3. Support similar use cases for different user groups, such as customer support, operations, billing and finance, regulatory compliance, security, and more.
 
-This is particularly important where there is a need for a high level of reusability at the sub-line-of-code level. In such cases, implementing variations of use cases often leads to significant code duplication because the required changes are subtle, affecting almost every line of code.
+This is particularly important where there is a need for a reusability at the sub-line-of-code level. In such cases, implementing variations of use cases often leads to significant code duplication because the required changes are subtle, affecting almost every line of code.
 
-To address this challenge, the _Execution Flows_ approach takes the well-known Object-oriented programming (OOP) concept of class mixins to the extreme by allowing you to break up your code into the smallest chunks imaginable. These mixins are then assembled into what is called a `flow` class. The `fy` tool generates a Python code for both the mixin classes and the top-level flow classes, enabling greater flexibility by allowing for the maximum reduction in code duplication.
+To address this challenge, the _Execution Flows_ approach takes the well-known Object-Oriented Programming (OOP) concept of class mixins to the extreme, allowing you to break your code into the smallest possible chunks. These mixins are then assembled into what is called a `flow` class. The `fy` tool generates Python code for both the mixin classes and the top-level flow classes, enabling greater flexibility and maximizing the reduction of code duplication.
+
 
 ## _Execution Flows_ Explained
 
