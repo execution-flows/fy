@@ -1,9 +1,12 @@
 """fy
 from domain.fy_py_template_models import AbstractPropertyModel
+from typing import List
 
 
-property declared_abstract_property_mixin: AbstractPropertyModel
+property declared_abstract_property_mixin: List[AbstractPropertyModel]
 """
+
+from typing import List
 
 from domain.fy_py_template_models import AbstractPropertyModel
 import abc
@@ -13,6 +16,6 @@ import abc
 class With_DeclaredAbstractPropertyMixin_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _declared_abstract_property_mixin(self) -> AbstractPropertyModel:
+    def _declared_abstract_property_mixin(self) -> List[AbstractPropertyModel]:
         raise NotImplementedError()
         # fy:end <<<===
