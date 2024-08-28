@@ -8,10 +8,6 @@ class {{ python_class_name.pascal_case }}
     abc.ABC,
 )
 {%- endif %}:
-{%- if property_annotation %}
-    {{ property_annotation }}
-{%- else %}
-    @property
-{%- endif %}
+    @cached_property
     def _{{ property_name.snake_case }}(self) -> {{ property_type }}:
 

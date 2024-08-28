@@ -74,6 +74,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                 f"{parsed_fy_py_file.fy_code}"
                 f"{FY_CODE_FILE_END_SIGNATURE}\n"
                 f"{parsed_fy_py_file.pre_marker_file_content}"
+                f"{NEW_LINE if not parsed_fy_py_file.pre_marker_file_content or mixin_imports_code else ''}"
                 f"{mixin_imports_code}"
                 f"{NEW_LINE * 2 if not parsed_fy_py_file.pre_marker_file_content or mixin_imports_code else ''}"
                 f"{FY_START_MARKER}\n"
@@ -198,15 +199,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                     )
                     else []
                 )
-                cached_import = (
-                    ["from functools import cached_property"]
-                    if (
-                        cast(
-                            ParsedPropertyFyPyFile, parsed_fy_py_file
-                        ).template_model.property_annotation
-                    )
-                    else []
-                )
+                cached_import = ["from functools import cached_property"]
                 mixin_imports = (
                     cached_import
                     + static_imports
