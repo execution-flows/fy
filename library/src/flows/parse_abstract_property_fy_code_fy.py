@@ -27,7 +27,7 @@ from mixins.property.fy_code.using_setter import (
 from mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )
-from mixins.property.parsed_abstract_property_fy_py_file.parsed_fy_py_file_fy import (
+from mixins.property.parsed_abstract_property_fy_py_file.using_parsed_fy_py_file_fy import (
     ParsedAbstractPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin,
 )
 from mixins.property.post_marker_file_content.using_setter import (
