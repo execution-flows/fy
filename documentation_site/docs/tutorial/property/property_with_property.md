@@ -1,6 +1,6 @@
 # Property with another Property
 
-In this code, the ___fy___ code is used to define a property with specific behaviors and integrations. The property `greeting` uses another property, `french_greeting`, to provide its value. This approach allows for modular and reusable property definitions. Here’s how each part of the code is defined and how it works:
+In this code, the ___fy___ code is used to define a property that requires another property in order to deliver its functionality. The property `greeting` uses another property, `french_greeting`, to provide its value. This approach allows for modular and reusable property definitions. Here’s how each part of the code is defined and how it works:
 
 ## Syntax
 
@@ -29,11 +29,13 @@ class Greeting_UsingFrenchGreeting_PropertyMixin(
         return self._french_greeting
 ```
 
+What we have accomplished here is that any method or property that requires property greeting is decoupled from `french_greeting` property. They do not need to know anything about `french_greeting` in order to deliver their own functionality that uses property greeting.
+
 ## Breakdown of Syntax
 
 1. `:::py property greeting: str using french_greeting:`
     - **Property Declaration:** Defines a property named `greeting` with a type of `:::py str` (string). 
-    - **Implementation Name:** `using french_greeting` declares the name of the specific property implementation that is then referenced by the hosting flow when included in a flow.
+    - **Implementation Name:** `using french_greeting` declares the name of the specific property implementation that is then referenced by the encapsulating flow when included in a flow.
 2. `:::py with property french_greeting` 
     - **Property Integration:** Indicates that the `greeting` property depends on the `french_greeting` property. This means the value or behavior of `greeting` is derived from `french_greeting`. 
 3. Code Generation:

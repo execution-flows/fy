@@ -1,8 +1,6 @@
 # Property Included in a Flow
 
-In the ___fy___ syntax, a _property_ is a class mixin that defines a `:::py @property` that provides data to the hosting flow. Properties can be defined in different ways, depending on how the data is intended to be used or modified. For instance, a property can fetch the data from a database or a third party API. Or it can compute it using other properties included in the flow.
-
-In the ___fy___ syntax, a _property_ is a class mixin that defines a method annotated with `:::py @property` Python annotation to provide data to the hosting flow. Properties can be defined in various ways, depending on how the data is intended to be used or modified. For instance, a property might fetch data from a database or a third-party API, or it could compute data using other properties included in the flow.
+In the ___fy___ syntax, a _property_ is a class mixin that defines a method annotated with `:::py @property` Python annotation to provide data to the encapsulating flow. Properties can be defined in various ways, depending on how the data is intended to be used or modified. For instance, a property might fetch data from a database or a third-party API, or it could compute data using other properties included in the flow.
 
 ## Syntax
 
@@ -49,4 +47,4 @@ class HelloWorld_UsingGreeting_Flow(
 
 ## Summary
 
-In ___fy___, defining a property in a flow allows you to encapsulate data as an attribute that can be used within the flow's included property and method mixins. A flow can include property implementation that fits its needs, like fetching data from the database or providing a constant value. This makes it easy to manage state and logic in a modular and intuitive way.
+In ___fy___, defining a property in a flow allows you to encapsulate data as an attribute that is used by other property and method mixins included in a flow. A flow can include property implementation that fits its needs, like fetching data from the database or providing a constant value. This makes it easy to manage state and logic in a modular and intuitive way.
