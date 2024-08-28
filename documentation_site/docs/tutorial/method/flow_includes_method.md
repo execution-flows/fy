@@ -6,10 +6,10 @@ In this section, you'll learn how to use methods withing the flow. We'll expand 
 
 === "fy"
 
-    """fy
+    ```fy
     flow HelloWorld_UsingMethod -> None:
         method greet using constant
-    """
+    ```
 
 === "Python"
     
