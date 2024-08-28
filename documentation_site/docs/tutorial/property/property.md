@@ -17,6 +17,10 @@ An abstract property in ___fy___ is a property that is declared but not implemen
 === "Python"
     
     ```py title="mixins/property/greeting/abc_fy.py" linenums="1"
+    """fy
+    property greeting: str
+    """
+
     import abc
     
     
@@ -57,6 +61,10 @@ An abstract property in ___fy___ is a property that is declared but not implemen
 === "Python"
 
     ```py title="mixins/property/greeting/using_hello_world_fy.py" linenums="1"
+    """fy
+    property greeting: str using hello_world:
+    """
+    
     # fy:start <<<===
     class Greeting_UsingHelloWorld_PropertyMixin:
     
