@@ -4,7 +4,7 @@ from typing import List
 
 
 property declared_abstract_property_mixins: List[AbstractPropertyModel] using property_file_split:
-    with property property_file_split
+    property property_file_split
 """
 
 import re
@@ -29,7 +29,7 @@ class DeclaredAbstractPropertyMixins_UsingPropertyFileSplit_PropertyMixin(
     def _declared_abstract_property_mixins(self) -> List[AbstractPropertyModel]:
         # fy:end <<<===
         abstract_property_mixin_regex = re.compile(
-            rf"^\s+with\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+            rf"^\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
         )
 
         abstract_properties: List[AbstractPropertyModel] = []

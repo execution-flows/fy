@@ -3,12 +3,12 @@ from domain.parsed_fy_py_file import ParsedPropertyFyPyFile
 
 
 property parsed_property_fy_py_file: ParsedPropertyFyPyFile using parsed_fy_py_file:
-    with property fy_code
-    with property pre_marker_file_content
-    with property post_marker_file_content
-    with property fy_py_file_to_parse
-    with property property_file_split
-    with property declared_abstract_property_mixins
+    property fy_code
+    property pre_marker_file_content
+    property post_marker_file_content
+    property fy_py_file_to_parse
+    property property_file_split
+    property declared_abstract_property_mixins
 """
 
 import abc

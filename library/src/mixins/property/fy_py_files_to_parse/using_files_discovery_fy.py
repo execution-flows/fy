@@ -5,7 +5,7 @@ from typing import List
 
 @cached
 property fy_py_files_to_parse: List[Path] using files_discovery:
-    with property folder_to_parse
+    property folder_to_parse
 """
 
 from constants import FY_PY_FILE_SIGNATURE, FY_PY_FILE_EXTENSION

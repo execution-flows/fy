@@ -5,7 +5,7 @@ from domain.parsed_fy_py_file import ParsedFyPyFile
 
 @cached
 property parsed_fy_py_files: List[ParsedFyPyFile] using fy_py_parser:
-    with property fy_py_files_to_parse
+    property fy_py_files_to_parse
 """
 
 from domain.parsed_fy_py_file import ParsedFyPyFile

@@ -3,11 +3,11 @@ from domain.parsed_fy_py_file import ParsedFyPyFile
 
 
 method parse_fy_py_file -> ParsedFyPyFile using fy_file_kind__and__fy_code:
-    with property fy_py_file_to_parse
-    with property fy_code
-    with property pre_marker_file_content
-    with property post_marker_file_content
-    with property fy_file_kind
+    property fy_py_file_to_parse
+    property fy_code
+    property pre_marker_file_content
+    property post_marker_file_content
+    property fy_file_kind
 """
 
 from base.flow_base import FlowBase

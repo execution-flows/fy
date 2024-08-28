@@ -1,6 +1,6 @@
 """fy
 method greet -> None using encrypt:
-    with method encrypt
+    method encrypt
 """
 
 import abc

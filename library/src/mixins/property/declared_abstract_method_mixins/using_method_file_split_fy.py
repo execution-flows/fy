@@ -4,7 +4,7 @@ from typing import List
 
 
 property declared_abstract_method_mixins: List[AbstractMethodModel] using method_file_split:
-    with property method_file_split
+    property method_file_split
 """
 
 import re
@@ -32,7 +32,7 @@ class DeclaredAbstractMethodMixins_UsingMethodFileSplit_PropertyMixin(
     def _declared_abstract_method_mixins(self) -> List[AbstractMethodModel]:
         # fy:end <<<===
         abstract_method_mixin_regex = re.compile(
-            rf"^\s+with\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
+            rf"^\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
         )
 
         abstract_methods: List[AbstractMethodModel] = []

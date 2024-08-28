@@ -1,8 +1,8 @@
 """fy
 method generate_and_save_fy_py_files -> None using jinja2_templates:
-    with property parsed_fy_py_files
-    with property required_property_setters_fy_py
-    with property mixin_import_map
+    property parsed_fy_py_files
+    property required_property_setters_fy_py
+    property mixin_import_map
 """
 
 from constants import (

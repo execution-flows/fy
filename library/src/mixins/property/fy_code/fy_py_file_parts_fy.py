@@ -1,6 +1,6 @@
 """fy
 property fy_code: str using fy_py_file_parts:
-    with property fy_py_file_parts
+    property fy_py_file_parts
 """
 
 from mixins.property.fy_py_file_parts.abc_fy import (
