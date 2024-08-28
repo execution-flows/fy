@@ -4,15 +4,14 @@ from typing import List
 
 
 property declared_abstract_method_mixin: List[AbstractMethodModel] using mixin_lines:
-    with property method_file_split
+    property method_file_split
 """
 
 import re
+from typing import List
 
 from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import AbstractMethodModel
-from typing import List
-
 from domain.python_entity_name import PythonEntityName
 
 

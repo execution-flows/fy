@@ -3,7 +3,7 @@ from typing import List
 
 @cached
 property abstract_method_file_split: List[str] using abstract_method_regex:
-    with property fy_code
+    property fy_code
 """
 
 import re

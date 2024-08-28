@@ -3,11 +3,11 @@ from domain.parsed_fy_py_file import ParsedAbstractPropertyFyPyFile
 
 
 property parsed_abstract_property_fy_py_file: ParsedAbstractPropertyFyPyFile using parsed_fy_py_file:
-    with property fy_code
-    with property pre_marker_file_content
-    with property post_marker_file_content
-    with property fy_py_file_to_parse
-    with property abstract_property_file_split
+    property fy_code
+    property pre_marker_file_content
+    property post_marker_file_content
+    property fy_py_file_to_parse
+    property abstract_property_file_split
 """
 
 from domain.fy_py_template_models import AbstractPropertyTemplateModel

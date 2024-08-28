@@ -5,8 +5,8 @@ from domain.parsed_fy_py_file import ParsedFyPyFile
 
 @cached
 property required_property_setters_fy_py: List[ParsedFyPyFile] using parsed_fy_py_files:
-    with property parsed_fy_py_files
-    with property parsed_fy_py_files_map_by_key
+    property parsed_fy_py_files
+    property parsed_fy_py_files_map_by_key
 """
 
 from domain.fy_py_template_models import (

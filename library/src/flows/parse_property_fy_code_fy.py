@@ -17,7 +17,6 @@ from typing import Any
 
 from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
-
 from mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,
 )
@@ -41,7 +40,6 @@ from mixins.property.property_mixins.using_mixin_lines_fy import (
 )
 
 
-
 # fy:start <<<===
 class ParsePropertyFyCode_Flow(
     # Property Mixins
@@ -52,7 +50,6 @@ class ParsePropertyFyCode_Flow(
     PropertyFileSplit_UsingPropertyRegex_PropertyMixin,
     PropertyMixins_UsingMixinLines_PropertyMixin,
     ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin,
-
     # Base
     FlowBase[ParsedFyPyFile],
 ):
