@@ -1,6 +1,6 @@
-# _Execution Flows_ - `fy`
+# _Execution Flows_ - ___fy___
 
-_Execution Flows_ `fy` tool generates Python class mixins code using a simple declarative description written in _fy_ code.
+_Execution Flows_ ___fy___ tool generates Python class mixins code using a simple declarative description written in _fy_ code.
 
 Easily and quickly break down your code into reusable parts - property and methods mixins, 
 and put them up together into **flows** - a top-level class for use case implementations.
