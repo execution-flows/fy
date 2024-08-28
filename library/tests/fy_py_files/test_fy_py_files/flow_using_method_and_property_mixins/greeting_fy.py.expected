@@ -2,7 +2,6 @@
 property greeting: str using constant:
 """
 
-
 from functools import cached_property
 
 

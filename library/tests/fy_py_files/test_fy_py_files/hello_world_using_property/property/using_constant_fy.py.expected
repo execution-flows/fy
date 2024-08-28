@@ -4,10 +4,8 @@ from pathlib import Path
 property greeting: Path using constant:
 """
 
-from pathlib import Path
-
-
 from functools import cached_property
+from pathlib import Path
 
 
 # fy:start <<<===
