@@ -3,8 +3,8 @@ from domain.fy_py_template_models import AbstractPropertyModel
 from typing import List
 
 
-property declared_abstract_property_mixins: List[AbstractPropertyModel] using mixin_lines:
-    property method_file_split
+property property_mixins: List[AbstractPropertyModel] using mixin_lines:
+    property mixin_lines
 """
 
 import re
@@ -14,28 +14,29 @@ from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import AbstractPropertyModel
 from domain.python_entity_name import PythonEntityName
 
-from mixins.property.method_file_split.abc_fy import (
-    With_MethodFileSplit_PropertyMixin_ABC,
+
+from mixins.property.mixin_lines.abc_fy import (
+    With_MixinLines_PropertyMixin_ABC,
 )
 import abc
 
 
 # fy:start <<<===
-class DeclaredAbstractPropertyMixins_UsingMixinLines_PropertyMixin(
+class PropertyMixins_UsingMixinLines_PropertyMixin(
     # Property_mixins
-    With_MethodFileSplit_PropertyMixin_ABC,
+    With_MixinLines_PropertyMixin_ABC,
     abc.ABC,
 ):
     @property
-    def _declared_abstract_property_mixins(self) -> List[AbstractPropertyModel]:
+    def _property_mixins(self) -> List[AbstractPropertyModel]:
         # fy:end <<<===
         abstract_property_mixin_regex = re.compile(
-            rf"^\s+with\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+            rf"^\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
         )
 
         abstract_properties: List[AbstractPropertyModel] = []
 
-        for mixin_line in self._method_file_split[6].split("\n"):
+        for mixin_line in self._mixin_lines:
             if mixin_line.strip() == "":
                 continue
 

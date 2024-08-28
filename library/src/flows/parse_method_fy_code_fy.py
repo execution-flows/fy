@@ -8,8 +8,9 @@ flow ParseMethodFyCode -> ParsedFyPyFile:
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
     property method_file_split using method_regex
-    property declared_abstract_property_mixins using method_file_split
-    property declared_abstract_method_mixins using method_file_split
+    property mixin_lines using method_file_split
+    property property_mixins using mixin_lines
+    property method_mixins using mixin_lines
     property parsed_method_fy_py_file using parsed_fy_py_file
 """
 
@@ -18,9 +19,6 @@ from typing import Any
 
 from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
-from mixins.property.declared_abstract_property_mixins.using_method_file_split_fy import (
-    DeclaredAbstractPropertyMixins_UsingMethodFileSplit_PropertyMixin,
-)
 from mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,
 )
@@ -41,8 +39,14 @@ from mixins.property.pre_marker_file_content.using_setter import (
 )
 
 
-from mixins.property.declared_abstract_method_mixins.using_method_file_split_fy import (
-    DeclaredAbstractMethodMixins_UsingMethodFileSplit_PropertyMixin,
+from mixins.property.method_mixins.using_mixin_lines_fy import (
+    MethodMixins_UsingMixinLines_PropertyMixin,
+)
+from mixins.property.mixin_lines.using_method_file_split_fy import (
+    MixinLines_UsingMethodFileSplit_PropertyMixin,
+)
+from mixins.property.property_mixins.using_mixin_lines_fy import (
+    PropertyMixins_UsingMixinLines_PropertyMixin,
 )
 
 
@@ -54,8 +58,9 @@ class ParseMethodFyCode_Flow(
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
     MethodFileSplit_UsingMethodRegex_PropertyMixin,
-    DeclaredAbstractPropertyMixins_UsingMethodFileSplit_PropertyMixin,
-    DeclaredAbstractMethodMixins_UsingMethodFileSplit_PropertyMixin,
+    MixinLines_UsingMethodFileSplit_PropertyMixin,
+    PropertyMixins_UsingMixinLines_PropertyMixin,
+    MethodMixins_UsingMixinLines_PropertyMixin,
     ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],

@@ -16,7 +16,6 @@ import abc
 from domain.fy_py_template_models import PropertyTemplateModel
 from domain.parsed_fy_py_file import ParsedPropertyFyPyFile
 from domain.python_entity_name import PythonEntityName
-
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
 )
