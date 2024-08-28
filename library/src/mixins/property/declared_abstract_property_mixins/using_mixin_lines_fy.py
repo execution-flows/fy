@@ -4,7 +4,7 @@ from typing import List
 
 
 property declared_abstract_property_mixins: List[AbstractPropertyModel] using mixin_lines:
-    with property method_file_split
+    property method_file_split
 """
 
 import re

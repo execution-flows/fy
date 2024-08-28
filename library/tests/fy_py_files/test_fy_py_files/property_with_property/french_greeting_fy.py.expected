@@ -1,6 +1,6 @@
 """fy
 property greeting: str using french_greeting:
-    with property french_greeting
+    property french_greeting
 """
 
 import abc

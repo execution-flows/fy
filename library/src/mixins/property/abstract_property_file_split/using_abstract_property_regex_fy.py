@@ -3,7 +3,7 @@ from typing import List
 
 
 property abstract_property_file_split: List[str] using abstract_property_regex:
-    with property fy_code
+    property fy_code
 """
 
 import re
