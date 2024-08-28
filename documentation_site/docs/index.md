@@ -55,7 +55,7 @@ class HelloWorld_Flow(
     # Method Mixins
     Greet_UsinGreeting_MethodMixin,
     # Base
-    FlowBase[None]
+    FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
@@ -84,7 +84,7 @@ property greeting: str
 ```
 These declarations simply announce the existence of a _property_ or _method_ so they can be referenced in the implementations of other _methods_ or _properties_.
 
-### Method and Properties Implementation
+### Methods and Properties Implementation
 
 For a hosting flow to include a method or property, it must be implemented. Each method or property can have multiple implementations as needed. This flexibility is where the power of reusability in _Execution Flows_ truly shines. 
 

@@ -2,7 +2,7 @@
 
 ## "Hello World" Example
 
-The `Execution Flow (fy)` tool enables developers to achieve a high level of code reusability by generating object-oriented Python code using a unique 
+The ___fy___ tool enables developers to achieve a high level of code reusability by generating object-oriented Python code using a unique 
 syntax that simplifies its construction. Below is a step-by-step guide to creating a simple "Hello World"
 Python program using the ___fy___ declarative language syntax.
 
@@ -17,7 +17,7 @@ from base.flow_base import FlowBase
 # fy:start <<<===
 class HelloWorld_Flow(
     # Base
-    FlowBase[None]
+    FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
@@ -40,11 +40,11 @@ Each file containing ___fy___ code must end with the `_fy.py` suffix. The ___fy_
 This approach streamlines the development process by automating boilerplate code generation while allowing the user to focus on specific logic.
 
 ## How to use
-Once the `Execution Flow` tool has generated the Python code, you can execute the flow in your Python environment.
+Once the ___fy___ tool has generated the Python code, you can execute the flow in your Python environment.
 
 ```py
 flow_instance = HelloWorld_Flow()
 flow_instance()
 ```
 
-If everything was done correctly the expected output should be `Hello world!`.
+If everything was done correctly the expected output should be `Hello, World!`.
