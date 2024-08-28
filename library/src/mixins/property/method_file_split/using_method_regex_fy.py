@@ -6,7 +6,9 @@ property method_file_split: List[str] using method_regex:
     property fy_code
 """
 
+import abc
 import re
+from functools import cached_property
 from typing import List
 
 from constants import (
@@ -14,12 +16,9 @@ from constants import (
     PYTHON_MULTI_ENTITY_REGEX_STRING,
     PYTHON_ARGUMENTS_REGEX_STRING,
 )
-
-
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
 )
-import abc
 
 
 # fy:start <<<===
@@ -28,7 +27,7 @@ class MethodFileSplit_UsingMethodRegex_PropertyMixin(
     With_FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _method_file_split(self) -> List[str]:
         # fy:end <<<===
         method_string_split_regex = re.compile(

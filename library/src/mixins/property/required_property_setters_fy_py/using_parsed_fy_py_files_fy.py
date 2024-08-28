@@ -9,6 +9,10 @@ property required_property_setters_fy_py: List[ParsedFyPyFile] using parsed_fy_p
     property parsed_fy_py_files_map_by_key
 """
 
+import abc
+from functools import cached_property
+from typing import List, cast
+
 from domain.fy_py_template_models import (
     PropertySetterTemplateModel,
     AbstractPropertyTemplateModel,
@@ -20,15 +24,12 @@ from domain.parsed_fy_py_file import (
     ParsedFlowFyPyFile,
 )
 from domain.python_entity_name import PythonEntityName
-from functools import cached_property
 from mixins.property.parsed_fy_py_files.abc_fy import (
     With_ParsedFyPyFiles_PropertyMixin_ABC,
 )
 from mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     With_ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
-from typing import List, cast
-import abc
 
 
 # fy:start <<<===

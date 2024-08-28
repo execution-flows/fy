@@ -10,16 +10,15 @@ property parsed_abstract_method_fy_py_file: ParsedAbstractMethodFyPyFile using  
     property abstract_method_file_split
 """
 
+import abc
+from functools import cached_property
+
 from domain.fy_py_template_models import AbstractMethodTemplateModel
 from domain.parsed_fy_py_file import ParsedAbstractMethodFyPyFile
 from domain.python_entity_name import PythonEntityName
-
 from mixins.property.abstract_method_file_split.abc_fy import (
     With_AbstractMethodFileSplit_PropertyMixin_ABC,
 )
-import abc
-
-
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
 )
@@ -44,7 +43,7 @@ class ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     With_AbstractMethodFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _parsed_abstract_method_fy_py_file(self) -> ParsedAbstractMethodFyPyFile:
         # fy:end <<<===
         abstract_method_name = PythonEntityName.from_snake_case(

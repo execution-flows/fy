@@ -7,6 +7,10 @@ property fy_file_kind: ParsedFyPyFileKind using fy_code:
     property fy_code
 """
 
+import abc
+import re
+from functools import cached_property
+
 from constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,
@@ -19,8 +23,6 @@ from mixins.property.fy_code.abc_fy import (
 from mixins.property.fy_py_file_to_parse.abc_fy import (
     With_FyPyFileToParse_PropertyMixin_ABC,
 )
-import abc
-import re
 
 
 # fy:start <<<===
@@ -30,7 +32,7 @@ class FyFileKind_UsingFyCode_PropertyMixin(
     With_FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _fy_file_kind(self) -> ParsedFyPyFileKind:
         # fy:end <<<===
         flow_match_regex = re.compile(

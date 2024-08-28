@@ -9,6 +9,7 @@ property method_mixins: List[AbstractMethodModel] using mixin_lines:
 
 import abc
 import re
+from functools import cached_property
 from typing import List
 
 from constants import FY_ENTITY_REGEX_STRING
@@ -25,7 +26,7 @@ class MethodMixins_UsingMixinLines_PropertyMixin(
     With_MixinLines_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _method_mixins(self) -> List[AbstractMethodModel]:
         # fy:end <<<===
         abstract_method_mixin_regex = re.compile(
