@@ -3,33 +3,30 @@ from domain.fy_py_template_models import AbstractMethodModel
 from typing import List
 
 
-property declared_abstract_method_mixins: List[AbstractMethodModel] using mixin_lines:
-    property method_file_split
+property method_mixins: List[AbstractMethodModel] using mixin_lines:
+    property mixin_lines
 """
 
+import abc
 import re
+from typing import List
 
 from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import AbstractMethodModel
-from typing import List
-
 from domain.python_entity_name import PythonEntityName
-
-
-from mixins.property.method_file_split.abc_fy import (
-    With_MethodFileSplit_PropertyMixin_ABC,
+from mixins.property.mixin_lines.abc_fy import (
+    With_MixinLines_PropertyMixin_ABC,
 )
-import abc
 
 
 # fy:start <<<===
-class DeclaredAbstractMethodMixins_UsingMixinLines_PropertyMixin(
+class MethodMixins_UsingMixinLines_PropertyMixin(
     # Property_mixins
-    With_MethodFileSplit_PropertyMixin_ABC,
+    With_MixinLines_PropertyMixin_ABC,
     abc.ABC,
 ):
     @property
-    def _declared_abstract_method_mixins(self) -> List[AbstractMethodModel]:
+    def _method_mixins(self) -> List[AbstractMethodModel]:
         # fy:end <<<===
         abstract_method_mixin_regex = re.compile(
             rf"^\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
@@ -37,7 +34,7 @@ class DeclaredAbstractMethodMixins_UsingMixinLines_PropertyMixin(
 
         abstract_methods: List[AbstractMethodModel] = []
 
-        for mixin_line in self._method_file_split[6].split("\n"):
+        for mixin_line in self._mixin_lines:
             if mixin_line.strip() == "":
                 continue
 

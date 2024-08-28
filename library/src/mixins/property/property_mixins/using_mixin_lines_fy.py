@@ -4,25 +4,27 @@ from typing import List
 
 
 property property_mixins: List[AbstractPropertyModel] using mixin_lines:
-    property property_file_split
+    property mixin_lines
 """
 
 import re
+from typing import List
 
 from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import AbstractPropertyModel
 from domain.python_entity_name import PythonEntityName
-from mixins.property.property_file_split.abc_fy import (
-    With_PropertyFileSplit_PropertyMixin_ABC,
+
+
+from mixins.property.mixin_lines.abc_fy import (
+    With_MixinLines_PropertyMixin_ABC,
 )
-from typing import List
 import abc
 
 
 # fy:start <<<===
 class PropertyMixins_UsingMixinLines_PropertyMixin(
     # Property_mixins
-    With_PropertyFileSplit_PropertyMixin_ABC,
+    With_MixinLines_PropertyMixin_ABC,
     abc.ABC,
 ):
     @property
@@ -34,7 +36,7 @@ class PropertyMixins_UsingMixinLines_PropertyMixin(
 
         abstract_properties: List[AbstractPropertyModel] = []
 
-        for mixin_line in self._property_file_split[5].split("\n"):
+        for mixin_line in self._mixin_lines:
             if mixin_line.strip() == "":
                 continue
 

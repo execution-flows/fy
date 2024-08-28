@@ -1,6 +1,6 @@
 """fy
 method greet(argument: str) -> None using greeting:
-    with property greeting
+    property greeting
 """
 
 import abc

@@ -5,6 +5,12 @@ method generate_and_save_fy_py_files -> None using jinja2_templates:
     property mixin_import_map
 """
 
+import pathlib
+import re
+from typing import List, Tuple, Set, cast
+
+from jinja2 import Environment, FileSystemLoader
+
 from constants import (
     FY_PY_FILE_SIGNATURE,
     FY_CODE_FILE_END_SIGNATURE,
@@ -20,7 +26,8 @@ from domain.parsed_fy_py_file import (
     ParsedMethodFyPyFile,
     ParsedPropertyFyPyFile,
 )
-from jinja2 import Environment, FileSystemLoader
+
+
 from mixins.property.mixin_import_map.abc_fy import (
     With_MixinImportMap_PropertyMixin_ABC,
 )
@@ -30,10 +37,7 @@ from mixins.property.parsed_fy_py_files.abc_fy import (
 from mixins.property.required_property_setters_fy_py.abc_fy import (
     With_RequiredPropertySettersFyPy_PropertyMixin_ABC,
 )
-from typing import List, Tuple, Set, cast
 import abc
-import pathlib
-import re
 
 
 # fy:start <<<===

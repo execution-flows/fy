@@ -8,6 +8,7 @@ flow ParsePropertyFyCode -> ParsedFyPyFile:
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
     property property_file_split using property_regex
+    property mixin_lines using property_file_split
     property property_mixins using mixin_lines
     property parsed_property_fy_py_file using parsed_fy_py_file
 """
@@ -40,6 +41,11 @@ from mixins.property.property_mixins.using_mixin_lines_fy import (
 )
 
 
+from mixins.property.mixin_lines.using_property_file_split_fy import (
+    MixinLines_UsingPropertyFileSplit_PropertyMixin,
+)
+
+
 # fy:start <<<===
 class ParsePropertyFyCode_Flow(
     # Property Mixins
@@ -48,6 +54,7 @@ class ParsePropertyFyCode_Flow(
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
     PropertyFileSplit_UsingPropertyRegex_PropertyMixin,
+    MixinLines_UsingPropertyFileSplit_PropertyMixin,
     PropertyMixins_UsingMixinLines_PropertyMixin,
     ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin,
     # Base
