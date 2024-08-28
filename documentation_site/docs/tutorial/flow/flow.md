@@ -2,8 +2,8 @@
 
 ## "Hello World" Example
 
-The ___fy___ tool enables developers to achieve a high level of code reusability by generating object-oriented Python code using a unique 
-syntax that simplifies its construction. Below is a step-by-step guide to creating a simple "Hello World"
+The ___fy___ tool enables developers to achieve a high level of code reusability by generating object-oriented Python code 
+defined by flows and mixins. Below is a step-by-step guide to creating a simple "Hello World"
 Python program using the ___fy___ declarative language syntax.
 
 ```py title="flows/hello_world_fy.py" linenums="1"
