@@ -71,9 +71,6 @@ class ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 implementation_name=implementation_name,
                 abstract_property_mixins=self._property_mixins,
                 property_type=self._property_file_split[3],
-                property_annotation=(
-                    "@cached_property" if self._property_file_split[1] else None
-                ),
             ),
         )
 

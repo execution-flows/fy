@@ -198,15 +198,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                     )
                     else []
                 )
-                cached_import = (
-                    ["from functools import cached_property"]
-                    if (
-                        cast(
-                            ParsedPropertyFyPyFile, parsed_fy_py_file
-                        ).template_model.property_annotation
-                    )
-                    else []
-                )
+                cached_import = ["from functools import cached_property"]
                 mixin_imports = (
                     cached_import
                     + static_imports
