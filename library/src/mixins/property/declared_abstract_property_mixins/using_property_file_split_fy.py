@@ -3,7 +3,7 @@ from domain.fy_py_template_models import AbstractPropertyModel
 from typing import List
 
 
-property property_mixins: List[AbstractPropertyModel] using mixin_lines:
+property declared_abstract_property_mixins: List[AbstractPropertyModel] using property_file_split:
     with property property_file_split
 """
 
@@ -20,13 +20,13 @@ import abc
 
 
 # fy:start <<<===
-class PropertyMixins_UsingMixinLines_PropertyMixin(
+class DeclaredAbstractPropertyMixins_UsingPropertyFileSplit_PropertyMixin(
     # Property_mixins
     With_PropertyFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):
     @property
-    def _property_mixins(self) -> List[AbstractPropertyModel]:
+    def _declared_abstract_property_mixins(self) -> List[AbstractPropertyModel]:
         # fy:end <<<===
         abstract_property_mixin_regex = re.compile(
             rf"^\s+with\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"

@@ -8,7 +8,7 @@ property parsed_property_fy_py_file: ParsedPropertyFyPyFile using parsed_fy_py_f
     with property post_marker_file_content
     with property fy_py_file_to_parse
     with property property_file_split
-    with property property_mixins
+    with property declared_abstract_property_mixins
 """
 
 import abc
@@ -16,6 +16,9 @@ import abc
 from domain.fy_py_template_models import PropertyTemplateModel
 from domain.parsed_fy_py_file import ParsedPropertyFyPyFile
 from domain.python_entity_name import PythonEntityName
+from mixins.property.declared_abstract_property_mixins.abc_fy import (
+    With_DeclaredAbstractPropertyMixins_PropertyMixin_ABC,
+)
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
 )
@@ -31,9 +34,6 @@ from mixins.property.pre_marker_file_content.abc_fy import (
 from mixins.property.property_file_split.abc_fy import (
     With_PropertyFileSplit_PropertyMixin_ABC,
 )
-from mixins.property.property_mixins.abc_fy import (
-    With_PropertyMixins_PropertyMixin_ABC,
-)
 
 
 # fy:start <<<===
@@ -44,7 +44,7 @@ class ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     With_PostMarkerFileContent_PropertyMixin_ABC,
     With_FyPyFileToParse_PropertyMixin_ABC,
     With_PropertyFileSplit_PropertyMixin_ABC,
-    With_PropertyMixins_PropertyMixin_ABC,
+    With_DeclaredAbstractPropertyMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @property
@@ -67,7 +67,7 @@ class ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 ),
                 property_name=property_name,
                 implementation_name=implementation_name,
-                abstract_property_mixins=self._property_mixins,
+                abstract_property_mixins=self._declared_abstract_property_mixins,
                 property_type=self._property_file_split[3],
                 property_annotation=(
                     "@cached_property" if self._property_file_split[1] else None

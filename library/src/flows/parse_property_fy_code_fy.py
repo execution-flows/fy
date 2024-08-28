@@ -8,7 +8,7 @@ flow ParsePropertyFyCode -> ParsedFyPyFile:
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
     property property_file_split using property_regex
-    property property_mixins using mixin_lines
+    property declared_abstract_property_mixins using property_file_split
     property parsed_property_fy_py_file using parsed_fy_py_file
 """
 
@@ -17,7 +17,9 @@ from typing import Any
 
 from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
-
+from mixins.property.declared_abstract_property_mixins.using_property_file_split_fy import (
+    DeclaredAbstractPropertyMixins_UsingPropertyFileSplit_PropertyMixin,
+)
 from mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,
 )
@@ -36,10 +38,6 @@ from mixins.property.pre_marker_file_content.using_setter import (
 from mixins.property.property_file_split.usign_property_regex_fy import (
     PropertyFileSplit_UsingPropertyRegex_PropertyMixin,
 )
-from mixins.property.property_mixins.using_mixin_lines_fy import (
-    PropertyMixins_UsingMixinLines_PropertyMixin,
-)
-
 
 
 # fy:start <<<===
@@ -50,9 +48,8 @@ class ParsePropertyFyCode_Flow(
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
     PropertyFileSplit_UsingPropertyRegex_PropertyMixin,
-    PropertyMixins_UsingMixinLines_PropertyMixin,
+    DeclaredAbstractPropertyMixins_UsingPropertyFileSplit_PropertyMixin,
     ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin,
-
     # Base
     FlowBase[ParsedFyPyFile],
 ):

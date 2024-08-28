@@ -3,7 +3,7 @@ from domain.fy_py_template_models import AbstractMethodModel
 from typing import List
 
 
-property declared_abstract_method_mixins: List[AbstractMethodModel] using mixin_lines:
+property declared_abstract_method_mixins: List[AbstractMethodModel] using method_file_split:
     with property method_file_split
 """
 
@@ -23,7 +23,7 @@ import abc
 
 
 # fy:start <<<===
-class DeclaredAbstractMethodMixins_UsingMixinLines_PropertyMixin(
+class DeclaredAbstractMethodMixins_UsingMethodFileSplit_PropertyMixin(
     # Property_mixins
     With_MethodFileSplit_PropertyMixin_ABC,
     abc.ABC,

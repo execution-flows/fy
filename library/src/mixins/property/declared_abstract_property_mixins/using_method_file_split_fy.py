@@ -3,7 +3,7 @@ from domain.fy_py_template_models import AbstractPropertyModel
 from typing import List
 
 
-property declared_abstract_property_mixins: List[AbstractPropertyModel] using mixin_lines:
+property declared_abstract_property_mixins: List[AbstractPropertyModel] using method_file_split:
     with property method_file_split
 """
 
@@ -21,7 +21,7 @@ import abc
 
 
 # fy:start <<<===
-class DeclaredAbstractPropertyMixins_UsingMixinLines_PropertyMixin(
+class DeclaredAbstractPropertyMixins_UsingMethodFileSplit_PropertyMixin(
     # Property_mixins
     With_MethodFileSplit_PropertyMixin_ABC,
     abc.ABC,
