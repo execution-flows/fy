@@ -19,13 +19,16 @@ from mixins.property.mixin_lines.abc_fy import (
 )
 
 
+from functools import cached_property
+
+
 # fy:start <<<===
 class MethodMixins_UsingMixinLines_PropertyMixin(
     # Property_mixins
     With_MixinLines_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _method_mixins(self) -> List[AbstractMethodModel]:
         # fy:end <<<===
         abstract_method_mixin_regex = re.compile(

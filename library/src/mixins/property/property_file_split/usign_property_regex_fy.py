@@ -16,13 +16,16 @@ from typing import List
 import abc
 
 
+from functools import cached_property
+
+
 # fy:start <<<===
 class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
     # Property_mixins
     With_FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _property_file_split(self) -> List[str]:
         # fy:end <<<===
         property_regex = re.compile(

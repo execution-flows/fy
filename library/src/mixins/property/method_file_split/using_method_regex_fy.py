@@ -22,13 +22,16 @@ from mixins.property.fy_code.abc_fy import (
 import abc
 
 
+from functools import cached_property
+
+
 # fy:start <<<===
 class MethodFileSplit_UsingMethodRegex_PropertyMixin(
     # Property_mixins
     With_FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _method_file_split(self) -> List[str]:
         # fy:end <<<===
         method_string_split_regex = re.compile(

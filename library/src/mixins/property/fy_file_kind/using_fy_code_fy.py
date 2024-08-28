@@ -23,6 +23,9 @@ import abc
 import re
 
 
+from functools import cached_property
+
+
 # fy:start <<<===
 class FyFileKind_UsingFyCode_PropertyMixin(
     # Property_mixins
@@ -30,7 +33,7 @@ class FyFileKind_UsingFyCode_PropertyMixin(
     With_FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _fy_file_kind(self) -> ParsedFyPyFileKind:
         # fy:end <<<===
         flow_match_regex = re.compile(

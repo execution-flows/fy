@@ -42,6 +42,9 @@ from mixins.property.property_mixins.abc_fy import (
 )
 
 
+from functools import cached_property
+
+
 # fy:start <<<===
 class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
@@ -54,7 +57,7 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     With_MethodMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _parsed_method_fy_py_file(self) -> ParsedMethodFyPyFile:
         # fy:end <<<===
 

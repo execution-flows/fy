@@ -38,6 +38,9 @@ from mixins.property.property_mixins.abc_fy import (
 )
 
 
+from functools import cached_property
+
+
 # fy:start <<<===
 class ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
@@ -49,7 +52,7 @@ class ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     With_PropertyMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
-    @property
+    @cached_property
     def _parsed_property_fy_py_file(self) -> ParsedPropertyFyPyFile:
         # fy:end <<<===
         property_name = PythonEntityName.from_snake_case(self._property_file_split[2])
