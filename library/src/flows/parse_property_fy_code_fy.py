@@ -7,10 +7,15 @@ flow ParsePropertyFyCode -> ParsedFyPyFile:
     property pre_marker_file_content using setter
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
+    property property_file_split using property_regex
 """
 
+import re
+from pathlib import Path
+from typing import Any, List
+
 from base.flow_base import FlowBase
-from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
+from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import PropertyTemplateModel, AbstractPropertyModel
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedPropertyFyPyFile
 from domain.python_entity_name import PythonEntityName
@@ -26,9 +31,9 @@ from mixins.property.post_marker_file_content.using_setter import (
 from mixins.property.pre_marker_file_content.using_setter import (
     PreMarkerFileContent_UsingSetter_PropertyMixin,
 )
-from pathlib import Path
-from typing import Any, List
-import re
+from mixins.property.property_file_split.usign_property_regex_fy import (
+    PropertyFileSplit_UsingPropertyRegex_PropertyMixin,
+)
 
 
 # fy:start <<<===
@@ -38,28 +43,18 @@ class ParsePropertyFyCode_Flow(
     PreMarkerFileContent_UsingSetter_PropertyMixin,
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
+    PropertyFileSplit_UsingPropertyRegex_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
-        property_regex = re.compile(
-            rf"(?P<property_annotation>@cached)?\s*"
-            rf"property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
-            rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*"
-            rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
+        user_imports = self._property_file_split[0]
+        property_name = PythonEntityName.from_snake_case(self._property_file_split[2])
+        property_type = self._property_file_split[3]
+        implementation_name = PythonEntityName.from_snake_case(
+            self._property_file_split[4]
         )
-
-        property_file_split = property_regex.split(self._fy_code)
-
-        assert (
-            len(property_file_split) == 6
-        ), f"Property file split length {len(property_file_split)} is invalid"
-
-        user_imports = property_file_split[0]
-        property_name = PythonEntityName.from_snake_case(property_file_split[2])
-        property_type = property_file_split[3]
-        implementation_name = PythonEntityName.from_snake_case(property_file_split[4])
 
         abstract_properties: List[AbstractPropertyModel] = []
 
@@ -67,9 +62,9 @@ class ParsePropertyFyCode_Flow(
             rf"^\s+with\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
         )
 
-        check_if_cached = property_file_split[1]
+        check_if_cached = self._property_file_split[1]
 
-        mixin_lines = property_file_split[5].split("\n")
+        mixin_lines = self._property_file_split[5].split("\n")
         for mixin_line in mixin_lines:
             if mixin_line.strip() == "":
                 continue
