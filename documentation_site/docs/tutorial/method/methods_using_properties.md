@@ -9,29 +9,38 @@ Let's walk through how you can define a method that leverages a property, focusi
 #### Implementing a Flow
 
 Consider the following _Execution Flows_ setup, where a `greeting` _property_ is defined as a constant and a `greet` _method_ uses this property:
-```py title="mixins/method/greet/using_greeting_fy.py" linenums="1"
-"""fy
-method greet -> None using greeting:
-    with property greeting
-"""
 
-import abc
+=== "fy"
+    ```fy
+    method greet -> None using greeting:
+        with property greeting
+    ```
 
-from mixins.property.greeting.abc_fy import (
-    With_Greeting_PropertyMixin_ABC,
-)
+=== "Python"
 
-
-# fy:start <<<===
-class Greet_UsingGreeting_MethodMixin(
-    # Property Mixins
-    With_Greeting_PropertyMixin_ABC,
-    abc.ABC,
-):
-    def _greet(self) -> None:
-        # fy:end <<<===
-        print(self._greeting)
-```
+    ```py title="mixins/method/greet/using_greeting_fy.py" linenums="1"
+    """fy
+    method greet -> None using greeting:
+        with property greeting
+    """
+    
+    import abc
+    
+    from mixins.property.greeting.abc_fy import (
+        With_Greeting_PropertyMixin_ABC,
+    )
+    
+    
+    # fy:start <<<===
+    class Greet_UsingGreeting_MethodMixin(
+        # Property Mixins
+        With_Greeting_PropertyMixin_ABC,
+        abc.ABC,
+    ):
+        def _greet(self) -> None:
+            # fy:end <<<===
+            print(self._greeting)
+    ```
 
 ### Breakdown
 

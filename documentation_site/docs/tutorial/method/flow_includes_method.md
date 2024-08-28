@@ -4,30 +4,39 @@ In this section, you'll learn how to use methods withing the flow. We'll expand 
 
 ## Syntax
 
-```py title="flows/hello_world_using_method_fy.py" linenums="1"
-"""fy
-flow HelloWorld_UsingMethod -> None:
-    method greet using constant
-"""
+=== "fy"
 
-from base.flow_base import FlowBase
+    """fy
+    flow HelloWorld_UsingMethod -> None:
+        method greet using constant
+    """
 
-from mixins.methods.greet.using_constant_fy import (
-    Greet_UsingConstant_MethodMixin,
-)
+=== "Python"
+    
+    ```py title="flows/hello_world_using_method_fy.py" linenums="1"
+    """fy
+    flow HelloWorld_UsingMethod -> None:
+        method greet using constant
+    """
 
-
-# fy:start <<<===
-class HelloWorld_UsingMethod_Flow(
-    # Method Mixins
-    Greet_UsingConstant_MethodMixin,
-    # Base
-    FlowBase[None],
-):
-    def __call__(self) -> None:
-        # fy:end <<<===
-        self._greet()
-```
+    from base.flow_base import FlowBase
+    
+    from mixins.methods.greet.using_constant_fy import (
+        Greet_UsingConstant_MethodMixin,
+    )
+    
+    
+    # fy:start <<<===
+    class HelloWorld_UsingMethod_Flow(
+        # Method Mixins
+        Greet_UsingConstant_MethodMixin,
+        # Base
+        FlowBase[None],
+    ):
+        def __call__(self) -> None:
+            # fy:end <<<===
+            self._greet()
+    ```
 
 ## Breakdown of Syntax
 

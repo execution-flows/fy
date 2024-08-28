@@ -4,30 +4,39 @@ In this code, the ___fy___ code is used to define a property that requires anoth
 
 ## Syntax
 
-```py title="mixins/property/greeting/using_french_greeting_fy.py" linenums="1"
-"""fy
-property greeting: str using french_greeting:
-    with property french_greeting
-"""
+=== "fy"
 
-import abc
+    ```fy
+    property greeting: str using french_greeting:
+        with property french_greeting
+    ```
 
-from mixins.property.french_greeting.abc_fy import (
-    With_FrenchGreeting_PropertyMixin_ABC,
-)
+=== "Python"
 
+    ```py title="mixins/property/greeting/using_french_greeting_fy.py" linenums="1"
+    """fy
+    property greeting: str using french_greeting:
+        with property french_greeting
+    """
 
-# fy:start <<<===
-class Greeting_UsingFrenchGreeting_PropertyMixin(
-    # Property Mixins
-    With_FrenchGreeting_PropertyMixin_ABC,
-    abc.ABC,
-):
-    @property
-    def _greeting(self) -> str:
-        # fy:end <<<===
-        return self._french_greeting
-```
+    import abc
+    
+    from mixins.property.french_greeting.abc_fy import (
+        With_FrenchGreeting_PropertyMixin_ABC,
+    )
+    
+    
+    # fy:start <<<===
+    class Greeting_UsingFrenchGreeting_PropertyMixin(
+        # Property Mixins
+        With_FrenchGreeting_PropertyMixin_ABC,
+        abc.ABC,
+    ):
+        @cached_property
+        def _greeting(self) -> str:
+            # fy:end <<<===
+            return self._french_greeting
+    ```
 
 What we have accomplished here is that any method or property that requires property greeting is decoupled from `french_greeting` property. They do not need to know anything about `french_greeting` in order to deliver their own functionality that uses property greeting.
 

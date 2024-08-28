@@ -3,31 +3,39 @@
 In the ___fy___ syntax, a _property_ is a class mixin that defines a method annotated with `:::py @property` Python annotation to provide data to the encapsulating flow. Properties can be defined in various ways, depending on how the data is intended to be used or modified. For instance, a property might fetch data from a database or a third-party API, or it could compute data using other properties included in the flow.
 
 ## Syntax
+=== "fy"
 
-```py title="mixins/property/greeting/using_hello_world_fy.py" linenums="1" 
-"""fy
-flow HelloWorld_UsingGreeting -> None:
-    property greeting using hello_world
-"""
+    ```fy
+    flow HelloWorld_UsingGreeting -> None:
+        property greeting using hello_world
+    ```
 
-from base.flow_base import FlowBase
+=== "Python"
 
-from mixins.property.greeting.using_hello_world_fy import (
-    Greeting_UsingHelloWorld_PropertyMixin,
-)
+    ```py title="mixins/property/greeting/using_hello_world_fy.py" linenums="1"
+    """fy
+    flow HelloWorld_UsingGreeting -> None:
+        property greeting using hello_world
+    """
 
-
-# fy:start <<<===
-class HelloWorld_UsingGreeting_Flow(
-    # Property Mixins
-    Greeting_UsingHelloWorld_PropertyMixin,
-    # Base
-    FlowBase[None],
-):
-    def __call__(self) -> None:
-        # fy:end <<<===
-        print(self._greeting)
-```
+    from base.flow_base import FlowBase
+    
+    from mixins.property.greeting.using_hello_world_fy import (
+        Greeting_UsingHelloWorld_PropertyMixin,
+    )
+    
+    
+    # fy:start <<<===
+    class HelloWorld_UsingGreeting_Flow(
+        # Property Mixins
+        Greeting_UsingHelloWorld_PropertyMixin,
+        # Base
+        FlowBase[None],
+    ):
+        def __call__(self) -> None:
+            # fy:end <<<===
+            print(self._greeting)
+    ```
 
 ## Breakdown of Syntax
 
