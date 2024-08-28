@@ -8,7 +8,7 @@ An abstract property in ___fy___ is a property that is declared but not implemen
 
 ### Example
 
-```py title="Abstract Property" linenums="1"
+```py title="mixins/property/greeting/abc_fy.py" linenums="1"
 """fy
 property greeting: str
 """
@@ -44,7 +44,7 @@ class With_Greeting_PropertyMixin_ABC(abc.ABC):
 
 ### Example
 
-```py title="Property" linenums="1"
+```py title="mixins/property/greeting/using_hello_world_fy.py" linenums="1"
 """fy
 property greeting: str using hello_world:
 """
