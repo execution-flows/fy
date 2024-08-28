@@ -51,7 +51,7 @@ class HelloWorld_UsingSetter_Flow(
     # Property Mixins
     Greeting_UsingSetter_PropertyMixin,
     # Base
-    FlowBase[None]
+    FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===

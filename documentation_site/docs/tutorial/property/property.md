@@ -1,6 +1,6 @@
 # What are properties?
 
-`Execution Flow (fy)` properties allow you to define flow attributes that can be accessed in a controlled manner. These properties can either be abstract or implemented returning a constant or computed value.
+_Execution Flows_ ___fy___ properties allow you to define flow attributes that can be accessed in a controlled manner. These properties can either be abstract or implemented returning a constant or computed value.
 
 ## Abstract Property Implementation
 
@@ -111,7 +111,7 @@ class Greeting_UsingHelloWorldList_PropertyMixin:
 
 All properties in _Execution Flows_ are "lazy," meaning they are computed or initialized only when first accessed. This comes from the nature of how _Execution Flows_ are constructed - using property and method mixins. Unless someone calls a property or method, it does not get executed.
 
-## Usage in Execution Flow
+## Usage in Execution Flows
 
 Both abstract properties and properties in _Execution Flows_ are designed to encapsulate data or computations, making managing and accessing the information within your flows easier. Abstract properties enforce consistent implementation across flows, while properties provide a direct way to return constant or computed values.
 
