@@ -14,21 +14,29 @@ An _abstract method_ in ___fy___ is a method that is declared but not implemente
 
 ### Example
 
-```py title="mixins/method/greet/abc_fy.py" linenums="1"
-"""fy
-method greet(greeting: str) -> None
-"""
+=== "fy"
 
-import abc
+    ```fy
+    method greet(greeting: str) -> None
+    ```
 
+=== "Python"
 
-# fy:start <<<===
-class With_Greet_MethodMixin_ABC(abc.ABC):
-    @abc.abstractmethod
-    def _greet(self, greeting: str) -> None:
-        raise NotImplementedError()
-        # fy:end <<<===
-```
+    ```py title="mixins/method/greet/abc_fy.py" linenums="1"
+    """fy
+    method greet(greeting: str) -> None
+    """
+
+    import abc
+    
+    
+    # fy:start <<<===
+    class With_Greet_MethodMixin_ABC(abc.ABC):
+        @abc.abstractmethod
+        def _greet(self, greeting: str) -> None:
+            raise NotImplementedError()
+            # fy:end <<<===
+    ```
 
 ### Breakdown of Syntax
 
@@ -47,18 +55,24 @@ class With_Greet_MethodMixin_ABC(abc.ABC):
 
 ## Method Implementation
 
-```py title="mixins/method/greet/using_hello_world_fy.py" linenums="1"
-"""fy
-method greet(greeting: str) -> None using hello_world:
-"""
+=== "fy"
 
+    ```fy
+    method greet(greeting: str) -> None using hello_world:
+    ```
 
-# fy:start <<<===
-class Greet_UsingHelloWorld_MethodMixin:
-    def _greet(self, greeting: str) -> None:
-        # fy:end <<<===
-        print("Hello World!")
-```
+=== "Python"
+
+    ```py title="mixins/method/greet/using_hello_world_fy.py" linenums="1"
+    """fy
+    method greet(greeting: str) -> None using hello_world:
+    """
+    # fy:start <<<===
+    class Greet_UsingHelloWorld_MethodMixin:
+        def _greet(self, greeting: str) -> None:
+            # fy:end <<<===
+            print("Hello World!")
+    ```
 
 ### Breakdown of Syntax
 

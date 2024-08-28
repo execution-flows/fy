@@ -8,22 +8,30 @@ An abstract property in ___fy___ is a property that is declared but not implemen
 
 ### Example
 
-```py title="mixins/property/greeting/abc_fy.py" linenums="1"
-"""fy
-property greeting: str
-"""
+=== "fy"
 
-import abc
+    ```fy
+    property greeting: str
+    ```
 
+=== "Python"
+    
+    ```py title="mixins/property/greeting/abc_fy.py" linenums="1"
+    """fy
+    property greeting: str
+    """
 
-# fy:start <<<===
-class With_Greeting_PropertyMixin_ABC(abc.ABC):
-    @property
-    @abc.abstractmethod
-    def _greeting(self) -> str:
-        raise NotImplementedError()
-        # fy:end <<<===
-```
+    import abc
+    
+    
+    # fy:start <<<===
+    class With_Greeting_PropertyMixin_ABC(abc.ABC):
+        @property
+        @abc.abstractmethod
+        def _greeting(self) -> str:
+            raise NotImplementedError()
+            # fy:end <<<===
+    ```
 
 ### Breakdown of Syntax
 
@@ -44,20 +52,27 @@ class With_Greeting_PropertyMixin_ABC(abc.ABC):
 
 ### Example
 
-```py title="mixins/property/greeting/using_hello_world_fy.py" linenums="1"
-"""fy
-property greeting: str using hello_world:
-"""
+=== "fy"
 
+    ```fy
+    property greeting: str using hello_world:
+    ```
 
-# fy:start <<<===
-class Greeting_UsingHelloWorld_PropertyMixin:
+=== "Python"
 
-    @property
-    def _greeting(self) -> str:
-        # fy:end <<<===
-        return "Hello, World!"
-```
+    ```py title="mixins/property/greeting/using_hello_world_fy.py" linenums="1"
+    """fy
+    property greeting: str using hello_world:
+    """
+    
+    # fy:start <<<===
+    class Greeting_UsingHelloWorld_PropertyMixin:
+    
+        @cached_property
+        def _greeting(self) -> str:
+            # fy:end <<<===
+            return "Hello, World!"
+    ```
 
 ### Breakdown of Syntax
 
@@ -80,22 +95,29 @@ Cached properties should be used whenever the property is _immutable_ - property
 
 ### Example
 
-```py title="mixins/property/greeting/using_hello_world_list_fy.py" linenums="1" hl_lines="2 11"
-"""fy
-@cached
-property greeting: str using hello_world_list:
-"""
+=== "fy"
 
-from functools import cached_property
+    ```fy
+    property greeting: str using hello_world_list:
+    ```
 
+=== "Python"
 
-# fy:start <<<===
-class Greeting_UsingHelloWorldList_PropertyMixin:
-    @cached_property
-    def _greeting(self) -> str:
-        # fy:end <<<===
-        return "".join(["H", "e", "l", "l", "o", ",", " ", "W", "o", "r", "l", "d", "!"])
-```
+    ```py title="mixins/property/greeting/using_hello_world_list_fy.py" linenums="1" hl_lines="10"
+    """fy
+    property greeting: str using hello_world_list:
+    """
+
+    from functools import cached_property
+    
+    
+    # fy:start <<<===
+    class Greeting_UsingHelloWorldList_PropertyMixin:
+        @cached_property
+        def _greeting(self) -> str:
+            # fy:end <<<===
+            return "".join(["H", "e", "l", "l", "o", ",", " ", "W", "o", "r", "l", "d", "!"])
+    ```
 
 ### Breakdown of Syntax
 1. `:::py @cached`

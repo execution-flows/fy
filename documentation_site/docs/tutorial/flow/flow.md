@@ -6,23 +6,31 @@ The ___fy___ tool enables developers to achieve a high level of code reusability
 defined by flows and mixins. Below is a step-by-step guide to creating a simple "Hello World"
 Python program using the ___fy___ declarative language syntax.
 
-```py title="flows/hello_world_fy.py" linenums="1"
-"""fy
-flow HelloWorld -> None:
-"""
+=== "fy"
+    
+    ```fy
+    flow HelloWorld -> None:
+    ```
 
-from base.flow_base import FlowBase
+=== "Python"
 
+    ```py title="flows/hello_world_fy.py" linenums="1"
+    """fy
+    flow HelloWorld -> None:
+    """
 
-# fy:start <<<===
-class HelloWorld_Flow(
-    # Base
-    FlowBase[None],
-):
-    def __call__(self) -> None:
-        # fy:end <<<===
-        print("Hello, World!")
-```
+    from base.flow_base import FlowBase
+    
+    
+    # fy:start <<<===
+    class HelloWorld_Flow(
+        # Base
+        FlowBase[None],
+    ):
+        def __call__(self) -> None:
+            # fy:end <<<===
+            print("Hello, World!")
+    ```
 
 Each file containing ___fy___ code must end with the `_fy.py` suffix. The ___fy___ tool relies on this suffix to identify the files it needs to process. In large projects, this approach significantly reduces execution time.
 

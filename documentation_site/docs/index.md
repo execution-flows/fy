@@ -41,7 +41,7 @@ That means that we could also write something like:
 greet(datetime.utcnow().isoformat())
 ```
 
-We cannot determine just by looking at the code whether this was intentional or the desired outcome.
+We cannot determine just by looking at the code whether this was an error or intentional.
 
 Here’s an example of a ___fy___ flow with a related method and property that greets the user and returns no value.
 
@@ -53,7 +53,7 @@ Here’s an example of a ___fy___ flow with a related method and property that g
 
 === "fy"
 
-    ```fy linenums="1"
+    ```fy 
     flow HelloWorld -> None:
         property greeting using hello_world
         method greet using greeting
@@ -95,7 +95,7 @@ Here’s an example of a ___fy___ flow with a related method and property that g
 
 === "fy"
 
-    ```fy linenums="1"
+    ```fy 
     property greeting: str
     ```
 
@@ -121,7 +121,7 @@ Here’s an example of a ___fy___ flow with a related method and property that g
 
 === "fy"
 
-    ```fy linenums="1"
+    ```fy 
     property greeting: str using hello_world:
     ```
 
@@ -146,7 +146,7 @@ Here’s an example of a ___fy___ flow with a related method and property that g
 
 === "fy"
 
-    ```fy linenums="1"
+    ```fy 
     method greet -> None using greeting:
         with property greeting
     ```
@@ -189,7 +189,7 @@ While this is more code than we would typically need in traditional programming,
 
 === "fy"
 
-    ```fy linenums="1"
+    ```fy 
     property greeting: str using utc_now_iso_format:
     ```
 
@@ -215,7 +215,7 @@ Then the flow would look like:
 
 === "fy"
 
-    ```fy linenums="1"
+    ```fy 
     flow HelloWorld -> None:
         property greeting using utc_now_iso_format
         method greet using greeting

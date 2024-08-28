@@ -8,6 +8,7 @@ theme:
       - navigation.footer
       - navigation.top
       - content.code.copy
+      - content.code.select
     icon:
         repo: fontawesome/brands/github
     logo: ef-logo.svg
