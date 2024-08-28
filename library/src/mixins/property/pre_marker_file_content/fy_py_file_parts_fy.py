@@ -3,13 +3,12 @@ property pre_marker_file_content: str using fy_py_file_parts:
     property fy_py_file_parts
 """
 
+import abc
+from functools import cached_property
+
 from mixins.property.fy_py_file_parts.abc_fy import (
     With_FyPyFileParts_PropertyMixin_ABC,
 )
-import abc
-
-
-from functools import cached_property
 
 
 # fy:start <<<===

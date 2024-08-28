@@ -9,6 +9,7 @@ property method_mixins: List[AbstractMethodModel] using mixin_lines:
 
 import abc
 import re
+from functools import cached_property
 from typing import List
 
 from constants import FY_ENTITY_REGEX_STRING
@@ -17,9 +18,6 @@ from domain.python_entity_name import PythonEntityName
 from mixins.property.mixin_lines.abc_fy import (
     With_MixinLines_PropertyMixin_ABC,
 )
-
-
-from functools import cached_property
 
 
 # fy:start <<<===

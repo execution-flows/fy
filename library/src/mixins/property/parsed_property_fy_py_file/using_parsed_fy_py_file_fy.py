@@ -12,6 +12,7 @@ property parsed_property_fy_py_file: ParsedPropertyFyPyFile using parsed_fy_py_f
 """
 
 import abc
+from functools import cached_property
 
 from domain.fy_py_template_models import PropertyTemplateModel
 from domain.parsed_fy_py_file import ParsedPropertyFyPyFile
@@ -31,14 +32,9 @@ from mixins.property.pre_marker_file_content.abc_fy import (
 from mixins.property.property_file_split.abc_fy import (
     With_PropertyFileSplit_PropertyMixin_ABC,
 )
-
-
 from mixins.property.property_mixins.abc_fy import (
     With_PropertyMixins_PropertyMixin_ABC,
 )
-
-
-from functools import cached_property
 
 
 # fy:start <<<===

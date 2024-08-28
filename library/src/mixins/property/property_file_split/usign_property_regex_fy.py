@@ -6,17 +6,15 @@ property property_file_split: List[str] using property_regex:
     property fy_code
 """
 
+import abc
 import re
+from functools import cached_property
+from typing import List
 
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
 )
-from typing import List
-import abc
-
-
-from functools import cached_property
 
 
 # fy:start <<<===

@@ -7,21 +7,17 @@ property property_mixins: List[AbstractPropertyModel] using mixin_lines:
     property mixin_lines
 """
 
+import abc
 import re
+from functools import cached_property
 from typing import List
 
 from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import AbstractPropertyModel
 from domain.python_entity_name import PythonEntityName
-
-
 from mixins.property.mixin_lines.abc_fy import (
     With_MixinLines_PropertyMixin_ABC,
 )
-import abc
-
-
-from functools import cached_property
 
 
 # fy:start <<<===
