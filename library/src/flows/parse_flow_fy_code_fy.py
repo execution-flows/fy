@@ -69,7 +69,7 @@ class ParseFlowFyCode_Flow(
 
         properties: List[PropertyMixinModel] = []
         methods: List[MethodMixinModel] = []
-        for mixin_line in self._flow_file_split.mixin_split:
+        for mixin_line in self._flow_file_split.mixin_split.split("\n"):
             if mixin_line.strip() == "":
                 continue
 
