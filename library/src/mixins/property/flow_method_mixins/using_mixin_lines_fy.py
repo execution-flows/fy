@@ -15,8 +15,6 @@ from typing import List
 from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import MethodMixinModel
 from domain.python_entity_name import PythonEntityName
-
-
 from mixins.property.mixin_lines.abc_fy import (
     With_MixinLines_PropertyMixin_ABC,
 )
