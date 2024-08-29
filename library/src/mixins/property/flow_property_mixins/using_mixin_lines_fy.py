@@ -3,8 +3,8 @@ from domain.fy_py_template_models import PropertyMixinModel
 from typing import List
 
 
-property property_mixins: List[PropertyMixinModel] using flow_mixin_lines:
-    property flow_mixin_lines
+property flow_property_mixins: List[PropertyMixinModel] using mixin_lines:
+    property mixin_lines
 """
 
 import abc
@@ -15,19 +15,21 @@ from typing import List
 from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import PropertyMixinModel
 from domain.python_entity_name import PythonEntityName
-from mixins.property.flow_mixin_lines.abc_fy import (
-    With_FlowMixinLines_PropertyMixin_ABC,
+
+
+from mixins.property.mixin_lines.abc_fy import (
+    With_MixinLines_PropertyMixin_ABC,
 )
 
 
 # fy:start ===>>>
-class PropertyMixins_UsingFlowMixinLines_PropertyMixin(
+class FlowPropertyMixins_UsingMixinLines_PropertyMixin(
     # Property_mixins
-    With_FlowMixinLines_PropertyMixin_ABC,
+    With_MixinLines_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
-    def _property_mixins(self) -> List[PropertyMixinModel]:
+    def _flow_property_mixins(self) -> List[PropertyMixinModel]:
         # fy:end <<<===
         flow_property_regex = re.compile(
             rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
@@ -36,7 +38,7 @@ class PropertyMixins_UsingFlowMixinLines_PropertyMixin(
 
         properties: List[PropertyMixinModel] = []
 
-        for mixin_line in self._flow_mixin_lines:
+        for mixin_line in self._mixin_lines.split("\n"):
             if mixin_line.strip() == "":
                 continue
 

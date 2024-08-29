@@ -8,17 +8,24 @@ property parsed_flow_fy_py_file: ParsedFlowFyPyFile using parsed_fy_py_file:
     property post_marker_file_content
     property fy_py_file_to_parse
     property flow_file_split
-    property property_mixins
-    property method_mixins
+    property flow_property_mixins
+    property flow_method_mixins
 """
+
+import abc
+from functools import cached_property
 
 from domain.fy_py_template_models import FlowTemplateModel
 from domain.parsed_fy_py_file import ParsedFlowFyPyFile
-from functools import cached_property
-
 from domain.python_entity_name import PythonEntityName
 from mixins.property.flow_file_split.abc_fy import (
     With_FlowFileSplit_PropertyMixin_ABC,
+)
+from mixins.property.flow_method_mixins.abc_fy import (
+    With_FlowMethodMixins_PropertyMixin_ABC,
+)
+from mixins.property.flow_property_mixins.abc_fy import (
+    With_FlowPropertyMixins_PropertyMixin_ABC,
 )
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
@@ -26,19 +33,12 @@ from mixins.property.fy_code.abc_fy import (
 from mixins.property.fy_py_file_to_parse.abc_fy import (
     With_FyPyFileToParse_PropertyMixin_ABC,
 )
-from mixins.property.method_mixins.abc_fy import (
-    With_MethodMixins_PropertyMixin_ABC,
-)
 from mixins.property.post_marker_file_content.abc_fy import (
     With_PostMarkerFileContent_PropertyMixin_ABC,
 )
 from mixins.property.pre_marker_file_content.abc_fy import (
     With_PreMarkerFileContent_PropertyMixin_ABC,
 )
-from mixins.property.property_mixins.abc_fy import (
-    With_PropertyMixins_PropertyMixin_ABC,
-)
-import abc
 
 
 # fy:start ===>>>
@@ -49,8 +49,8 @@ class ParsedFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     With_PostMarkerFileContent_PropertyMixin_ABC,
     With_FyPyFileToParse_PropertyMixin_ABC,
     With_FlowFileSplit_PropertyMixin_ABC,
-    With_PropertyMixins_PropertyMixin_ABC,
-    With_MethodMixins_PropertyMixin_ABC,
+    With_FlowPropertyMixins_PropertyMixin_ABC,
+    With_FlowMethodMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
@@ -71,8 +71,8 @@ class ParsedFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 ),
                 flow_name=flow_name,
                 return_type=self._flow_file_split.return_type,
-                properties=self._property_mixins,
-                methods=self._method_mixins,
+                properties=self._flow_property_mixins,
+                methods=self._flow_method_mixins,
             ),
         )
 
