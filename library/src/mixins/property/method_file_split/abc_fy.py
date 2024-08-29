@@ -2,7 +2,6 @@
 property method_file_split: MethodFileSplitModel
 """
 
-from typing import List
 import abc
 
 from pydantic import BaseModel
@@ -14,7 +13,7 @@ class MethodFileSplitModel(BaseModel):
     implementation_name: str
     arguments: str | None
     return_type: str
-    mixin_split: List[str]
+    mixin_split: str
 
 
 # fy:start ===>>>

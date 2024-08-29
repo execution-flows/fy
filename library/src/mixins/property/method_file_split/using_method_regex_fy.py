@@ -45,7 +45,7 @@ class MethodFileSplit_UsingMethodRegex_PropertyMixin(
             implementation_name=method_file_split[5],
             arguments=method_file_split[3],
             return_type=method_file_split[4],
-            mixin_split=method_file_split[6].split("\n"),
+            mixin_split=method_file_split[6],
         )
 
         return method_file_split_model
