@@ -8,7 +8,7 @@ from functools import cached_property
 from pathlib import Path
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class Greeting_UsingConstant_PropertyMixin:
     @cached_property
     def _greeting(self) -> Path:

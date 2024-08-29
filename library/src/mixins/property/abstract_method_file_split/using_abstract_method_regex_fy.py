@@ -23,7 +23,7 @@ import abc
 from functools import cached_property
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
     # Property_mixins
     With_FyCode_PropertyMixin_ABC,

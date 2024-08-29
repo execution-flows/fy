@@ -25,7 +25,7 @@ from mixins.property.fy_py_file_to_parse.abc_fy import (
 )
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class FyFileKind_UsingFyCode_PropertyMixin(
     # Property_mixins
     With_FyPyFileToParse_PropertyMixin_ABC,

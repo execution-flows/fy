@@ -22,7 +22,7 @@ Python program using the ___fy___ declarative language syntax.
     from base.flow_base import FlowBase
     
     
-    # fy:start <<<===
+    # fy:start ===>>>
     class HelloWorld_Flow(
         # Base
         FlowBase[None],

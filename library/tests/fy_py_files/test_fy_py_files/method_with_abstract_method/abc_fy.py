@@ -7,7 +7,7 @@ import abc
 import datetime
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class With_Encrypt_MethodMixin_ABC(abc.ABC):
     @abc.abstractmethod
     def _encrypt(self, message: str) -> datetime.datetime:

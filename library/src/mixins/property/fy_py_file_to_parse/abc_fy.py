@@ -9,7 +9,7 @@ from pathlib import Path
 import abc
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class With_FyPyFileToParse_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod

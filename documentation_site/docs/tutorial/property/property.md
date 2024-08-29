@@ -24,7 +24,7 @@ An abstract property in ___fy___ is a property that is declared but not implemen
     import abc
     
     
-    # fy:start <<<===
+    # fy:start ===>>>
     class With_Greeting_PropertyMixin_ABC(abc.ABC):
         @property
         @abc.abstractmethod
@@ -67,7 +67,7 @@ An abstract property in ___fy___ is a property that is declared but not implemen
     property greeting: str using hello_world:
     """
     
-    # fy:start <<<===
+    # fy:start ===>>>
     class Greeting_UsingHelloWorld_PropertyMixin:
     
         @cached_property

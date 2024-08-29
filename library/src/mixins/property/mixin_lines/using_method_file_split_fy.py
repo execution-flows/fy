@@ -15,7 +15,7 @@ from mixins.property.method_file_split.abc_fy import (
 )
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class MixinLines_UsingMethodFileSplit_PropertyMixin(
     # Property_mixins
     With_MethodFileSplit_PropertyMixin_ABC,

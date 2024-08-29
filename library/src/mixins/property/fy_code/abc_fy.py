@@ -5,7 +5,7 @@ property fy_code: str
 import abc
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class With_FyCode_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod

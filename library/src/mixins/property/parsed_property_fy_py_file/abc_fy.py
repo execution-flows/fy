@@ -9,7 +9,7 @@ from domain.parsed_fy_py_file import ParsedPropertyFyPyFile
 import abc
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class With_ParsedPropertyFyPyFile_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod

@@ -40,7 +40,7 @@ from pathlib import Path
 from typing import Any
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class ParseFyPyFile_Flow(
     # Property Mixins
     FyPyFileToParse_UsingSetter_PropertyMixin,
