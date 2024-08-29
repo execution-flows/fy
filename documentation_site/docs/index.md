@@ -25,7 +25,7 @@ The strength of the _Execution Flows_ paradigm comes from two key principles:
 
 _Static referencing_ differs from _static typing_ in that it requires not only the type of the entity to match but also its identifier.
 
-In traditional _static typing_ environment values are matched by its type. In the following example a method `greet` accepts any string.
+In traditional _static typing_ environment values are matched by its type. In the following example a function `greet` accepts any string.
 
 ```python
 def hello_world() -> str:
@@ -46,6 +46,8 @@ greet(datetime.utcnow().isoformat())
 We cannot determine just by looking at the code whether this was an error or intentional.
 
 Here’s an example of a ___fy___ flow with a related method and property that greets the user and returns no value.
+
+## An Example
 
 !!! info
  
@@ -185,7 +187,7 @@ Here’s an example of a ___fy___ flow with a related method and property that g
 3. The user begins by writing the ___fy___ block, then runs the tool to generate the boilerplate code, and finally adds custom logic where necessary.
 
 
-### Comparison with traditional programming ways
+## Comparison with traditional programming ways
 
 While this is more code than we would typically need in traditional programming, there is one key difference. To use `datetime.utcnow().isoformat()` as a `greeting` value, we need to define a property `greeting` that utilizes this value.
 
@@ -256,6 +258,15 @@ Then the flow would look like:
     ```
 
 We can explicitly see that usage of `datetime.utcnow().isoformat()` is not an accident or error, but is intentional. 
+
+## A couple of non-obvious benefits
+
+A flow class cannot be instantiated if it is missing a property or method implementation from the mixin list. Tools like `mypy` or `PyCharm` will report classes that are missing an abstract method or property implementation. The Python interpreter raises an exception if you try to instantiate such a class. These tools also identify which abstract method or property is missing its implementation, making it easy to fix the issue.
+
+With this feature you get two benefits:
+
+1. Issues are detected during static code analysis, which is much better than waiting to execute the code to discover the problem.
+2. You do not need to worry if you forgot to include a property or mixin implementation. The tools will let you know.
 
 ## Summary
 
