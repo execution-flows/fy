@@ -18,7 +18,7 @@ PYTHON_MULTI_ENTITY_REGEX_STRING = (
     rf"{PYTHON_ENTITY_CHAR_REGEX_STRING}[\w.\[\]\s\|\,]*{PYTHON_ENTITY_CHAR_REGEX_STRING}"
 )
 
-FY_START_MARKER = "# fy:start <<<==="
+FY_START_MARKER = "# fy:start ===>>>"
 
 FY_END_MARKER = f"{' '*8}# fy:end <<<==="
 

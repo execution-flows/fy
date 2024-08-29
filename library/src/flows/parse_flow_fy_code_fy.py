@@ -35,7 +35,7 @@ from typing import Any, List
 import re
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class ParseFlowFyCode_Flow(
     # Property Mixins
     FyCode_UsingSetter_PropertyMixin,

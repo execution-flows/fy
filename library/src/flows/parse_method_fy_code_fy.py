@@ -50,7 +50,7 @@ from mixins.property.property_mixins.using_mixin_lines_fy import (
 )
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class ParseMethodFyCode_Flow(
     # Property Mixins
     FyCode_UsingSetter_PropertyMixin,

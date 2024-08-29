@@ -1,4 +1,4 @@
-# fy:start <<<===
+# fy:start ===>>>
 class PostMarkerFileContent_UsingSetter_PropertyMixin:
     @property
     def _post_marker_file_content(self) -> str:

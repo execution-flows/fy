@@ -38,7 +38,7 @@ from mixins.property.pre_marker_file_content.using_setter import (
 )
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class ParseAbstractPropertyFyCode_Flow(
     # Property Mixins
     FyCode_UsingSetter_PropertyMixin,

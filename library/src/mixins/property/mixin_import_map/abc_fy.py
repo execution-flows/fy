@@ -9,7 +9,7 @@ from typing import Dict
 import abc
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class With_MixinImportMap_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod

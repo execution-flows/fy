@@ -11,7 +11,7 @@ from mixins.property.fy_py_file_parts.abc_fy import (
 )
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class PostMarkerFileContent_UsingFyPyFileParts_PropertyMixin(
     # Property_mixins
     With_FyPyFileParts_PropertyMixin_ABC,

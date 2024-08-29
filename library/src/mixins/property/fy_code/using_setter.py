@@ -1,4 +1,4 @@
-# fy:start <<<===
+# fy:start ===>>>
 class FyCode_UsingSetter_PropertyMixin:
     @property
     def _fy_code(self) -> str:

@@ -22,7 +22,7 @@ import abc
 import re
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
     # Property_mixins
     With_FyPyFileToParse_PropertyMixin_ABC,

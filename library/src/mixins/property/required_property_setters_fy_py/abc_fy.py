@@ -10,7 +10,7 @@ from typing import List
 import abc
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class With_RequiredPropertySettersFyPy_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod

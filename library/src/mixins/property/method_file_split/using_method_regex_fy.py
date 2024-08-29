@@ -21,7 +21,7 @@ from mixins.property.fy_code.abc_fy import (
 )
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class MethodFileSplit_UsingMethodRegex_PropertyMixin(
     # Property_mixins
     With_FyCode_PropertyMixin_ABC,
