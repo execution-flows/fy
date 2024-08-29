@@ -6,30 +6,18 @@ on:
     branches:
       - main
 
-env:
-  PYTHON_VERSION: "3.10"
-
 jobs:
-  test:
-    name: Test
-    runs-on: ubuntu-latest
+  test-3_10:
+    uses: ./.github/workflows/python_version_tests.yaml
+    with:
+      PYTHON_VERSION: "3.10"
 
-    steps:
-      - uses: actions/checkout@v3
+  test-3_11:
+    uses: ./.github/workflows/python_version_tests.yaml
+    with:
+      PYTHON_VERSION: "3.11"
 
-      - name: Install Poetry
-        run: pipx install poetry
-        shell: bash
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Install dependencies
-        working-directory: library
-        shell: bash
-        run: poetry install --with dev
-
-      - name: Test
-        run: poetry run python -m unittest
-        working-directory: library/tests
+  test-3_12:
+    uses: ./.github/workflows/python_version_tests.yaml
+    with:
+      PYTHON_VERSION: "3.12"
