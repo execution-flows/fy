@@ -37,6 +37,8 @@ Each file containing ___fy___ code must end with the `_fy.py` suffix. The ___fy_
 ##  Breakdown of Syntax
 1. `:::py flow HelloWorld -> None:` 
     - This line declares a new flow, which is essentially a Python class. The name `HelloWorld` is the identifier for this flow.
+    !!! info
+        All flow names should be written in [PascalCase](https://www.theserverside.com/definition/Pascal-case)
     - `-> None` specifies the return type of the flow, which in this case is `None.`
 2. Code Generation:
     - Everything between `:::py # fy:start` and `:::py # fy:end` is always regenerated.
