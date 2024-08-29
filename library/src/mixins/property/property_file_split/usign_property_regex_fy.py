@@ -1,20 +1,18 @@
 """fy
-from typing import List
-
-
-property property_file_split: List[str] using property_regex:
+property property_file_split: PropertyFileSplit using property_regex:
     property fy_code
 """
 
 import abc
 import re
 from functools import cached_property
-from typing import List
 
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
+from domain.python_entity_name import PythonEntityName
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
 )
+from mixins.property.property_file_split.abc_fy import PropertyFileSplitModel
 
 
 # fy:start ===>>>
@@ -24,7 +22,7 @@ class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
     abc.ABC,
 ):
     @cached_property
-    def _property_file_split(self) -> List[str]:
+    def _property_file_split(self) -> PropertyFileSplitModel:
         # fy:end <<<===
         property_regex = re.compile(
             rf"(?P<property_annotation>@cached)?\s*"
@@ -39,4 +37,17 @@ class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
             len(property_file_split) == 6
         ), f"Property file split length {len(property_file_split)} is invalid"
 
-        return property_file_split
+        property_name = PythonEntityName.from_snake_case(property_file_split[2])
+        implementation_name = PythonEntityName.from_snake_case(property_file_split[4])
+        property_file_split_model = PropertyFileSplitModel(
+            user_imports=property_file_split[0],
+            python_class_name=PythonEntityName.from_pascal_case(
+                f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"
+            ),
+            property_name=property_name,
+            implementation_name=implementation_name,
+            property_type=property_file_split[3],
+            mixin_split=property_file_split[5].split("\n"),
+        )
+
+        return property_file_split_model

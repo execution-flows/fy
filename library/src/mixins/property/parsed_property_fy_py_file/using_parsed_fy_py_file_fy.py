@@ -16,7 +16,6 @@ from functools import cached_property
 
 from domain.fy_py_template_models import PropertyTemplateModel
 from domain.parsed_fy_py_file import ParsedPropertyFyPyFile
-from domain.python_entity_name import PythonEntityName
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
 )
@@ -51,25 +50,18 @@ class ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     @cached_property
     def _parsed_property_fy_py_file(self) -> ParsedPropertyFyPyFile:
         # fy:end <<<===
-        property_name = PythonEntityName.from_snake_case(self._property_file_split[2])
-        implementation_name = PythonEntityName.from_snake_case(
-            self._property_file_split[4]
-        )
-
         parsed_fy_py_file = ParsedPropertyFyPyFile(
             fy_code=self._fy_code,
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
-            user_imports=self._property_file_split[0],
+            user_imports=self._property_file_split.user_imports,
             template_model=PropertyTemplateModel(
-                python_class_name=PythonEntityName.from_pascal_case(
-                    f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"
-                ),
-                property_name=property_name,
-                implementation_name=implementation_name,
+                python_class_name=self._property_file_split.python_class_name,
+                property_name=self._property_file_split.property_name,
+                implementation_name=self._property_file_split.implementation_name,
                 abstract_property_mixins=self._property_mixins,
-                property_type=self._property_file_split[3],
+                property_type=self._property_file_split.property_type,
             ),
         )
 
