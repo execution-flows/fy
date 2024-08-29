@@ -42,8 +42,9 @@ poetry install
 ### 3. Run the `local.fy.sh` to execute the tool
 
 In the project root folder
+
 ```shell
-./local.fy.sh <path to folder you want to transform>
+./local.fy.sh
 ```
 
 **NOTE:** `local.fy.sh` is configured with `/library/src` as a project root folder, so only files in that folder can be processed with it. 
@@ -74,6 +75,7 @@ The main principle of `fy` tool development is Test-Driven-Development. The leve
 The integration test in this project means writing the `fy` code, and comparing the generated Python code with the expected Python code.
 
 To run the tests from `poetry shell` use the following command:
+
 ```shell
 poetry run python -m unittest
 ```
@@ -110,4 +112,4 @@ We use `pre-commit` to run a bunch of checks before committing to git, if you wa
 pre-commit run -a
 ```
 
-If you get `mypy` warnings regarding missing packages, it's usually because dependencies need to be also added to `.pre-commit-config.yaml` (annoying, I know, but it seems to be the way to go for now)
+If you get `mypy` warnings regarding missing packages, it's usually because dependencies need to be also added to `.pre-commit-config.yaml` (annoying, I know, but it seems to be the way to go).
