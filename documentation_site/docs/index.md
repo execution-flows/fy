@@ -113,7 +113,7 @@ Here’s an example of a ___fy___ flow with a related method and property that g
     
     
     # fy:start ===>>>
-    class With_Greeting_PropertyMixin_ABC(abc.ABC):
+    class Greeting_PropertyMixin_ABC(abc.ABC):
         @property
         @abc.abstractmethod
         def _greeting(self) -> str:
@@ -165,14 +165,14 @@ Here’s an example of a ___fy___ flow with a related method and property that g
     import abc
     
     from mixins.property.greeting.abc_fy import (
-        With_Greeting_PropertyMixin_ABC,
+        Greeting_PropertyMixin_ABC,
     )
     
     
     # fy:start ===>>>
     class Greet_UsingGreeting_MethodMixin(
         # Property Mixins
-        With_Greeting_PropertyMixin_ABC,
+        Greeting_PropertyMixin_ABC,
         abc.ABC,
     ):
         def _greet(self) -> None:

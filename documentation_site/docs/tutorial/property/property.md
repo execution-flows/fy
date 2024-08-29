@@ -25,7 +25,7 @@ An abstract property in ___fy___ is a property that is declared but not implemen
     
     
     # fy:start ===>>>
-    class With_Greeting_PropertyMixin_ABC(abc.ABC):
+    class Greeting_PropertyMixin_ABC(abc.ABC):
         @property
         @abc.abstractmethod
         def _greeting(self) -> str:
@@ -43,7 +43,7 @@ An abstract property in ___fy___ is a property that is declared but not implemen
 2. Code Generation:
     - Everything between `:::py # fy:start` and `:::py # fy:end` is always regenerated.
     - The `import abc` statement is automatically added once at the top of the file. When the ___fy___ tool detects this import in the code, it skips adding it again to avoid disrupting the import order.
-    - The generated code includes the class definition `:::py With_Greeting_PropertyMixin_ABC`.
+    - The generated code includes the class definition `:::py Greeting_PropertyMixin_ABC`.
     - The `:::py _greeting` property is defined as an abstract property, requiring property implementations to implement this property, and encapsulating flows to include the implementation.
     - This declaration enables other methods and properties to specify their dependency to an implementation of this property.
 3. User Input:

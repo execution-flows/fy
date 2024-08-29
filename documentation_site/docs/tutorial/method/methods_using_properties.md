@@ -27,14 +27,14 @@ Consider the following _Execution Flows_ setup, where a `greeting` _property_ is
     import abc
     
     from mixins.property.greeting.abc_fy import (
-        With_Greeting_PropertyMixin_ABC,
+        Greeting_PropertyMixin_ABC,
     )
     
     
     # fy:start ===>>>
     class Greet_UsingGreeting_MethodMixin(
         # Property Mixins
-        With_Greeting_PropertyMixin_ABC,
+        Greeting_PropertyMixin_ABC,
         abc.ABC,
     ):
         def _greet(self) -> None:
@@ -52,9 +52,9 @@ Consider the following _Execution Flows_ setup, where a `greeting` _property_ is
     - **Property Usage:** Specifies that the method will use the `:::py greeting` property in its implementation.
 3. Code Generation:
     - **Automatic Code Generation:** The ___fy___ tool generates code between `:::py # fy:start` and `:::py # fy:end` including the class definition and the method declaration. 
-    - **Imports:** Includes necessary imports, such as `:::py With_Greeting_PropertyMixin_ABC`, which contains the `:::py greeting` property, and `:::py abc.ABC` for abstract base class functionality.
+    - **Imports:** Includes necessary imports, such as `:::py Greeting_PropertyMixin_ABC`, which contains the `:::py greeting` property, and `:::py abc.ABC` for abstract base class functionality.
 4. Class `:::py Greet_UsingGreeting_MethodMixin` 
-    - **Base Class:** Inherits from `:::py With_Greeting_PropertyMixin_ABC` and `:::py abc.ABC`. This setup ensures that the class will have access to the `greeting` property implementation. 
+    - **Base Class:** Inherits from `:::py Greeting_PropertyMixin_ABC` and `:::py abc.ABC`. This setup ensures that the class will have access to the `greeting` property implementation. 
     - **Method Implementation:** The `:::py _greet` method is defined to print the value of the `:::py _greeting` property, demonstrating how the method utilizes the property.
 
 ### Summary
