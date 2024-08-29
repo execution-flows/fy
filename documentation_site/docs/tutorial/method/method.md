@@ -43,7 +43,7 @@ An _abstract method_ in ___fy___ is a method that is declared but not implemente
 1. `:::py method greet(greeting: str) -> None:`
     - This line declares a new abstract method within the flow, where `greet` is the method name.
     !!! info 
-        All property names should be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case)
+        All property names have to be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case)
     - `:::py greeting: str` specifies the method's input parameter, which is a string.
     - `:::py -> None` specifies the return type of the method, which in this case is an `None`.
     - Using an abstract declaration other methods can specify their dependency to this method.

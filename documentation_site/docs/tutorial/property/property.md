@@ -38,7 +38,7 @@ An abstract property in ___fy___ is a property that is declared but not implemen
 1. `:::py property greeting: str`
     - This line declares a new abstract property. The property name is `:::py greeting`, and its type is `:::py str` (string).
     !!! info 
-        All property names should be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case)
+        All property names have to be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case)
     - This declaration enables other properties and methods to specify their dependency to this property.
 2. Code Generation:
     - Everything between `:::py # fy:start` and `:::py # fy:end` is always regenerated.
