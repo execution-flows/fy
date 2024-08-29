@@ -31,7 +31,7 @@ An _abstract method_ in ___fy___ is a method that is declared but not implemente
     
     
     # fy:start ===>>>
-    class With_Greet_MethodMixin_ABC(abc.ABC):
+    class Greet_MethodMixin_ABC(abc.ABC):
         @abc.abstractmethod
         def _greet(self, greeting: str) -> None:
             raise NotImplementedError()
@@ -50,7 +50,7 @@ An _abstract method_ in ___fy___ is a method that is declared but not implemente
 2. Code Generation:
     - Everything between `:::py # fy:start` and `:::py # fy:end`.
     - The `import abc` statement is automatically added once at the top of the file. When the ___fy___ tool detects this import in the code, it skips adding it again to avoid disrupting the import order.
-    - The generated code includes the creation of an abstract base class (ABC) mixin, `:::py With_Greet_MethodMixin_ABC`.
+    - The generated code includes the creation of an abstract base class (ABC) mixin, `:::py Greet_MethodMixin_ABC`.
     - The `_greet` method is defined as an abstract method, meaning any subclass must implement this method.
 3. User Input:
     - The only code the user needs to write is the method declaration within the `"""fy` block. The ___fy___ tool then generates the boilerplate abstract method code.

@@ -58,7 +58,7 @@ class ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             user_imports=self._abstract_method_file_split[0],
             template_model=AbstractMethodTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
-                    f"With_{abstract_method_name.pascal_case}_MethodMixin_ABC"
+                    f"{abstract_method_name.pascal_case}_MethodMixin_ABC"
                 ),
                 abstract_method_name=abstract_method_name,
                 arguments=self._abstract_method_file_split[3],

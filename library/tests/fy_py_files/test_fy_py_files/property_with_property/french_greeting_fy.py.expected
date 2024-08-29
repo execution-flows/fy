@@ -5,7 +5,7 @@ property greeting: str using french_greeting:
 
 from functools import cached_property
 from fy_py_files.test_fy_py_files.property_with_property.abc_fy import (
-    With_FrenchGreeting_PropertyMixin_ABC,
+    FrenchGreeting_PropertyMixin_ABC,
 )
 import abc
 
@@ -13,7 +13,7 @@ import abc
 # fy:start ===>>>
 class Greeting_UsingFrenchGreeting_PropertyMixin(
     # Property_mixins
-    With_FrenchGreeting_PropertyMixin_ABC,
+    FrenchGreeting_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

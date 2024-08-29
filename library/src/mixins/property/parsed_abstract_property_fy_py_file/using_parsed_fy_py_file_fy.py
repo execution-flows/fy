@@ -58,7 +58,7 @@ class ParsedAbstractPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             user_imports=self._abstract_property_file_split[0],
             template_model=AbstractPropertyTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
-                    f"With_{abstract_property_name.pascal_case}_PropertyMixin_ABC"
+                    f"{abstract_property_name.pascal_case}_PropertyMixin_ABC"
                 ),
                 abstract_property_name=abstract_property_name,
                 property_type=self._abstract_property_file_split[2],
