@@ -35,7 +35,7 @@ class MethodMixins_UsingMixinLines_PropertyMixin(
 
         abstract_methods: List[AbstractMethodModel] = []
 
-        for mixin_line in self._mixin_lines.split("\n"):
+        for mixin_line in self._mixin_lines:
             if mixin_line.strip() == "":
                 continue
 

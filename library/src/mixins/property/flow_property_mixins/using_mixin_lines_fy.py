@@ -36,7 +36,7 @@ class FlowPropertyMixins_UsingMixinLines_PropertyMixin(
 
         properties: List[PropertyMixinModel] = []
 
-        for mixin_line in self._mixin_lines.split("\n"):
+        for mixin_line in self._mixin_lines:
             if mixin_line.strip() == "":
                 continue
 
