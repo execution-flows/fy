@@ -24,7 +24,7 @@ poetry install
 !!! info
     The ___fy___ tool also supports Python 3.11 and 3.12. If you do not have Python 3.10 installed, change `poetry env use` to a version that you have installed.
 
-### 3. Run the fy.sh Script
+### 3. Run the `fy.sh` Script
 
 Use your project's source root directory as a working directory and run the `fy/fy.sh` script.
 

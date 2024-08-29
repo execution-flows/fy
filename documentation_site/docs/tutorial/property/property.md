@@ -87,47 +87,9 @@ An abstract property in ___fy___ is a property that is declared but not implemen
     - Run the ___fy___ tool to generate the boilerplate code.
     - Write the code that implements the property - `:::py return "Hello, World!"`.
 
-## Cached Properties
+## Properties are Cached
 
-Properties can also be defined as "cached," meaning they are computed only once when first accessed. Any subsequent access reads the cached value from the first invocation. This can be useful for properties that are expensive to compute and should be cached for efficiency.
-
-Cached properties should be used whenever the property is _immutable_ - property does not change value during the code execution.
-
-### Example
-
-=== "fy"
-
-    ```fy
-    property greeting: str using hello_world_list:
-    ```
-
-=== "Python"
-
-    ```py title="mixins/property/greeting/using_hello_world_list_fy.py" linenums="1" hl_lines="10"
-    """fy
-    property greeting: str using hello_world_list:
-    """
-
-    from functools import cached_property
-    
-    
-    # fy:start <<<===
-    class Greeting_UsingHelloWorldList_PropertyMixin:
-        @cached_property
-        def _greeting(self) -> str:
-            # fy:end <<<===
-            return "".join(["H", "e", "l", "l", "o", ",", " ", "W", "o", "r", "l", "d", "!"])
-    ```
-
-### Breakdown of Syntax
-1. `:::py @cached`
-    - **Decorator Usage:** Indicates that the property should be cached, meaning its value is computed once and stored for future access.
-2. `:::py property greeting: str using hello_world_list:`
-    - Declares a property named `greeting` of type `str` (string) and implementation name `hello_world_list` that is computed using a list of characters.
-3. Code Generation:
-    - The ___fy___ tool generates the class definition and the `@cached_property` implementation for the `_greeting` property.
-4. User Input:
-    - The user writes the `property` declaration and can use decorators like `:::py @cached` to manage cached evaluation. The ___fy___ tool handles the rest of the code generation.
+All properties in _Execution Flows_ are "cached," meaning they are computed or initialized only once. Subsequent invocations of the property return the initially stored value. Internally, the ___fy___ tool uses the `:::py @cached_property` decorator when generating code for properties. You can learn more about how `:::py @cached_property` works from the [Python documentation](https://docs.python.org/3/library/functools.html#functools.cached_property).
 
 ## Properties are Lazy
 
