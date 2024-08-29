@@ -216,7 +216,7 @@ Then the flow would look like:
 === "fy"
 
     ```fy 
-    flow HelloWorld -> None:
+    flow Greet_UsingUtcNowIsoFormat -> None:
         property greeting using utc_now_iso_format
         method greet using greeting
     ```
