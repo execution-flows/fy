@@ -6,7 +6,7 @@ The motivation behind the creation of the _Execution Flows_ ___fy___ [pronounced
 
 1. Deliver specific customizations for customers.
 2. Integrate with various external vendors, automation tools, CRMs, payment systems, data feeds, communication channels, etc.
-3. Develop variations of use cases for different user groups, such as customer support, operations, billing and finance, regulatory compliance, security, and more.
+3. Maintain variations of use cases for different user groups, such as customer support, operations, billing and finance, regulatory compliance, security, and more.
 
 This is particularly important where there is a need for a reusability at the sub-line-of-code level. In such cases, implementing variations of use cases often leads to significant code duplication because the required changes are subtle, affecting almost every line of code.
 
