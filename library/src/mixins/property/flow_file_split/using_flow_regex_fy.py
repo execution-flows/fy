@@ -1,0 +1,44 @@
+"""fy
+property flow_file_split: FlowFileSplitModel using flow_regex:
+    property fy_code
+"""
+
+import re
+from functools import cached_property
+
+from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
+from mixins.property.flow_file_split.abc_fy import FlowFileSplitModel
+from mixins.property.fy_code.abc_fy import (
+    With_FyCode_PropertyMixin_ABC,
+)
+import abc
+
+
+# fy:start ===>>>
+class FlowFileSplit_UsingFlowRegex_PropertyMixin(
+    # Property_mixins
+    With_FyCode_PropertyMixin_ABC,
+    abc.ABC,
+):
+    @cached_property
+    def _flow_file_split(self) -> FlowFileSplitModel:
+        # fy:end <<<===
+        flow_string_split_regex = re.compile(
+            rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s+->"
+            rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
+        )
+
+        flow_file_split = flow_string_split_regex.split(self._fy_code)
+
+        assert (
+            len(flow_file_split)
+        ) == 4, f"Flow file split length {len(flow_file_split)} is invalid."
+
+        flow_file_split_model = FlowFileSplitModel(
+            user_imports=flow_file_split[0],
+            flow_name=flow_file_split[1],
+            return_type=flow_file_split[2],
+            mixin_split=flow_file_split[3].split("\n"),
+        )
+
+        return flow_file_split_model

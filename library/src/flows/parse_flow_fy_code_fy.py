@@ -7,6 +7,7 @@ flow ParseFlowFyCode -> ParsedFyPyFile:
     property pre_marker_file_content using setter
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
+    property flow_file_split using flow_regex
 """
 
 from base.flow_base import FlowBase
@@ -35,6 +36,11 @@ from typing import Any, List
 import re
 
 
+from mixins.property.flow_file_split.using_flow_regex_fy import (
+    FlowFileSplit_UsingFlowRegex_PropertyMixin,
+)
+
+
 # fy:start ===>>>
 class ParseFlowFyCode_Flow(
     # Property Mixins
@@ -42,6 +48,7 @@ class ParseFlowFyCode_Flow(
     PreMarkerFileContent_UsingSetter_PropertyMixin,
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
+    FlowFileSplit_UsingFlowRegex_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
@@ -58,14 +65,11 @@ class ParseFlowFyCode_Flow(
             len(flow_file_split)
         ) == 4, f"Flow file split length {len(flow_file_split)} is invalid."
 
-        user_imports = flow_file_split[0]
-        flow_name = PythonEntityName.from_pascal_case(flow_file_split[1])
-        return_type = flow_file_split[2]
+        flow_name = PythonEntityName.from_pascal_case(self._flow_file_split.flow_name)
 
         properties: List[PropertyMixinModel] = []
         methods: List[MethodMixinModel] = []
-        mixin_lines = flow_file_split[3].split("\n")
-        for mixin_line in mixin_lines:
+        for mixin_line in self._flow_file_split.mixin_split:
             if mixin_line.strip() == "":
                 continue
 
@@ -108,13 +112,13 @@ class ParseFlowFyCode_Flow(
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
-            user_imports=user_imports,
+            user_imports=self._flow_file_split.user_imports,
             template_model=FlowTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{flow_name.pascal_case}_Flow"
                 ),
                 flow_name=flow_name,
-                return_type=return_type,
+                return_type=self._flow_file_split.return_type,
                 properties=properties,
                 methods=methods,
             ),

@@ -1,5 +1,5 @@
 """fy
-property property_file_split: PropertyFileSplit using property_regex:
+property property_file_split: PropertyFileSplitModel using property_regex:
     property fy_code
 """
 

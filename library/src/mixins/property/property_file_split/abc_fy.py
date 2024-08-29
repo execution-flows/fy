@@ -1,5 +1,5 @@
 """fy
-property property_file_split: PropertyFileSplit
+property property_file_split: PropertyFileSplitModel
 """
 
 import abc
