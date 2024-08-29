@@ -3,8 +3,6 @@ property property_file_split: PropertyFileSplit
 """
 
 import abc
-from typing import List
-
 from pydantic import BaseModel
 
 
@@ -13,7 +11,7 @@ class PropertyFileSplitModel(BaseModel):
     property_name: str
     implementation_name: str
     property_type: str
-    mixin_split: List[str]
+    mixin_split: str
 
 
 # fy:start ===>>>
