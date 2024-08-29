@@ -2,7 +2,7 @@
 from typing import List
 
 
-property mixin_lines: List[str] using flow_file_split:
+property flow_mixin_lines: List[str] using flow_file_split:
     property flow_file_split
 """
 
@@ -15,12 +15,12 @@ import abc
 
 
 # fy:start ===>>>
-class MixinLines_UsingFlowFileSplit_PropertyMixin(
+class FlowMixinLines_UsingFlowFileSplit_PropertyMixin(
     # Property_mixins
     With_FlowFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
-    def _mixin_lines(self) -> List[str]:
+    def _flow_mixin_lines(self) -> List[str]:
         # fy:end <<<===
         return self._flow_file_split.mixin_split.split("\n")
