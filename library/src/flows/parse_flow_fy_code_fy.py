@@ -8,22 +8,33 @@ flow ParseFlowFyCode -> ParsedFyPyFile:
     property post_marker_file_content using setter
     property fy_py_file_to_parse using setter
     property flow_file_split using flow_regex
+    property mixin_lines using flow_file_split
+    property property_mixins using flow_mixin_lines
 """
 
+import re
+from pathlib import Path
+from typing import Any, List
+
 from base.flow_base import FlowBase
-from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
+from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import (
     FlowTemplateModel,
-    PropertyMixinModel,
     MethodMixinModel,
 )
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFlowFyPyFile
 from domain.python_entity_name import PythonEntityName
+from mixins.property.flow_file_split.using_flow_regex_fy import (
+    FlowFileSplit_UsingFlowRegex_PropertyMixin,
+)
 from mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,
 )
 from mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
+)
+from mixins.property.mixin_lines.using_flow_file_split_fy import (
+    MixinLines_UsingFlowFileSplit_PropertyMixin,
 )
 from mixins.property.post_marker_file_content.using_setter import (
     PostMarkerFileContent_UsingSetter_PropertyMixin,
@@ -31,13 +42,8 @@ from mixins.property.post_marker_file_content.using_setter import (
 from mixins.property.pre_marker_file_content.using_setter import (
     PreMarkerFileContent_UsingSetter_PropertyMixin,
 )
-from pathlib import Path
-from typing import Any, List
-import re
-
-
-from mixins.property.flow_file_split.using_flow_regex_fy import (
-    FlowFileSplit_UsingFlowRegex_PropertyMixin,
+from mixins.property.property_mixins.using_flow_mixin_lines_fy import (
+    PropertyMixins_UsingFlowMixinLines_PropertyMixin,
 )
 
 
@@ -49,46 +55,20 @@ class ParseFlowFyCode_Flow(
     PostMarkerFileContent_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
     FlowFileSplit_UsingFlowRegex_PropertyMixin,
+    MixinLines_UsingFlowFileSplit_PropertyMixin,
+    PropertyMixins_UsingFlowMixinLines_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
-        flow_string_split_regex = re.compile(
-            rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s+->"
-            rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
-        )
-
-        flow_file_split = flow_string_split_regex.split(self._fy_code)
-
-        assert (
-            len(flow_file_split)
-        ) == 4, f"Flow file split length {len(flow_file_split)} is invalid."
-
         flow_name = PythonEntityName.from_pascal_case(self._flow_file_split.flow_name)
 
-        properties: List[PropertyMixinModel] = []
         methods: List[MethodMixinModel] = []
         for mixin_line in self._flow_file_split.mixin_split.split("\n"):
             if mixin_line.strip() == "":
                 continue
 
-            flow_property_regex = re.compile(
-                pattern=rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
-                rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
-            )
-            flow_property_fy_search = flow_property_regex.search(mixin_line)
-            if flow_property_fy_search:
-                properties.append(
-                    PropertyMixinModel(
-                        property_name=PythonEntityName.from_snake_case(
-                            flow_property_fy_search.group("property_name")
-                        ),
-                        implementation_name=PythonEntityName.from_snake_case(
-                            flow_property_fy_search.group("implementation_name")
-                        ),
-                    )
-                )
             flow_method_regex = re.compile(
                 pattern=rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
                 rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
@@ -119,7 +99,7 @@ class ParseFlowFyCode_Flow(
                 ),
                 flow_name=flow_name,
                 return_type=self._flow_file_split.return_type,
-                properties=properties,
+                properties=self._property_mixins,
                 methods=methods,
             ),
         )
