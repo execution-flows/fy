@@ -8,7 +8,6 @@ import re
 from functools import cached_property
 
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
-from domain.python_entity_name import PythonEntityName
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
 )
@@ -37,15 +36,10 @@ class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
             len(property_file_split) == 6
         ), f"Property file split length {len(property_file_split)} is invalid"
 
-        property_name = PythonEntityName.from_snake_case(property_file_split[2])
-        implementation_name = PythonEntityName.from_snake_case(property_file_split[4])
         property_file_split_model = PropertyFileSplitModel(
             user_imports=property_file_split[0],
-            python_class_name=PythonEntityName.from_pascal_case(
-                f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"
-            ),
-            property_name=property_name,
-            implementation_name=implementation_name,
+            property_name=property_file_split[2],
+            implementation_name=property_file_split[4],
             property_type=property_file_split[3],
             mixin_split=property_file_split[5].split("\n"),
         )

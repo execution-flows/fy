@@ -7,14 +7,11 @@ from typing import List
 
 from pydantic import BaseModel
 
-from domain.python_entity_name import PythonEntityName
-
 
 class PropertyFileSplitModel(BaseModel):
     user_imports: str
-    python_class_name: PythonEntityName
-    property_name: PythonEntityName
-    implementation_name: PythonEntityName
+    property_name: str
+    implementation_name: str
     property_type: str
     mixin_split: List[str]
 
