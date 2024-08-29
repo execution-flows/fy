@@ -30,7 +30,7 @@ An _abstract method_ in ___fy___ is a method that is declared but not implemente
     import abc
     
     
-    # fy:start <<<===
+    # fy:start ===>>>
     class With_Greet_MethodMixin_ABC(abc.ABC):
         @abc.abstractmethod
         def _greet(self, greeting: str) -> None:
@@ -69,7 +69,7 @@ An _abstract method_ in ___fy___ is a method that is declared but not implemente
     """fy
     method greet(greeting: str) -> None using hello_world:
     """
-    # fy:start <<<===
+    # fy:start ===>>>
     class Greet_UsingHelloWorld_MethodMixin:
         def _greet(self, greeting: str) -> None:
             # fy:end <<<===

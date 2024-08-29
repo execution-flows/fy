@@ -26,7 +26,7 @@ In this code, the ___fy___ code is used to define a property that requires anoth
     )
     
     
-    # fy:start <<<===
+    # fy:start ===>>>
     class Greeting_UsingFrenchGreeting_PropertyMixin(
         # Property Mixins
         With_FrenchGreeting_PropertyMixin_ABC,

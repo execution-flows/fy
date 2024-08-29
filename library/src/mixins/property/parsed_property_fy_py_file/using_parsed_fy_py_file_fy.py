@@ -37,7 +37,7 @@ from mixins.property.property_mixins.abc_fy import (
 )
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
     With_FyCode_PropertyMixin_ABC,

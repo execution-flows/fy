@@ -31,7 +31,7 @@ Consider the following _Execution Flows_ setup, where a `greeting` _property_ is
     )
     
     
-    # fy:start <<<===
+    # fy:start ===>>>
     class Greet_UsingGreeting_MethodMixin(
         # Property Mixins
         With_Greeting_PropertyMixin_ABC,

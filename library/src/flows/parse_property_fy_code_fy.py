@@ -46,7 +46,7 @@ from mixins.property.mixin_lines.using_property_file_split_fy import (
 )
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class ParsePropertyFyCode_Flow(
     # Property Mixins
     FyCode_UsingSetter_PropertyMixin,

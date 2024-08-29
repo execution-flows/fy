@@ -12,7 +12,7 @@ from domain.fy_py_template_models import AbstractPropertyModel
 import abc
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class With_PropertyMixins_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod

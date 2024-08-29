@@ -20,7 +20,7 @@ from mixins.property.mixin_lines.abc_fy import (
 )
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class PropertyMixins_UsingMixinLines_PropertyMixin(
     # Property_mixins
     With_MixinLines_PropertyMixin_ABC,

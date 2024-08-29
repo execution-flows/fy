@@ -33,7 +33,7 @@ from mixins.property.pre_marker_file_content.abc_fy import (
 )
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class ParsedAbstractPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
     With_FyCode_PropertyMixin_ABC,

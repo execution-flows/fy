@@ -25,7 +25,7 @@ In the ___fy___ syntax, a _property_ is a class mixin that defines a method anno
     )
     
     
-    # fy:start <<<===
+    # fy:start ===>>>
     class HelloWorld_UsingGreeting_Flow(
         # Property Mixins
         Greeting_UsingHelloWorld_PropertyMixin,

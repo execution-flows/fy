@@ -11,7 +11,7 @@ from typing import List
 import abc
 
 
-# fy:start <<<===
+# fy:start ===>>>
 class With_MethodMixins_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
