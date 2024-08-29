@@ -1,15 +1,11 @@
 """fy
-from typing import List
-
-
-property method_file_split: List[str] using method_regex:
+property method_file_split: MethodFileSplitModel using method_regex:
     property fy_code
 """
 
 import abc
 import re
 from functools import cached_property
-from typing import List
 
 from constants import (
     FY_ENTITY_REGEX_STRING,
@@ -19,6 +15,7 @@ from constants import (
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
 )
+from mixins.property.method_file_split.abc_fy import MethodFileSplitModel
 
 
 # fy:start ===>>>
@@ -28,7 +25,7 @@ class MethodFileSplit_UsingMethodRegex_PropertyMixin(
     abc.ABC,
 ):
     @cached_property
-    def _method_file_split(self) -> List[str]:
+    def _method_file_split(self) -> MethodFileSplitModel:
         # fy:end <<<===
         method_string_split_regex = re.compile(
             rf"method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s*"
@@ -42,4 +39,13 @@ class MethodFileSplit_UsingMethodRegex_PropertyMixin(
             len(method_file_split)
         ) == 7, f"Method file split length {len(method_file_split)} is invalid."
 
-        return method_file_split
+        method_file_split_model = MethodFileSplitModel(
+            user_imports=method_file_split[0],
+            method_name=method_file_split[1],
+            implementation_name=method_file_split[5],
+            arguments=method_file_split[3],
+            return_type=method_file_split[4],
+            mixin_split=method_file_split[6].split("\n"),
+        )
+
+        return method_file_split_model

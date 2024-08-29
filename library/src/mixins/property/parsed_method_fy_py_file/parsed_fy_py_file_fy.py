@@ -57,9 +57,11 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     def _parsed_method_fy_py_file(self) -> ParsedMethodFyPyFile:
         # fy:end <<<===
 
-        method_name = PythonEntityName.from_snake_case(self._method_file_split[1])
+        method_name = PythonEntityName.from_snake_case(
+            self._method_file_split.method_name
+        )
         implementation_name = PythonEntityName.from_snake_case(
-            self._method_file_split[5]
+            self._method_file_split.implementation_name
         )
 
         parsed_fy_py_file = ParsedMethodFyPyFile(
@@ -67,7 +69,7 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
-            user_imports=self._method_file_split[0],
+            user_imports=self._method_file_split.user_imports,
             template_model=MethodTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
@@ -76,8 +78,8 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 implementation_name=implementation_name,
                 abstract_property_mixins=self._property_mixins,
                 abstract_method_mixins=self._method_mixins,
-                arguments=self._method_file_split[3],
-                return_type=self._method_file_split[4],
+                arguments=self._method_file_split.arguments,
+                return_type=self._method_file_split.return_type,
             ),
         )
 
