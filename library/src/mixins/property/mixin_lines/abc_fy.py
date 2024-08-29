@@ -5,8 +5,8 @@ from typing import List
 property mixin_lines: List[str]
 """
 
-from typing import List
 import abc
+from typing import List
 
 
 # fy:start ===>>>

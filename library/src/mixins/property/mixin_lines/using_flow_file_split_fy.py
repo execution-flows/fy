@@ -6,12 +6,13 @@ property mixin_lines: List[str] using flow_file_split:
     property flow_file_split
 """
 
+import abc
 from functools import cached_property
+from typing import List
+
 from mixins.property.flow_file_split.abc_fy import (
     With_FlowFileSplit_PropertyMixin_ABC,
 )
-from typing import List
-import abc
 
 
 # fy:start ===>>>

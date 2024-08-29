@@ -1,15 +1,15 @@
 """fy
-from domain.fy_py_template_models import AbstractPropertyModel
+from domain.fy_py_template_models import AbstractPropertyModel, PropertyMixinModel
 from typing import List
 
 
 property property_mixins: List[AbstractPropertyModel]
 """
 
+import abc
 from typing import List
 
 from domain.fy_py_template_models import AbstractPropertyModel
-import abc
 
 
 # fy:start ===>>>

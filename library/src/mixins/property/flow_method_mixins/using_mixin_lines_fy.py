@@ -3,32 +3,31 @@ from domain.fy_py_template_models import MethodMixinModel
 from typing import List
 
 
-property method_mixins: List[MethodMixinModel] using flow_mixin_lines:
+property flow_method_mixins: List[MethodMixinModel] using mixin_lines:
     property mixin_lines
 """
 
+import abc
 import re
+from functools import cached_property
+from typing import List
 
 from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import MethodMixinModel
-from functools import cached_property
-
 from domain.python_entity_name import PythonEntityName
 from mixins.property.mixin_lines.abc_fy import (
     With_MixinLines_PropertyMixin_ABC,
 )
-from typing import List
-import abc
 
 
 # fy:start ===>>>
-class MethodMixins_UsingFlowMixinLines_PropertyMixin(
+class FlowMethodMixins_UsingMixinLines_PropertyMixin(
     # Property_mixins
     With_MixinLines_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
-    def _method_mixins(self) -> List[MethodMixinModel]:
+    def _flow_method_mixins(self) -> List[MethodMixinModel]:
         # fy:end <<<===
         flow_method_regex = re.compile(
             rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
