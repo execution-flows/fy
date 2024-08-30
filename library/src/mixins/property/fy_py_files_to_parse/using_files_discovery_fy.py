@@ -8,20 +8,23 @@ property fy_py_files_to_parse: List[Path] using files_discovery:
     property folder_to_parse
 """
 
-from constants import FY_PY_FILE_SIGNATURE, FY_PY_FILE_EXTENSION
+import abc
 from functools import cached_property
-from mixins.property.folder_to_parse.abc_fy import (
-    With_FolderToParse_PropertyMixin_ABC,
-)
 from pathlib import Path
 from typing import List
-import abc
+
+from constants import FY_PY_FILE_SIGNATURE, FY_PY_FILE_EXTENSION
+
+
+from mixins.property.folder_to_parse.abc_fy import (
+    FolderToParse_PropertyMixin_ABC,
+)
 
 
 # fy:start ===>>>
 class FyPyFilesToParse_UsingFilesDiscovery_PropertyMixin(
     # Property_mixins
-    With_FolderToParse_PropertyMixin_ABC,
+    FolderToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

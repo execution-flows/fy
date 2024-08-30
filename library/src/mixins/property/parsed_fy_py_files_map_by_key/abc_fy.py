@@ -12,7 +12,7 @@ import abc
 
 
 # fy:start ===>>>
-class With_ParsedFyPyFilesMapByKey_PropertyMixin_ABC(abc.ABC):
+class ParsedFyPyFilesMapByKey_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _parsed_fy_py_files_map_by_key(self) -> Dict[str, ParsedFyPyFile]:

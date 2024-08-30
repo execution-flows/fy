@@ -10,7 +10,7 @@ import abc
 
 
 # fy:start ===>>>
-class With_MixinImportMap_PropertyMixin_ABC(abc.ABC):
+class MixinImportMap_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _mixin_import_map(self) -> Dict[str, str]:

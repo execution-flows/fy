@@ -23,7 +23,7 @@ class IncludedMixinsModel(BaseModel):
 
 
 # fy:start ===>>>
-class With_IncludedMixins_PropertyMixin_ABC(abc.ABC):
+class IncludedMixins_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _included_mixins(self) -> IncludedMixinsModel:

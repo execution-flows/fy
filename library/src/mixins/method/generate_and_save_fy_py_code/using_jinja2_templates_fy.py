@@ -5,6 +5,7 @@ method generate_and_save_fy_py_files -> None using jinja2_templates:
     property mixin_import_map
 """
 
+import abc
 import pathlib
 import re
 from typing import List, Tuple, Set, cast
@@ -29,23 +30,22 @@ from domain.parsed_fy_py_file import (
 
 
 from mixins.property.mixin_import_map.abc_fy import (
-    With_MixinImportMap_PropertyMixin_ABC,
+    MixinImportMap_PropertyMixin_ABC,
 )
 from mixins.property.parsed_fy_py_files.abc_fy import (
-    With_ParsedFyPyFiles_PropertyMixin_ABC,
+    ParsedFyPyFiles_PropertyMixin_ABC,
 )
 from mixins.property.required_property_setters_fy_py.abc_fy import (
-    With_RequiredPropertySettersFyPy_PropertyMixin_ABC,
+    RequiredPropertySettersFyPy_PropertyMixin_ABC,
 )
-import abc
 
 
 # fy:start ===>>>
 class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
     # Property_mixins
-    With_ParsedFyPyFiles_PropertyMixin_ABC,
-    With_RequiredPropertySettersFyPy_PropertyMixin_ABC,
-    With_MixinImportMap_PropertyMixin_ABC,
+    ParsedFyPyFiles_PropertyMixin_ABC,
+    RequiredPropertySettersFyPy_PropertyMixin_ABC,
+    MixinImportMap_PropertyMixin_ABC,
     abc.ABC,
 ):
     def _generate_and_save_fy_py_files(self) -> None:

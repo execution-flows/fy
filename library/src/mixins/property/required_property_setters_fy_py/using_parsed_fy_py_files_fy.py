@@ -24,19 +24,21 @@ from domain.parsed_fy_py_file import (
     ParsedFlowFyPyFile,
 )
 from domain.python_entity_name import PythonEntityName
+
+
 from mixins.property.parsed_fy_py_files.abc_fy import (
-    With_ParsedFyPyFiles_PropertyMixin_ABC,
+    ParsedFyPyFiles_PropertyMixin_ABC,
 )
 from mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
-    With_ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
 
 
 # fy:start ===>>>
 class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
     # Property_mixins
-    With_ParsedFyPyFiles_PropertyMixin_ABC,
-    With_ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+    ParsedFyPyFiles_PropertyMixin_ABC,
+    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

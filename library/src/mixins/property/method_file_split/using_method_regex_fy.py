@@ -12,16 +12,18 @@ from constants import (
     PYTHON_MULTI_ENTITY_REGEX_STRING,
     PYTHON_ARGUMENTS_REGEX_STRING,
 )
-from mixins.property.fy_code.abc_fy import (
-    With_FyCode_PropertyMixin_ABC,
-)
 from mixins.property.method_file_split.abc_fy import MethodFileSplitModel
+
+
+from mixins.property.fy_code.abc_fy import (
+    FyCode_PropertyMixin_ABC,
+)
 
 
 # fy:start ===>>>
 class MethodFileSplit_UsingMethodRegex_PropertyMixin(
     # Property_mixins
-    With_FyCode_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

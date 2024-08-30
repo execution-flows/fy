@@ -8,20 +8,23 @@ property parsed_fy_py_files: List[ParsedFyPyFile] using fy_py_parser:
     property fy_py_files_to_parse
 """
 
+import abc
+from functools import cached_property
+from typing import List
+
 from domain.parsed_fy_py_file import ParsedFyPyFile
 from flows.parse_fy_py_file_fy import ParseFyPyFile_Flow
-from functools import cached_property
+
+
 from mixins.property.fy_py_files_to_parse.abc_fy import (
-    With_FyPyFilesToParse_PropertyMixin_ABC,
+    FyPyFilesToParse_PropertyMixin_ABC,
 )
-from typing import List
-import abc
 
 
 # fy:start ===>>>
 class ParsedFyPyFiles_UsingFyPyParser_PropertyMixin(
     # Property_mixins
-    With_FyPyFilesToParse_PropertyMixin_ABC,
+    FyPyFilesToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

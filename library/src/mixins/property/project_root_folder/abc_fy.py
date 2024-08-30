@@ -5,12 +5,12 @@ from pathlib import Path
 property project_root_folder: Path
 """
 
-from pathlib import Path
 import abc
+from pathlib import Path
 
 
 # fy:start ===>>>
-class With_ProjectRootFolder_PropertyMixin_ABC(abc.ABC):
+class ProjectRootFolder_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _project_root_folder(self) -> Path:

@@ -6,7 +6,7 @@ import abc
 
 
 # fy:start ===>>>
-class With_PreMarkerFileContent_PropertyMixin_ABC(abc.ABC):
+class PreMarkerFileContent_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _pre_marker_file_content(self) -> str:

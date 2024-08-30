@@ -3,21 +3,23 @@ property flow_file_split: FlowFileSplitModel using flow_regex:
     property fy_code
 """
 
+import abc
 import re
 from functools import cached_property
 
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from mixins.property.flow_file_split.abc_fy import FlowFileSplitModel
+
+
 from mixins.property.fy_code.abc_fy import (
-    With_FyCode_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
 )
-import abc
 
 
 # fy:start ===>>>
 class FlowFileSplit_UsingFlowRegex_PropertyMixin(
     # Property_mixins
-    With_FyCode_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

@@ -17,19 +17,21 @@ from constants import (
     PYTHON_ARGUMENTS_REGEX_STRING,
 )
 from domain.parsed_fy_py_file import ParsedFyPyFileKind
+
+
 from mixins.property.fy_code.abc_fy import (
-    With_FyCode_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
 )
 from mixins.property.fy_py_file_to_parse.abc_fy import (
-    With_FyPyFileToParse_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
 )
 
 
 # fy:start ===>>>
 class FyFileKind_UsingFyCode_PropertyMixin(
     # Property_mixins
-    With_FyPyFileToParse_PropertyMixin_ABC,
-    With_FyCode_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

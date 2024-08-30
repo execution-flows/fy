@@ -11,7 +11,7 @@ import abc
 
 
 # fy:start ===>>>
-class With_RequiredPropertySettersFyPy_PropertyMixin_ABC(abc.ABC):
+class RequiredPropertySettersFyPy_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _required_property_setters_fy_py(self) -> List[ParsedFyPyFile]:

@@ -8,16 +8,18 @@ import re
 from functools import cached_property
 
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
-from mixins.property.fy_code.abc_fy import (
-    With_FyCode_PropertyMixin_ABC,
-)
 from mixins.property.property_file_split.abc_fy import PropertyFileSplitModel
+
+
+from mixins.property.fy_code.abc_fy import (
+    FyCode_PropertyMixin_ABC,
+)
 
 
 # fy:start ===>>>
 class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
     # Property_mixins
-    With_FyCode_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

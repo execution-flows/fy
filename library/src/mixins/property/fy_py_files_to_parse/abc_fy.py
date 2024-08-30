@@ -12,7 +12,7 @@ import abc
 
 
 # fy:start ===>>>
-class With_FyPyFilesToParse_PropertyMixin_ABC(abc.ABC):
+class FyPyFilesToParse_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _fy_py_files_to_parse(self) -> List[Path]:

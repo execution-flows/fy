@@ -15,7 +15,7 @@ class PropertyFileSplitModel(BaseModel):
 
 
 # fy:start ===>>>
-class With_PropertyFileSplit_PropertyMixin_ABC(abc.ABC):
+class PropertyFileSplit_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _property_file_split(self) -> PropertyFileSplitModel:
