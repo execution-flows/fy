@@ -9,7 +9,7 @@ flow ParsePropertyFyCode -> ParsedFyPyFile:
     property fy_py_file_to_parse using setter
     property property_file_split using property_regex
     property mixin_lines using property_file_split
-    property property_mixins using mixin_lines
+    property included_mixins using mixin_lines
     property parsed_property_fy_py_file using parsed_fy_py_file
 """
 
@@ -24,6 +24,12 @@ from mixins.property.fy_code.using_setter import (
 from mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )
+from mixins.property.included_mixins.using_mixin_lines_fy import (
+    IncludedMixins_UsingMixinLines_PropertyMixin,
+)
+from mixins.property.mixin_lines.using_property_file_split_fy import (
+    MixinLines_UsingPropertyFileSplit_PropertyMixin,
+)
 from mixins.property.parsed_property_fy_py_file.using_parsed_fy_py_file_fy import (
     ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin,
 )
@@ -36,14 +42,6 @@ from mixins.property.pre_marker_file_content.using_setter import (
 from mixins.property.property_file_split.usign_property_regex_fy import (
     PropertyFileSplit_UsingPropertyRegex_PropertyMixin,
 )
-from mixins.property.property_mixins.using_mixin_lines_fy import (
-    PropertyMixins_UsingMixinLines_PropertyMixin,
-)
-
-
-from mixins.property.mixin_lines.using_property_file_split_fy import (
-    MixinLines_UsingPropertyFileSplit_PropertyMixin,
-)
 
 
 # fy:start ===>>>
@@ -55,13 +53,19 @@ class ParsePropertyFyCode_Flow(
     FyPyFileToParse_UsingSetter_PropertyMixin,
     PropertyFileSplit_UsingPropertyRegex_PropertyMixin,
     MixinLines_UsingPropertyFileSplit_PropertyMixin,
-    PropertyMixins_UsingMixinLines_PropertyMixin,
+    IncludedMixins_UsingMixinLines_PropertyMixin,
     ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
+        assert (
+            len(self._included_mixins.property_mixins) == 0
+        ), f"Property {self._fy_py_file_to_parse} cannot include other method implementations."
+        assert (
+            len(self._included_mixins.method_mixins) == 0
+        ), f"Property {self._fy_py_file_to_parse} cannot include other property implementations."
         return self._parsed_property_fy_py_file
 
     def __init__(
