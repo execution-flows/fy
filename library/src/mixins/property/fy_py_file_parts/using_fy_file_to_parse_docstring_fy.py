@@ -19,7 +19,6 @@ from constants import (
 )
 from domain.parsed_fy_py_file import FyPyFileParts
 
-
 from mixins.property.fy_py_file_to_parse.abc_fy import (
     FyPyFileToParse_PropertyMixin_ABC,
 )

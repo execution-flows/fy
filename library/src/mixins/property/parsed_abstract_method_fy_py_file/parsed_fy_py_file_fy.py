@@ -18,7 +18,6 @@ from domain.fy_py_template_models import AbstractMethodTemplateModel
 from domain.parsed_fy_py_file import ParsedAbstractMethodFyPyFile
 from domain.python_entity_name import PythonEntityName
 
-
 from mixins.property.abstract_method_file_split.abc_fy import (
     AbstractMethodFileSplit_PropertyMixin_ABC,
 )
@@ -31,13 +30,11 @@ from mixins.property.fy_py_file_to_parse.abc_fy import (
 from mixins.property.post_marker_file_content.abc_fy import (
     PostMarkerFileContent_PropertyMixin_ABC,
 )
-from mixins.property.pre_marker_file_content.abc_fy import (
-    PreMarkerFileContent_PropertyMixin_ABC,
-)
-
-
 from mixins.property.pre_fy_code.abc_fy import (
     PreFyCode_PropertyMixin_ABC,
+)
+from mixins.property.pre_marker_file_content.abc_fy import (
+    PreMarkerFileContent_PropertyMixin_ABC,
 )
 
 

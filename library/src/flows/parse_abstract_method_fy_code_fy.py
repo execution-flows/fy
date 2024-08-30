@@ -12,36 +12,32 @@ flow ParseAbstractMethodFyCode -> ParsedFyPyFile:
     property parsed_abstract_method_fy_py_file using parsed_fy_py_file
 """
 
+from pathlib import Path
+from typing import Any
+
 from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
+
+from mixins.property.abstract_method_file_split.using_abstract_method_regex_fy import (
+    AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin,
+)
 from mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,
 )
 from mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )
-from mixins.property.post_marker_file_content.using_setter import (
-    PostMarkerFileContent_UsingSetter_PropertyMixin,
-)
-from mixins.property.pre_marker_file_content.using_setter import (
-    PreMarkerFileContent_UsingSetter_PropertyMixin,
-)
-from pathlib import Path
-from typing import Any
-
-
-from mixins.property.abstract_method_file_split.using_abstract_method_regex_fy import (
-    AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin,
-)
-
-
 from mixins.property.parsed_abstract_method_fy_py_file.parsed_fy_py_file_fy import (
     ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin,
 )
-
-
+from mixins.property.post_marker_file_content.using_setter import (
+    PostMarkerFileContent_UsingSetter_PropertyMixin,
+)
 from mixins.property.pre_fy_code.using_setter import (
     PreFyCode_UsingSetter_PropertyMixin,
+)
+from mixins.property.pre_marker_file_content.using_setter import (
+    PreMarkerFileContent_UsingSetter_PropertyMixin,
 )
 
 
