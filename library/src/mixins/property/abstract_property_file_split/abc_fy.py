@@ -3,6 +3,7 @@ property abstract_property_file_split: AbstractPropertyFileSplitModel
 """
 
 import abc
+
 from pydantic import BaseModel
 
 

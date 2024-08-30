@@ -3,6 +3,7 @@ from domain.parsed_fy_py_file import ParsedAbstractMethodFyPyFile
 
 
 property parsed_abstract_method_fy_py_file: ParsedAbstractMethodFyPyFile using  parsed_fy_py_file:
+    property pre_fy_code
     property fy_code
     property pre_marker_file_content
     property post_marker_file_content
@@ -17,7 +18,6 @@ from domain.fy_py_template_models import AbstractMethodTemplateModel
 from domain.parsed_fy_py_file import ParsedAbstractMethodFyPyFile
 from domain.python_entity_name import PythonEntityName
 
-
 from mixins.property.abstract_method_file_split.abc_fy import (
     AbstractMethodFileSplit_PropertyMixin_ABC,
 )
@@ -30,6 +30,9 @@ from mixins.property.fy_py_file_to_parse.abc_fy import (
 from mixins.property.post_marker_file_content.abc_fy import (
     PostMarkerFileContent_PropertyMixin_ABC,
 )
+from mixins.property.pre_fy_code.abc_fy import (
+    PreFyCode_PropertyMixin_ABC,
+)
 from mixins.property.pre_marker_file_content.abc_fy import (
     PreMarkerFileContent_PropertyMixin_ABC,
 )
@@ -38,6 +41,7 @@ from mixins.property.pre_marker_file_content.abc_fy import (
 # fy:start ===>>>
 class ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
+    PreFyCode_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     PreMarkerFileContent_PropertyMixin_ABC,
     PostMarkerFileContent_PropertyMixin_ABC,
@@ -53,6 +57,7 @@ class ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
         )
 
         parsed_fy_py_file = ParsedAbstractMethodFyPyFile(
+            pre_fy_code=self._pre_fy_code,
             fy_code=self._fy_code,
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,

@@ -3,6 +3,7 @@ from domain.parsed_fy_py_file import ParsedFyPyFile
 
 
 flow ParseAbstractPropertyFyCode -> ParsedFyPyFile:
+    property pre_fy_code using setter
     property fy_code using setter
     property pre_marker_file_content using setter
     property post_marker_file_content using setter
@@ -36,11 +37,15 @@ from mixins.property.post_marker_file_content.using_setter import (
 from mixins.property.pre_marker_file_content.using_setter import (
     PreMarkerFileContent_UsingSetter_PropertyMixin,
 )
+from mixins.property.pre_fy_code.using_setter import (
+    PreFyCode_UsingSetter_PropertyMixin,
+)
 
 
 # fy:start ===>>>
 class ParseAbstractPropertyFyCode_Flow(
     # Property Mixins
+    PreFyCode_UsingSetter_PropertyMixin,
     FyCode_UsingSetter_PropertyMixin,
     PreMarkerFileContent_UsingSetter_PropertyMixin,
     PostMarkerFileContent_UsingSetter_PropertyMixin,
@@ -57,12 +62,14 @@ class ParseAbstractPropertyFyCode_Flow(
     def __init__(
         self,
         *args: Any,
+        pre_fy_code: str,
         fy_code: str,
         pre_marker_file_content: str,
         post_marker_file_content: str,
         fy_py_file_to_parse: Path,
         **kwargs: Any,
     ):
+        self._pre_fy_code = pre_fy_code
         self._fy_code = fy_code
         self._fy_py_file_to_parse = fy_py_file_to_parse
         self._pre_marker_file_content = pre_marker_file_content

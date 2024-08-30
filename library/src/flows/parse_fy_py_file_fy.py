@@ -5,6 +5,7 @@ from domain.parsed_fy_py_file import ParsedFyPyFile
 flow ParseFyPyFile -> ParsedFyPyFile:
     property fy_py_file_to_parse using setter
     property fy_py_file_parts using fy_file_to_parse_docstring
+    property pre_fy_code using fy_py_file_parts
     property fy_code using fy_py_file_parts
     property post_marker_file_content using fy_py_file_parts
     property pre_marker_file_content using fy_py_file_parts
@@ -12,6 +13,9 @@ flow ParseFyPyFile -> ParsedFyPyFile:
 
     method parse_fy_py_file using fy_file_kind__and__fy_code
 """
+
+from pathlib import Path
+from typing import Any
 
 from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
@@ -33,11 +37,12 @@ from mixins.property.fy_py_file_to_parse.using_setter import (
 from mixins.property.post_marker_file_content.fy_py_file_parts_fy import (
     PostMarkerFileContent_UsingFyPyFileParts_PropertyMixin,
 )
+from mixins.property.pre_fy_code.using_fy_py_file_parts_fy import (
+    PreFyCode_UsingFyPyFileParts_PropertyMixin,
+)
 from mixins.property.pre_marker_file_content.fy_py_file_parts_fy import (
     PreMarkerFileContent_UsingFyPyFileParts_PropertyMixin,
 )
-from pathlib import Path
-from typing import Any
 
 
 # fy:start ===>>>
@@ -45,6 +50,7 @@ class ParseFyPyFile_Flow(
     # Property Mixins
     FyPyFileToParse_UsingSetter_PropertyMixin,
     FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin,
+    PreFyCode_UsingFyPyFileParts_PropertyMixin,
     FyCode_UsingFyPyFileParts_PropertyMixin,
     PostMarkerFileContent_UsingFyPyFileParts_PropertyMixin,
     PreMarkerFileContent_UsingFyPyFileParts_PropertyMixin,

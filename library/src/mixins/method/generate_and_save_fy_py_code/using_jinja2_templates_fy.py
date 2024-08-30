@@ -70,6 +70,7 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
             )
 
             fy_py_file_content = (
+                f"{parsed_fy_py_file.pre_fy_code}"
                 f"{FY_PY_FILE_SIGNATURE}"
                 f"{parsed_fy_py_file.fy_code}"
                 f"{FY_CODE_FILE_END_SIGNATURE}\n"
