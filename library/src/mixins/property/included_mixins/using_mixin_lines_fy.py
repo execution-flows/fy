@@ -3,12 +3,15 @@ from mixins.property.included_mixins.abc_fy import IncludedMixinsModel
 
 
 property included_mixins: IncludedMixinsModel using mixin_lines:
+    property fy_py_file_to_parse
     property mixin_lines
 """
 
+import abc
 import re
 from functools import cached_property
 from typing import List
+
 from constants import FY_ENTITY_REGEX_STRING
 from domain.fy_py_template_models import (
     PropertyMixinModel,
@@ -17,16 +20,19 @@ from domain.fy_py_template_models import (
     MethodMixinModel,
 )
 from domain.python_entity_name import PythonEntityName
+from mixins.property.fy_py_file_to_parse.abc_fy import (
+    With_FyPyFileToParse_PropertyMixin_ABC,
+)
 from mixins.property.included_mixins.abc_fy import IncludedMixinsModel
 from mixins.property.mixin_lines.abc_fy import (
     With_MixinLines_PropertyMixin_ABC,
 )
-import abc
 
 
 # fy:start ===>>>
 class IncludedMixins_UsingMixinLines_PropertyMixin(
     # Property_mixins
+    With_FyPyFileToParse_PropertyMixin_ABC,
     With_MixinLines_PropertyMixin_ABC,
     abc.ABC,
 ):
@@ -44,11 +50,11 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
         )
 
         abstract_property_mixin_regex = re.compile(
-            rf"^\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+            rf"^\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})$"
         )
 
         abstract_method_mixin_regex = re.compile(
-            rf"^\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
+            rf"^\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})$"
         )
         properties: List[PropertyMixinModel] = []
         abstract_properties: List[AbstractPropertyModel] = []
@@ -60,7 +66,7 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
 
             flow_property_fy_search = flow_property_regex.search(mixin_line)
 
-            if flow_property_fy_search:
+            if flow_property_fy_search is not None:
                 properties.append(
                     PropertyMixinModel(
                         property_name=PythonEntityName.from_snake_case(
@@ -71,6 +77,7 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
                         ),
                     )
                 )
+                continue
 
             declared_abstract_property_mixin = abstract_property_mixin_regex.search(
                 mixin_line
@@ -86,6 +93,7 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
                         )
                     )
                 )
+                continue
 
             declared_abstract_method_mixin = abstract_method_mixin_regex.search(
                 mixin_line
@@ -99,10 +107,11 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
                         )
                     )
                 )
+                continue
 
             flow_method_fy_search = flow_method_regex.search(mixin_line)
 
-            if flow_method_fy_search:
+            if flow_method_fy_search is not None:
                 methods.append(
                     MethodMixinModel(
                         method_name=PythonEntityName.from_snake_case(
@@ -113,6 +122,11 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
                         ),
                     )
                 )
+                continue
+
+            raise ValueError(
+                f"Line {mixin_line} in {self._fy_py_file_to_parse} is invalid."
+            )
 
         included_mixins = IncludedMixinsModel(
             abstract_method_mixins=abstract_methods,

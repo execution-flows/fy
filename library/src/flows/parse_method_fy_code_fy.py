@@ -60,6 +60,12 @@ class ParseMethodFyCode_Flow(
 ):
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
+        assert (
+            len(self._included_mixins.property_mixins) == 0
+        ), f"Method {self._fy_py_file_to_parse} cannot include other method implementations."
+        assert (
+            len(self._included_mixins.method_mixins) == 0
+        ), f"Method {self._fy_py_file_to_parse} cannot include other property implementations."
         return self._parsed_method_fy_py_file
 
     def __init__(
