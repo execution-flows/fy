@@ -5,29 +5,38 @@ from fy_py_files.test_utils.main_fypy_test_case import MainFyPyTestCase
 
 
 class TestRaisesAssertionError(MainFyPyTestCase):
-    def test_raises_assertion_error_flow_invalid_mixin(self) -> None:
+    def test_flow_invalid_mixin_raises_correct_error(self) -> None:
         with self.assertRaisesRegex(
             expected_exception=AssertionError,
-            expected_regex=r"Flow .*/assert_flow_fy.py cannot include other abstract property implementations",
+            expected_regex=r"Flow .*/flow_invalid_mixin_fy.py cannot include other abstract property implementations",
         ):
             self._test_main_flow(
-                target_folder="raises_assertion_error/flow_invalid_mixin"
+                target_folder="invalid_fy_code_raises_correct_error/flow_invalid_mixin"
             )
 
-    def test_raises_assertion_error_method_invalid_abstract_mixins(self) -> None:
+    def test_method_invalid_abstract_mixins_raises_correct_error(self) -> None:
         with self.assertRaisesRegex(
             expected_exception=AssertionError,
-            expected_regex=r"Method .*/assert_method_fy.py cannot include other method implementations",
+            expected_regex=r"Method .*/method_invalid_abstract_mixin_fy.py cannot include other method implementations",
         ):
             self._test_main_flow(
-                target_folder="raises_assertion_error/method_invalid_abstract_mixins"
+                target_folder="invalid_fy_code_raises_correct_error/method_invalid_abstract_mixins"
             )
 
-    def test_raises_assertion_error_property_invalid_abstract_mixins(self) -> None:
+    def test_property_invalid_abstract_mixins_raises_correct_error(self) -> None:
         with self.assertRaisesRegex(
             expected_exception=AssertionError,
-            expected_regex=r"Property .*/assert_property_fy.py cannot include other property implementations",
+            expected_regex=r"Property .*/property_invalid_abstract_mixin_fy.py cannot include other property "
+            r"implementations",
         ):
             self._test_main_flow(
-                target_folder="raises_assertion_error/property_invalid_abstract_mixins"
+                target_folder="invalid_fy_code_raises_correct_error/property_invalid_abstract_mixins"
+            )
+
+    def test_property_raises_correct_error(self) -> None:
+        with self.assertRaises(
+            expected_exception=ValueError,
+        ):
+            self._test_main_flow(
+                target_folder="invalid_fy_code_raises_correct_error/property_invalid_mixin_keyword"
             )
