@@ -47,7 +47,7 @@ class ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     def _parsed_abstract_method_fy_py_file(self) -> ParsedAbstractMethodFyPyFile:
         # fy:end <<<===
         abstract_method_name = PythonEntityName.from_snake_case(
-            self._abstract_method_file_split[1]
+            self._abstract_method_file_split.abstract_method_name
         )
 
         parsed_fy_py_file = ParsedAbstractMethodFyPyFile(
@@ -55,14 +55,14 @@ class ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
-            user_imports=self._abstract_method_file_split[0],
+            user_imports=self._abstract_method_file_split.user_imports,
             template_model=AbstractMethodTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{abstract_method_name.pascal_case}_MethodMixin_ABC"
                 ),
                 abstract_method_name=abstract_method_name,
-                arguments=self._abstract_method_file_split[3],
-                return_type=self._abstract_method_file_split[4],
+                arguments=self._abstract_method_file_split.arguments,
+                return_type=self._abstract_method_file_split.return_type,
             ),
         )
 
