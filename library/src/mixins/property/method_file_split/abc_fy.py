@@ -13,7 +13,7 @@ class MethodFileSplitModel(BaseModel):
     implementation_name: str
     arguments: str | None
     return_type: str
-    mixin_split: str
+    mixins: str
 
 
 # fy:start ===>>>

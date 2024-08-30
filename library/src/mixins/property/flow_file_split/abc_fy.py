@@ -11,7 +11,7 @@ class FlowFileSplitModel(BaseModel):
     user_imports: str
     flow_name: str
     return_type: str
-    mixin_split: str
+    mixins: str
 
 
 # fy:start ===>>>

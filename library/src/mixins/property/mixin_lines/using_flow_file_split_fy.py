@@ -24,4 +24,4 @@ class MixinLines_UsingFlowFileSplit_PropertyMixin(
     @cached_property
     def _mixin_lines(self) -> List[str]:
         # fy:end <<<===
-        return self._flow_file_split.mixin_split.split("\n")
+        return self._flow_file_split.mixins.split("\n")
