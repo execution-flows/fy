@@ -1,0 +1,5 @@
+class {{ python_class_name.pascal_case }}(abc.ABC):
+    @abc.abstractmethod
+    def _{{ abstract_method_name.snake_case }}(self{% if arguments %}, {{ arguments }}{% endif %}) -> {{ return_type }}:
+        raise NotImplementedError()
+

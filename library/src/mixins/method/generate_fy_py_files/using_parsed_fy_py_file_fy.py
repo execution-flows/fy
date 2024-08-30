@@ -2,60 +2,84 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-method generate_and_save_fy_py_files -> None using jinja2_templates:
+method generate_fy_py_files -> None using parsed_fy_py_files:
     property parsed_fy_py_files
-    property required_property_setters_fy_py
     property mixin_import_map
-    method generate_fy_py_files
 """
-
-import abc
 import pathlib
 import re
-from typing import List, Tuple, Set, cast
+from typing import cast, List, Tuple, Set
 
 from jinja2 import Environment, FileSystemLoader
 
 from constants import (
-    FY_END_MARKER,
+    FY_PY_FILE_SIGNATURE,
+    FY_CODE_FILE_END_SIGNATURE,
+    NEW_LINE,
     FY_START_MARKER,
+    FY_END_MARKER,
 )
 from domain.fy_py_template_models import entity_key
 from domain.parsed_fy_py_file import (
-    ParsedFyPyFileKind,
-    ParsedFyPyFile,
-    ParsedFlowFyPyFile,
-    ParsedMethodFyPyFile,
     ParsedPropertyFyPyFile,
-)
-from mixins.method.generate_fy_py_files.abc_fy import (
-    GenerateFyPyFiles_MethodMixin_ABC,
-)
-from mixins.property.mixin_import_map.abc_fy import (
-    MixinImportMap_PropertyMixin_ABC,
+    ParsedFyPyFileKind,
+    ParsedMethodFyPyFile,
+    ParsedFlowFyPyFile,
+    ParsedFyPyFile,
 )
 from mixins.property.parsed_fy_py_files.abc_fy import (
     ParsedFyPyFiles_PropertyMixin_ABC,
 )
-from mixins.property.required_property_setters_fy_py.abc_fy import (
-    RequiredPropertySettersFyPy_PropertyMixin_ABC,
+import abc
+
+
+from mixins.property.mixin_import_map.abc_fy import (
+    MixinImportMap_PropertyMixin_ABC,
 )
 
 
 # fy:start ===>>>
-class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
+class GenerateFyPyFiles_UsingParsedFyPyFiles_MethodMixin(
     # Property_mixins
     ParsedFyPyFiles_PropertyMixin_ABC,
-    RequiredPropertySettersFyPy_PropertyMixin_ABC,
     MixinImportMap_PropertyMixin_ABC,
-    # Method_mixins
-    GenerateFyPyFiles_MethodMixin_ABC,
     abc.ABC,
 ):
-    def _generate_and_save_fy_py_files(self) -> None:
+    def _generate_fy_py_files(self) -> None:
         # fy:end <<<===
-        self._generate_fy_py_files()
-        self.__generate_and_save_fy_py_files__using_required_property_setters()
+        for parsed_fy_py_file in self._parsed_fy_py_files:
+            generated_python_code, mixin_imports = (
+                self.__match_kind__and__load_fy_py_files(parsed_fy_py_file)
+            )
+
+            filtered_mixin_imports = remove_existing_imports(
+                mixin_imports=mixin_imports,
+                pre_marker_file_content=parsed_fy_py_file.pre_marker_file_content,
+                user_imports=parsed_fy_py_file.user_imports,
+            )
+            mixin_imports_code = "\n".join(
+                sorted(filtered_mixin_imports)
+                + ([""] if filtered_mixin_imports else [])
+            )
+
+            fy_py_file_content = (
+                f"{parsed_fy_py_file.pre_fy_code}"
+                f"{FY_PY_FILE_SIGNATURE}"
+                f"{parsed_fy_py_file.fy_code}"
+                f"{FY_CODE_FILE_END_SIGNATURE}\n"
+                f"{parsed_fy_py_file.pre_marker_file_content}"
+                f"{NEW_LINE if not parsed_fy_py_file.pre_marker_file_content or mixin_imports_code else ''}"
+                f"{mixin_imports_code}"
+                f"{NEW_LINE * 2 if not parsed_fy_py_file.pre_marker_file_content or mixin_imports_code else ''}"
+                f"{FY_START_MARKER}\n"
+                f"{generated_python_code}"
+                f"{FY_END_MARKER}\n"
+                f"{parsed_fy_py_file.post_marker_file_content}"
+            )
+            with open(
+                file=parsed_fy_py_file.file_path, mode="w", encoding="UTF-8"
+            ) as output_py_file:
+                output_py_file.write(fy_py_file_content)
 
     def __match_kind__and__load_fy_py_files(
         self, parsed_fy_py_file: ParsedFyPyFile
@@ -192,24 +216,6 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
                 )
         raise ValueError(f"No Execution Flow kind for {parsed_fy_py_file.file_type}")
 
-    def __generate_and_save_fy_py_files__using_required_property_setters(self) -> None:
-        for parsed_fy_py_file in self._required_property_setters_fy_py:
-            generated_python_code = generated_fy_py_code(
-                jinja2_template="property_setter.jinja2",
-                parsed_fy_py_file=parsed_fy_py_file,
-            )
-            fy_py_file_content = (
-                f"{FY_START_MARKER}\n"
-                f"{parsed_fy_py_file.user_imports}"
-                f"{generated_python_code}"
-                f"{FY_END_MARKER}\n"
-                f"{parsed_fy_py_file.post_marker_file_content}"
-            )
-            with open(
-                file=parsed_fy_py_file.file_path, mode="w", encoding="UTF-8"
-            ) as setter_file:
-                setter_file.write(fy_py_file_content)
-
 
 IMPORT_REGEX = re.compile(
     r"^(?P<from>from [\w.]+) import .*$|^(?P<import>import [\w.]+)$", flags=re.DOTALL
@@ -253,7 +259,7 @@ def remove_existing_imports(
 def generated_fy_py_code(
     jinja2_template: str, parsed_fy_py_file: ParsedFyPyFile
 ) -> str:
-    templates_path = str(pathlib.Path(__file__).parent / "jinja2_templates")
+    templates_path = str(pathlib.Path(__file__).parent.parent / "jinja2_templates")
     env = Environment(loader=FileSystemLoader(templates_path))
     template = env.get_template(jinja2_template)
     template_model = parsed_fy_py_file.template_model.model_dump()
