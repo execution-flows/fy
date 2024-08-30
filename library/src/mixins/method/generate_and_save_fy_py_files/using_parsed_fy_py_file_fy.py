@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-method generate_fy_py_files -> None using parsed_fy_py_files:
+method generate_and_save_fy_py_files -> None using parsed_fy_py_files:
     property parsed_fy_py_files
     property mixin_import_map
 """
@@ -39,13 +39,13 @@ from mixins.property.mixin_import_map.abc_fy import (
 
 
 # fy:start ===>>>
-class GenerateFyPyFiles_UsingParsedFyPyFiles_MethodMixin(
+class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_MethodMixin(
     # Property_mixins
     ParsedFyPyFiles_PropertyMixin_ABC,
     MixinImportMap_PropertyMixin_ABC,
     abc.ABC,
 ):
-    def _generate_fy_py_files(self) -> None:
+    def _generate_and_save_fy_py_files(self) -> None:
         # fy:end <<<===
         for parsed_fy_py_file in self._parsed_fy_py_files:
             generated_python_code, mixin_imports = (
