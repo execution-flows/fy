@@ -11,7 +11,7 @@ class PropertyFileSplitModel(BaseModel):
     property_name: str
     implementation_name: str
     property_type: str
-    mixin_split: str
+    mixins: str
 
 
 # fy:start ===>>>

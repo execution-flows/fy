@@ -41,7 +41,7 @@ class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
             property_name=property_file_split[2],
             implementation_name=property_file_split[4],
             property_type=property_file_split[3],
-            mixin_split=property_file_split[5],
+            mixins=property_file_split[5],
         )
 
         return property_file_split_model

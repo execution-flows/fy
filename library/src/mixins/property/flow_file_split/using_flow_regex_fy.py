@@ -38,7 +38,7 @@ class FlowFileSplit_UsingFlowRegex_PropertyMixin(
             user_imports=flow_file_split[0],
             flow_name=flow_file_split[1],
             return_type=flow_file_split[2],
-            mixin_split=flow_file_split[3],
+            mixins=flow_file_split[3],
         )
 
         return flow_file_split_model
