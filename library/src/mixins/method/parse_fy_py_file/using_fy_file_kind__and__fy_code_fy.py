@@ -4,6 +4,7 @@ from domain.parsed_fy_py_file import ParsedFyPyFile
 
 method parse_fy_py_file -> ParsedFyPyFile using fy_file_kind__and__fy_code:
     property fy_py_file_to_parse
+    property pre_fy_code
     property fy_code
     property pre_marker_file_content
     property post_marker_file_content
@@ -33,6 +34,7 @@ from mixins.property.fy_py_file_to_parse.abc_fy import (
 from mixins.property.post_marker_file_content.abc_fy import (
     PostMarkerFileContent_PropertyMixin_ABC,
 )
+from mixins.property.pre_fy_code.abc_fy import PreFyCode_PropertyMixin_ABC
 from mixins.property.pre_marker_file_content.abc_fy import (
     PreMarkerFileContent_PropertyMixin_ABC,
 )
@@ -42,6 +44,7 @@ from mixins.property.pre_marker_file_content.abc_fy import (
 class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
     # Property_mixins
     FyPyFileToParse_PropertyMixin_ABC,
+    PreFyCode_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     PreMarkerFileContent_PropertyMixin_ABC,
     PostMarkerFileContent_PropertyMixin_ABC,
@@ -54,6 +57,7 @@ class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
         match self._fy_file_kind:
             case ParsedFyPyFileKind.FLOW:
                 parse_fy_code = ParseFlowFyCode_Flow(
+                    pre_fy_code=self._pre_fy_code,
                     fy_code=self._fy_code,
                     pre_marker_file_content=self._pre_marker_file_content,
                     post_marker_file_content=self._post_marker_file_content,
@@ -61,6 +65,7 @@ class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
                 )
             case ParsedFyPyFileKind.METHOD:
                 parse_fy_code = ParseMethodFyCode_Flow(
+                    pre_fy_code=self._pre_fy_code,
                     fy_code=self._fy_code,
                     pre_marker_file_content=self._pre_marker_file_content,
                     post_marker_file_content=self._post_marker_file_content,
@@ -68,6 +73,7 @@ class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
                 )
             case ParsedFyPyFileKind.ABSTRACT_METHOD:
                 parse_fy_code = ParseAbstractMethodFyCode_Flow(
+                    pre_fy_code=self._pre_fy_code,
                     fy_code=self._fy_code,
                     pre_marker_file_content=self._pre_marker_file_content,
                     post_marker_file_content=self._post_marker_file_content,
@@ -75,6 +81,7 @@ class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
                 )
             case ParsedFyPyFileKind.ABSTRACT_PROPERTY:
                 parse_fy_code = ParseAbstractPropertyFyCode_Flow(
+                    pre_fy_code=self._pre_fy_code,
                     fy_code=self._fy_code,
                     pre_marker_file_content=self._pre_marker_file_content,
                     post_marker_file_content=self._post_marker_file_content,
@@ -82,6 +89,7 @@ class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
                 )
             case ParsedFyPyFileKind.PROPERTY:
                 parse_fy_code = ParsePropertyFyCode_Flow(
+                    pre_fy_code=self._pre_fy_code,
                     fy_code=self._fy_code,
                     pre_marker_file_content=self._pre_marker_file_content,
                     post_marker_file_content=self._post_marker_file_content,

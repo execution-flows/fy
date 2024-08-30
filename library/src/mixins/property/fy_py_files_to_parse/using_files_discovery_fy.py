@@ -37,8 +37,10 @@ class FyPyFilesToParse_UsingFilesDiscovery_PropertyMixin(
 
         for fy_py_file in fy_py_files_in_directory:
             with open(file=fy_py_file, mode="r") as file:
-                current_fy_py_file_signature = file.read(len(FY_PY_FILE_SIGNATURE))
-                if current_fy_py_file_signature == FY_PY_FILE_SIGNATURE:
+                while file_line := file.readline():
+                    if file_line[0] != "#":
+                        break
+                if file_line == FY_PY_FILE_SIGNATURE:
                     fy_py_files.append(fy_py_file)
                 else:
                     raise SyntaxError(

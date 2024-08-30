@@ -3,6 +3,7 @@ from domain.parsed_fy_py_file import ParsedAbstractPropertyFyPyFile
 
 
 property parsed_abstract_property_fy_py_file: ParsedAbstractPropertyFyPyFile using parsed_fy_py_file:
+    property pre_fy_code
     property fy_code
     property pre_marker_file_content
     property post_marker_file_content
@@ -35,9 +36,15 @@ from mixins.property.pre_marker_file_content.abc_fy import (
 )
 
 
+from mixins.property.pre_fy_code.abc_fy import (
+    PreFyCode_PropertyMixin_ABC,
+)
+
+
 # fy:start ===>>>
 class ParsedAbstractPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
+    PreFyCode_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     PreMarkerFileContent_PropertyMixin_ABC,
     PostMarkerFileContent_PropertyMixin_ABC,
@@ -53,6 +60,7 @@ class ParsedAbstractPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
         )
 
         parsed_fy_py_file = ParsedAbstractPropertyFyPyFile(
+            pre_fy_code=self._pre_fy_code,
             fy_code=self._fy_code,
             pre_marker_file_content=self._pre_marker_file_content,
             post_marker_file_content=self._post_marker_file_content,

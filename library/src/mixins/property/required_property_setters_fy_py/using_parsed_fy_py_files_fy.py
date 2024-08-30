@@ -24,8 +24,6 @@ from domain.parsed_fy_py_file import (
     ParsedFlowFyPyFile,
 )
 from domain.python_entity_name import PythonEntityName
-
-
 from mixins.property.parsed_fy_py_files.abc_fy import (
     ParsedFyPyFiles_PropertyMixin_ABC,
 )
@@ -46,6 +44,7 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
         # fy:end <<<===
         required_setters = {
             flow_property.property_name.snake_case: PropertySetterFyPyFile(
+                pre_fy_code="",
                 fy_code="",
                 pre_marker_file_content="",
                 post_marker_file_content="",
