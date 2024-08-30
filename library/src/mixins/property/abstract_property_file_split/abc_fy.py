@@ -1,7 +1,4 @@
 """fy
-from typing import List
-
-
 property abstract_property_file_split: AbstractPropertyFileSplitModel
 """
 
@@ -16,7 +13,7 @@ class AbstractPropertyFileSplitModel(BaseModel):
 
 
 # fy:start ===>>>
-class With_AbstractPropertyFileSplit_PropertyMixin_ABC(abc.ABC):
+class AbstractPropertyFileSplit_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _abstract_property_file_split(self) -> AbstractPropertyFileSplitModel:

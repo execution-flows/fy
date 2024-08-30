@@ -9,27 +9,30 @@ property mixin_import_map: Dict[str, str] using parsed_fy_py_files:
     property project_root_folder
 """
 
-from domain.parsed_fy_py_file import ParsedFyPyFile
+import abc
 from functools import cached_property
+from typing import Dict
+
+from domain.parsed_fy_py_file import ParsedFyPyFile
+
+
 from mixins.property.parsed_fy_py_files.abc_fy import (
-    With_ParsedFyPyFiles_PropertyMixin_ABC,
+    ParsedFyPyFiles_PropertyMixin_ABC,
 )
 from mixins.property.project_root_folder.abc_fy import (
-    With_ProjectRootFolder_PropertyMixin_ABC,
+    ProjectRootFolder_PropertyMixin_ABC,
 )
 from mixins.property.required_property_setters_fy_py.abc_fy import (
-    With_RequiredPropertySettersFyPy_PropertyMixin_ABC,
+    RequiredPropertySettersFyPy_PropertyMixin_ABC,
 )
-from typing import Dict
-import abc
 
 
 # fy:start ===>>>
 class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(
     # Property_mixins
-    With_ParsedFyPyFiles_PropertyMixin_ABC,
-    With_RequiredPropertySettersFyPy_PropertyMixin_ABC,
-    With_ProjectRootFolder_PropertyMixin_ABC,
+    ParsedFyPyFiles_PropertyMixin_ABC,
+    RequiredPropertySettersFyPy_PropertyMixin_ABC,
+    ProjectRootFolder_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

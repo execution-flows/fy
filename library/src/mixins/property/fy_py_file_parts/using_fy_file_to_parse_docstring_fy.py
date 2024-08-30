@@ -7,6 +7,10 @@ property fy_py_file_parts: FyPyFileParts using fy_file_to_parse_docstring:
     property fy_py_file_to_parse
 """
 
+import abc
+import re
+from functools import cached_property
+
 from constants import (
     FY_PY_FILE_SIGNATURE,
     FY_CODE_FILE_END_SIGNATURE,
@@ -14,18 +18,17 @@ from constants import (
     FY_END_MARKER,
 )
 from domain.parsed_fy_py_file import FyPyFileParts
-from functools import cached_property
+
+
 from mixins.property.fy_py_file_to_parse.abc_fy import (
-    With_FyPyFileToParse_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
 )
-import abc
-import re
 
 
 # fy:start ===>>>
 class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
     # Property_mixins
-    With_FyPyFileToParse_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

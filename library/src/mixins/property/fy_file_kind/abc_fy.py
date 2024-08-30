@@ -10,7 +10,7 @@ import abc
 
 
 # fy:start ===>>>
-class With_FyFileKind_PropertyMixin_ABC(abc.ABC):
+class FyFileKind_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _fy_file_kind(self) -> ParsedFyPyFileKind:

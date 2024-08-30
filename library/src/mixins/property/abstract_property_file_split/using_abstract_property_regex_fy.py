@@ -14,15 +14,17 @@ from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from mixins.property.abstract_property_file_split.abc_fy import (
     AbstractPropertyFileSplitModel,
 )
+
+
 from mixins.property.fy_code.abc_fy import (
-    With_FyCode_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
 )
 
 
 # fy:start ===>>>
 class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
     # Property_mixins
-    With_FyCode_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

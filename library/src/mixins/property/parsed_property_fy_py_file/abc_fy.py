@@ -10,7 +10,7 @@ import abc
 
 
 # fy:start ===>>>
-class With_ParsedPropertyFyPyFile_PropertyMixin_ABC(abc.ABC):
+class ParsedPropertyFyPyFile_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
     def _parsed_property_fy_py_file(self) -> ParsedPropertyFyPyFile:

@@ -10,15 +10,16 @@ import abc
 from functools import cached_property
 from typing import List
 
+
 from mixins.property.property_file_split.abc_fy import (
-    With_PropertyFileSplit_PropertyMixin_ABC,
+    PropertyFileSplit_PropertyMixin_ABC,
 )
 
 
 # fy:start ===>>>
 class MixinLines_UsingPropertyFileSplit_PropertyMixin(
     # Property_mixins
-    With_PropertyFileSplit_PropertyMixin_ABC,
+    PropertyFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

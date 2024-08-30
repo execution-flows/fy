@@ -6,7 +6,9 @@ property abstract_method_file_split: AbstractMethodFileSplitModel using abstract
     property fy_code
 """
 
+import abc
 import re
+from functools import cached_property
 
 from constants import (
     FY_ENTITY_REGEX_STRING,
@@ -16,19 +18,17 @@ from constants import (
 from mixins.property.abstract_method_file_split.abc_fy import (
     AbstractMethodFileSplitModel,
 )
+
+
 from mixins.property.fy_code.abc_fy import (
-    With_FyCode_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
 )
-import abc
-
-
-from functools import cached_property
 
 
 # fy:start ===>>>
 class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
     # Property_mixins
-    With_FyCode_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
