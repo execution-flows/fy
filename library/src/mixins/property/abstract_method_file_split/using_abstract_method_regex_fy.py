@@ -1,18 +1,20 @@
 """fy
-from typing import List
+from mixins.property.abstract_method_file_split.abc_fy import AbstractMethodFileSplitModel
 
-@cached
-property abstract_method_file_split: List[str] using abstract_method_regex:
+
+property abstract_method_file_split: AbstractMethodFileSplitModel using abstract_method_regex:
     property fy_code
 """
 
 import re
-from typing import List
 
 from constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_ARGUMENTS_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,
+)
+from mixins.property.abstract_method_file_split.abc_fy import (
+    AbstractMethodFileSplitModel,
 )
 from mixins.property.fy_code.abc_fy import (
     With_FyCode_PropertyMixin_ABC,
@@ -30,7 +32,7 @@ class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
     abc.ABC,
 ):
     @cached_property
-    def _abstract_method_file_split(self) -> List[str]:
+    def _abstract_method_file_split(self) -> AbstractMethodFileSplitModel:
         # fy:end <<<===
         abstract_method_regex = re.compile(
             rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
@@ -44,4 +46,11 @@ class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
             len(abstract_method_file_split) == 6
         ), f"Abstract Method file split length {len(abstract_method_file_split)} is invalid"
 
-        return abstract_method_file_split
+        abstract_method_file_split_model = AbstractMethodFileSplitModel(
+            user_imports=abstract_method_file_split[0],
+            abstract_method_name=abstract_method_file_split[1],
+            arguments=abstract_method_file_split[3],
+            return_type=abstract_method_file_split[4],
+        )
+
+        return abstract_method_file_split_model
