@@ -35,7 +35,7 @@ class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
     def _fy_py_file_parts(self) -> FyPyFileParts:
         # fy:end <<<===
         fy_code_regex = re.compile(
-            rf"^(?P<pre_fy_code>#.*\n)*"
+            rf"^(?P<pre_fy_code>\s*#.*\n)*"
             rf"{FY_PY_FILE_SIGNATURE}"
             rf"(?P<fy_code>.*)"
             rf"{FY_CODE_FILE_END_SIGNATURE}",
