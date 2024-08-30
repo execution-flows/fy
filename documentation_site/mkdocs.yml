@@ -54,6 +54,10 @@ markdown_extensions:
   - pymdownx.tasklist:
         custom_checkbox: true
 
+extra:
+  version:
+    provider: mike
+
 repo_url: https://github.com/execution-flows/fy
 repo_name: execution-flows/fy
 
