@@ -1,0 +1,9 @@
+class {{ python_class_name.pascal_case }}:
+    @property
+    def _{{ property_name.snake_case }}(self) -> {{ property_type }}:
+        return self.__{{ property_name.snake_case }}
+
+    @_{{ property_name.snake_case }}.setter
+    def _{{ property_name.snake_case }}(self, {{ property_name.snake_case }}: {{ property_type }}) -> None:
+        self.__{{ property_name.snake_case }} = {{ property_name.snake_case }}
+
