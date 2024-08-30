@@ -6,7 +6,7 @@ method generate_and_save_fy_py_files -> None using jinja2_templates:
     property parsed_fy_py_files
     property required_property_setters_fy_py
     property mixin_import_map
-    method generate_fy_py_files
+    method generate_and_save_fy_py_files
 """
 
 import abc
@@ -28,9 +28,6 @@ from domain.parsed_fy_py_file import (
     ParsedMethodFyPyFile,
     ParsedPropertyFyPyFile,
 )
-from mixins.method.generate_fy_py_files.abc_fy import (
-    GenerateFyPyFiles_MethodMixin_ABC,
-)
 from mixins.property.mixin_import_map.abc_fy import (
     MixinImportMap_PropertyMixin_ABC,
 )
@@ -42,6 +39,11 @@ from mixins.property.required_property_setters_fy_py.abc_fy import (
 )
 
 
+from mixins.method.generate_and_save_fy_py_files.abc_fy import (
+    GenerateAndSaveFyPyFiles_MethodMixin_ABC,
+)
+
+
 # fy:start ===>>>
 class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
     # Property_mixins
@@ -49,12 +51,12 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
     RequiredPropertySettersFyPy_PropertyMixin_ABC,
     MixinImportMap_PropertyMixin_ABC,
     # Method_mixins
-    GenerateFyPyFiles_MethodMixin_ABC,
+    GenerateAndSaveFyPyFiles_MethodMixin_ABC,
     abc.ABC,
 ):
     def _generate_and_save_fy_py_files(self) -> None:
         # fy:end <<<===
-        self._generate_fy_py_files()
+        self._generate_and_save_fy_py_files()
         self.__generate_and_save_fy_py_files__using_required_property_setters()
 
     def __match_kind__and__load_fy_py_files(
