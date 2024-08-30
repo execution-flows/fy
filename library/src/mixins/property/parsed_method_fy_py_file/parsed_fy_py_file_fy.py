@@ -8,8 +8,7 @@ property parsed_method_fy_py_file: ParsedMethodFyPyFile using parsed_fy_py_file:
     property post_marker_file_content
     property fy_py_file_to_parse
     property method_file_split
-    property property_mixins
-    property method_mixins
+    property included_mixins
 """
 
 import abc
@@ -24,20 +23,17 @@ from mixins.property.fy_code.abc_fy import (
 from mixins.property.fy_py_file_to_parse.abc_fy import (
     With_FyPyFileToParse_PropertyMixin_ABC,
 )
+from mixins.property.included_mixins.abc_fy import (
+    With_IncludedMixins_PropertyMixin_ABC,
+)
 from mixins.property.method_file_split.abc_fy import (
     With_MethodFileSplit_PropertyMixin_ABC,
-)
-from mixins.property.method_mixins.abc_fy import (
-    With_MethodMixins_PropertyMixin_ABC,
 )
 from mixins.property.post_marker_file_content.abc_fy import (
     With_PostMarkerFileContent_PropertyMixin_ABC,
 )
 from mixins.property.pre_marker_file_content.abc_fy import (
     With_PreMarkerFileContent_PropertyMixin_ABC,
-)
-from mixins.property.property_mixins.abc_fy import (
-    With_PropertyMixins_PropertyMixin_ABC,
 )
 
 
@@ -49,8 +45,7 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     With_PostMarkerFileContent_PropertyMixin_ABC,
     With_FyPyFileToParse_PropertyMixin_ABC,
     With_MethodFileSplit_PropertyMixin_ABC,
-    With_PropertyMixins_PropertyMixin_ABC,
-    With_MethodMixins_PropertyMixin_ABC,
+    With_IncludedMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
@@ -76,8 +71,8 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 ),
                 method_name=method_name,
                 implementation_name=implementation_name,
-                abstract_property_mixins=self._property_mixins,
-                abstract_method_mixins=self._method_mixins,
+                abstract_property_mixins=self._included_mixins.abstract_property_mixins,
+                abstract_method_mixins=self._included_mixins.abstract_method_mixins,
                 arguments=self._method_file_split.arguments,
                 return_type=self._method_file_split.return_type,
             ),
