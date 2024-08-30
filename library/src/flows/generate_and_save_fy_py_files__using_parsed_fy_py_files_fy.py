@@ -2,28 +2,31 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-method generate_and_save_fy_py_files -> None using required_property_setters:
-    property required_property_setters_fy_py
+flow GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles -> None:
+    property required_property_setters_fy_py using setter
 """
-import abc
 import pathlib
+from typing import Any, List
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import FileSystemLoader, Environment
 
+from base.flow_base import FlowBase
 from constants import FY_START_MARKER, FY_END_MARKER
 from domain.parsed_fy_py_file import ParsedFyPyFile
-from mixins.property.required_property_setters_fy_py.abc_fy import (
-    RequiredPropertySettersFyPy_PropertyMixin_ABC,
+
+from mixins.property.required_property_setters_fy_py.using_setter import (
+    RequiredPropertySettersFyPy_UsingSetter_PropertyMixin,
 )
 
 
 # fy:start ===>>>
-class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_MethodMixin(
-    # Property_mixins
-    RequiredPropertySettersFyPy_PropertyMixin_ABC,
-    abc.ABC,
+class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
+    # Property Mixins
+    RequiredPropertySettersFyPy_UsingSetter_PropertyMixin,
+    # Base
+    FlowBase[None],
 ):
-    def _generate_and_save_fy_py_files(self) -> None:
+    def __call__(self) -> None:
         # fy:end <<<===
         for parsed_fy_py_file in self._required_property_setters_fy_py:
             generated_python_code = generated_fy_py_code(
@@ -42,11 +45,20 @@ class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_MethodMixin(
             ) as setter_file:
                 setter_file.write(fy_py_file_content)
 
+    def __init__(
+        self,
+        *args: Any,
+        required_property_setters_fy_py: List[ParsedFyPyFile],
+        **kwargs: Any,
+    ):
+        self._required_property_setters_fy_py = required_property_setters_fy_py
+        super().__init__(*args, **kwargs)
+
 
 def generated_fy_py_code(
     jinja2_template: str, parsed_fy_py_file: ParsedFyPyFile
 ) -> str:
-    templates_path = str(pathlib.Path(__file__).parent / "jinja2_templates")
+    templates_path = str(pathlib.Path(__file__).parent.parent / "jinja2_templates")
     env = Environment(loader=FileSystemLoader(templates_path))
     template = env.get_template(jinja2_template)
     template_model = parsed_fy_py_file.template_model.model_dump()

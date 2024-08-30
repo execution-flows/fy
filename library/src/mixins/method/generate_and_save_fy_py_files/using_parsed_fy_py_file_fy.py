@@ -259,7 +259,9 @@ def remove_existing_imports(
 def generated_fy_py_code(
     jinja2_template: str, parsed_fy_py_file: ParsedFyPyFile
 ) -> str:
-    templates_path = str(pathlib.Path(__file__).parent.parent / "jinja2_templates")
+    templates_path = str(
+        pathlib.Path(__file__).parent.parent.parent.parent / "jinja2_templates"
+    )
     env = Environment(loader=FileSystemLoader(templates_path))
     template = env.get_template(jinja2_template)
     template_model = parsed_fy_py_file.template_model.model_dump()
