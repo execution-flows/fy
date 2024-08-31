@@ -26,7 +26,6 @@ class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
     RequiredPropertySettersFyPy_UsingSetter_PropertyMixin,
     # Method Mixins
     GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
-
     # Base
     FlowBase[None],
 ):
@@ -34,7 +33,6 @@ class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
         # fy:end <<<===
         for parsed_fy_py_file in self._required_property_setters_fy_py:
             generated_python_code = self._generate_fy_py_code(
-
                 jinja2_template="property_setter.jinja2",
                 parsed_fy_py_file=parsed_fy_py_file,
             )
