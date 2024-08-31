@@ -5,12 +5,11 @@
 method generate_and_save_fy_py_files -> None using parsed_fy_py_files:
     property parsed_fy_py_files
     property mixin_import_map
+    method generate_fy_py_code
 """
-import pathlib
+import abc
 import re
 from typing import cast, List, Tuple, Set
-
-from jinja2 import Environment, FileSystemLoader
 
 from constants import (
     FY_PY_FILE_SIGNATURE,
@@ -27,14 +26,14 @@ from domain.parsed_fy_py_file import (
     ParsedFlowFyPyFile,
     ParsedFyPyFile,
 )
-from mixins.property.parsed_fy_py_files.abc_fy import (
-    ParsedFyPyFiles_PropertyMixin_ABC,
+from mixins.method.generate_fy_py_code.abc_fy import (
+    GenerateFyPyCode_MethodMixin_ABC,
 )
-import abc
-
-
 from mixins.property.mixin_import_map.abc_fy import (
     MixinImportMap_PropertyMixin_ABC,
+)
+from mixins.property.parsed_fy_py_files.abc_fy import (
+    ParsedFyPyFiles_PropertyMixin_ABC,
 )
 
 
@@ -43,6 +42,8 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_MethodMixin(
     # Property_mixins
     ParsedFyPyFiles_PropertyMixin_ABC,
     MixinImportMap_PropertyMixin_ABC,
+    # Method_mixins
+    GenerateFyPyCode_MethodMixin_ABC,
     abc.ABC,
 ):
     def _generate_and_save_fy_py_files(self) -> None:
@@ -118,7 +119,7 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_MethodMixin(
                 )
 
                 return (
-                    generated_fy_py_code(
+                    self._generate_fy_py_code(
                         jinja2_template="flow.jinja2",
                         parsed_fy_py_file=parsed_fy_py_file,
                     ),
@@ -159,7 +160,7 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_MethodMixin(
                     ]
                 )
                 return (
-                    generated_fy_py_code(
+                    self._generate_fy_py_code(
                         jinja2_template="method.jinja2",
                         parsed_fy_py_file=parsed_fy_py_file,
                     ),
@@ -168,7 +169,7 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_MethodMixin(
             case ParsedFyPyFileKind.ABSTRACT_METHOD:
                 mixin_imports = ["import abc"]
                 return (
-                    generated_fy_py_code(
+                    self._generate_fy_py_code(
                         jinja2_template="abstract_method.jinja2",
                         parsed_fy_py_file=parsed_fy_py_file,
                     ),
@@ -177,7 +178,7 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_MethodMixin(
             case ParsedFyPyFileKind.ABSTRACT_PROPERTY:
                 mixin_imports = ["import abc"]
                 return (
-                    generated_fy_py_code(
+                    self._generate_fy_py_code(
                         jinja2_template="abstract_property.jinja2",
                         parsed_fy_py_file=parsed_fy_py_file,
                     ),
@@ -208,7 +209,7 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_MethodMixin(
                     ]
                 )
                 return (
-                    generated_fy_py_code(
+                    self._generate_fy_py_code(
                         jinja2_template="property.jinja2",
                         parsed_fy_py_file=parsed_fy_py_file,
                     ),
@@ -254,16 +255,3 @@ def remove_existing_imports(
             user_imports_results.append(user_import)
 
     return mixin_imports_result + user_imports_results
-
-
-def generated_fy_py_code(
-    jinja2_template: str, parsed_fy_py_file: ParsedFyPyFile
-) -> str:
-    templates_path = str(
-        pathlib.Path(__file__).parent.parent.parent.parent / "jinja2_templates"
-    )
-    env = Environment(loader=FileSystemLoader(templates_path))
-    template = env.get_template(jinja2_template)
-    template_model = parsed_fy_py_file.template_model.model_dump()
-    content = template.render(template_model)
-    return content
