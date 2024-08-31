@@ -5,9 +5,8 @@
 from typing import List
 
 
-method remove_existing_imports(mixin_imports: List[str], pre_marker_file_content: str, user_imports: str) -> List[str]
-using imports_and_pre_marker_file_content:
-"""
+method remove_existing_imports(mixin_imports: List[str], pre_marker_file_content: str, user_imports: str) -> List[str] using imports_and_pre_marker_file_content:
+"""  # noqa: E501
 
 from typing import List, Set
 
