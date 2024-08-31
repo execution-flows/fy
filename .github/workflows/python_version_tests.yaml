@@ -16,8 +16,8 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install Poetry
-        run: pipx install poetry
         shell: bash
+        run: pipx install poetry
 
       - uses: actions/setup-python@v4
         with:
@@ -29,5 +29,16 @@ jobs:
         run: poetry install --with dev
 
       - name: Test
+        shell: bash
         run: poetry run python -m unittest
         working-directory: library/tests
+
+      - name: Install fy script
+        shell: bash
+        run: poetry install
+        working-directory: cli
+
+      - name: Test library fy code
+        shell: bash
+        run: ../../fy.sh
+        working-directory: library/src
