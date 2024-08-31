@@ -31,3 +31,7 @@ jobs:
       - name: Test
         run: poetry run python -m unittest
         working-directory: library/tests
+
+      - name: Regenerate Library
+        run: ../../fy.sh
+        working-directory: library/src
