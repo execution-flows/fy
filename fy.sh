@@ -9,6 +9,6 @@ FY_CLI_DIR="${SCRIPT_DIR}/cli"
 
 pushd "${FY_CLI_DIR}" >> /dev/null
 
-poetry run fy --root "$CURRENT_DIR" "$CURRENT_DIR"
+poetry run fy --root "$CURRENT_DIR" "$CURRENT_DIR" | exit
 
 popd
