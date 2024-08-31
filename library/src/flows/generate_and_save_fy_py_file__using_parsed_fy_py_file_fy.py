@@ -130,7 +130,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                 return (
                     self._generate_fy_py_code(
                         jinja2_template="flow.jinja2",
-                        parsed_fy_py_file=self._parsed_fy_py_file,
+                        template_model=self._parsed_fy_py_file.template_model,
                     ),
                     mixin_imports,
                 )
@@ -171,7 +171,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                 return (
                     self._generate_fy_py_code(
                         jinja2_template="method.jinja2",
-                        parsed_fy_py_file=self._parsed_fy_py_file,
+                        template_model=self._parsed_fy_py_file.template_model,
                     ),
                     mixin_imports,
                 )
@@ -180,7 +180,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                 return (
                     self._generate_fy_py_code(
                         jinja2_template="abstract_method.jinja2",
-                        parsed_fy_py_file=self._parsed_fy_py_file,
+                        template_model=self._parsed_fy_py_file.template_model,
                     ),
                     mixin_imports,
                 )
@@ -189,7 +189,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                 return (
                     self._generate_fy_py_code(
                         jinja2_template="abstract_property.jinja2",
-                        parsed_fy_py_file=self._parsed_fy_py_file,
+                        template_model=self._parsed_fy_py_file.template_model,
                     ),
                     mixin_imports,
                 )
@@ -220,7 +220,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                 return (
                     self._generate_fy_py_code(
                         jinja2_template="property.jinja2",
-                        parsed_fy_py_file=self._parsed_fy_py_file,
+                        template_model=self._parsed_fy_py_file.template_model,
                     ),
                     mixin_imports,
                 )
