@@ -14,23 +14,17 @@ flow FyPy_Main -> None:
     property parsed_fy_py_files_map_by_key using parsed_fy_py_files
     property required_property_setters_fy_py using parsed_fy_py_files
     property mixin_import_map using parsed_fy_py_files
-    method generate_and_save_fy_py_files using parsed_fy_py_files
-    method generate_fy_py_code using jinja2_templates
-    method generate_and_save_fy_py_code using jinja2_templates
 """
 
 from pathlib import Path
 from typing import Any
 
 from base.flow_base import FlowBase
-from mixins.method.generate_and_save_fy_py_code.using_jinja2_templates_fy import (
-    GenerateAndSaveFyPyCode_UsingJinja2Templates_MethodMixin,
+from flows.generate_and_save_fy_py_files__using_parsed_fy_py_files_fy import (
+    GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow,
 )
-from mixins.method.generate_and_save_fy_py_files.using_parsed_fy_py_file_fy import (
-    GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_MethodMixin,
-)
-from mixins.method.generate_fy_py_code.using_jinja2_templates_fy import (
-    GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
+from flows.generate_and_save_fy_py_files__using_required_property_setters_fy import (
+    GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow,
 )
 from mixins.property.folder_to_parse.using_setter import (
     FolderToParse_UsingSetter_PropertyMixin,
@@ -65,16 +59,18 @@ class FyPy_Main_Flow(
     ParsedFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin,
     RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin,
     MixinImportMap_UsingParsedFyPyFiles_PropertyMixin,
-    # Method Mixins
-    GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_MethodMixin,
-    GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
-    GenerateAndSaveFyPyCode_UsingJinja2Templates_MethodMixin,
     # Base
     FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        self._generate_and_save_fy_py_code()
+        GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
+            parsed_fy_py_files=self._parsed_fy_py_files,
+            mixin_import_map=self._mixin_import_map,
+        )()
+        GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
+            required_property_setters_fy_py=self._required_property_setters_fy_py
+        )()
 
     def __init__(
         self,
