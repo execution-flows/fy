@@ -8,7 +8,7 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
 
     method generate_fy_py_code using jinja2_templates
 """
-from typing import List, Set, Tuple, cast, Any
+from typing import List, Set, Tuple, cast, Any, Dict
 
 from base.flow_base import FlowBase
 from constants import (
@@ -50,8 +50,8 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        generated_python_code, mixin_imports = self.__match_kind__and__load_fy_py_files(
-            self._parsed_fy_py_file
+        generated_python_code, mixin_imports = (
+            self.__match_kind__and__load_fy_py_files()
         )
 
         filtered_mixin_imports = remove_existing_imports(
@@ -86,17 +86,15 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
         self,
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
-        # mixin_import_map: Dict[str, str],
+        mixin_import_map: Dict[str, str],
         **kwargs: Any,
     ):
+        self._mixin_import_map = mixin_import_map
         self._parsed_fy_py_file = parsed_fy_py_file
-        # self._mixin_import_map = mixin_import_map
         super().__init__(*args, **kwargs)
 
-    def __match_kind__and__load_fy_py_files(
-        self, parsed_fy_py_file: ParsedFyPyFile
-    ) -> Tuple[str, List[str]]:
-        match parsed_fy_py_file.file_type:
+    def __match_kind__and__load_fy_py_files(self) -> Tuple[str, List[str]]:
+        match self._parsed_fy_py_file.file_type:
             case ParsedFyPyFileKind.FLOW:
                 mixin_imports = (
                     [
@@ -112,7 +110,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                             )
                         ]
                         for property_mixin in cast(
-                            ParsedFlowFyPyFile, parsed_fy_py_file
+                            ParsedFlowFyPyFile, self._parsed_fy_py_file
                         ).template_model.properties
                     ]
                     + [
@@ -124,7 +122,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                             )
                         ]
                         for method_mixin in cast(
-                            ParsedFlowFyPyFile, parsed_fy_py_file
+                            ParsedFlowFyPyFile, self._parsed_fy_py_file
                         ).template_model.methods
                     ]
                 )
@@ -132,7 +130,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                 return (
                     self._generate_fy_py_code(
                         jinja2_template="flow.jinja2",
-                        parsed_fy_py_file=parsed_fy_py_file,
+                        parsed_fy_py_file=self._parsed_fy_py_file,
                     ),
                     mixin_imports,
                 )
@@ -141,10 +139,10 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                     ["import abc"]
                     if (
                         cast(
-                            ParsedMethodFyPyFile, parsed_fy_py_file
+                            ParsedMethodFyPyFile, self._parsed_fy_py_file
                         ).template_model.abstract_property_mixins
                         or cast(
-                            ParsedMethodFyPyFile, parsed_fy_py_file
+                            ParsedMethodFyPyFile, self._parsed_fy_py_file
                         ).template_model.abstract_method_mixins
                     )
                     else []
@@ -157,7 +155,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                             abstract_property_mixin.property_name.snake_case
                         ]
                         for abstract_property_mixin in cast(
-                            ParsedMethodFyPyFile, parsed_fy_py_file
+                            ParsedMethodFyPyFile, self._parsed_fy_py_file
                         ).template_model.abstract_property_mixins
                     ]
                     + [
@@ -166,14 +164,14 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                             abstract_method_mixin.method_name.snake_case
                         ]
                         for abstract_method_mixin in cast(
-                            ParsedMethodFyPyFile, parsed_fy_py_file
+                            ParsedMethodFyPyFile, self._parsed_fy_py_file
                         ).template_model.abstract_method_mixins
                     ]
                 )
                 return (
                     self._generate_fy_py_code(
                         jinja2_template="method.jinja2",
-                        parsed_fy_py_file=parsed_fy_py_file,
+                        parsed_fy_py_file=self._parsed_fy_py_file,
                     ),
                     mixin_imports,
                 )
@@ -182,7 +180,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                 return (
                     self._generate_fy_py_code(
                         jinja2_template="abstract_method.jinja2",
-                        parsed_fy_py_file=parsed_fy_py_file,
+                        parsed_fy_py_file=self._parsed_fy_py_file,
                     ),
                     mixin_imports,
                 )
@@ -191,7 +189,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                 return (
                     self._generate_fy_py_code(
                         jinja2_template="abstract_property.jinja2",
-                        parsed_fy_py_file=parsed_fy_py_file,
+                        parsed_fy_py_file=self._parsed_fy_py_file,
                     ),
                     mixin_imports,
                 )
@@ -200,7 +198,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                     ["import abc"]
                     if (
                         cast(
-                            ParsedPropertyFyPyFile, parsed_fy_py_file
+                            ParsedPropertyFyPyFile, self._parsed_fy_py_file
                         ).template_model.abstract_property_mixins
                     )
                     else []
@@ -215,18 +213,20 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                             abstract_property_mixin.property_name.snake_case
                         ]
                         for abstract_property_mixin in cast(
-                            ParsedPropertyFyPyFile, parsed_fy_py_file
+                            ParsedPropertyFyPyFile, self._parsed_fy_py_file
                         ).template_model.abstract_property_mixins
                     ]
                 )
                 return (
                     self._generate_fy_py_code(
                         jinja2_template="property.jinja2",
-                        parsed_fy_py_file=parsed_fy_py_file,
+                        parsed_fy_py_file=self._parsed_fy_py_file,
                     ),
                     mixin_imports,
                 )
-        raise ValueError(f"No Execution Flow kind for {parsed_fy_py_file.file_type}")
+        raise ValueError(
+            f"No Execution Flow kind for {self._parsed_fy_py_file.file_type}"
+        )
 
 
 def remove_existing_imports(

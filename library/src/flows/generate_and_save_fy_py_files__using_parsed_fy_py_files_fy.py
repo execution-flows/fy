@@ -42,7 +42,8 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
         for parsed_fy_py_file in self._parsed_fy_py_files:
             GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
                 parsed_fy_py_file=parsed_fy_py_file,
-            )
+                mixin_import_map=self._mixin_import_map,
+            )()
 
     def __init__(
         self,

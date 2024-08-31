@@ -11,7 +11,8 @@ class TestRaisesAssertionError(MainFyPyTestCase):
             expected_regex=r"Flow .*/flow_invalid_mixin_fy.py cannot include other abstract property implementations",
         ):
             self._test_main_flow(
-                target_folder="invalid_fy_code_raises_correct_error/flow_invalid_mixin"
+                target_folder="invalid_fy_code_raises_correct_error/flow_invalid_mixin",
+                perform_fy_code_deletion=False,
             )
 
     def test_method_invalid_abstract_mixins_raises_correct_error(self) -> None:
@@ -20,7 +21,8 @@ class TestRaisesAssertionError(MainFyPyTestCase):
             expected_regex=r"Method .*/method_invalid_abstract_mixin_fy.py cannot include other method implementations",
         ):
             self._test_main_flow(
-                target_folder="invalid_fy_code_raises_correct_error/method_invalid_abstract_mixins"
+                target_folder="invalid_fy_code_raises_correct_error/method_invalid_abstract_mixins",
+                perform_fy_code_deletion=False,
             )
 
     def test_property_invalid_abstract_mixins_raises_correct_error(self) -> None:
@@ -30,13 +32,16 @@ class TestRaisesAssertionError(MainFyPyTestCase):
             r"implementations",
         ):
             self._test_main_flow(
-                target_folder="invalid_fy_code_raises_correct_error/property_invalid_abstract_mixins"
+                target_folder="invalid_fy_code_raises_correct_error/property_invalid_abstract_mixins",
+                perform_fy_code_deletion=False,
             )
 
     def test_property_raises_correct_error(self) -> None:
-        with self.assertRaises(
+        with self.assertRaisesRegex(
             expected_exception=ValueError,
+            expected_regex=r"Line\s+prop erty french_greeting in .*/property_invalid_keyword_fy.py is invalid.",
         ):
             self._test_main_flow(
-                target_folder="invalid_fy_code_raises_correct_error/property_invalid_mixin_keyword"
+                target_folder="invalid_fy_code_raises_correct_error/property_invalid_mixin_keyword",
+                perform_fy_code_deletion=False,
             )
