@@ -11,8 +11,8 @@ method generate_and_save_fy_py_files -> None using jinja2_templates:
 
 import abc
 
-from flows.generate_and_save_fy_py_files__using_parsed_fy_py_files_fy import (
-    GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow,
+from flows.generate_and_save_fy_py_files__using_required_property_setters_fy import (
+    GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow,
 )
 from mixins.method.generate_and_save_fy_py_files.abc_fy import (
     GenerateAndSaveFyPyFiles_MethodMixin_ABC,
@@ -41,6 +41,6 @@ class GenerateAndSaveFyPyFiles_UsingJinja2Templates_MethodMixin(
     def _generate_and_save_fy_py_files(self) -> None:
         # fy:end <<<===
         self._generate_and_save_fy_py_files()
-        GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
+        GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
             required_property_setters_fy_py=self._required_property_setters_fy_py
         )()
