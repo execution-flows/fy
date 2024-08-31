@@ -73,7 +73,7 @@ class MethodTemplateModel(BaseTemplateModel):
 
 class AbstractMethodTemplateModel(BaseTemplateModel):
     abstract_method_name: PythonEntityName
-    arguments: str
+    arguments: str | None
     return_type: str
 
     @computed_field
