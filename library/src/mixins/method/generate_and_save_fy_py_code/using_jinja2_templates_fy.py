@@ -11,7 +11,7 @@ method generate_and_save_fy_py_files -> None using jinja2_templates:
 
 import abc
 
-from flows.generate_and_save_fy_py_files__using_parsed_fy_py_files_fy import (
+from flows.generate_and_save_fy_py_files__using_required_property_setters_fy import (
     GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow,
 )
 from mixins.method.generate_and_save_fy_py_files.abc_fy import (
