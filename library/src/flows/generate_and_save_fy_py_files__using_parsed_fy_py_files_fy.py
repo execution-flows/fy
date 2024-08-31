@@ -5,10 +5,10 @@
 flow GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles -> None:
     property parsed_fy_py_files using setter
     property mixin_import_map using setter
+    method remove_existing_imports using imports_and_pre_marker_file_content
     method generate_fy_py_code using jinja2_templates
 """
-import re
-from typing import Set, List, cast, Tuple, Any, Dict
+from typing import List, cast, Tuple, Any, Dict
 
 from base.flow_base import FlowBase
 from constants import (
@@ -29,6 +29,9 @@ from domain.parsed_fy_py_file import (
 from mixins.method.generate_fy_py_code.using_jinja2_templates_fy import (
     GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
 )
+from mixins.method.remove_exisitng_imports.using_imports_and_pre_marker_file_content_fy import (
+    RemoveExistingImports_UsingImportsAndPreMarkerFileContent_MethodMixin,
+)
 from mixins.property.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
 )
@@ -43,6 +46,7 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
     ParsedFyPyFiles_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     # Method Mixins
+    RemoveExistingImports_UsingImportsAndPreMarkerFileContent_MethodMixin,
     GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
     # Base
     FlowBase[None],
@@ -54,7 +58,7 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
                 self.__match_kind__and__load_fy_py_files(parsed_fy_py_file)
             )
 
-            filtered_mixin_imports = remove_existing_imports(
+            filtered_mixin_imports = self._remove_existing_imports(
                 mixin_imports=mixin_imports,
                 pre_marker_file_content=parsed_fy_py_file.pre_marker_file_content,
                 user_imports=parsed_fy_py_file.user_imports,
@@ -228,42 +232,3 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
                     mixin_imports,
                 )
         raise ValueError(f"No Execution Flow kind for {parsed_fy_py_file.file_type}")
-
-
-IMPORT_REGEX = re.compile(
-    r"^(?P<from>from [\w.]+) import .*$|^(?P<import>import [\w.]+)$", flags=re.DOTALL
-)
-
-
-def remove_existing_imports(
-    mixin_imports: List[str], pre_marker_file_content: str, user_imports: str
-) -> List[str]:
-    pre_marker_imports: Set[str] = set()
-    for pre_marker_line in pre_marker_file_content.split("\n"):
-        import_regex_result = IMPORT_REGEX.search(pre_marker_line)
-        if import_regex_result is not None:
-            pre_marker_imports.add(
-                import_regex_result.group("from") or import_regex_result.group("import")
-            )
-
-    mixin_imports_result = []
-    for mixin_import in mixin_imports:
-        import_regex_result = IMPORT_REGEX.search(mixin_import)
-        import_part = import_regex_result.group("from") or import_regex_result.group(
-            "import"
-        )
-        if import_part not in pre_marker_imports:
-            mixin_imports_result.append(mixin_import)
-
-    user_imports_results = []
-    for user_import in user_imports.split("\n"):
-        if user_import == "":
-            continue
-        import_regex_result = IMPORT_REGEX.search(user_import)
-        import_part = import_regex_result.group("from") or import_regex_result.group(
-            "import"
-        )
-        if import_part not in pre_marker_imports:
-            user_imports_results.append(user_import)
-
-    return mixin_imports_result + user_imports_results
