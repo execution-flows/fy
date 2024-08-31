@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-flow GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles -> None:
+flow GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters -> None:
     property required_property_setters_fy_py using setter
 """
 import pathlib
@@ -20,7 +20,7 @@ from mixins.property.required_property_setters_fy_py.using_setter import (
 
 
 # fy:start ===>>>
-class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
+class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
     # Property Mixins
     RequiredPropertySettersFyPy_UsingSetter_PropertyMixin,
     # Base
