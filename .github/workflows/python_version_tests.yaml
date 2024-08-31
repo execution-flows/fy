@@ -38,7 +38,7 @@ jobs:
         run: poetry install
         working-directory: cli
 
-      - name: Regenerate Library
+      - name: Test library fy code
         shell: bash
         run: ../../fy.sh
         working-directory: library/src
