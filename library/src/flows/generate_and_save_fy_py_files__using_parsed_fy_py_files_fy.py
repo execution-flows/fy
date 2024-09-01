@@ -5,7 +5,6 @@
 flow GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles -> None:
     property parsed_fy_py_files using setter
     property mixin_import_map using setter
-    method generate_fy_py_code using jinja2_templates
 """
 from typing import List, Any, Dict
 
@@ -15,9 +14,6 @@ from domain.parsed_fy_py_file import (
 )
 from flows.generate_and_save_fy_py_file__using_parsed_fy_py_file_fy import (
     GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow,
-)
-from mixins.method.generate_fy_py_code.using_jinja2_templates_fy import (
-    GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
 )
 from mixins.property.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
@@ -32,8 +28,6 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
     # Property Mixins
     ParsedFyPyFiles_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
-    # Method Mixins
-    GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
     # Base
     FlowBase[None],
 ):

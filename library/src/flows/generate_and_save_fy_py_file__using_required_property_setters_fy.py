@@ -4,15 +4,19 @@
 """fy
 flow GenerateAndSaveFyPyFile_UsingRequiredPropertySetters -> None:
     property parsed_fy_py_file using setter
-    method generate_fy_py_code using jinja2_templates
+    property jinja2_template_file_name using property_setter_constant
+    property generate_fy_py_code using jinja2_templates
 """
 from typing import Any
 
 from base.flow_base import FlowBase
 from constants import FY_START_MARKER, FY_END_MARKER
 from domain.parsed_fy_py_file import ParsedFyPyFile
-from mixins.method.generate_fy_py_code.using_jinja2_templates_fy import (
-    GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
+from mixins.property.generate_fy_py_code.using_jinja2_templates_fy import (
+    GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
+)
+from mixins.property.jinja2_template_file_name.using_property_setter_constant_fy import (
+    Jinja2TemplateFileName_UsingPropertySetterConstant_PropertyMixin,
 )
 from mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
@@ -23,21 +27,17 @@ from mixins.property.parsed_fy_py_file.using_setter import (
 class GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
     # Property Mixins
     ParsedFyPyFile_UsingSetter_PropertyMixin,
-    # Method Mixins
-    GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
+    Jinja2TemplateFileName_UsingPropertySetterConstant_PropertyMixin,
+    GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
     # Base
     FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        generated_python_code = self._generate_fy_py_code(
-            jinja2_template="property_setter.jinja2",
-            template_model=self._parsed_fy_py_file.template_model,
-        )
         fy_py_file_content = (
             f"{FY_START_MARKER}\n"
             f"{self._parsed_fy_py_file.user_imports}"
-            f"{generated_python_code}"
+            f"{self._generate_fy_py_code}"
             f"{FY_END_MARKER}\n"
             f"{self._parsed_fy_py_file.post_marker_file_content}"
         )

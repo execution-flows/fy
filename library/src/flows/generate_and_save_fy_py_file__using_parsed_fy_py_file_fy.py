@@ -7,7 +7,7 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property mixin_import_map using setter
     property mixin_imports using parsed_fy_py_file
     property jinja2_template_file_name using parsed_fy_py_file
-    method generate_fy_py_code using jinja2_templates
+    property generate_fy_py_code using jinja2_templates
 """
 from typing import List, Set, Any, Dict
 
@@ -23,8 +23,8 @@ from constants import (
 from domain.parsed_fy_py_file import (
     ParsedFyPyFile,
 )
-from mixins.method.generate_fy_py_code.using_jinja2_templates_fy import (
-    GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
+from mixins.property.generate_fy_py_code.using_jinja2_templates_fy import (
+    GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
 )
 from mixins.property.jinja2_template_file_name.using_parsed_fy_py_file_fy import (
     Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
@@ -47,15 +47,12 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     MixinImportMap_UsingSetter_PropertyMixin,
     MixinImports_UsingParsedFyPyFile_PropertyMixin,
     Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
-    # Method Mixins
-    GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
+    GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
     # Base
     FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        generated_python_code = self.__match_kind__and__load_fy_py_files()
-
         filtered_mixin_imports = remove_existing_imports(
             mixin_imports=self._mixin_imports,
             pre_marker_file_content=self._parsed_fy_py_file.pre_marker_file_content,
@@ -75,7 +72,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
             f"{mixin_imports_code}"
             f"{NEW_LINE * 2 if not self._parsed_fy_py_file.pre_marker_file_content or mixin_imports_code else ''}"
             f"{FY_START_MARKER}\n"
-            f"{generated_python_code}"
+            f"{self._generate_fy_py_code}"
             f"{FY_END_MARKER}\n"
             f"{self._parsed_fy_py_file.post_marker_file_content}"
         )
@@ -94,12 +91,6 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
         self._mixin_import_map = mixin_import_map
         self._parsed_fy_py_file = parsed_fy_py_file
         super().__init__(*args, **kwargs)
-
-    def __match_kind__and__load_fy_py_files(self) -> str:
-        return self._generate_fy_py_code(
-            jinja2_template=self._jinja2_template_file_name,
-            template_model=self._parsed_fy_py_file.template_model,
-        )
 
 
 def remove_existing_imports(
