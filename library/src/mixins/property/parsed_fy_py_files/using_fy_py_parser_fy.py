@@ -16,8 +16,6 @@ from typing import List
 
 from domain.parsed_fy_py_file import ParsedFyPyFile
 from flows.parse_fy_py_file_fy import ParseFyPyFile_Flow
-
-
 from mixins.property.fy_py_files_to_parse.abc_fy import (
     FyPyFilesToParse_PropertyMixin_ABC,
 )

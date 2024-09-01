@@ -21,7 +21,6 @@ from functools import cached_property
 from domain.fy_py_template_models import FlowTemplateModel
 from domain.parsed_fy_py_file import ParsedFlowFyPyFile
 from domain.python_entity_name import PythonEntityName
-
 from mixins.property.flow_file_split.abc_fy import (
     FlowFileSplit_PropertyMixin_ABC,
 )

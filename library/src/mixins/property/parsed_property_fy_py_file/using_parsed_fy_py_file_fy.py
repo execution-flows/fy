@@ -21,7 +21,6 @@ from functools import cached_property
 from domain.fy_py_template_models import PropertyTemplateModel
 from domain.parsed_fy_py_file import ParsedPropertyFyPyFile
 from domain.python_entity_name import PythonEntityName
-
 from mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )

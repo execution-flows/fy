@@ -6,11 +6,12 @@ property mixin_imports_code: str using filtered_mixin_imports:
     property filtered_mixin_imports
 """
 
+import abc
 from functools import cached_property
+
 from mixins.property.filtered_mixin_imports.abc_fy import (
     FilteredMixinImports_PropertyMixin_ABC,
 )
-import abc
 
 
 # fy:start ===>>>

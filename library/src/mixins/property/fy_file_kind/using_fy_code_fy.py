@@ -20,8 +20,6 @@ from constants import (
     PYTHON_ARGUMENTS_REGEX_STRING,
 )
 from domain.parsed_fy_py_file import ParsedFyPyFileKind
-
-
 from mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )

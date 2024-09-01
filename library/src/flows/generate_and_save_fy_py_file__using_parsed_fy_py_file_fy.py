@@ -7,7 +7,7 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property mixin_import_map using setter
     property mixin_imports using parsed_fy_py_file
     property jinja2_template_file_name using parsed_fy_py_file
-    property generate_fy_py_code using jinja2_templates
+    property generated_fy_py_code using jinja2_templates
     property filtered_mixin_imports using remove_existing_imports
     property mixin_imports_code using filtered_mixin_imports
     property fy_py_file_content using parsed_fy_py_file
@@ -22,14 +22,14 @@ from domain.parsed_fy_py_file import (
 from mixins.method.generate_and_save_fy_py_code.using_parsed_fy_py_file__and__fy_py_file_content_fy import (
     GenerateAndSaveFyPyCode_UsingParsedFyPyFile_And_FyPyFileContent_MethodMixin,
 )
-from mixins.property.filtered_mixin_imports.remove_existing_imports_fy import (
+from mixins.property.filtered_mixin_imports.using_remove_existing_imports_fy import (
     FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
 )
 from mixins.property.fy_py_file_content.using_parsed_fy_py_file_fy import (
     FyPyFileContent_UsingParsedFyPyFile_PropertyMixin,
 )
 from mixins.property.generated_fy_py_code.using_jinja2_templates_fy import (
-    GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
+    GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
 )
 from mixins.property.jinja2_template_file_name.using_parsed_fy_py_file_fy import (
     Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
@@ -55,7 +55,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     MixinImportMap_UsingSetter_PropertyMixin,
     MixinImports_UsingParsedFyPyFile_PropertyMixin,
     Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
-    GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
+    GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
     FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
     MixinImportsCode_UsingFilteredMixinImports_PropertyMixin,
     FyPyFileContent_UsingParsedFyPyFile_PropertyMixin,

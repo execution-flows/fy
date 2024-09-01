@@ -15,12 +15,10 @@ from constants import (
     PYTHON_MULTI_ENTITY_REGEX_STRING,
     PYTHON_ARGUMENTS_REGEX_STRING,
 )
-from mixins.property.method_file_split.abc_fy import MethodFileSplitModel
-
-
 from mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
+from mixins.property.method_file_split.abc_fy import MethodFileSplitModel
 
 
 # fy:start ===>>>

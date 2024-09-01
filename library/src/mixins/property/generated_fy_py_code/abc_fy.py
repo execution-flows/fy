@@ -2,16 +2,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-property generate_fy_py_code: str
+property generated_fy_py_code: str
 """
 
 import abc
 
 
 # fy:start ===>>>
-class GenerateFyPyCode_PropertyMixin_ABC(abc.ABC):
+class GeneratedFyPyCode_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _generate_fy_py_code(self) -> str:
+    def _generated_fy_py_code(self) -> str:
         raise NotImplementedError()
         # fy:end <<<===

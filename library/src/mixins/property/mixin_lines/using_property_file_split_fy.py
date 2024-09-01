@@ -13,7 +13,6 @@ import abc
 from functools import cached_property
 from typing import List
 
-
 from mixins.property.property_file_split.abc_fy import (
     PropertyFileSplit_PropertyMixin_ABC,
 )
