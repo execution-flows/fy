@@ -12,7 +12,7 @@ from typing import Any
 from base.flow_base import FlowBase
 from constants import FY_START_MARKER, FY_END_MARKER
 from domain.parsed_fy_py_file import ParsedFyPyFile
-from mixins.property.generate_fy_py_code.using_jinja2_templates_fy import (
+from mixins.property.generated_fy_py_code.using_jinja2_templates_fy import (
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
 )
 from mixins.property.jinja2_template_file_name.using_property_setter_constant_fy import (
