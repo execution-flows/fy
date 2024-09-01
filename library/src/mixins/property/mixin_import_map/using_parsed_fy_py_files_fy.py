@@ -5,7 +5,6 @@
 from typing import Dict
 
 
-@cached
 property mixin_import_map: Dict[str, str] using parsed_fy_py_files:
     property parsed_fy_py_files
     property required_property_setters_fy_py

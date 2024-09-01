@@ -5,7 +5,6 @@
 from domain.parsed_fy_py_file import FyPyFileParts
 
 
-@cached
 property fy_py_file_parts: FyPyFileParts using fy_file_to_parse_docstring:
     property fy_py_file_to_parse
 """
