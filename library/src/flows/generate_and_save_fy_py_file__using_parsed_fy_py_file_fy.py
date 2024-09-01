@@ -10,22 +10,19 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property generate_fy_py_code using jinja2_templates
     property filtered_mixin_imports using remove_existing_imports
     property mixin_imports_code using filtered_mixin_imports
+    property fy_py_file_content using parsed_fy_py_file
 """
 from typing import Any, Dict
 
 from base.flow_base import FlowBase
-from constants import (
-    FY_PY_FILE_SIGNATURE,
-    FY_CODE_FILE_END_SIGNATURE,
-    NEW_LINE,
-    FY_START_MARKER,
-    FY_END_MARKER,
-)
 from domain.parsed_fy_py_file import (
     ParsedFyPyFile,
 )
 from mixins.property.filtered_mixin_imports.remove_existing_imports_fy import (
     FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
+)
+from mixins.property.fy_py_file_content.using_parsed_fy_py_file_fy import (
+    FyPyFileContent_UsingParsedFyPyFile_PropertyMixin,
 )
 from mixins.property.generated_fy_py_code.using_jinja2_templates_fy import (
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
@@ -57,30 +54,16 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
     FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
     MixinImportsCode_UsingFilteredMixinImports_PropertyMixin,
+    FyPyFileContent_UsingParsedFyPyFile_PropertyMixin,
     # Base
     FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-
-        fy_py_file_content = (
-            f"{self._parsed_fy_py_file.pre_fy_code}"
-            f"{FY_PY_FILE_SIGNATURE}"
-            f"{self._parsed_fy_py_file.fy_code}"
-            f"{FY_CODE_FILE_END_SIGNATURE}\n"
-            f"{self._parsed_fy_py_file.pre_marker_file_content}"
-            f"{NEW_LINE if not self._parsed_fy_py_file.pre_marker_file_content or self._mixin_imports_code else ''}"
-            f"{self._mixin_imports_code}"
-            f"{NEW_LINE * 2 if not self._parsed_fy_py_file.pre_marker_file_content or self._mixin_imports_code else ''}"
-            f"{FY_START_MARKER}\n"
-            f"{self._generate_fy_py_code}"
-            f"{FY_END_MARKER}\n"
-            f"{self._parsed_fy_py_file.post_marker_file_content}"
-        )
         with open(
             file=self._parsed_fy_py_file.file_path, mode="w", encoding="UTF-8"
         ) as output_py_file:
-            output_py_file.write(fy_py_file_content)
+            output_py_file.write(self._fy_py_file_content)
 
     def __init__(
         self,

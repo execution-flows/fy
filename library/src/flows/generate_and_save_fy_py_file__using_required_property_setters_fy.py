@@ -6,12 +6,15 @@ flow GenerateAndSaveFyPyFile_UsingRequiredPropertySetters -> None:
     property parsed_fy_py_file using setter
     property jinja2_template_file_name using property_setter_constant
     property generate_fy_py_code using jinja2_templates
+    property fy_py_file_content using required_property_setter
 """
 from typing import Any
 
 from base.flow_base import FlowBase
-from constants import FY_START_MARKER, FY_END_MARKER
 from domain.parsed_fy_py_file import ParsedFyPyFile
+from mixins.property.fy_py_file_content.using_required_property_setter_fy import (
+    FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin,
+)
 from mixins.property.generated_fy_py_code.using_jinja2_templates_fy import (
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
 )
@@ -29,22 +32,16 @@ class GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
     ParsedFyPyFile_UsingSetter_PropertyMixin,
     Jinja2TemplateFileName_UsingPropertySetterConstant_PropertyMixin,
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
+    FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin,
     # Base
     FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        fy_py_file_content = (
-            f"{FY_START_MARKER}\n"
-            f"{self._parsed_fy_py_file.user_imports}"
-            f"{self._generate_fy_py_code}"
-            f"{FY_END_MARKER}\n"
-            f"{self._parsed_fy_py_file.post_marker_file_content}"
-        )
         with open(
             file=self._parsed_fy_py_file.file_path, mode="w", encoding="UTF-8"
         ) as setter_file:
-            setter_file.write(fy_py_file_content)
+            setter_file.write(self._fy_py_file_content)
 
     def __init__(
         self,
