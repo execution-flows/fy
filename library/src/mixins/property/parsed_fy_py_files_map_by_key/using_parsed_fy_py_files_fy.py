@@ -15,8 +15,6 @@ from functools import cached_property
 from typing import Dict
 
 from domain.parsed_fy_py_file import ParsedFyPyFile
-
-
 from mixins.property.parsed_fy_py_files.abc_fy import (
     ParsedFyPyFiles_PropertyMixin_ABC,
 )

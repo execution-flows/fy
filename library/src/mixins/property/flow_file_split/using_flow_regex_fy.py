@@ -12,8 +12,6 @@ from functools import cached_property
 
 from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from mixins.property.flow_file_split.abc_fy import FlowFileSplitModel
-
-
 from mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )

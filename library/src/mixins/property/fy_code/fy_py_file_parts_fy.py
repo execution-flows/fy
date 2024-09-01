@@ -9,7 +9,6 @@ property fy_code: str using fy_py_file_parts:
 import abc
 from functools import cached_property
 
-
 from mixins.property.fy_py_file_parts.abc_fy import (
     FyPyFileParts_PropertyMixin_ABC,
 )

@@ -17,8 +17,6 @@ from constants import FY_ENTITY_REGEX_STRING, PYTHON_MULTI_ENTITY_REGEX_STRING
 from mixins.property.abstract_property_file_split.abc_fy import (
     AbstractPropertyFileSplitModel,
 )
-
-
 from mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )

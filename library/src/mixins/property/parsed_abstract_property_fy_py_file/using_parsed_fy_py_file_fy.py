@@ -20,7 +20,6 @@ from functools import cached_property
 from domain.fy_py_template_models import AbstractPropertyTemplateModel
 from domain.parsed_fy_py_file import ParsedAbstractPropertyFyPyFile
 from domain.python_entity_name import PythonEntityName
-
 from mixins.property.abstract_property_file_split.abc_fy import (
     AbstractPropertyFileSplit_PropertyMixin_ABC,
 )
