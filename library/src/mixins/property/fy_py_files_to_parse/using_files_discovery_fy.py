@@ -6,7 +6,6 @@ from pathlib import Path
 from typing import List
 
 
-@cached
 property fy_py_files_to_parse: List[Path] using files_discovery:
     property folder_to_parse
 """

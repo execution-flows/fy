@@ -1,5 +1,4 @@
 """fy
-@cached
 property greeting: str using greeting:
 """
 
