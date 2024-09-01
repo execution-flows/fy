@@ -9,6 +9,7 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property jinja2_template_file_name using parsed_fy_py_file
     property generate_fy_py_code using jinja2_templates
     property filtered_mixin_imports using remove_existing_imports
+    property mixin_imports_code using filtered_mixin_imports
 """
 from typing import Any, Dict
 
@@ -38,6 +39,9 @@ from mixins.property.mixin_import_map.using_setter import (
 from mixins.property.mixin_imports.using_parsed_fy_py_file_fy import (
     MixinImports_UsingParsedFyPyFile_PropertyMixin,
 )
+from mixins.property.mixin_imports_code.using_filtered_mixin_imports_fy import (
+    MixinImportsCode_UsingFilteredMixinImports_PropertyMixin,
+)
 from mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -52,15 +56,12 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
     FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
+    MixinImportsCode_UsingFilteredMixinImports_PropertyMixin,
     # Base
     FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        mixin_imports_code = "\n".join(
-            sorted(self._filtered_mixin_imports)
-            + ([""] if self._filtered_mixin_imports else [])
-        )
 
         fy_py_file_content = (
             f"{self._parsed_fy_py_file.pre_fy_code}"
@@ -68,9 +69,9 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
             f"{self._parsed_fy_py_file.fy_code}"
             f"{FY_CODE_FILE_END_SIGNATURE}\n"
             f"{self._parsed_fy_py_file.pre_marker_file_content}"
-            f"{NEW_LINE if not self._parsed_fy_py_file.pre_marker_file_content or mixin_imports_code else ''}"
-            f"{mixin_imports_code}"
-            f"{NEW_LINE * 2 if not self._parsed_fy_py_file.pre_marker_file_content or mixin_imports_code else ''}"
+            f"{NEW_LINE if not self._parsed_fy_py_file.pre_marker_file_content or self._mixin_imports_code else ''}"
+            f"{self._mixin_imports_code}"
+            f"{NEW_LINE * 2 if not self._parsed_fy_py_file.pre_marker_file_content or self._mixin_imports_code else ''}"
             f"{FY_START_MARKER}\n"
             f"{self._generate_fy_py_code}"
             f"{FY_END_MARKER}\n"
