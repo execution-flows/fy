@@ -8,6 +8,7 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property mixin_imports using parsed_fy_py_file
     property jinja2_template_file_name using parsed_fy_py_file
     property generate_fy_py_code using jinja2_templates
+    property filtered_mixin_imports using remove_existing_imports
 """
 from typing import List, Set, Any, Dict
 
@@ -40,6 +41,11 @@ from mixins.property.parsed_fy_py_file.using_setter import (
 )
 
 
+from mixins.property.filtered_mixin_imports.remove_existing_imports_fy import (
+    FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
+)
+
+
 # fy:start ===>>>
 class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     # Property Mixins
@@ -48,18 +54,15 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     MixinImports_UsingParsedFyPyFile_PropertyMixin,
     Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
+    FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
     # Base
     FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        filtered_mixin_imports = remove_existing_imports(
-            mixin_imports=self._mixin_imports,
-            pre_marker_file_content=self._parsed_fy_py_file.pre_marker_file_content,
-            user_imports=self._parsed_fy_py_file.user_imports,
-        )
         mixin_imports_code = "\n".join(
-            sorted(filtered_mixin_imports) + ([""] if filtered_mixin_imports else [])
+            sorted(self._filtered_mixin_imports)
+            + ([""] if self._filtered_mixin_imports else [])
         )
 
         fy_py_file_content = (
