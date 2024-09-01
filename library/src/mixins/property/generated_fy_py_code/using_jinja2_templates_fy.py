@@ -7,6 +7,7 @@ property generate_fy_py_code: str using jinja2_templates:
     property jinja2_template_file_name
 """
 import pathlib
+from typing import Final
 
 from jinja2 import Environment, FileSystemLoader
 from functools import cached_property
@@ -18,8 +19,10 @@ from mixins.property.parsed_fy_py_file.abc_fy import (
 )
 import abc
 
-_TEMPLATES_PATH = pathlib.Path(__file__).parent / "jinja2_templates"
-_JINJA2_TEMPLATE_ENVIRONMENT = Environment(loader=FileSystemLoader(_TEMPLATES_PATH))
+_TEMPLATES_PATH: Final = pathlib.Path(__file__).parent / "jinja2_templates"
+_JINJA2_TEMPLATE_ENVIRONMENT: Final = Environment(
+    loader=FileSystemLoader(_TEMPLATES_PATH)
+)
 
 
 # fy:start ===>>>
