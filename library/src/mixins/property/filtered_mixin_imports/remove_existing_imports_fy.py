@@ -9,18 +9,21 @@ property filtered_mixin_imports: List[str] using remove_existing_imports:
     property mixin_imports
     property parsed_fy_py_file
 """
-
+import abc
+import re
 from functools import cached_property
+from typing import List, Set
 
-from constants import IMPORT_REGEX
 from mixins.property.mixin_imports.abc_fy import (
     MixinImports_PropertyMixin_ABC,
 )
 from mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
 )
-from typing import List, Set
-import abc
+
+IMPORT_REGEX = re.compile(
+    r"^(?P<from>from [\w.]+) import .*$|^(?P<import>import [\w.]+)$", flags=re.DOTALL
+)
 
 
 # fy:start ===>>>

@@ -10,11 +10,10 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property generate_fy_py_code using jinja2_templates
     property filtered_mixin_imports using remove_existing_imports
 """
-from typing import List, Set, Any, Dict
+from typing import Any, Dict
 
 from base.flow_base import FlowBase
 from constants import (
-    IMPORT_REGEX,
     FY_PY_FILE_SIGNATURE,
     FY_CODE_FILE_END_SIGNATURE,
     NEW_LINE,
@@ -23,6 +22,9 @@ from constants import (
 )
 from domain.parsed_fy_py_file import (
     ParsedFyPyFile,
+)
+from mixins.property.filtered_mixin_imports.remove_existing_imports_fy import (
+    FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
 )
 from mixins.property.generated_fy_py_code.using_jinja2_templates_fy import (
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
@@ -38,9 +40,6 @@ from mixins.property.mixin_imports.using_parsed_fy_py_file_fy import (
 )
 from mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
-)
-from mixins.property.filtered_mixin_imports.remove_existing_imports_fy import (
-    FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
 )
 
 
@@ -92,37 +91,3 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
         self._mixin_import_map = mixin_import_map
         self._parsed_fy_py_file = parsed_fy_py_file
         super().__init__(*args, **kwargs)
-
-
-def remove_existing_imports(
-    mixin_imports: List[str], pre_marker_file_content: str, user_imports: str
-) -> List[str]:
-    pre_marker_imports: Set[str] = set()
-    for pre_marker_line in pre_marker_file_content.split("\n"):
-        import_regex_result = IMPORT_REGEX.search(pre_marker_line)
-        if import_regex_result is not None:
-            pre_marker_imports.add(
-                import_regex_result.group("from") or import_regex_result.group("import")
-            )
-
-    mixin_imports_result = []
-    for mixin_import in mixin_imports:
-        import_regex_result = IMPORT_REGEX.search(mixin_import)
-        import_part = import_regex_result.group("from") or import_regex_result.group(
-            "import"
-        )
-        if import_part not in pre_marker_imports:
-            mixin_imports_result.append(mixin_import)
-
-    user_imports_results = []
-    for user_import in user_imports.split("\n"):
-        if user_import == "":
-            continue
-        import_regex_result = IMPORT_REGEX.search(user_import)
-        import_part = import_regex_result.group("from") or import_regex_result.group(
-            "import"
-        )
-        if import_part not in pre_marker_imports:
-            user_imports_results.append(user_import)
-
-    return mixin_imports_result + user_imports_results
