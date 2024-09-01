@@ -11,6 +11,7 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property filtered_mixin_imports using remove_existing_imports
     property mixin_imports_code using filtered_mixin_imports
     property fy_py_file_content using parsed_fy_py_file
+    method generate_and_save_fy_py_code using parsed_fy_py_file__and__fy_py_file_content
 """
 from typing import Any, Dict
 
@@ -44,6 +45,11 @@ from mixins.property.parsed_fy_py_file.using_setter import (
 )
 
 
+from mixins.method.generate_and_save_fy_py_code.using_parsed_fy_py_file__and__fy_py_file_content_fy import (
+    GenerateAndSaveFyPyCode_UsingParsedFyPyFile_And_FyPyFileContent_MethodMixin,
+)
+
+
 # fy:start ===>>>
 class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     # Property Mixins
@@ -55,15 +61,14 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
     MixinImportsCode_UsingFilteredMixinImports_PropertyMixin,
     FyPyFileContent_UsingParsedFyPyFile_PropertyMixin,
+    # Method Mixins
+    GenerateAndSaveFyPyCode_UsingParsedFyPyFile_And_FyPyFileContent_MethodMixin,
     # Base
     FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        with open(
-            file=self._parsed_fy_py_file.file_path, mode="w", encoding="UTF-8"
-        ) as output_py_file:
-            output_py_file.write(self._fy_py_file_content)
+        self._generate_and_save_fy_py_code()
 
     def __init__(
         self,

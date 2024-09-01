@@ -7,11 +7,15 @@ flow GenerateAndSaveFyPyFile_UsingRequiredPropertySetters -> None:
     property jinja2_template_file_name using property_setter_constant
     property generate_fy_py_code using jinja2_templates
     property fy_py_file_content using required_property_setter
+    method generate_and_save_fy_py_code using parsed_fy_py_file__and__fy_py_file_content
 """
 from typing import Any
 
 from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
+from mixins.method.generate_and_save_fy_py_code.using_parsed_fy_py_file__and__fy_py_file_content_fy import (
+    GenerateAndSaveFyPyCode_UsingParsedFyPyFile_And_FyPyFileContent_MethodMixin,
+)
 from mixins.property.fy_py_file_content.using_required_property_setter_fy import (
     FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin,
 )
@@ -33,15 +37,14 @@ class GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
     Jinja2TemplateFileName_UsingPropertySetterConstant_PropertyMixin,
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
     FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin,
+    # Method Mixins
+    GenerateAndSaveFyPyCode_UsingParsedFyPyFile_And_FyPyFileContent_MethodMixin,
     # Base
     FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        with open(
-            file=self._parsed_fy_py_file.file_path, mode="w", encoding="UTF-8"
-        ) as setter_file:
-            setter_file.write(self._fy_py_file_content)
+        self._generate_and_save_fy_py_code()
 
     def __init__(
         self,
