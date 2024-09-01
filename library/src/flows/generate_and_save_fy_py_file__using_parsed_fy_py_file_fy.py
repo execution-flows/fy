@@ -6,6 +6,7 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property parsed_fy_py_file using setter
     property mixin_import_map using setter
     property mixin_imports using parsed_fy_py_file
+    property jinja2_template_file_name using parsed_fy_py_file
     method generate_fy_py_code using jinja2_templates
 """
 from typing import List, Set, Any, Dict
@@ -21,10 +22,12 @@ from constants import (
 )
 from domain.parsed_fy_py_file import (
     ParsedFyPyFile,
-    ParsedFyPyFileKind,
 )
 from mixins.method.generate_fy_py_code.using_jinja2_templates_fy import (
     GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
+)
+from mixins.property.jinja2_template_file_name.using_parsed_fy_py_file_fy import (
+    Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
 )
 from mixins.property.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
@@ -43,6 +46,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     ParsedFyPyFile_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     MixinImports_UsingParsedFyPyFile_PropertyMixin,
+    Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
     # Method Mixins
     GenerateFyPyCode_UsingJinja2Templates_MethodMixin,
     # Base
@@ -92,24 +96,8 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
         super().__init__(*args, **kwargs)
 
     def __match_kind__and__load_fy_py_files(self) -> str:
-        match self._parsed_fy_py_file.file_type:
-            case ParsedFyPyFileKind.FLOW:
-                jinja2_template_file_name = "flow.jinja2"
-            case ParsedFyPyFileKind.METHOD:
-                jinja2_template_file_name = "method.jinja2"
-            case ParsedFyPyFileKind.ABSTRACT_METHOD:
-                jinja2_template_file_name = "abstract_method.jinja2"
-            case ParsedFyPyFileKind.ABSTRACT_PROPERTY:
-                jinja2_template_file_name = "abstract_property.jinja2"
-            case ParsedFyPyFileKind.PROPERTY:
-                jinja2_template_file_name = "property.jinja2"
-            case _:
-                raise NotImplementedError(
-                    f"No Execution Flow kind for {self._parsed_fy_py_file.file_type}"
-                )
-
         return self._generate_fy_py_code(
-            jinja2_template=jinja2_template_file_name,
+            jinja2_template=self._jinja2_template_file_name,
             template_model=self._parsed_fy_py_file.template_model,
         )
 
