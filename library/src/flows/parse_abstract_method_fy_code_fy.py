@@ -20,7 +20,6 @@ from typing import Any
 
 from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
-
 from mixins.property.abstract_method_file_split.using_abstract_method_regex_fy import (
     AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin,
 )
@@ -30,7 +29,7 @@ from mixins.property.fy_code.using_setter import (
 from mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )
-from mixins.property.parsed_abstract_method_fy_py_file.parsed_fy_py_file_fy import (
+from mixins.property.parsed_abstract_method_fy_py_file.using_parsed_fy_py_file_fy import (
     ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin,
 )
 from mixins.property.post_marker_file_content.using_setter import (
