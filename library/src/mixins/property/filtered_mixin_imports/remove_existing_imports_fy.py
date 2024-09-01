@@ -21,7 +21,7 @@ from mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
 )
 
-IMPORT_REGEX = re.compile(
+_IMPORT_REGEX = re.compile(
     r"^(?P<from>from [\w.]+) import .*$|^(?P<import>import [\w.]+)$", flags=re.DOTALL
 )
 
@@ -40,7 +40,7 @@ class FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin(
         for pre_marker_line in self._parsed_fy_py_file.pre_marker_file_content.split(
             "\n"
         ):
-            import_regex_result = IMPORT_REGEX.search(pre_marker_line)
+            import_regex_result = _IMPORT_REGEX.search(pre_marker_line)
             if import_regex_result is not None:
                 pre_marker_imports.add(
                     import_regex_result.group("from")
@@ -49,7 +49,7 @@ class FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin(
 
         mixin_imports_result = []
         for mixin_import in self._mixin_imports:
-            import_regex_result = IMPORT_REGEX.search(mixin_import)
+            import_regex_result = _IMPORT_REGEX.search(mixin_import)
             import_part = import_regex_result.group(
                 "from"
             ) or import_regex_result.group("import")
@@ -60,7 +60,7 @@ class FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin(
         for user_import in self._parsed_fy_py_file.user_imports.split("\n"):
             if user_import == "":
                 continue
-            import_regex_result = IMPORT_REGEX.search(user_import)
+            import_regex_result = _IMPORT_REGEX.search(user_import)
             import_part = import_regex_result.group(
                 "from"
             ) or import_regex_result.group("import")
