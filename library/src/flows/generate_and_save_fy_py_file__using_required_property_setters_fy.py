@@ -5,7 +5,7 @@
 flow GenerateAndSaveFyPyFile_UsingRequiredPropertySetters -> None:
     property parsed_fy_py_file using setter
     property jinja2_template_file_name using property_setter_constant
-    property generate_fy_py_code using jinja2_templates
+    property generated_fy_py_code using jinja2_templates
     property fy_py_file_content using required_property_setter
     method generate_and_save_fy_py_code using parsed_fy_py_file__and__fy_py_file_content
 """
@@ -19,9 +19,6 @@ from mixins.method.generate_and_save_fy_py_code.using_parsed_fy_py_file__and__fy
 from mixins.property.fy_py_file_content.using_required_property_setter_fy import (
     FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin,
 )
-from mixins.property.generated_fy_py_code.using_jinja2_templates_fy import (
-    GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
-)
 from mixins.property.jinja2_template_file_name.using_property_setter_constant_fy import (
     Jinja2TemplateFileName_UsingPropertySetterConstant_PropertyMixin,
 )
@@ -30,12 +27,17 @@ from mixins.property.parsed_fy_py_file.using_setter import (
 )
 
 
+from mixins.property.generated_fy_py_code.using_jinja2_templates_fy import (
+    GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
+)
+
+
 # fy:start ===>>>
 class GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
     # Property Mixins
     ParsedFyPyFile_UsingSetter_PropertyMixin,
     Jinja2TemplateFileName_UsingPropertySetterConstant_PropertyMixin,
-    GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
+    GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
     FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin,
     # Method Mixins
     GenerateAndSaveFyPyCode_UsingParsedFyPyFile_And_FyPyFileContent_MethodMixin,

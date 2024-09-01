@@ -4,7 +4,7 @@
 """fy
 property fy_py_file_content: str using required_property_setter:
     property parsed_fy_py_file
-    property generate_fy_py_code
+    property generated_fy_py_code
 """
 
 import abc
@@ -12,7 +12,7 @@ from functools import cached_property
 
 from constants import FY_START_MARKER, FY_END_MARKER
 from mixins.property.generated_fy_py_code.abc_fy import (
-    GenerateFyPyCode_PropertyMixin_ABC,
+    GeneratedFyPyCode_PropertyMixin_ABC,
 )
 from mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
@@ -23,7 +23,7 @@ from mixins.property.parsed_fy_py_file.abc_fy import (
 class FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin(
     # Property_mixins
     ParsedFyPyFile_PropertyMixin_ABC,
-    GenerateFyPyCode_PropertyMixin_ABC,
+    GeneratedFyPyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
@@ -32,7 +32,7 @@ class FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin(
         fy_py_file_content = (
             f"{FY_START_MARKER}\n"
             f"{self._parsed_fy_py_file.user_imports}"
-            f"{self._generate_fy_py_code}"
+            f"{self._generated_fy_py_code}"
             f"{FY_END_MARKER}\n"
             f"{self._parsed_fy_py_file.post_marker_file_content}"
         )

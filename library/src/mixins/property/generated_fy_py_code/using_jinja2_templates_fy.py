@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-property generate_fy_py_code: str using jinja2_templates:
+property generated_fy_py_code: str using jinja2_templates:
     property parsed_fy_py_file
     property jinja2_template_file_name
 """
@@ -26,14 +26,14 @@ _JINJA2_TEMPLATE_ENVIRONMENT: Final = Environment(
 
 
 # fy:start ===>>>
-class GenerateFyPyCode_UsingJinja2Templates_PropertyMixin(
+class GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin(
     # Property_mixins
     ParsedFyPyFile_PropertyMixin_ABC,
     Jinja2TemplateFileName_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
-    def _generate_fy_py_code(self) -> str:
+    def _generated_fy_py_code(self) -> str:
         # fy:end <<<===
         template = _JINJA2_TEMPLATE_ENVIRONMENT.get_template(
             self._jinja2_template_file_name
