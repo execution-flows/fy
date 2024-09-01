@@ -8,12 +8,12 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property mixin_imports using parsed_fy_py_file
     property jinja2_template_file_name using parsed_fy_py_file
     property generate_fy_py_code using jinja2_templates
+    property filtered_mixin_imports using remove_existing_imports
 """
-from typing import List, Set, Any, Dict
+from typing import Any, Dict
 
 from base.flow_base import FlowBase
 from constants import (
-    IMPORT_REGEX,
     FY_PY_FILE_SIGNATURE,
     FY_CODE_FILE_END_SIGNATURE,
     NEW_LINE,
@@ -22,6 +22,9 @@ from constants import (
 )
 from domain.parsed_fy_py_file import (
     ParsedFyPyFile,
+)
+from mixins.property.filtered_mixin_imports.remove_existing_imports_fy import (
+    FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
 )
 from mixins.property.generated_fy_py_code.using_jinja2_templates_fy import (
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
@@ -48,18 +51,15 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     MixinImports_UsingParsedFyPyFile_PropertyMixin,
     Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
     GenerateFyPyCode_UsingJinja2Templates_PropertyMixin,
+    FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
     # Base
     FlowBase[None],
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        filtered_mixin_imports = remove_existing_imports(
-            mixin_imports=self._mixin_imports,
-            pre_marker_file_content=self._parsed_fy_py_file.pre_marker_file_content,
-            user_imports=self._parsed_fy_py_file.user_imports,
-        )
         mixin_imports_code = "\n".join(
-            sorted(filtered_mixin_imports) + ([""] if filtered_mixin_imports else [])
+            sorted(self._filtered_mixin_imports)
+            + ([""] if self._filtered_mixin_imports else [])
         )
 
         fy_py_file_content = (
@@ -91,37 +91,3 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
         self._mixin_import_map = mixin_import_map
         self._parsed_fy_py_file = parsed_fy_py_file
         super().__init__(*args, **kwargs)
-
-
-def remove_existing_imports(
-    mixin_imports: List[str], pre_marker_file_content: str, user_imports: str
-) -> List[str]:
-    pre_marker_imports: Set[str] = set()
-    for pre_marker_line in pre_marker_file_content.split("\n"):
-        import_regex_result = IMPORT_REGEX.search(pre_marker_line)
-        if import_regex_result is not None:
-            pre_marker_imports.add(
-                import_regex_result.group("from") or import_regex_result.group("import")
-            )
-
-    mixin_imports_result = []
-    for mixin_import in mixin_imports:
-        import_regex_result = IMPORT_REGEX.search(mixin_import)
-        import_part = import_regex_result.group("from") or import_regex_result.group(
-            "import"
-        )
-        if import_part not in pre_marker_imports:
-            mixin_imports_result.append(mixin_import)
-
-    user_imports_results = []
-    for user_import in user_imports.split("\n"):
-        if user_import == "":
-            continue
-        import_regex_result = IMPORT_REGEX.search(user_import)
-        import_part = import_regex_result.group("from") or import_regex_result.group(
-            "import"
-        )
-        if import_part not in pre_marker_imports:
-            user_imports_results.append(user_import)
-
-    return mixin_imports_result + user_imports_results
