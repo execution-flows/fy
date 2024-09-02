@@ -13,6 +13,19 @@ class {{ python_class_name.pascal_case }}(
 {%- endif %}
     # Base
     FlowBase[{{ return_type }}],
-):
+):{% if property_setters %}
+    def __init__(
+        self,
+        *args: Any,
+    {%- for property_setter in  property_setters %}
+        {{ property_setter.abstract_property_name.snake_case }}: {{ property_setter.property_type }},
+    {%- endfor %}
+        **kwargs: Any,
+    ):
+    {%- for property_setter in  property_setters %}
+        self._{{ property_setter.abstract_property_name.snake_case }} = {{ property_setter.abstract_property_name.snake_case }}
+    {%- endfor %}
+        super().__init__(*args, **kwargs)
+{% endif %}
     def __call__(self) -> {{ return_type}}:
 

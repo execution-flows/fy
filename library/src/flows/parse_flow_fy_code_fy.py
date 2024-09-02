@@ -43,11 +43,11 @@ from mixins.property.parsed_flow_fy_py_file.using_parsed_fy_py_file_fy import (
 from mixins.property.post_marker_file_content.using_setter import (
     PostMarkerFileContent_UsingSetter_PropertyMixin,
 )
-from mixins.property.pre_marker_file_content.using_setter import (
-    PreMarkerFileContent_UsingSetter_PropertyMixin,
-)
 from mixins.property.pre_fy_code.using_setter import (
     PreFyCode_UsingSetter_PropertyMixin,
+)
+from mixins.property.pre_marker_file_content.using_setter import (
+    PreMarkerFileContent_UsingSetter_PropertyMixin,
 )
 
 
@@ -66,18 +66,6 @@ class ParseFlowFyCode_Flow(
     # Base
     FlowBase[ParsedFyPyFile],
 ):
-    def __call__(self) -> ParsedFyPyFile:
-        # fy:end <<<===
-        assert len(self._included_mixins.abstract_method_mixins) == 0, (
-            f"Flow {self._fy_py_file_to_parse} cannot include "
-            f"other abstract method implementations."
-        )
-        assert len(self._included_mixins.abstract_property_mixins) == 0, (
-            f"Flow {self._fy_py_file_to_parse} cannot include "
-            f"other abstract property implementations."
-        )
-        return self._parsed_flow_fy_py_file
-
     def __init__(
         self,
         *args: Any,
@@ -90,8 +78,19 @@ class ParseFlowFyCode_Flow(
     ):
         self._pre_fy_code = pre_fy_code
         self._fy_code = fy_code
-        self._pre_fy_code = pre_fy_code
-        self._fy_py_file_to_parse = fy_py_file_to_parse
         self._pre_marker_file_content = pre_marker_file_content
         self._post_marker_file_content = post_marker_file_content
+        self._fy_py_file_to_parse = fy_py_file_to_parse
         super().__init__(*args, **kwargs)
+
+    def __call__(self) -> ParsedFyPyFile:
+        # fy:end <<<===
+        assert len(self._included_mixins.abstract_method_mixins) == 0, (
+            f"Flow {self._fy_py_file_to_parse} cannot include "
+            f"other abstract method implementations."
+        )
+        assert len(self._included_mixins.abstract_property_mixins) == 0, (
+            f"Flow {self._fy_py_file_to_parse} cannot include "
+            f"other abstract property implementations."
+        )
+        return self._parsed_flow_fy_py_file

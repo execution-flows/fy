@@ -24,13 +24,6 @@ class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
     # Base
     FlowBase[None],
 ):
-    def __call__(self) -> None:
-        # fy:end <<<===
-        for parsed_fy_py_file in self._required_property_setters_fy_py:
-            GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
-                parsed_fy_py_file=parsed_fy_py_file
-            )()
-
     def __init__(
         self,
         *args: Any,
@@ -39,3 +32,10 @@ class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
     ):
         self._required_property_setters_fy_py = required_property_setters_fy_py
         super().__init__(*args, **kwargs)
+
+    def __call__(self) -> None:
+        # fy:end <<<===
+        for parsed_fy_py_file in self._required_property_setters_fy_py:
+            GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
+                parsed_fy_py_file=parsed_fy_py_file,
+            )()

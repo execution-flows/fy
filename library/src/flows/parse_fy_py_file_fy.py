@@ -63,10 +63,6 @@ class ParseFyPyFile_Flow(
     # Base
     FlowBase[ParsedFyPyFile],
 ):
-    def __call__(self) -> ParsedFyPyFile:
-        # fy:end <<<===
-        return self._parse_fy_py_file()
-
     def __init__(
         self,
         *args: Any,
@@ -75,3 +71,7 @@ class ParseFyPyFile_Flow(
     ):
         self._fy_py_file_to_parse = fy_py_file_to_parse
         super().__init__(*args, **kwargs)
+
+    def __call__(self) -> ParsedFyPyFile:
+        # fy:end <<<===
+        return self._parse_fy_py_file()

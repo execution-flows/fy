@@ -92,6 +92,10 @@ class AbstractPropertyTemplateModel(BaseTemplateModel):
         return self.abstract_property_name.snake_case
 
 
+class FlowTemplateModelWithPropertySetters(FlowTemplateModel):
+    property_setters: List[AbstractPropertyTemplateModel]
+
+
 class PropertyTemplateModel(BaseTemplateModel):
     property_name: PythonEntityName
     implementation_name: PythonEntityName

@@ -2,21 +2,21 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from domain.parsed_fy_py_file import ParsedFyPyFile
+from domain.fy_py_template_models import BaseTemplateModel
 
 
-property parsed_fy_py_file: ParsedFyPyFile
+property template_model: BaseTemplateModel
 """
 
 import abc
 
-from domain.parsed_fy_py_file import ParsedFyPyFile
+from domain.fy_py_template_models import BaseTemplateModel
 
 
 # fy:start ===>>>
-class ParsedFyPyFile_PropertyMixin_ABC(abc.ABC):
+class TemplateModel_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _parsed_fy_py_file(self) -> ParsedFyPyFile:
+    def _template_model(self) -> BaseTemplateModel:
         raise NotImplementedError()
         # fy:end <<<===
