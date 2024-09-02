@@ -74,10 +74,6 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     # Base
     FlowBase[None],
 ):
-    def __call__(self) -> None:
-        # fy:end <<<===
-        self._generate_and_save_fy_py_code()
-
     def __init__(
         self,
         *args: Any,
@@ -86,7 +82,11 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
         parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
         **kwargs: Any,
     ):
-        self._mixin_import_map = mixin_import_map
         self._parsed_fy_py_file = parsed_fy_py_file
+        self._mixin_import_map = mixin_import_map
         self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         super().__init__(*args, **kwargs)
+
+    def __call__(self) -> None:
+        # fy:end <<<===
+        self._generate_and_save_fy_py_code()

@@ -22,8 +22,6 @@ from mixins.property.mixin_import_map.using_setter import (
 from mixins.property.parsed_fy_py_files.using_setter import (
     ParsedFyPyFiles_UsingSetter_PropertyMixin,
 )
-
-
 from mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
 )
@@ -38,15 +36,6 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
     # Base
     FlowBase[None],
 ):
-    def __call__(self) -> None:
-        # fy:end <<<===
-        for parsed_fy_py_file in self._parsed_fy_py_files:
-            GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
-                parsed_fy_py_file=parsed_fy_py_file,
-                mixin_import_map=self._mixin_import_map,
-                parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
-            )()
-
     def __init__(
         self,
         *args: Any,
@@ -59,3 +48,12 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
         self._mixin_import_map = mixin_import_map
         self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         super().__init__(*args, **kwargs)
+
+    def __call__(self) -> None:
+        # fy:end <<<===
+        for parsed_fy_py_file in self._parsed_fy_py_files:
+            GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
+                parsed_fy_py_file=parsed_fy_py_file,
+                mixin_import_map=self._mixin_import_map,
+                parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
+            )()

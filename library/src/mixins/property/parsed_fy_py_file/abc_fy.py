@@ -4,6 +4,7 @@
 """fy
 from domain.parsed_fy_py_file import ParsedFyPyFile
 
+
 property parsed_fy_py_file: ParsedFyPyFile
 """
 

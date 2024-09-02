@@ -56,10 +56,6 @@ class ParseAbstractMethodFyCode_Flow(
     # Base
     FlowBase[ParsedFyPyFile],
 ):
-    def __call__(self) -> ParsedFyPyFile:
-        # fy:end <<<===
-        return self._parsed_abstract_method_fy_py_file
-
     def __init__(
         self,
         *args: Any,
@@ -72,7 +68,11 @@ class ParseAbstractMethodFyCode_Flow(
     ):
         self._pre_fy_code = pre_fy_code
         self._fy_code = fy_code
-        self._fy_py_file_to_parse = fy_py_file_to_parse
         self._pre_marker_file_content = pre_marker_file_content
         self._post_marker_file_content = post_marker_file_content
+        self._fy_py_file_to_parse = fy_py_file_to_parse
         super().__init__(*args, **kwargs)
+
+    def __call__(self) -> ParsedFyPyFile:
+        # fy:end <<<===
+        return self._parsed_abstract_method_fy_py_file

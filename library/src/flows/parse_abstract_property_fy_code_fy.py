@@ -21,7 +21,6 @@ from typing import Any
 
 from base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
-
 from mixins.property.abstract_property_file_split.using_abstract_property_regex_fy import (
     AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin,
 )
@@ -37,11 +36,11 @@ from mixins.property.parsed_abstract_property_fy_py_file.using_parsed_fy_py_file
 from mixins.property.post_marker_file_content.using_setter import (
     PostMarkerFileContent_UsingSetter_PropertyMixin,
 )
-from mixins.property.pre_marker_file_content.using_setter import (
-    PreMarkerFileContent_UsingSetter_PropertyMixin,
-)
 from mixins.property.pre_fy_code.using_setter import (
     PreFyCode_UsingSetter_PropertyMixin,
+)
+from mixins.property.pre_marker_file_content.using_setter import (
+    PreMarkerFileContent_UsingSetter_PropertyMixin,
 )
 
 
@@ -58,10 +57,6 @@ class ParseAbstractPropertyFyCode_Flow(
     # Base
     FlowBase[ParsedFyPyFile],
 ):
-    def __call__(self) -> ParsedFyPyFile:
-        # fy:end <<<===
-        return self._parsed_abstract_property_fy_py_file
-
     def __init__(
         self,
         *args: Any,
@@ -74,7 +69,11 @@ class ParseAbstractPropertyFyCode_Flow(
     ):
         self._pre_fy_code = pre_fy_code
         self._fy_code = fy_code
-        self._fy_py_file_to_parse = fy_py_file_to_parse
         self._pre_marker_file_content = pre_marker_file_content
         self._post_marker_file_content = post_marker_file_content
+        self._fy_py_file_to_parse = fy_py_file_to_parse
         super().__init__(*args, **kwargs)
+
+    def __call__(self) -> ParsedFyPyFile:
+        # fy:end <<<===
+        return self._parsed_abstract_property_fy_py_file

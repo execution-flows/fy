@@ -62,17 +62,6 @@ class FyPy_Main_Flow(
     # Base
     FlowBase[None],
 ):
-    def __call__(self) -> None:
-        # fy:end <<<===
-        GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
-            parsed_fy_py_files=self._parsed_fy_py_files,
-            mixin_import_map=self._mixin_import_map,
-            parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
-        )()
-        GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
-            required_property_setters_fy_py=self._required_property_setters_fy_py
-        )()
-
     def __init__(
         self,
         *args: Any,
@@ -83,3 +72,14 @@ class FyPy_Main_Flow(
         self._folder_to_parse = folder_to_parse
         self._project_root_folder = project_root_folder
         super().__init__(*args, **kwargs)
+
+    def __call__(self) -> None:
+        # fy:end <<<===
+        GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
+            parsed_fy_py_files=self._parsed_fy_py_files,
+            mixin_import_map=self._mixin_import_map,
+            parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
+        )()
+        GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
+            required_property_setters_fy_py=self._required_property_setters_fy_py
+        )()
