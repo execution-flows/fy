@@ -11,6 +11,12 @@ repos:
       - id: check-shebang-scripts-are-executable
       - id: check-executables-have-shebangs
 
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.2.1
+    hooks:
+      - id: autoflake
+        args: [ --remove-all-unused-imports, --in-place ]
+
   - repo: https://github.com/psf/black
     rev: 24.8.0
     hooks:
@@ -43,8 +49,3 @@ repos:
             pydantic==2.8.2,
           ]
 
-  - repo: https://github.com/PyCQA/autoflake
-    rev: v2.2.1
-    hooks:
-      - id: autoflake
-        args: [ --remove-all-unused-imports, --in-place ]
