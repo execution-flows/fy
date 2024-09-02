@@ -55,7 +55,7 @@ Property setter defined as a flow mixin:
     """
     from typing import Any
     
-    from base.flow_base import FlowBase
+    from fy_core import FlowBase
     
     from mixins.property.greeting.using_setter_fy import (
         Greeting_UsingSetter_PropertyMixin,
