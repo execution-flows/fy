@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         working-directory: library
         shell: bash
-        run: poetry install --with dev
+        run: poetry install
 
       - name: Install fy script
         shell: bash
