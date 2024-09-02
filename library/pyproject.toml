@@ -20,6 +20,7 @@ flake8-bugbear = "24.4.26"
 flake8-debugger = "4.1.2"
 flake8-force-keyword-arguments = "2.0.0"
 mypy = "1.11.1"
+pre-commit = "3.8.0"
 
 [build-system]
 requires = ["poetry-core"]
