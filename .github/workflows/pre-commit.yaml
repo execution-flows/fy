@@ -21,9 +21,24 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Install dependencies (root)
         shell: bash
         run: poetry install --with dev
+
+      - name: Install dependencies (library)
+        shell: bash
+        run: poetry install --with dev
+        working-directory: library
+
+      - name: Install dependencies (cli)
+        shell: bash
+        run: poetry install --with dev
+        working-directory: cli
+
+      - name: Install dependencies (core)
+        shell: bash
+        run: poetry install --with dev
+        working-directory: core
 
       - name: pre-commit
         shell: bash
