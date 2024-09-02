@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from mixins.property.abstract_property_file_split.abc_fy import AbstractPropertyFileSplitModel
+from fy_library.mixins.property.abstract_property_file_split.abc_fy import AbstractPropertyFileSplitModel
 
 
 property abstract_property_file_split: AbstractPropertyFileSplitModel using abstract_property_regex:

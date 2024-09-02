@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from domain.fy_py_template_models import BaseTemplateModel
+from fy_library.domain.fy_py_template_models import BaseTemplateModel
 
 
 property template_model: BaseTemplateModel using parsed_fy_py_file__for_setter:
