@@ -42,3 +42,9 @@ repos:
             jinja2==3.1.4,
             pydantic==2.8.2,
           ]
+
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.2.1
+    hooks:
+      - id: autoflake
+        args: [ --remove-all-unused-imports, --in-place ]
