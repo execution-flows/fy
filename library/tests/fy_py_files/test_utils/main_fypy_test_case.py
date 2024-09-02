@@ -5,8 +5,8 @@ import re
 from pathlib import Path
 from unittest import TestCase
 
-from constants import FY_PY_FILE_EXTENSION, FY_START_MARKER, FY_END_MARKER
-from flows.fy_py_main_fy import FyPy_Main_Flow
+from fy_library.constants import FY_PY_FILE_EXTENSION, FY_START_MARKER, FY_END_MARKER
+from fy_library.flows.fy_py_main_fy import FyPy_Main_Flow
 
 _GENERATED_CONTENT_REGEX = re.compile(
     r"^(?P<pre_generated_code>.*)"

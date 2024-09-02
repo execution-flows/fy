@@ -27,7 +27,7 @@ url = "../core"
 [[package]]
 name = "fy-library"
 version = "0.2.2-dev"
-description = ""
+description = "Implementation of fy tool functionality - parsing and generating."
 optional = false
 python-versions = ">=3.10,<3.13"
 files = []

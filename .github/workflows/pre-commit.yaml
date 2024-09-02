@@ -1,0 +1,45 @@
+name: _Pre-Commit
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Poetry
+        shell: bash
+        run: pipx install poetry
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies (root)
+        shell: bash
+        run: poetry install --with dev
+
+      - name: Install dependencies (library)
+        shell: bash
+        run: poetry install
+        working-directory: library
+
+      - name: Install dependencies (cli)
+        shell: bash
+        run: poetry install
+        working-directory: cli
+
+      - name: Install dependencies (core)
+        shell: bash
+        run: poetry install
+        working-directory: core
+
+      - name: pre-commit
+        shell: bash
+        run: poetry run pre-commit run -a

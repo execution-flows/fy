@@ -33,19 +33,28 @@ repos:
             flake8-force-keyword-arguments==2.0.0,
           ]
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "v1.11.1"
+  - repo: local
     hooks:
-      - id: mypy
-        # add --no-incremental when you want to clear the local cache
-        args: [--strict, --show-traceback]
-        additional_dependencies:
-          [
-            flake8==7.1.0,
-            flake8-bugbear==24.4.26,
-            flake8-debugger==4.1.2,
-            flake8-force-keyword-arguments==2.0.0,
-            jinja2==3.1.4,
-            pydantic==2.8.2,
-          ]
+      - id: mypy-library
+        name: mypy (library)
+        files: ^library/src/
+        entry: poetry --directory library/src run mypy --config-file library/mypy.ini
+        require_serial: true
+        language: system
+        types: [python]
 
+      - id: mypy-core
+        name: mypy (core)
+        files: ^core/src/
+        entry: poetry --directory core/src run mypy --config-file core/mypy.ini
+        require_serial: true
+        language: system
+        types: [python]
+
+      - id: mypy-cli
+        name: mypy (cli)
+        files: ^cli/src/
+        entry: poetry --directory cli/src run mypy --config-file cli/mypy.ini
+        require_serial: true
+        language: system
+        types: [python]
