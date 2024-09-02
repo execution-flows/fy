@@ -152,7 +152,7 @@ Here’s an example of a ___fy___ flow with a related method and property that g
 
     ```fy 
     method greet -> None using greeting:
-        with property greeting
+        property greeting
     ```
 
 === "Python"
@@ -160,7 +160,7 @@ Here’s an example of a ___fy___ flow with a related method and property that g
     ```py title="mixins/method/greet/using_greeting_fy.py" linenums="1"
     """fy
     method greet -> None using greeting:
-        with property greeting
+        property greeting
     """
     import abc
     

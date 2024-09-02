@@ -1,4 +1,4 @@
-# Property with another Property
+# Property requires another Property
 
 In this code, the ___fy___ code is used to define a property that requires another property in order to deliver its functionality. The property `greeting` uses another property, `french_greeting`, to provide its value. This approach allows for modular and reusable property definitions. Here’s how each part of the code is defined and how it works:
 
@@ -8,7 +8,7 @@ In this code, the ___fy___ code is used to define a property that requires anoth
 
     ```fy
     property greeting: str using french_greeting:
-        with property french_greeting
+        property french_greeting
     ```
 
 === "Python"
@@ -16,7 +16,7 @@ In this code, the ___fy___ code is used to define a property that requires anoth
     ```py title="mixins/property/greeting/using_french_greeting_fy.py" linenums="1"
     """fy
     property greeting: str using french_greeting:
-        with property french_greeting
+        property french_greeting
     """
 
     import abc
@@ -45,7 +45,7 @@ What we have accomplished here is that any method or property that requires prop
 1. `:::py property greeting: str using french_greeting:`
     - **Property Declaration:** Defines a property named `greeting` with a type of `:::py str` (string). 
     - **Implementation Name:** `using french_greeting` declares the name of the specific property implementation that is then referenced by the encapsulating flow when included in a flow.
-2. `:::py with property french_greeting` 
+2. `:::py property french_greeting` 
     - **Property Integration:** Indicates that the `greeting` property depends on the `french_greeting` property. This means the value or behavior of `greeting` is derived from `french_greeting`. 
 3. Code Generation:
     - **Automatic Code Generation:** The ___fy___ tool generates the code between `:::py # fy:start` and `:::py # fy:end`. This includes the class definition and the `:::py @property` method annotation and declaration. 
