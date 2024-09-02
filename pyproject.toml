@@ -10,6 +10,7 @@ package-mode = false
 python = ">=3.10,<3.13"
 
 [tool.poetry.group.dev.dependencies]
+mypy = "1.11.1"
 pre-commit = "3.8.0"
 
 [build-system]
