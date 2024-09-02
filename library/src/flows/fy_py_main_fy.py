@@ -19,7 +19,7 @@ flow FyPy_Main -> None:
 from pathlib import Path
 from typing import Any
 
-from base.flow_base import FlowBase
+from fy_core import FlowBase
 from flows.generate_and_save_fy_py_files__using_parsed_fy_py_files_fy import (
     GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow,
 )

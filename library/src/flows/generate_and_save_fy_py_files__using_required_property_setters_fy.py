@@ -7,7 +7,7 @@ flow GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters -> None:
 """
 from typing import Any, List
 
-from base.flow_base import FlowBase
+from fy_core import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
 from flows.generate_and_save_fy_py_file__using_required_property_setters_fy import (
     GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow,
