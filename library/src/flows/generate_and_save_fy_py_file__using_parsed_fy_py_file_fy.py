@@ -5,8 +5,10 @@
 flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property parsed_fy_py_file using setter
     property mixin_import_map using setter
+    property parsed_fy_py_files_map_by_key using setter
     property mixin_imports using parsed_fy_py_file
     property jinja2_template_file_name using parsed_fy_py_file
+    property template_model using parsed_fy_py_file
     property generated_fy_py_code using jinja2_templates
     property filtered_mixin_imports using remove_existing_imports
     property mixin_imports_code using filtered_mixin_imports
@@ -46,6 +48,12 @@ from mixins.property.mixin_imports_code.using_filtered_mixin_imports_fy import (
 from mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
+from mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
+    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
+)
+from mixins.property.template_model.using_parsed_fy_py_file_fy import (
+    TemplateModel_UsingParsedFyPyFile_PropertyMixin,
+)
 
 
 # fy:start ===>>>
@@ -53,8 +61,10 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     # Property Mixins
     ParsedFyPyFile_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
+    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     MixinImports_UsingParsedFyPyFile_PropertyMixin,
     Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
+    TemplateModel_UsingParsedFyPyFile_PropertyMixin,
     GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
     FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
     MixinImportsCode_UsingFilteredMixinImports_PropertyMixin,
@@ -73,8 +83,10 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
         mixin_import_map: Dict[str, str],
+        parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
         **kwargs: Any,
     ):
         self._mixin_import_map = mixin_import_map
         self._parsed_fy_py_file = parsed_fy_py_file
+        self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         super().__init__(*args, **kwargs)

@@ -8,6 +8,13 @@ from unittest import TestCase
 from constants import FY_PY_FILE_EXTENSION, FY_START_MARKER, FY_END_MARKER
 from flows.fy_py_main_fy import FyPy_Main_Flow
 
+_GENERATED_CONTENT_REGEX = re.compile(
+    r"^(?P<pre_generated_code>.*)"
+    rf"{FY_START_MARKER}.*{FY_END_MARKER}\n"
+    r"(?P<post_generated_code>.*)$",
+    flags=re.DOTALL,
+)
+
 
 class MainFyPyTestCase(TestCase):
 
@@ -55,21 +62,19 @@ class MainFyPyTestCase(TestCase):
             with open(file=fy_file_path, mode="r") as f:
                 file_content = f.read()
 
-            generated_content_regex = re.compile(
-                r"^(?P<pre_generated_code>.*)"
-                rf"{FY_START_MARKER}.*{FY_END_MARKER}\n"
-                r"(?P<post_generated_code>.*)$",
-                flags=re.DOTALL,
-            )
-            generated_content_search = generated_content_regex.search(file_content)
+            generated_content_search = _GENERATED_CONTENT_REGEX.search(file_content)
 
+            if generated_content_search is None:
+                continue
+
+            cleaned_file_content = (
+                f"{generated_content_search.group('pre_generated_code')}"
+                f"{FY_START_MARKER}\n"
+                f"{FY_END_MARKER}\n"
+                f"{generated_content_search.group('post_generated_code')}"
+            )
             with open(file=fy_file_path, mode="w") as f:
-                f.write(
-                    f"{generated_content_search.group('pre_generated_code')}"
-                    f"{FY_START_MARKER}\n"
-                    f"{FY_END_MARKER}\n"
-                    f"{generated_content_search.group('post_generated_code')}"
-                )
+                f.write(cleaned_file_content)
 
     def __test_fy_py_files_in_directory(self, folder_to_parse: Path) -> None:
         fy_files_in_directory = list(folder_to_parse.rglob(f"*{FY_PY_FILE_EXTENSION}"))

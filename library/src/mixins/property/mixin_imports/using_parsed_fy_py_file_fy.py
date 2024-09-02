@@ -8,11 +8,12 @@ from typing import List
 property mixin_imports: List[str] using parsed_fy_py_file:
     property parsed_fy_py_file
     property mixin_import_map
+    property parsed_fy_py_files_map_by_key
 """
 
 import abc
 from functools import cached_property
-from typing import List, cast
+from typing import List, cast, Set
 
 from domain.fy_py_template_models import entity_key
 from domain.parsed_fy_py_file import (
@@ -27,6 +28,9 @@ from mixins.property.mixin_import_map.abc_fy import (
 from mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
 )
+from mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
+    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+)
 
 
 # fy:start ===>>>
@@ -34,6 +38,7 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
     ParsedFyPyFile_PropertyMixin_ABC,
     MixinImportMap_PropertyMixin_ABC,
+    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
@@ -41,8 +46,30 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
         # fy:end <<<===
         match self._parsed_fy_py_file.file_type:
             case ParsedFyPyFileKind.FLOW:
+                property_setters = [
+                    property_mixin
+                    for property_mixin in cast(
+                        ParsedFlowFyPyFile, self._parsed_fy_py_file
+                    ).template_model.properties
+                    if property_mixin.implementation_name.snake_case == "setter"
+                ]
+                import_any = ["from typing import Any"] if property_setters else []
+                user_imports: Set[str] = set()
+                for property_setter in property_setters:
+                    user_imports.update(
+                        [
+                            user_import
+                            for user_import in self._parsed_fy_py_files_map_by_key[
+                                property_setter.property_name.snake_case
+                            ].user_imports.split("\n")
+                            if user_import != ""
+                        ]
+                    )
+
                 mixin_imports = (
-                    [
+                    import_any
+                    + list(user_imports)
+                    + [
                         # static imports
                         "from base.flow_base import FlowBase",
                     ]

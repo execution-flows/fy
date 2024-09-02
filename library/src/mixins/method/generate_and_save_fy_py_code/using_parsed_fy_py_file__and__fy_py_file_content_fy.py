@@ -26,7 +26,8 @@ class GenerateAndSaveFyPyCode_UsingParsedFyPyFile_And_FyPyFileContent_MethodMixi
 ):
     def _generate_and_save_fy_py_code(self) -> None:
         # fy:end <<<===
+        fy_py_file_content = self._fy_py_file_content
         with open(
             file=self._parsed_fy_py_file.file_path, mode="w", encoding="UTF-8"
         ) as setter_file:
-            setter_file.write(self._fy_py_file_content)
+            setter_file.write(fy_py_file_content)
