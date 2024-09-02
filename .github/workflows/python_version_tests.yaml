@@ -28,13 +28,9 @@ jobs:
         shell: bash
         run: poetry install --with dev
 
-      - name: Install pre-commit
+      - name: pre-commit
         shell: bash
-        run: pip install pre-commit
-
-      - name: Install pre-commit
-        shell: bash
-        run: pre-commit run -a
+        run: poetry run pre-commit run -a
 
       - name: Install fy script
         shell: bash
