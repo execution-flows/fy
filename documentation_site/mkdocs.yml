@@ -69,7 +69,7 @@ nav:
       - Property:
         - What are properties: tutorial/property/property.md
         - Including a Property in a Flow: tutorial/property/property_in_flow.md
-        - Property with Property: tutorial/property/property_with_property.md
+        - Property requires Property: tutorial/property/property_with_property.md
         - What are Property Setters: tutorial/property/setters.md
       - Method:
         - Method: tutorial/method/method.md

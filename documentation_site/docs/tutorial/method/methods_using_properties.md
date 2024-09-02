@@ -13,7 +13,7 @@ Consider the following _Execution Flows_ setup, where a `greeting` _property_ is
 === "fy"
     ```fy
     method greet -> None using greeting:
-        with property greeting
+        property greeting
     ```
 
 === "Python"
@@ -21,7 +21,7 @@ Consider the following _Execution Flows_ setup, where a `greeting` _property_ is
     ```py title="mixins/method/greet/using_greeting_fy.py" linenums="1"
     """fy
     method greet -> None using greeting:
-        with property greeting
+        property greeting
     """
     
     import abc
@@ -48,7 +48,7 @@ Consider the following _Execution Flows_ setup, where a `greeting` _property_ is
     - **Method Declaration:** Defines an implementation of a method named `:::py greet`.
     - **Return Type:** `:::py -> None` specifies that the method does not return any value.
     - **Implementation Name:** `:::py using greeting` defines the implementation name that is then referenced by the hosting flow when included in a flow. ==Note that `greeting` in `using greeting` is not correlated with `greeting` in `with property greeting`. The former can be any arbitrary name and defines the method implementation name. The second is a reference to an existing abstract property in the project.==
-2. `:::py with property greeting`
+2. `:::py property greeting`
     - **Property Usage:** Specifies that the method will use the `:::py greeting` property in its implementation.
 3. Code Generation:
     - **Automatic Code Generation:** The ___fy___ tool generates code between `:::py # fy:start` and `:::py # fy:end` including the class definition and the method declaration. 
