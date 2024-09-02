@@ -27,12 +27,12 @@ jobs:
 
       - name: Install dependencies (library)
         shell: bash
-        run: poetry install --with dev
+        run: poetry install
         working-directory: library
 
       - name: Install dependencies (cli)
         shell: bash
-        run: poetry install --with dev
+        run: poetry install
         working-directory: cli
 
       - name: Install dependencies (core)
