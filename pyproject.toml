@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "fy"
+version = "0.1.0"
+description = "fy tool suite"
+authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@icloud.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "3.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

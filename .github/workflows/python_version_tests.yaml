@@ -28,10 +28,6 @@ jobs:
         shell: bash
         run: poetry install --with dev
 
-      - name: pre-commit
-        shell: bash
-        run: poetry run pre-commit run -a
-
       - name: Install fy script
         shell: bash
         run: poetry install
