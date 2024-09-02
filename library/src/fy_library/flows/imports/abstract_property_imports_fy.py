@@ -12,7 +12,9 @@ flow AbstractPropertyImportsFlow -> List[str]:
 from typing import List
 
 from fy_core.base.flow_base import FlowBase
-from fy_library.mixins.property.imports.import_abc.using_constant_import_abc_fy import (
+
+
+from fy_library.mixins.property.imports.import_abc__using_constant_fy import (
     ImportAbc_UsingConstant_PropertyMixin,
 )
 
