@@ -6,6 +6,6 @@
 # this file is accessible in projects that install `fy_library` package. Currently, CLI tool uses `Main_Flow` to run
 # the tool.
 
-from fy import fy
+from fy_library.fy import fy
 
 __all__ = ["fy"]
