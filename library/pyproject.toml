@@ -13,14 +13,6 @@ pydantic = "2.8.2"
 
 fy-core = { path = "../core", develop = true }
 
-[tool.poetry.group.dev.dependencies]
-black = "24.8.0"
-flake8 = "7.1.0"
-flake8-bugbear = "24.4.26"
-flake8-debugger = "4.1.2"
-flake8-force-keyword-arguments = "2.0.0"
-mypy = "1.11.1"
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

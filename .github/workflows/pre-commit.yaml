@@ -37,7 +37,7 @@ jobs:
 
       - name: Install dependencies (core)
         shell: bash
-        run: poetry install --with dev
+        run: poetry install
         working-directory: core
 
       - name: pre-commit
