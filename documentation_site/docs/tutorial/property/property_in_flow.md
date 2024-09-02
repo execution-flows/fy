@@ -18,7 +18,7 @@ In the ___fy___ syntax, a _property_ is a class mixin that defines a method anno
         property greeting using hello_world
     """
 
-    from fy_core import FlowBase
+    from fy_core.base.flow_base import FlowBase
     
     from mixins.property.greeting.using_hello_world_fy import (
         Greeting_UsingHelloWorld_PropertyMixin,

@@ -19,7 +19,7 @@ In this section, you'll learn how to use methods withing the flow. We'll expand 
         method greet using constant
     """
 
-    from fy_core import FlowBase
+    from fy_core.base.flow_base import FlowBase
     
     from mixins.methods.greet.using_constant_fy import (
         Greet_UsingConstant_MethodMixin,

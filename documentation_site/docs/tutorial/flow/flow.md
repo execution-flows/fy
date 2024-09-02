@@ -19,7 +19,7 @@ Python program using the ___fy___ declarative language syntax.
     flow HelloWorld -> None:
     """
 
-    from fy_core import FlowBase
+    from fy_core.base.flow_base import FlowBase
     
     
     # fy:start ===>>>
