@@ -4,7 +4,7 @@ flow HelloWorld -> None:
     method greet using greeting
 """
 
-from base.flow_base import FlowBase
+from fy_core import FlowBase
 from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.greet_fy import (
     Greet_UsingGreeting_MethodMixin,
 )

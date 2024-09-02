@@ -12,8 +12,21 @@ files = [
 ]
 
 [[package]]
-name = "fy-library"
+name = "fy-core"
 version = "0.1.0"
+description = "Core classes for implementing Execution Flows in Python projects."
+optional = false
+python-versions = ">=3.10,<3.13"
+files = []
+develop = true
+
+[package.source]
+type = "directory"
+url = "../core"
+
+[[package]]
+name = "fy-library"
+version = "0.2.2-dev"
 description = ""
 optional = false
 python-versions = ">=3.10,<3.13"
@@ -21,6 +34,7 @@ files = []
 develop = true
 
 [package.dependencies]
+fy-core = {path = "../core", develop = true}
 jinja2 = "3.1.4"
 pydantic = "2.8.2"
 

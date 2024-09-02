@@ -71,7 +71,7 @@ Here’s an example of a ___fy___ flow with a related method and property that g
         property greeting using hello_world
         method greet using greeting
     """
-    from base.flow_base import FlowBase
+    from fy_core import FlowBase
     
     from mixins.method.greet.using_greeting_fy import (
         Greet_UsinGreeting_MethodMixin,
@@ -233,7 +233,7 @@ Then the flow would look like:
         property greeting using utc_now_iso_format
         method greet using greeting
     """
-    from base.flow_base import FlowBase
+    from fy_core import FlowBase
     
     from mixins.method.greet.using_greeting_fy import (
         Greet_UsinGreeting_MethodMixin,

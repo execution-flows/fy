@@ -17,7 +17,7 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
 """
 from typing import Any, Dict
 
-from base.flow_base import FlowBase
+from fy_core import FlowBase
 from domain.parsed_fy_py_file import (
     ParsedFyPyFile,
 )
