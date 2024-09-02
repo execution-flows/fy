@@ -71,7 +71,7 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                     + list(user_imports)
                     + [
                         # static imports
-                        "from fy_core import FlowBase",
+                        "from fy_core.base.flow_base import FlowBase",
                     ]
                     + [
                         # property mixins

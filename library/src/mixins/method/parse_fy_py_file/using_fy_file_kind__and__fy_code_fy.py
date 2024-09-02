@@ -16,7 +16,7 @@ method parse_fy_py_file -> ParsedFyPyFile using fy_file_kind__and__fy_code:
 
 import abc
 
-from fy_core import FlowBase
+from fy_core.base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
 from flows.parse_abstract_method_fy_code_fy import ParseAbstractMethodFyCode_Flow
 from flows.parse_abstract_property_fy_code_fy import ParseAbstractPropertyFyCode_Flow

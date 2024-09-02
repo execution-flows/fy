@@ -20,7 +20,7 @@ flow ParseFyPyFile -> ParsedFyPyFile:
 from pathlib import Path
 from typing import Any
 
-from fy_core import FlowBase
+from fy_core.base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
 from mixins.method.parse_fy_py_file.using_fy_file_kind__and__fy_code_fy import (
     ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin,

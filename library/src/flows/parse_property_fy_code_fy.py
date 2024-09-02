@@ -20,7 +20,7 @@ flow ParsePropertyFyCode -> ParsedFyPyFile:
 from pathlib import Path
 from typing import Any
 
-from fy_core import FlowBase
+from fy_core.base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
 from mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,

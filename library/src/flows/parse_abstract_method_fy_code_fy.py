@@ -18,7 +18,7 @@ flow ParseAbstractMethodFyCode -> ParsedFyPyFile:
 from pathlib import Path
 from typing import Any
 
-from fy_core import FlowBase
+from fy_core.base.flow_base import FlowBase
 from domain.parsed_fy_py_file import ParsedFyPyFile
 from mixins.property.abstract_method_file_split.using_abstract_method_regex_fy import (
     AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin,

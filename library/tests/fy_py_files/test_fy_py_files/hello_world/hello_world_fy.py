@@ -2,7 +2,7 @@
 flow HelloWorld -> None:
 """
 
-from fy_core import FlowBase
+from fy_core.base.flow_base import FlowBase
 
 
 # fy:start ===>>>

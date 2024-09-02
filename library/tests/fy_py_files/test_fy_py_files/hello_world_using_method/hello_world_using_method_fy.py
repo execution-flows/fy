@@ -3,7 +3,7 @@ flow HelloWorld -> None:
     method greet using constant
 """
 
-from fy_core import FlowBase
+from fy_core.base.flow_base import FlowBase
 
 from fy_py_files.test_fy_py_files.hello_world_using_method.using_constant_fy import (
     Greet_UsingConstant_MethodMixin,

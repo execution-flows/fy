@@ -4,7 +4,7 @@ flow SetterTest -> None:
     property greeting2 using setter
 """
 
-from fy_core import FlowBase
+from fy_core.base.flow_base import FlowBase
 from fy_py_files.test_fy_py_files.flow_using_setters.greeting.using_setter import (
     Greeting_UsingSetter_PropertyMixin,
 )
