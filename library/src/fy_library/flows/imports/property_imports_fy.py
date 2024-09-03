@@ -10,7 +10,7 @@ flow PropertyImports -> List[str]:
     property mixin_import_map using setter
     property cached_import using constant
     property import_abc using when_abstract_property_mixins_exists
-    property import_mixins using for_abstract_property_mixin
+    property import_mixins using for_abstract_property_mixin_and_mixin_import_map
 """
 
 from typing import List, Any, Dict
@@ -26,8 +26,8 @@ from fy_library.mixins.property.imports.cached_import__using_constant_fy import 
 from fy_library.mixins.property.imports.import_abc__using_when_abstract_property_mixins_exists__fy import (
     ImportAbc_UsingWhenAbstractPropertyMixinsExists_PropertyMixin,
 )
-from fy_library.mixins.property.imports.import_mixins__using_for_abstract_property_mixin__fy import (
-    ImportMixins_UsingForAbstractPropertyMixin_PropertyMixin,
+from fy_library.mixins.property.imports.import_mixins__using_for_abstract_property_mixin_and_mixin_import_map__fy import (
+    ImportMixins_UsingForAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
 )
 from fy_library.mixins.property.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
@@ -41,7 +41,7 @@ class PropertyImports_Flow(
     MixinImportMap_UsingSetter_PropertyMixin,
     CachedImport_UsingConstant_PropertyMixin,
     ImportAbc_UsingWhenAbstractPropertyMixinsExists_PropertyMixin,
-    ImportMixins_UsingForAbstractPropertyMixin_PropertyMixin,
+    ImportMixins_UsingForAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):
@@ -54,7 +54,6 @@ class PropertyImports_Flow(
     ):
         self._abstract_property_mixins = abstract_property_mixins
         self._mixin_import_map = mixin_import_map
-
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> List[str]:
