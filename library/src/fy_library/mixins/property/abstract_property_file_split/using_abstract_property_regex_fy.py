@@ -24,6 +24,11 @@ from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
 
+_ABSTRACT_PROPERTY_REGEX = re.compile(
+    rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
+    rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
+)
+
 
 # fy:start ===>>>
 class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
@@ -34,12 +39,7 @@ class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
     @cached_property
     def _abstract_property_file_split(self) -> AbstractPropertyFileSplitModel:
         # fy:end <<<===
-        abstract_property_regex = re.compile(
-            rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
-            rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
-        )
-
-        abstract_property_file_split = abstract_property_regex.split(self._fy_code)
+        abstract_property_file_split = _ABSTRACT_PROPERTY_REGEX.split(self._fy_code)
 
         assert (
             len(abstract_property_file_split) == 4

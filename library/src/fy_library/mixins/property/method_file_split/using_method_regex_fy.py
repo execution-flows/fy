@@ -20,6 +20,13 @@ from fy_library.mixins.property.fy_code.abc_fy import (
 )
 from fy_library.mixins.property.method_file_split.abc_fy import MethodFileSplitModel
 
+_METHOD_STRING_SPLIT_REGEX = re.compile(
+    rf"method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s*"
+    rf"(?P<arguments>\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s+->"
+    rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s+"
+    rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
+)
+
 
 # fy:start ===>>>
 class MethodFileSplit_UsingMethodRegex_PropertyMixin(
@@ -30,13 +37,7 @@ class MethodFileSplit_UsingMethodRegex_PropertyMixin(
     @cached_property
     def _method_file_split(self) -> MethodFileSplitModel:
         # fy:end <<<===
-        method_string_split_regex = re.compile(
-            rf"method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s*"
-            rf"(?P<arguments>\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s+->"
-            rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s+"
-            rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
-        )
-        method_file_split = method_string_split_regex.split(self._fy_code)
+        method_file_split = _METHOD_STRING_SPLIT_REGEX.split(self._fy_code)
 
         assert (
             len(method_file_split)

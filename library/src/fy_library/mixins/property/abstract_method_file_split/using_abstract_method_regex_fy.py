@@ -25,6 +25,12 @@ from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
 
+_ABSTRACT_METHOD_REGEX = re.compile(
+    rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
+    rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
+    rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
+)
+
 
 # fy:start ===>>>
 class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
@@ -35,13 +41,7 @@ class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
     @cached_property
     def _abstract_method_file_split(self) -> AbstractMethodFileSplitModel:
         # fy:end <<<===
-        abstract_method_regex = re.compile(
-            rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
-            rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
-            rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
-        )
-
-        abstract_method_file_split = abstract_method_regex.split(self._fy_code)
+        abstract_method_file_split = _ABSTRACT_METHOD_REGEX.split(self._fy_code)
 
         assert (
             len(abstract_method_file_split) == 6
