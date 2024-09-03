@@ -28,6 +28,7 @@ from fy_library.flows.imports.abstract_method_imports_fy import (
 from fy_library.flows.imports.abstract_property_imports_fy import (
     AbstractPropertyImportsFlow_Flow,
 )
+from fy_library.flows.imports.property_imports_fy import PropertyImports_Flow
 from fy_library.mixins.property.mixin_import_map.abc_fy import (
     MixinImportMap_PropertyMixin_ABC,
 )
@@ -154,7 +155,7 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                     )
                     else []
                 )
-                cached_import = ["from functools import cached_property"]
+                cached_import = PropertyImports_Flow()()
                 mixin_imports = (
                     cached_import
                     + static_imports
