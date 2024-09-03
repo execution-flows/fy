@@ -1,9 +1,11 @@
 """fy
+import datetime
+
+
 method encrypt(message: str) -> datetime.datetime
 """
 
 import abc
-
 import datetime
 
 

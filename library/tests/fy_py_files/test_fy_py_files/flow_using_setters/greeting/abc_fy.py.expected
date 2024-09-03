@@ -6,8 +6,6 @@ property greeting: datetime.datetime
 """
 
 import abc
-
-
 import datetime
 
 

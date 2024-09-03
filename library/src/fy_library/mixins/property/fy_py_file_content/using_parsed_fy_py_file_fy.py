@@ -42,16 +42,20 @@ class FyPyFileContent_UsingParsedFyPyFile_PropertyMixin(
     @cached_property
     def _fy_py_file_content(self) -> str:
         # fy:end <<<===
+        stripped_pre_marker_file_content = (
+            self._parsed_fy_py_file.pre_marker_file_content.strip()
+        )
         fy_py_file_content = (
             f"{self._parsed_fy_py_file.pre_fy_code}"
             f"{FY_PY_FILE_SIGNATURE}"
             f"{self._parsed_fy_py_file.fy_code}"
             f"{FY_CODE_FILE_END_SIGNATURE}\n"
-            f"{self._parsed_fy_py_file.pre_marker_file_content}"
-            f"{_NEW_LINE if not self._parsed_fy_py_file.pre_marker_file_content or self._mixin_imports_code else ''}"
+            f"{_NEW_LINE if stripped_pre_marker_file_content else ''}"
+            f"{stripped_pre_marker_file_content}"
+            f"{_NEW_LINE if stripped_pre_marker_file_content else ''}"
+            f"{_NEW_LINE if self._mixin_imports_code else ''}"
             f"{self._mixin_imports_code}"
-            f"{_NEW_LINE * 2 if not self._parsed_fy_py_file.pre_marker_file_content or self._mixin_imports_code else ''}"
-            f"{FY_START_MARKER}\n"
+            f"\n\n{FY_START_MARKER}\n"
             f"{self._generated_fy_py_code}"
             f"{FY_END_MARKER}\n"
             f"{self._parsed_fy_py_file.post_marker_file_content}"
