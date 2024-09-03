@@ -5,7 +5,7 @@
 from typing import List
 
 
-property import_method_mixins: List[str] using for_abstract_method_mixin:
+property import_method_mixins: List[str] using for_abstract_method_mixin_and_mixin_import_map:
     property mixin_import_map
     property abstract_method_mixins
 """
@@ -22,7 +22,7 @@ import abc
 
 
 # fy:start ===>>>
-class ImportMethodMixins_UsingForAbstractMethodMixin_PropertyMixin(
+class ImportMethodMixins_UsingForAbstractMethodMixinAndMixinImportMap_PropertyMixin(
     # Property_mixins
     MixinImportMap_PropertyMixin_ABC,
     AbstractMethodMixins_PropertyMixin_ABC,
