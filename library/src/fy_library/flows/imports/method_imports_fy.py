@@ -10,7 +10,7 @@ flow MethodImports -> List[str]:
     property abstract_method_mixins using setter
     property mixin_import_map using setter
     property import_abc using when_abstract_property_and_abstract_method_exists
-    property import_property_mixins using for_abstract_property_mixin
+    property import_property_mixins using for_abstract_property_mixin_and_mixin_import_map
     property import_method_mixins using for_abstract_method_mixin_and_mixin_import_map
 """
 
@@ -31,16 +31,16 @@ from fy_library.mixins.property.abstract_property_mixins.using_setter import (
 from fy_library.mixins.property.imports.import_abc__using_when_abstract_property_and_abstract_method_exists__fy import (
     ImportAbc_UsingWhenAbstractPropertyAndAbstractMethodExists_PropertyMixin,
 )
-from fy_library.mixins.property.imports.import_mixins__using_for_abstract_property_mixin__fy import (
-    ImportPropertyMixins_UsingForAbstractPropertyMixin_PropertyMixin,
+from fy_library.mixins.property.imports.import_method_mixins__using_for_abstract_method_mixin_and_mixin_import_map__fy import (
+    ImportMethodMixins_UsingForAbstractMethodMixinAndMixinImportMap_PropertyMixin,
 )
 from fy_library.mixins.property.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
 )
 
 
-from fy_library.mixins.property.imports.import_mixins__using_for_abstract_method_mixin_and_mixin_import_map__fy import (
-    ImportMethodMixins_UsingForAbstractMethodMixinAndMixinImportMap_PropertyMixin,
+from fy_library.mixins.property.imports.import_property_mixins__using_for_abstract_property_mixin_and_mixin_import_map__fy import (
+    ImportPropertyMixins_UsingForAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
 )
 
 
@@ -51,7 +51,7 @@ class MethodImports_Flow(
     AbstractMethodMixins_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     ImportAbc_UsingWhenAbstractPropertyAndAbstractMethodExists_PropertyMixin,
-    ImportPropertyMixins_UsingForAbstractPropertyMixin_PropertyMixin,
+    ImportPropertyMixins_UsingForAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
     ImportMethodMixins_UsingForAbstractMethodMixinAndMixinImportMap_PropertyMixin,
     # Base
     FlowBase[List[str]],
