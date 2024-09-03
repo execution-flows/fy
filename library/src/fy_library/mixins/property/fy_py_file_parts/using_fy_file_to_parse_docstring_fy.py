@@ -24,6 +24,14 @@ from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
     FyPyFileToParse_PropertyMixin_ABC,
 )
 
+_FY_CODE_REGEX = re.compile(
+    rf"^(?P<pre_fy_code>\s*#.*\n)*"
+    rf"{FY_PY_FILE_SIGNATURE}"
+    rf"(?P<fy_code>.*)"
+    rf"{FY_CODE_FILE_END_SIGNATURE}",
+    flags=re.DOTALL,
+)
+
 
 # fy:start ===>>>
 class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
@@ -34,18 +42,10 @@ class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
     @cached_property
     def _fy_py_file_parts(self) -> FyPyFileParts:
         # fy:end <<<===
-        fy_code_regex = re.compile(
-            rf"^(?P<pre_fy_code>\s*#.*\n)*"
-            rf"{FY_PY_FILE_SIGNATURE}"
-            rf"(?P<fy_code>.*)"
-            rf"{FY_CODE_FILE_END_SIGNATURE}",
-            flags=re.DOTALL,
-        )
-
         with open(file=self._fy_py_file_to_parse, mode="r") as fy_py_file:
             content = fy_py_file.read()
 
-        fy_code_regex_search = fy_code_regex.search(content)
+        fy_code_regex_search = _FY_CODE_REGEX.search(content)
         pre_fy_code = fy_code_regex_search.group("pre_fy_code") or ""
         fy_code = fy_code_regex_search.group("fy_code")
 

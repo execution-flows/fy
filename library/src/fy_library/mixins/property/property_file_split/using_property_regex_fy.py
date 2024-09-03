@@ -21,6 +21,13 @@ from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
 
+_PROPERTY_REGEX = re.compile(
+    rf"(?P<property_annotation>@cached)?\s*"
+    rf"property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
+    rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*"
+    rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
+)
+
 
 # fy:start ===>>>
 class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
@@ -31,14 +38,7 @@ class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
     @cached_property
     def _property_file_split(self) -> PropertyFileSplitModel:
         # fy:end <<<===
-        property_regex = re.compile(
-            rf"(?P<property_annotation>@cached)?\s*"
-            rf"property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
-            rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*"
-            rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
-        )
-
-        property_file_split = property_regex.split(self._fy_code)
+        property_file_split = _PROPERTY_REGEX.split(self._fy_code)
 
         assert (
             len(property_file_split) == 6

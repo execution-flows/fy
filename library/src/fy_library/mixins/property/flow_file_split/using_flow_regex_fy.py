@@ -19,6 +19,11 @@ from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
 
+_FLOW_STRING_SPLIT_REGEX = re.compile(
+    rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s+->"
+    rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
+)
+
 
 # fy:start ===>>>
 class FlowFileSplit_UsingFlowRegex_PropertyMixin(
@@ -29,12 +34,7 @@ class FlowFileSplit_UsingFlowRegex_PropertyMixin(
     @cached_property
     def _flow_file_split(self) -> FlowFileSplitModel:
         # fy:end <<<===
-        flow_string_split_regex = re.compile(
-            rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s+->"
-            rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
-        )
-
-        flow_file_split = flow_string_split_regex.split(self._fy_code)
+        flow_file_split = _FLOW_STRING_SPLIT_REGEX.split(self._fy_code)
 
         assert (
             len(flow_file_split)

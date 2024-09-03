@@ -31,6 +31,24 @@ from fy_library.mixins.property.mixin_lines.abc_fy import (
     MixinLines_PropertyMixin_ABC,
 )
 
+_FLOW_METHOD_REGEX = re.compile(
+    rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
+    rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
+)
+
+_FLOW_PROPERTY_REGEX = re.compile(
+    rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
+    rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
+)
+
+_ABSTRACT_PROPERTY_MIXIN_REGEX = re.compile(
+    rf"^\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})$"
+)
+
+_ABSTRACT_METHOD_MIXIN_REGEX = re.compile(
+    rf"^\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})$"
+)
+
 
 # fy:start ===>>>
 class IncludedMixins_UsingMixinLines_PropertyMixin(
@@ -42,23 +60,6 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
     @cached_property
     def _included_mixins(self) -> IncludedMixinsModel:
         # fy:end <<<===
-        flow_method_regex = re.compile(
-            rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
-            rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
-        )
-
-        flow_property_regex = re.compile(
-            rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
-            rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
-        )
-
-        abstract_property_mixin_regex = re.compile(
-            rf"^\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})$"
-        )
-
-        abstract_method_mixin_regex = re.compile(
-            rf"^\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})$"
-        )
         properties: List[PropertyMixinModel] = []
         abstract_properties: List[AbstractPropertyModel] = []
         abstract_methods: List[AbstractMethodModel] = []
@@ -67,7 +68,7 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
             if mixin_line.strip() == "":
                 continue
 
-            flow_property_fy_search = flow_property_regex.search(mixin_line)
+            flow_property_fy_search = _FLOW_PROPERTY_REGEX.search(mixin_line)
 
             if flow_property_fy_search is not None:
                 properties.append(
@@ -82,7 +83,7 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
                 )
                 continue
 
-            declared_abstract_property_mixin = abstract_property_mixin_regex.search(
+            declared_abstract_property_mixin = _ABSTRACT_PROPERTY_MIXIN_REGEX.search(
                 mixin_line
             )
 
@@ -98,7 +99,7 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
                 )
                 continue
 
-            declared_abstract_method_mixin = abstract_method_mixin_regex.search(
+            declared_abstract_method_mixin = _ABSTRACT_METHOD_MIXIN_REGEX.search(
                 mixin_line
             )
 
@@ -112,7 +113,7 @@ class IncludedMixins_UsingMixinLines_PropertyMixin(
                 )
                 continue
 
-            flow_method_fy_search = flow_method_regex.search(mixin_line)
+            flow_method_fy_search = _FLOW_METHOD_REGEX.search(mixin_line)
 
             if flow_method_fy_search is not None:
                 methods.append(
