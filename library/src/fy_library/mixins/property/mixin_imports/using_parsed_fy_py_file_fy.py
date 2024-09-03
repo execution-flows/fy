@@ -28,6 +28,7 @@ from fy_library.flows.imports.abstract_method_imports_fy import (
 from fy_library.flows.imports.abstract_property_imports_fy import (
     AbstractPropertyImportsFlow_Flow,
 )
+from fy_library.flows.imports.method_imports_fy import MethodImports_Flow
 from fy_library.flows.imports.property_imports_fy import PropertyImports_Flow
 from fy_library.mixins.property.mixin_import_map.abc_fy import (
     MixinImportMap_PropertyMixin_ABC,
@@ -107,40 +108,15 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                 )
                 return mixin_imports
             case ParsedFyPyFileKind.METHOD:
-                static_imports = (
-                    ["import abc"]
-                    if (
-                        cast(
-                            ParsedMethodFyPyFile, self._parsed_fy_py_file
-                        ).template_model.abstract_property_mixins
-                        or cast(
-                            ParsedMethodFyPyFile, self._parsed_fy_py_file
-                        ).template_model.abstract_method_mixins
-                    )
-                    else []
-                )
-                mixin_imports = (
-                    static_imports
-                    + [
-                        # property mixins
-                        self._mixin_import_map[
-                            abstract_property_mixin.property_name.snake_case
-                        ]
-                        for abstract_property_mixin in cast(
-                            ParsedMethodFyPyFile, self._parsed_fy_py_file
-                        ).template_model.abstract_property_mixins
-                    ]
-                    + [
-                        # method mixins
-                        self._mixin_import_map[
-                            abstract_method_mixin.method_name.snake_case
-                        ]
-                        for abstract_method_mixin in cast(
-                            ParsedMethodFyPyFile, self._parsed_fy_py_file
-                        ).template_model.abstract_method_mixins
-                    ]
-                )
-                return mixin_imports
+                return MethodImports_Flow(
+                    abstract_property_mixins=cast(
+                        ParsedMethodFyPyFile, self._parsed_fy_py_file
+                    ).template_model.abstract_property_mixins,
+                    abstract_method_mixins=cast(
+                        ParsedMethodFyPyFile, self._parsed_fy_py_file
+                    ).template_model.abstract_method_mixins,
+                    mixin_import_map=self._mixin_import_map,
+                )()
             case ParsedFyPyFileKind.ABSTRACT_METHOD:
                 return AbstractMethodImportsFlow_Flow()()
             case ParsedFyPyFileKind.ABSTRACT_PROPERTY:

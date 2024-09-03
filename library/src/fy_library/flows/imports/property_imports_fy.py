@@ -58,4 +58,4 @@ class PropertyImports_Flow(
 
     def __call__(self) -> List[str]:
         # fy:end <<<===
-        return self._cached_import + self._import_abc + self._import_mixins
+        return self._cached_import + self._import_abc + self._import_property_mixins

@@ -5,37 +5,36 @@
 from typing import List
 
 
-property import_mixins: List[str] using for_abstract_property_mixin_and_mixin_import_map:
-    property mixin_import_map
+property import_abc: List[str] using when_abstract_property_and_abstract_method_exists:
     property abstract_property_mixins
+    property abstract_method_mixins
 """
 
 from functools import cached_property
 from typing import List
 
+
+from fy_library.mixins.property.abstract_method_mixins.abc_fy import (
+    AbstractMethodMixins_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.abstract_property_mixins.abc_fy import (
     AbstractPropertyMixins_PropertyMixin_ABC,
 )
 import abc
 
 
-from fy_library.mixins.property.mixin_import_map.abc_fy import (
-    MixinImportMap_PropertyMixin_ABC,
-)
-
-
 # fy:start ===>>>
-class ImportMixins_UsingForAbstractPropertyMixinAndMixinImportMap_PropertyMixin(
+class ImportAbc_UsingWhenAbstractPropertyAndAbstractMethodExists_PropertyMixin(
     # Property_mixins
-    MixinImportMap_PropertyMixin_ABC,
     AbstractPropertyMixins_PropertyMixin_ABC,
+    AbstractMethodMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
-    def _import_property_mixins(self) -> List[str]:
+    def _import_abc(self) -> List[str]:
         # fy:end <<<===
-        return [
-            # property mixins
-            self._mixin_import_map[abstract_property_mixin.property_name.snake_case]
-            for abstract_property_mixin in self._abstract_property_mixins
-        ]
+        return (
+            ["import abc"]
+            if (self._abstract_property_mixins or self._abstract_method_mixins)
+            else []
+        )
