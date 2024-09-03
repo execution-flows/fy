@@ -146,21 +146,12 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
             case ParsedFyPyFileKind.ABSTRACT_PROPERTY:
                 return AbstractPropertyImportsFlow_Flow()()
             case ParsedFyPyFileKind.PROPERTY:
-                imports = PropertyImports_Flow(
+                return PropertyImports_Flow(
                     abstract_property_mixins=cast(
                         ParsedPropertyFyPyFile, self._parsed_fy_py_file
-                    ).template_model.abstract_property_mixins
+                    ).template_model.abstract_property_mixins,
+                    mixin_import_map=self._mixin_import_map,
                 )()
-                mixin_imports = imports + [
-                    # property mixins
-                    self._mixin_import_map[
-                        abstract_property_mixin.property_name.snake_case
-                    ]
-                    for abstract_property_mixin in cast(
-                        ParsedPropertyFyPyFile, self._parsed_fy_py_file
-                    ).template_model.abstract_property_mixins
-                ]
-                return mixin_imports
             case _:
                 raise NotImplementedError(
                     f"Mixin imports for {self._parsed_fy_py_file.file_type}"
