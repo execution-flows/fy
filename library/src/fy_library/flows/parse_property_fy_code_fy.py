@@ -86,6 +86,9 @@ class ParsePropertyFyCode_Flow(
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
         assert (
+            len(self._included_mixins.abstract_method_mixins) == 0
+        ), f"Property {self._fy_py_file_to_parse} cannot include other abstract methods."
+        assert (
             len(self._included_mixins.property_mixins) == 0
         ), f"Property {self._fy_py_file_to_parse} cannot include other method implementations."
         assert (
