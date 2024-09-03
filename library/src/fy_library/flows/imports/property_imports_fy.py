@@ -34,7 +34,6 @@ from fy_library.mixins.property.mixin_import_map.using_setter import (
 )
 
 
-
 # fy:start ===>>>
 class PropertyImports_Flow(
     # Property Mixins
@@ -43,7 +42,6 @@ class PropertyImports_Flow(
     CachedImport_UsingConstant_PropertyMixin,
     ImportAbc_UsingWhenAbstractPropertyMixinsExists_PropertyMixin,
     ImportMixins_UsingForAbstractPropertyMixin_PropertyMixin,
-
     # Base
     FlowBase[List[str]],
 ):
@@ -62,4 +60,3 @@ class PropertyImports_Flow(
     def __call__(self) -> List[str]:
         # fy:end <<<===
         return self._cached_import + self._import_abc + self._import_mixins
-
