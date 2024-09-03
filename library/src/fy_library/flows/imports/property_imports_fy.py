@@ -10,7 +10,7 @@ flow PropertyImports -> List[str]:
     property mixin_import_map using setter
     property cached_import using constant
     property import_abc using when_abstract_property_mixins_exists
-    property import_property_mixins using for_abstract_property_mixin_and_mixin_import_map
+    property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
 """
 
 from typing import List, Any, Dict
@@ -23,11 +23,11 @@ from fy_library.mixins.property.abstract_property_mixins.using_setter import (
 from fy_library.mixins.property.imports.cached_import__using_constant_fy import (
     CachedImport_UsingConstant_PropertyMixin,
 )
+from fy_library.mixins.property.imports.import__abstract_property_mixins__using_abstract_property_mixin_and_mixin_import_map__fy import (
+    ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
+)
 from fy_library.mixins.property.imports.import_abc__using_when_abstract_property_mixins_exists__fy import (
     ImportAbc_UsingWhenAbstractPropertyMixinsExists_PropertyMixin,
-)
-from fy_library.mixins.property.imports.import_property_mixins__using_for_abstract_property_mixin_and_mixin_import_map__fy import (
-    ImportPropertyMixins_UsingForAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
 )
 from fy_library.mixins.property.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
@@ -41,7 +41,7 @@ class PropertyImports_Flow(
     MixinImportMap_UsingSetter_PropertyMixin,
     CachedImport_UsingConstant_PropertyMixin,
     ImportAbc_UsingWhenAbstractPropertyMixinsExists_PropertyMixin,
-    ImportPropertyMixins_UsingForAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
+    ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):
@@ -58,4 +58,8 @@ class PropertyImports_Flow(
 
     def __call__(self) -> List[str]:
         # fy:end <<<===
-        return self._cached_import + self._import_abc + self._import_property_mixins
+        return (
+            self._cached_import
+            + self._import_abc
+            + self._import_abstract_property_mixins
+        )

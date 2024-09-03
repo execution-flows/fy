@@ -10,8 +10,8 @@ flow MethodImports -> List[str]:
     property abstract_method_mixins using setter
     property mixin_import_map using setter
     property import_abc using when_abstract_property_and_abstract_method_exists
-    property import_property_mixins using for_abstract_property_mixin_and_mixin_import_map
-    property import_method_mixins using for_abstract_method_mixin_and_mixin_import_map
+    property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
+    property import_abstract_method_mixins using abstract_method_mixin_and_mixin_import_map
 """
 
 from typing import Any, Dict
@@ -28,19 +28,17 @@ from fy_library.mixins.property.abstract_method_mixins.using_setter import (
 from fy_library.mixins.property.abstract_property_mixins.using_setter import (
     AbstractPropertyMixins_UsingSetter_PropertyMixin,
 )
+from fy_library.mixins.property.imports.import__abstract_property_mixins__using_abstract_property_mixin_and_mixin_import_map__fy import (
+    ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
+)
 from fy_library.mixins.property.imports.import_abc__using_when_abstract_property_and_abstract_method_exists__fy import (
     ImportAbc_UsingWhenAbstractPropertyAndAbstractMethodExists_PropertyMixin,
 )
-from fy_library.mixins.property.imports.import_method_mixins__using_for_abstract_method_mixin_and_mixin_import_map__fy import (
-    ImportMethodMixins_UsingForAbstractMethodMixinAndMixinImportMap_PropertyMixin,
+from fy_library.mixins.property.imports.import_abstract_method_mixins__using_abstract_method_mixin_and_mixin_import_map__fy import (
+    ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_PropertyMixin,
 )
 from fy_library.mixins.property.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
-)
-
-
-from fy_library.mixins.property.imports.import_property_mixins__using_for_abstract_property_mixin_and_mixin_import_map__fy import (
-    ImportPropertyMixins_UsingForAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
 )
 
 
@@ -51,8 +49,8 @@ class MethodImports_Flow(
     AbstractMethodMixins_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     ImportAbc_UsingWhenAbstractPropertyAndAbstractMethodExists_PropertyMixin,
-    ImportPropertyMixins_UsingForAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
-    ImportMethodMixins_UsingForAbstractMethodMixinAndMixinImportMap_PropertyMixin,
+    ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
+    ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):
@@ -72,5 +70,7 @@ class MethodImports_Flow(
     def __call__(self) -> List[str]:
         # fy:end <<<===
         return (
-            self._import_abc + self._import_method_mixins + self._import_property_mixins
+            self._import_abc
+            + self._import_abstract_method_mixins
+            + self._import_abstract_property_mixins
         )
