@@ -6,7 +6,7 @@ from typing import List
 from fy_library.domain.fy_py_template_models import PropertyMixinModel
 
 
-property property_setter_imports: List[PropertyMixinModel] using property_mixins:
+property property_setter_mixins: List[PropertyMixinModel] using property_mixins:
     property property_mixins
 """
 
@@ -21,13 +21,13 @@ from fy_library.mixins.property.property_mixins.abc_fy import (
 
 
 # fy:start ===>>>
-class PropertySetterImports_UsingPropertyMixins_PropertyMixin(
+class PropertySetterMixins_UsingPropertyMixins_PropertyMixin(
     # Property_mixins
     PropertyMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
-    def _property_setter_imports(self) -> List[PropertyMixinModel]:
+    def _property_setter_mixins(self) -> List[PropertyMixinModel]:
         # fy:end <<<===
         property_setters = [
             property_mixin

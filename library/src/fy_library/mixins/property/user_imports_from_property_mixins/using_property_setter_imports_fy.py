@@ -5,9 +5,9 @@
 from typing import List
 
 
-property user_imports_with_property_setter_imports: List[str] using property_setter_imports:
+property user_imports_from_property_mixins: List[str] using property_setter_mixins:
     property parsed_fy_py_files_map_by_key
-    property property_setter_imports
+    property property_setter_mixins
 """
 
 import abc
@@ -17,24 +17,24 @@ from typing import List, Set
 from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
-from fy_library.mixins.property.property_setter_imports.abc_fy import (
-    PropertySetterImports_PropertyMixin_ABC,
+from fy_library.mixins.property.property_setter_mixins.abc_fy import (
+    PropertySetterMixins_PropertyMixin_ABC,
 )
 
 
 # fy:start ===>>>
-class UserImportsWithPropertySetterImports_UsingPropertySetterImports_PropertyMixin(
+class UserImportsFromPropertyMixins_UsingPropertySetterMixins_PropertyMixin(
     # Property_mixins
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
-    PropertySetterImports_PropertyMixin_ABC,
+    PropertySetterMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
-    def _user_imports_with_property_setter_imports(self) -> List[str]:
+    def _user_imports_from_property_mixins(self) -> List[str]:
         # fy:end <<<===
         user_imports_split = self._parsed_fy_py_files_map_by_key
         user_imports: Set[str] = set()
-        for property_setter in self._property_setter_imports:
+        for property_setter in self._property_setter_mixins:
             user_imports.update(
                 [
                     user_import

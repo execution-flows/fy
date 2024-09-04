@@ -10,12 +10,13 @@ flow FlowImports -> List[str]:
     property method_mixins using setter
     property parsed_fy_py_files_map_by_key using setter
     property mixin_import_map using setter
-    property property_setter_imports using property_mixins
-    property user_imports_with_property_setter_imports using property_setter_imports
+    property property_setter_mixins using property_mixins
+    property user_imports_from_property_mixins using property_setter_mixins
     property import_any using property_setters_exists
     property import_flow_base using constant
     property property_mixins_import using mixin_import_map
     property method_mixins_import using mixin_import_map
+
 """
 
 from typing import List, Any, Dict
@@ -47,11 +48,12 @@ from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter impor
 from fy_library.mixins.property.property_mixins.using_setter import (
     PropertyMixins_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.property_setter_imports.using_property_mixin_fy import (
-    PropertySetterImports_UsingPropertyMixins_PropertyMixin,
+from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy import (
+    PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
 )
-from fy_library.mixins.property.user_imports_with_property_setter_imports.using_property_setter_imports_fy import (
-    UserImportsWithPropertySetterImports_UsingPropertySetterImports_PropertyMixin,
+
+from fy_library.mixins.property.user_imports_from_property_mixins.using_property_setter_imports_fy import (
+    UserImportsFromPropertyMixins_UsingPropertySetterMixins_PropertyMixin,
 )
 
 
@@ -62,8 +64,8 @@ class FlowImports_Flow(
     MethodMixins_UsingSetter_PropertyMixin,
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
-    PropertySetterImports_UsingPropertyMixins_PropertyMixin,
-    UserImportsWithPropertySetterImports_UsingPropertySetterImports_PropertyMixin,
+    PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
+    UserImportsFromPropertyMixins_UsingPropertySetterMixins_PropertyMixin,
     ImportAny_UsingPropertySettersExists_PropertyMixin,
     ImportFlowBase_UsingConstant_PropertyMixin,
     PropertyMixinsImport_UsingMixinImportMap_PropertyMixin,
@@ -89,7 +91,7 @@ class FlowImports_Flow(
     def __call__(self) -> List[str]:
         # fy:end <<<===
         return (
-            self._user_imports_with_property_setter_imports
+            self._user_imports_from_property_mixins
             + self._import_any
             + self._import_flow_base
             + self._property_mixins_import
