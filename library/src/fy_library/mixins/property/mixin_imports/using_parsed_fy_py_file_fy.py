@@ -15,7 +15,6 @@ import abc
 from functools import cached_property
 from typing import List, cast
 
-from fy_library.domain.fy_py_template_models import entity_key
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFileKind,
     ParsedMethodFyPyFile,
@@ -61,19 +60,11 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                     ).template_model.properties,
                     parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                     mixin_import_map=self._mixin_import_map,
-                )()
-                mixin_imports = list(property_setters) + [
-                    # method mixins
-                    self._mixin_import_map[
-                        entity_key(
-                            mixin_name__snake_case=method_mixin.method_name.snake_case,
-                            mixin_implementation_name__snake_case=method_mixin.implementation_name.snake_case,
-                        )
-                    ]
-                    for method_mixin in cast(
+                    method_mixins=cast(
                         ParsedFlowFyPyFile, self._parsed_fy_py_file
-                    ).template_model.methods
-                ]
+                    ).template_model.methods,
+                )()
+                mixin_imports = list(property_setters)
                 return mixin_imports
             case ParsedFyPyFileKind.METHOD:
                 return MethodImports_Flow(
