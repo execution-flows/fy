@@ -5,27 +5,26 @@
 from typing import List
 
 
-property property_mixins_import: List[str] using mixin_import_map:
+property property_mixins_import: List[str] using property_mixins_and_mixin_import_map:
     property property_mixins
     property mixin_import_map
 """
 
+import abc
 from functools import cached_property
+from typing import List
 
 from fy_library.domain.fy_py_template_models import entity_key
 from fy_library.mixins.property.mixin_import_map.abc_fy import (
     MixinImportMap_PropertyMixin_ABC,
 )
-from typing import List
-import abc
-
 from fy_library.mixins.property.property_mixins.abc_fy import (
     PropertyMixins_PropertyMixin_ABC,
 )
 
 
 # fy:start ===>>>
-class PropertyMixinsImport_UsingMixinImportMap_PropertyMixin(
+class PropertyMixinsImport_UsingPropertyMixinsAndMixinImportMap_PropertyMixin(
     # Property_mixins
     PropertyMixins_PropertyMixin_ABC,
     MixinImportMap_PropertyMixin_ABC,
