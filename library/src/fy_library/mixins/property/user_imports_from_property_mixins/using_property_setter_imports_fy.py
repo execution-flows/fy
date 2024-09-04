@@ -5,7 +5,7 @@
 from typing import List
 
 
-property user_imports_from_property_mixins: List[str] using property_setter_mixins:
+property user_imports_from_mixins: List[str] using property_setter_mixins:
     property parsed_fy_py_files_map_by_key
     property property_setter_mixins
 """
@@ -23,14 +23,14 @@ from fy_library.mixins.property.property_setter_mixins.abc_fy import (
 
 
 # fy:start ===>>>
-class UserImportsFromPropertyMixins_UsingPropertySetterMixins_PropertyMixin(
+class UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin(
     # Property_mixins
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     PropertySetterMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
-    def _user_imports_from_property_mixins(self) -> List[str]:
+    def _user_imports_from_mixins(self) -> List[str]:
         # fy:end <<<===
         user_imports_split = self._parsed_fy_py_files_map_by_key
         user_imports: Set[str] = set()
