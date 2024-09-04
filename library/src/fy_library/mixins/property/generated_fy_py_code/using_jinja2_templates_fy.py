@@ -6,6 +6,7 @@ property generated_fy_py_code: str using jinja2_templates:
     property template_model
     property jinja2_template_file_name
 """
+
 import abc
 import pathlib
 from functools import cached_property

@@ -5,6 +5,7 @@
 flow GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters -> None:
     property required_property_setters_fy_py using setter
 """
+
 from typing import Any, List
 
 from fy_core.base.flow_base import FlowBase
