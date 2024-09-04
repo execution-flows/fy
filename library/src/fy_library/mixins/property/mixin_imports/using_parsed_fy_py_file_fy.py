@@ -60,34 +60,20 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                         ParsedFlowFyPyFile, self._parsed_fy_py_file
                     ).template_model.properties,
                     parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
+                    mixin_import_map=self._mixin_import_map,
                 )()
-                mixin_imports = (
-                    list(property_setters)
-                    + [
-                        # property mixins
-                        self._mixin_import_map[
-                            entity_key(
-                                mixin_name__snake_case=property_mixin.property_name.snake_case,
-                                mixin_implementation_name__snake_case=property_mixin.implementation_name.snake_case,
-                            )
-                        ]
-                        for property_mixin in cast(
-                            ParsedFlowFyPyFile, self._parsed_fy_py_file
-                        ).template_model.properties
+                mixin_imports = list(property_setters) + [
+                    # method mixins
+                    self._mixin_import_map[
+                        entity_key(
+                            mixin_name__snake_case=method_mixin.method_name.snake_case,
+                            mixin_implementation_name__snake_case=method_mixin.implementation_name.snake_case,
+                        )
                     ]
-                    + [
-                        # method mixins
-                        self._mixin_import_map[
-                            entity_key(
-                                mixin_name__snake_case=method_mixin.method_name.snake_case,
-                                mixin_implementation_name__snake_case=method_mixin.implementation_name.snake_case,
-                            )
-                        ]
-                        for method_mixin in cast(
-                            ParsedFlowFyPyFile, self._parsed_fy_py_file
-                        ).template_model.methods
-                    ]
-                )
+                    for method_mixin in cast(
+                        ParsedFlowFyPyFile, self._parsed_fy_py_file
+                    ).template_model.methods
+                ]
                 return mixin_imports
             case ParsedFyPyFileKind.METHOD:
                 return MethodImports_Flow(
