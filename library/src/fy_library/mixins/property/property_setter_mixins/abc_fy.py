@@ -6,7 +6,7 @@ from typing import List
 from fy_library.domain.fy_py_template_models import PropertyMixinModel
 
 
-property property_setter_imports: List[PropertyMixinModel]
+property property_setter_mixins: List[PropertyMixinModel]
 """
 
 from fy_library.domain.fy_py_template_models import PropertyMixinModel
@@ -15,9 +15,9 @@ import abc
 
 
 # fy:start ===>>>
-class PropertySetterImports_PropertyMixin_ABC(abc.ABC):
+class PropertySetterMixins_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _property_setter_imports(self) -> List[PropertyMixinModel]:
+    def _property_setter_mixins(self) -> List[PropertyMixinModel]:
         raise NotImplementedError()
         # fy:end <<<===
