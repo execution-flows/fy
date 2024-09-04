@@ -61,11 +61,8 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                     ).template_model.properties,
                     parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                 )()
-                import_any = ["from typing import Any"] if property_setters else []
-
                 mixin_imports = (
-                    import_any
-                    + list(property_setters)
+                    list(property_setters)
                     + [
                         # static imports
                         "from fy_core.base.flow_base import FlowBase",
