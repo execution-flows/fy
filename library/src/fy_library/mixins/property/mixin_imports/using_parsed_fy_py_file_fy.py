@@ -54,7 +54,7 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
         # fy:end <<<===
         match self._parsed_fy_py_file.file_type:
             case ParsedFyPyFileKind.FLOW:
-                property_setters = FlowImports_Flow(
+                return FlowImports_Flow(
                     property_mixins=cast(
                         ParsedFlowFyPyFile, self._parsed_fy_py_file
                     ).template_model.properties,
@@ -64,8 +64,6 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                         ParsedFlowFyPyFile, self._parsed_fy_py_file
                     ).template_model.methods,
                 )()
-                mixin_imports = list(property_setters)
-                return mixin_imports
             case ParsedFyPyFileKind.METHOD:
                 return MethodImports_Flow(
                     abstract_property_mixins=cast(

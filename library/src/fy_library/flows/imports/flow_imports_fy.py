@@ -15,7 +15,7 @@ flow FlowImports -> List[str]:
     property import_any using property_setters_exists
     property import_flow_base using constant
     property property_mixins_import using mixin_import_map
-    property method_mixins_imports using mixin_import_map
+    property method_mixins_import using mixin_import_map
 """
 
 from typing import List, Any, Dict
@@ -30,7 +30,7 @@ from fy_library.mixins.property.imports.import_flow_base__using_constant_fy impo
     ImportFlowBase_UsingConstant_PropertyMixin,
 )
 from fy_library.mixins.property.imports.method_mixins_imports__using_mixin_import_map_fy import (
-    MethodMixinsImports_UsingMixinImportMap_PropertyMixin,
+    MethodMixinsImport_UsingMixinImportMap_PropertyMixin,
 )
 from fy_library.mixins.property.imports.property_mixins_imports__using_mixin_import_map_fy import (
     PropertyMixinsImport_UsingMixinImportMap_PropertyMixin,
@@ -67,7 +67,7 @@ class FlowImports_Flow(
     ImportAny_UsingPropertySettersExists_PropertyMixin,
     ImportFlowBase_UsingConstant_PropertyMixin,
     PropertyMixinsImport_UsingMixinImportMap_PropertyMixin,
-    MethodMixinsImports_UsingMixinImportMap_PropertyMixin,
+    MethodMixinsImport_UsingMixinImportMap_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):
@@ -93,5 +93,5 @@ class FlowImports_Flow(
             + self._import_any
             + self._import_flow_base
             + self._property_mixins_import
-            + self._method_mixins_imports
+            + self._method_mixins_import
         )
