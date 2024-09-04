@@ -64,10 +64,6 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                 mixin_imports = (
                     list(property_setters)
                     + [
-                        # static imports
-                        "from fy_core.base.flow_base import FlowBase",
-                    ]
-                    + [
                         # property mixins
                         self._mixin_import_map[
                             entity_key(

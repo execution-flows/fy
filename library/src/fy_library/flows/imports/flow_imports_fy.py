@@ -11,6 +11,7 @@ flow FlowImports -> List[str]:
     property property_setter_imports using property_mixins
     property user_imports_with_property_setter_imports using property_setter_imports
     property import_any using property_setters_exists
+    property import_flow_base using constant
 """
 
 from typing import List, Any, Dict
@@ -35,6 +36,10 @@ from fy_library.mixins.property.imports.import_any__using_property_setters_exist
     ImportAny_UsingPropertySettersExists_PropertyMixin,
 )
 
+from fy_library.mixins.property.imports.import_flow_base__using_constant_fy import (
+    ImportFlowBase_UsingConstant_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class FlowImports_Flow(
@@ -44,6 +49,7 @@ class FlowImports_Flow(
     PropertySetterImports_UsingPropertyMixins_PropertyMixin,
     UserImportsWithPropertySetterImports_UsingPropertySetterImports_PropertyMixin,
     ImportAny_UsingPropertySettersExists_PropertyMixin,
+    ImportFlowBase_UsingConstant_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):
@@ -60,4 +66,8 @@ class FlowImports_Flow(
 
     def __call__(self) -> List[str]:
         # fy:end <<<===
-        return self._user_imports_with_property_setter_imports + self._import_any
+        return (
+            self._user_imports_with_property_setter_imports
+            + self._import_any
+            + self._import_flow_base
+        )
