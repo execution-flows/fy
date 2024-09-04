@@ -6,25 +6,25 @@ from typing import List
 
 
 property import_any: List[str] using property_setters_exists:
-    property property_setter_imports
+    property property_setter_mixins
 """
 
+import abc
 from functools import cached_property
 from typing import List
 
-from fy_library.mixins.property.property_setter_imports.abc_fy import (
-    PropertySetterImports_PropertyMixin_ABC,
+from fy_library.mixins.property.property_setter_mixins.abc_fy import (
+    PropertySetterMixins_PropertyMixin_ABC,
 )
-import abc
 
 
 # fy:start ===>>>
 class ImportAny_UsingPropertySettersExists_PropertyMixin(
     # Property_mixins
-    PropertySetterImports_PropertyMixin_ABC,
+    PropertySetterMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
     def _import_any(self) -> List[str]:
         # fy:end <<<===
-        return ["from typing import Any"] if self._property_setter_imports else []
+        return ["from typing import Any"] if self._property_setter_mixins else []
