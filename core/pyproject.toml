@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fy_core"
-version = "0.1.0"
+version = "0.1.1"
 description = "Core classes for implementing Execution Flows in Python projects."
 authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@icloud.com>"]
 readme = "README.md"
