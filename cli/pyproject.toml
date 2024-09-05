@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fy_tool_cli"
-version = "0.2.14-dev"
+version = "0.2.15-dev"
 description = ""
 authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@icloud.com>"]
 readme = "README.md"
