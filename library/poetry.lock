@@ -13,7 +13,7 @@ files = [
 
 [[package]]
 name = "fy-core"
-version = "0.1.0"
+version = "0.1.1"
 description = "Core classes for implementing Execution Flows in Python projects."
 optional = false
 python-versions = ">=3.10,<3.13"
