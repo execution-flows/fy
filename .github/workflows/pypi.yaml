@@ -99,27 +99,25 @@ jobs:
           message: "v${{ inputs.FY_VERSION }}"
           tags: true
 
-      - name: "Revert versions"
-        shell: bash
-        run: git checkout .
-
-      - name: "[cli] Increase version"
-        working-directory: cli
-        shell: bash
-        run: |
-          poetry version "${{ inputs.FY_VERSION }}"
-          poetry version patch
-          poetry version "$(poetry version --short)-dev"
-
-      - name: "[library] Increase version"
+      - name: "[library] Revert local dependency and Increase version"
         id: library-dev-version
         working-directory: library
         shell: bash
         run: |
+          poetry add ../core
           poetry version "${{ inputs.FY_VERSION }}"
           poetry version patch
           poetry version "$(poetry version --short)-dev"
           echo "library-dev-version=$(poetry version --short)" >> $GITHUB_OUTPUT
+
+      - name: "[cli] Revert local dependency and Increase version"
+        working-directory: cli
+        shell: bash
+        run: |
+          poetry add ../library
+          poetry version "${{ inputs.FY_VERSION }}"
+          poetry version patch
+          poetry version "$(poetry version --short)-dev"
 
       - name: "Commit & Push changes"
         uses: actions-js/push@master
