@@ -1,0 +1,127 @@
+name: "Publish to PyPI"
+
+on:
+  workflow_dispatch:
+    inputs:
+      FY_VERSION:
+        type: string
+        description: fy tool version to publish
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ORG_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: "Install Poetry"
+        shell: bash
+        run: pipx install poetry
+
+      - name: "Config PyPI API Token"
+        shell: bash
+        run: poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: "[library] Set version"
+        working-directory: library
+        shell: bash
+        run: poetry version "${{ inputs.FY_VERSION }}"
+
+      - name: "[cli] Set version"
+        working-directory: cli
+        shell: bash
+        run: poetry version "${{ inputs.FY_VERSION }}"
+
+      - name: "[library] Set fy-core version"
+        working-directory: library
+        shell: bash
+        run: poetry add fy-core==0.1.0
+
+      - name: "[library] Install dependencies"
+        working-directory: library
+        shell: bash
+        run: poetry install
+
+      - name: "[library] Build and Publish"
+        working-directory: library
+        shell: bash
+        run: poetry publish --build
+
+      - name: "[cli] Wait for fy-library version to become available"
+        working-directory: cli
+        shell: bash
+        run: |
+          command="poetry add fy-library==${{ inputs.FY_VERSION }} --dry-run --no-cache"
+          max_retries=12 
+          retry_interval=5 # Seconds
+
+          for (( i=1; i<=$max_retries; i++ )); do
+            if $command; then
+              echo "Command succeeded!"
+              break
+            else
+              echo "Command failed, retrying in $retry_interval seconds (attempt $i/$max_retries)"
+              curl --location 'https://pypi.python.org/pypi' --header 'Content-Type: application/json' --data '{":action": "purge", "project": "fy_library"}' > /dev/null
+              sleep $retry_interval
+            fi
+          done
+
+          if [ $i -gt $max_retries ]; then
+            echo "Command failed after $max_retries attempts."
+            exit 1
+          fi
+
+      - name: "[cli] Set fy-library version"
+        working-directory: cli
+        shell: bash
+        run: poetry add fy-library=="${{ inputs.FY_VERSION }}" --no-cache
+
+      - name: "[cli] Install dependencies"
+        working-directory: cli
+        shell: bash
+        run: poetry install
+
+      - name: "[cli] Build and Publish"
+        working-directory: cli
+        shell: bash
+        run: poetry publish --build
+
+      - name: "Commit & Push changes"
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: "v${{ inputs.FY_VERSION }}"
+          tags: true
+
+      - name: "[library] Revert local dependency and Increase version"
+        id: library-dev-version
+        working-directory: library
+        shell: bash
+        run: |
+          poetry add ../core
+          poetry version "${{ inputs.FY_VERSION }}"
+          poetry version patch
+          poetry version "$(poetry version --short)-dev"
+          echo "library-dev-version=$(poetry version --short)" >> $GITHUB_OUTPUT
+
+      - name: "[cli] Revert local dependency and Increase version"
+        working-directory: cli
+        shell: bash
+        run: |
+          poetry add ../library
+          poetry version "${{ inputs.FY_VERSION }}"
+          poetry version patch
+          poetry version "$(poetry version --short)-dev"
+
+      - name: "Commit & Push changes"
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: "started v${{ steps.library-dev-version.outputs.library-dev-version }}"
+          tags: true

@@ -18,7 +18,7 @@ description = "Core classes for implementing Execution Flows in Python projects.
 optional = false
 python-versions = ">=3.10,<3.13"
 files = []
-develop = true
+develop = false
 
 [package.source]
 type = "directory"
@@ -244,4 +244,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "668eb4937d3f821d758149ad0c31acc28da98270a2ab7f2ef9da01276e9e8dbd"
+content-hash = "11e296ff7f6fdad372ab6e726bd3383037bb71fe39218a8499aa095b2a6e2e7f"

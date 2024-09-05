@@ -18,7 +18,7 @@ description = "Core classes for implementing Execution Flows in Python projects.
 optional = false
 python-versions = ">=3.10,<3.13"
 files = []
-develop = true
+develop = false
 
 [package.source]
 type = "directory"
@@ -26,15 +26,15 @@ url = "../core"
 
 [[package]]
 name = "fy-library"
-version = "0.2.2-dev"
+version = "0.2.17-dev"
 description = "Implementation of fy tool functionality - parsing and generating."
 optional = false
 python-versions = ">=3.10,<3.13"
 files = []
-develop = true
+develop = false
 
 [package.dependencies]
-fy-core = {path = "../core", develop = true}
+fy-core = {path = "../core"}
 jinja2 = "3.1.4"
 pydantic = "2.8.2"
 
@@ -262,4 +262,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "1f82b41503ff803efe77c1c77da550149437aa3a290dfaf57e0f0a755c32e8f7"
+content-hash = "ac2f1922fa22149413dd969943d3cd41a19d9af97ef7d8aa4544af0c243bdaa8"
