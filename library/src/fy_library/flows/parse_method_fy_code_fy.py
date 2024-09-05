@@ -13,7 +13,8 @@ flow ParseMethodFyCode -> ParsedFyPyFile:
     property fy_py_file_to_parse using setter
     property method_file_split using method_regex
     property mixin_lines using method_file_split
-    property included_mixins using mixin_lines
+    property mixin_models using mixin_lines
+    property included_mixins using mixin_models
     property parsed_method_fy_py_file using parsed_fy_py_file
 """
 
@@ -29,13 +30,16 @@ from fy_library.mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )
 from fy_library.mixins.property.included_mixins.using_mixin_lines_fy import (
-    IncludedMixins_UsingMixinLines_PropertyMixin,
+    IncludedMixins_UsingMixinModels_PropertyMixin,
 )
 from fy_library.mixins.property.method_file_split.using_method_regex_fy import (
     MethodFileSplit_UsingMethodRegex_PropertyMixin,
 )
 from fy_library.mixins.property.mixin_lines.using_method_file_split_fy import (
     MixinLines_UsingMethodFileSplit_PropertyMixin,
+)
+from fy_library.mixins.property.mixin_models.using_mixin_lines_fy import (
+    MixinModels_UsingMixinLines_PropertyMixin,
 )
 from fy_library.mixins.property.parsed_method_fy_py_file.using_parsed_fy_py_file_fy import (
     ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin,
@@ -61,7 +65,8 @@ class ParseMethodFyCode_Flow(
     FyPyFileToParse_UsingSetter_PropertyMixin,
     MethodFileSplit_UsingMethodRegex_PropertyMixin,
     MixinLines_UsingMethodFileSplit_PropertyMixin,
-    IncludedMixins_UsingMixinLines_PropertyMixin,
+    MixinModels_UsingMixinLines_PropertyMixin,
+    IncludedMixins_UsingMixinModels_PropertyMixin,
     ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin,
     # Base
     FlowBase[ParsedFyPyFile],
