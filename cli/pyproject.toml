@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "fy_cli"
+name = "fy_tool_cli"
 version = "0.1.0"
 description = ""
 authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@icloud.com>"]
 readme = "README.md"
 
 [tool.poetry.scripts]
-fy = "fy_cli.main:fy_cli"
+fy = "fy_tool_cli.main:fy_cli"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
