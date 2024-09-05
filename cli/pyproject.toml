@@ -11,7 +11,7 @@ fy = "fy_tool_cli.main:fy_cli"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 
-fy_library = { path = "../library", develop = true }
+fy-library = { path = "../library", develop = true }
 
 [build-system]
 requires = ["poetry-core"]
