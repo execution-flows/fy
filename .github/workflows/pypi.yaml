@@ -6,7 +6,7 @@ on:
       FY_VERSION:
         type: string
         description: fy tool version to publish
-        required: true
+        required: false
 
 jobs:
   publish:
@@ -28,15 +28,24 @@ jobs:
         shell: bash
         run: poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
 
+      - name: "Determine the publish version"
+        id: fy-version
+        shell: bash
+        run: |
+          if [ -z "${{ inputs.FY_VERSION }}" ];then
+            echo "fy-version=$(poetry version --short | grep -oP "^([\w\.]+)")" >> $GITHUB_OUTPUT
+          else
+            echo "fy-version=${{ inputs.FY_VERSION }}" >> $GITHUB_OUTPUT
+
       - name: "[library] Set version"
         working-directory: library
         shell: bash
-        run: poetry version "${{ inputs.FY_VERSION }}"
+        run: poetry version "${{ steps.fy-version.outputs.fy-version }}"
 
       - name: "[cli] Set version"
         working-directory: cli
         shell: bash
-        run: poetry version "${{ inputs.FY_VERSION }}"
+        run: poetry version "${{ steps.fy-version.outputs.fy-version }}"
 
       - name: "[library] Set fy-core version"
         working-directory: library
@@ -57,7 +66,7 @@ jobs:
         working-directory: cli
         shell: bash
         run: |
-          command="poetry add fy-library==${{ inputs.FY_VERSION }} --dry-run --no-cache"
+          command="poetry add fy-library==${{ steps.fy-version.outputs.fy-version }} --dry-run --no-cache"
           max_retries=12 
           retry_interval=5 # Seconds
 
@@ -80,7 +89,7 @@ jobs:
       - name: "[cli] Set fy-library version"
         working-directory: cli
         shell: bash
-        run: poetry add fy-library=="${{ inputs.FY_VERSION }}" --no-cache
+        run: poetry add fy-library=="${{ steps.fy-version.outputs.fy-version }}" --no-cache
 
       - name: "[cli] Install dependencies"
         working-directory: cli
@@ -96,14 +105,14 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: "v${{ inputs.FY_VERSION }}"
+          message: "v${{ steps.fy-version.outputs.fy-version }}"
           tags: true
 
       # GitHub Action page: https://github.com/marketplace/actions/create-release
       - name: Create new release
         uses: "ncipollo/release-action@v1"
         with:
-          tag: "v${{ inputs.FY_VERSION }}"
+          tag: "v${{ steps.fy-version.outputs.fy-version }}"
           makeLatest: true
           generateReleaseNotes: true
 
@@ -113,7 +122,7 @@ jobs:
         shell: bash
         run: |
           poetry add ../core
-          poetry version "${{ inputs.FY_VERSION }}"
+          poetry version "${{ steps.fy-version.outputs.fy-version }}"
           poetry version patch
           poetry version "$(poetry version --short)-dev"
           echo "library-dev-version=$(poetry version --short)" >> $GITHUB_OUTPUT
@@ -123,7 +132,7 @@ jobs:
         shell: bash
         run: |
           poetry add ../library
-          poetry version "${{ inputs.FY_VERSION }}"
+          poetry version "${{ steps.fy-version.outputs.fy-version }}"
           poetry version patch
           poetry version "$(poetry version --short)-dev"
 
