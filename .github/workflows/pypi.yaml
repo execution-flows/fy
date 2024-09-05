@@ -92,6 +92,13 @@ jobs:
         shell: bash
         run: poetry publish --build
 
+      - name: "Commit & Push changes"
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: "v${{ inputs.FY_VERSION }}"
+          tags: true
+
       - name: "Revert versions"
         shell: bash
         run: git checkout .
@@ -105,16 +112,18 @@ jobs:
           poetry version "$(poetry version --short)-dev"
 
       - name: "[library] Increase version"
+        id: library-dev-version
         working-directory: library
         shell: bash
         run: |
           poetry version "${{ inputs.FY_VERSION }}"
           poetry version patch
           poetry version "$(poetry version --short)-dev"
+          echo "library-dev-version=$(poetry version --short)" >> $GITHUB_OUTPUT
 
       - name: "Commit & Push changes"
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: "v${{ inputs.FY_VERSION }}"
+          message: "started v${{ steps.library-dev-version.outputs.library-dev-version }}"
           tags: true
