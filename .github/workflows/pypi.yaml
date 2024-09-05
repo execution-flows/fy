@@ -53,34 +53,10 @@ jobs:
         shell: bash
         run: poetry publish --build
 
-      - name: "[cli] Wait for fy-library version to become available"
-        working-directory: cli
-        shell: bash
-        run: |
-          command="poetry add fy-library==${{ inputs.FY_VERSION }} --dry-run"
-          max_retries=3 
-          retry_interval=1 # Seconds
-
-          for (( i=1; i<=$max_retries; i++ )); do
-            if $command; then
-              echo "Command succeeded!"
-              break
-            else
-              echo "Command failed, retrying in $retry_interval seconds (attempt $i/$max_retries)"
-              curl --location 'https://pypi.python.org/pypi' --header 'Content-Type: application/json' --data '{":action": "purge", "project": "fy_library"}' > /dev/null
-              sleep $retry_interval
-            fi
-          done
-
-          if [ $i -gt $max_retries ]; then
-            echo "Command failed after $max_retries attempts."
-            exit 1
-          fi
-
       - name: "[cli] Set fy-library version"
         working-directory: cli
         shell: bash
-        run: poetry add fy-library=="${{ inputs.FY_VERSION }}"
+        run: poetry add fy-library=="${{ inputs.FY_VERSION }}" --no-cache
 
       - name: "[cli] Install dependencies"
         working-directory: cli
