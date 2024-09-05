@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fy_library"
-version = "0.2.17-dev"
+version = "0.3.0"
 description = "Implementation of fy tool functionality - parsing and generating."
 authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@icloud.com>"]
 readme = "README.md"
@@ -11,7 +11,7 @@ python = ">=3.10,<3.13"
 jinja2 = "3.1.4"
 pydantic = "2.8.2"
 
-fy-core = {path = "../core"}
+fy-core = "0.1.0"
 
 [build-system]
 requires = ["poetry-core"]
