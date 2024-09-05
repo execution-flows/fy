@@ -99,6 +99,14 @@ jobs:
           message: "v${{ inputs.FY_VERSION }}"
           tags: true
 
+      # GitHub Action page: https://github.com/marketplace/actions/create-release
+      - name: Create new release
+        uses: "ncipollo/release-action@v1"
+        with:
+          tag: "v${{ inputs.FY_VERSION }}"
+          makeLatest: true
+          generateReleaseNotes: true
+
       - name: "[library] Revert local dependency and Increase version"
         id: library-dev-version
         working-directory: library
