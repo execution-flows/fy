@@ -50,7 +50,7 @@ jobs:
       - name: "[library] Set fy-core version"
         working-directory: library
         shell: bash
-        run: poetry add fy-core==0.1.0
+        run: poetry add fy-core==0.1.1
 
       - name: "[library] Install dependencies"
         working-directory: library
