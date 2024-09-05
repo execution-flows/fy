@@ -18,8 +18,8 @@ from typing import List
 from fy_library.domain.fy_py_template_models import (
     BaseMixinModel,
 )
-from fy_library.flows.mixin_model.mixin_line_to_mixin_models_fy import (
-    MixinLineToMixinModels_Flow,
+from fy_library.flows.mixin_model.mixin_line_to_mixin_model_fy import (
+    MixinLineToMixinModel_Flow,
 )
 from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
     FyPyFileToParse_PropertyMixin_ABC,
@@ -40,7 +40,7 @@ class MixinModels_UsingMixinLines_PropertyMixin(
     def _mixin_models(self) -> List[BaseMixinModel]:
         # fy:end <<<===
         return [
-            MixinLineToMixinModels_Flow(
+            MixinLineToMixinModel_Flow(
                 mixin_line=mixin_line, fy_py_file_to_parse=self._fy_py_file_to_parse
             )()
             for mixin_line in self._mixin_lines
