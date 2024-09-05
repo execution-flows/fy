@@ -36,13 +36,6 @@ jobs:
         shell: bash
         run: poetry version "${{ inputs.FY_VERSION }}"
 
-      - name: "Commit & Push changes"
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: "v${{ inputs.FY_VERSION }}"
-          tags: true
-
       - name: "[library] Set fy-core version"
         working-directory: library
         shell: bash
@@ -58,6 +51,13 @@ jobs:
         shell: bash
         run: poetry publish --build
 
+      - name: "[library] Increase version"
+        working-directory: library
+        shell: bash
+        run: |
+          poetry version patch
+          poetry version "$(poetry version --short)-dev"
+
       - name: "[cli] Set fy-library version"
         working-directory: cli
         shell: bash
@@ -72,3 +72,17 @@ jobs:
         working-directory: cli
         shell: bash
         run: poetry publish --build
+
+      - name: "[cli] Increase version"
+        working-directory: cli
+        shell: bash
+        run: |
+          poetry version patch
+          poetry version "$(poetry version --short)-dev"
+
+      - name: "Commit & Push changes"
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: "v${{ inputs.FY_VERSION }}"
+          tags: true
