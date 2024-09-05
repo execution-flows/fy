@@ -67,6 +67,7 @@ jobs:
               break
             else
               echo "Command failed, retrying in $retry_interval seconds (attempt $i/$max_retries)"
+              curl --location 'https://pypi.python.org/pypi' --header 'Content-Type: application/json' --data '{":action": "purge", "project": "fy_library"}' > /dev/null
               sleep $retry_interval
             fi
           done
