@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-flow MixinLineToMixinModels -> BaseMixinModel:
+flow MixinLineToMixinModel -> BaseMixinModel:
     property mixin_line using setter
     property fy_py_file_to_parse using setter
     property optional_property_mixin_model using mixin_line
@@ -38,7 +38,7 @@ from fy_library.mixins.property.optional_abstract_method_mixin_model.using_mixin
 
 
 # fy:start ===>>>
-class MixinLineToMixinModels_Flow(
+class MixinLineToMixinModel_Flow(
     # Property Mixins
     MixinLine_UsingSetter_PropertyMixin,
     FyPyFileToParse_UsingSetter_PropertyMixin,
