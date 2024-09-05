@@ -68,10 +68,15 @@ jobs:
         shell: bash
         run: poetry publish --build
 
+      - name: "Revert versions"
+        shell: bash
+        run: git checkout .
+
       - name: "[cli] Increase version"
         working-directory: cli
         shell: bash
         run: |
+          poetry version "${{ inputs.FY_VERSION }}"
           poetry version patch
           poetry version "$(poetry version --short)-dev"
 
@@ -79,6 +84,7 @@ jobs:
         working-directory: library
         shell: bash
         run: |
+          poetry version "${{ inputs.FY_VERSION }}"
           poetry version patch
           poetry version "$(poetry version --short)-dev"
 
