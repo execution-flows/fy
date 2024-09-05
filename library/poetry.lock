@@ -16,11 +16,13 @@ name = "fy-core"
 version = "0.1.0"
 description = "Core classes for implementing Execution Flows in Python projects."
 optional = false
-python-versions = "<3.13,>=3.10"
-files = [
-    {file = "fy_core-0.1.0-py3-none-any.whl", hash = "sha256:cf269f93853e990a8993aa4ad173c7596306b59910dde54a9b5a483e320c0ca5"},
-    {file = "fy_core-0.1.0.tar.gz", hash = "sha256:a04218aae4420fc8107978e4d5afdeeb5c624d6674be92319304dbacc509081f"},
-]
+python-versions = ">=3.10,<3.13"
+files = []
+develop = false
+
+[package.source]
+type = "directory"
+url = "../core"
 
 [[package]]
 name = "jinja2"
@@ -242,4 +244,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "11e798e08fb4febeb7366533c47bc841ad7ce074231bfb7ed8baff72d8cdea5b"
+content-hash = "11e296ff7f6fdad372ab6e726bd3383037bb71fe39218a8499aa095b2a6e2e7f"

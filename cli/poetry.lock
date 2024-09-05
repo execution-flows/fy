@@ -16,27 +16,31 @@ name = "fy-core"
 version = "0.1.0"
 description = "Core classes for implementing Execution Flows in Python projects."
 optional = false
-python-versions = "<3.13,>=3.10"
-files = [
-    {file = "fy_core-0.1.0-py3-none-any.whl", hash = "sha256:cf269f93853e990a8993aa4ad173c7596306b59910dde54a9b5a483e320c0ca5"},
-    {file = "fy_core-0.1.0.tar.gz", hash = "sha256:a04218aae4420fc8107978e4d5afdeeb5c624d6674be92319304dbacc509081f"},
-]
+python-versions = ">=3.10,<3.13"
+files = []
+develop = false
+
+[package.source]
+type = "directory"
+url = "../core"
 
 [[package]]
 name = "fy-library"
-version = "0.2.16"
+version = "0.2.17-dev"
 description = "Implementation of fy tool functionality - parsing and generating."
 optional = false
-python-versions = "<3.13,>=3.10"
-files = [
-    {file = "fy_library-0.2.16-py3-none-any.whl", hash = "sha256:0c35f6e14f954fd8dc1ab0fea8148aafa6f5f84fc626b065fd3e10178e4dca68"},
-    {file = "fy_library-0.2.16.tar.gz", hash = "sha256:e13cfc3cda3409d0ad80503814ab4d39b74474d4692ff515803d55d033233d0e"},
-]
+python-versions = ">=3.10,<3.13"
+files = []
+develop = false
 
 [package.dependencies]
-fy-core = "0.1.0"
+fy-core = {path = "../core"}
 jinja2 = "3.1.4"
 pydantic = "2.8.2"
+
+[package.source]
+type = "directory"
+url = "../library"
 
 [[package]]
 name = "jinja2"
@@ -258,4 +262,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "56f8df2bc8013c922460bde0e4fdd10db537b177c748c4fff0c5fd335daffb64"
+content-hash = "ac2f1922fa22149413dd969943d3cd41a19d9af97ef7d8aa4544af0c243bdaa8"
