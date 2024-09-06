@@ -33,7 +33,7 @@ jobs:
         shell: bash
         run: |
           if [ -z "${{ inputs.FY_VERSION }}" ];then
-            echo "fy-library-version=$(poetry version --short | grep -oP "^([\w\.]+)")" >> $GITHUB_OUTPUT
+            echo "fy-library-version=$(poetry version --short | grep -oP '^([\w\.]+)')" >> $GITHUB_OUTPUT
           else
             echo "fy-library-version=${{ inputs.FY_VERSION }}" >> $GITHUB_OUTPUT
           fi
