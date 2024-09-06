@@ -30,6 +30,7 @@ jobs:
 
       - name: "Determine the publish version"
         id: fy-library-version
+        working-directory: library
         shell: bash
         run: |
           if [ -z "${{ inputs.FY_VERSION }}" ];then
@@ -53,7 +54,7 @@ jobs:
       - name: "[cli] Set version"
         working-directory: cli
         shell: bash
-        run: poetry version "${{ steps.fy-library-version.outputs.fy-version }}"
+        run: poetry version "${{ steps.fy-library-version.outputs.fy-library-version }}"
 
       - name: "[library] Set fy-core version"
         working-directory: library
@@ -74,7 +75,7 @@ jobs:
         working-directory: cli
         shell: bash
         run: |
-          command="poetry add fy-library==${{ steps.fy-library-version.outputs.fy-version }} --dry-run --no-cache"
+          command="poetry add fy-library==${{ steps.fy-library-version.outputs.fy-library-version }} --dry-run --no-cache"
           max_retries=12 
           retry_interval=5 # Seconds
 
@@ -97,7 +98,7 @@ jobs:
       - name: "[cli] Set fy-library version"
         working-directory: cli
         shell: bash
-        run: poetry add fy-library=="${{ steps.fy-library-version.outputs.fy-version }}" --no-cache
+        run: poetry add fy-library=="${{ steps.fy-library-version.outputs.fy-library-version }}" --no-cache
 
       - name: "[cli] Install dependencies"
         working-directory: cli
@@ -113,14 +114,14 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: "v${{ steps.fy-library-version.outputs.fy-version }}"
+          message: "v${{ steps.fy-library-version.outputs.fy-library-version }}"
           tags: true
 
       # GitHub Action page: https://github.com/marketplace/actions/create-release
       - name: Create new release
         uses: "ncipollo/release-action@v1"
         with:
-          tag: "v${{ steps.fy-library-version.outputs.fy-version }}"
+          tag: "v${{ steps.fy-library-version.outputs.fy-library-version }}"
           makeLatest: true
           generateReleaseNotes: true
 
@@ -130,7 +131,7 @@ jobs:
         shell: bash
         run: |
           poetry add ../core
-          poetry version "${{ steps.fy-library-version.outputs.fy-version }}"
+          poetry version "${{ steps.fy-library-version.outputs.fy-library-version }}"
           poetry version patch
           poetry version "$(poetry version --short)-dev"
           echo "library-dev-version=$(poetry version --short)" >> $GITHUB_OUTPUT
@@ -140,7 +141,7 @@ jobs:
         shell: bash
         run: |
           poetry add ../library
-          poetry version "${{ steps.fy-library-version.outputs.fy-version }}"
+          poetry version "${{ steps.fy-library-version.outputs.fy-library-version }}"
           poetry version patch
           poetry version "$(poetry version --short)-dev"
 
