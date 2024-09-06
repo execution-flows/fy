@@ -15,7 +15,7 @@ import abc
 from functools import cached_property
 from typing import List, cast
 
-from fy_library.constants import _SETTER
+from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
 from fy_library.domain.fy_py_template_models import (
     PropertySetterTemplateModel,
     AbstractPropertyTemplateModel,
@@ -76,7 +76,8 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
                 ParsedFlowFyPyFile, parsed_fy_py_file
             ).template_model.properties
             if (
-                flow_property.implementation_name.snake_case == _SETTER
+                flow_property.implementation_name.snake_case
+                == PROPERTY_SETTER_IMPLEMENTATION_NAME
                 and f"{flow_property.property_name.snake_case}.setter"
                 not in self._parsed_fy_py_files_map_by_key
             )
