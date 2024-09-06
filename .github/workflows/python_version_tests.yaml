@@ -34,7 +34,9 @@ jobs:
 
       - name: Test library fy code
         shell: bash
-        run: ../../fy.sh
+        run: |
+          CURRENT_DIR=$(pwd)
+          poetry run fy --root "$CURRENT_DIR" "$CURRENT_DIR"
         working-directory: library/src
 
       - name: Test
