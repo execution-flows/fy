@@ -13,6 +13,7 @@ property template_model: BaseTemplateModel using parsed_fy_py_file:
 import abc
 from functools import cached_property
 
+from fy_library.constants import _SETTER
 from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
     FlowTemplateModelWithPropertySetters,
@@ -46,7 +47,7 @@ class TemplateModel_UsingParsedFyPyFile_PropertyMixin(
                 property_setter.property_name.snake_case
             ].template_model
             for property_setter in self._parsed_fy_py_file.template_model.properties
-            if property_setter.implementation_name.snake_case == "setter"
+            if property_setter.implementation_name.snake_case == _SETTER
         ]
 
         return FlowTemplateModelWithPropertySetters.model_validate(

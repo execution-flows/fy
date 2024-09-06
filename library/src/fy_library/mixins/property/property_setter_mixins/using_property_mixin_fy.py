@@ -14,6 +14,7 @@ import abc
 from functools import cached_property
 from typing import List
 
+from fy_library.constants import _SETTER
 from fy_library.domain.fy_py_template_models import PropertyMixinModel
 from fy_library.mixins.property.property_mixins.abc_fy import (
     PropertyMixins_PropertyMixin_ABC,
@@ -32,7 +33,7 @@ class PropertySetterMixins_UsingPropertyMixins_PropertyMixin(
         property_setters = [
             property_mixin
             for property_mixin in self._property_mixins
-            if property_mixin.implementation_name.snake_case == "setter"
+            if property_mixin.implementation_name.snake_case == _SETTER
         ]
 
         return property_setters
