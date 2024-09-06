@@ -13,6 +13,9 @@ pydantic = "2.8.2"
 
 fy-core = {path = "../core"}
 
+[tool.poetry.group.dev.dependencies]
+ruff = "0.6.4"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

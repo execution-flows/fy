@@ -50,7 +50,9 @@ class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
         fy_code = fy_code_regex_search.group("fy_code")
 
         non_fy_code = content[
-            len(f"{pre_fy_code}{FY_PY_FILE_SIGNATURE}{fy_code}{FY_CODE_FILE_END_SIGNATURE}\n"):  # fmt: skip
+            len(
+                f"{pre_fy_code}{FY_PY_FILE_SIGNATURE}{fy_code}{FY_CODE_FILE_END_SIGNATURE}\n"
+            ) :  # fmt: skip
         ]
 
         pre_marker_file_content = non_fy_code.split(f"{FY_START_MARKER}\n")[0]

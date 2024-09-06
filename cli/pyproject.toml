@@ -13,6 +13,9 @@ python = ">=3.10,<3.13"
 
 fy_library = {path = "../library"}
 
+[tool.poetry.group.dev.dependencies]
+ruff = "0.6.4"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
