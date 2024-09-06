@@ -7,6 +7,7 @@ from typing import List
 
 from pydantic import BaseModel, computed_field
 
+from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
 from fy_library.domain.python_entity_name import PythonEntityName
 
 
@@ -130,5 +131,5 @@ class PropertySetterTemplateModel(BaseTemplateModel):
     def entity_key(self) -> str:
         return entity_key(
             mixin_name__snake_case=self.property_name.snake_case,
-            mixin_implementation_name__snake_case="setter",
+            mixin_implementation_name__snake_case=PROPERTY_SETTER_IMPLEMENTATION_NAME,
         )
