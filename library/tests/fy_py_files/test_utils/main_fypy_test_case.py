@@ -24,7 +24,6 @@ _GENERATED_CONTENT_REGEX = re.compile(
 
 
 class MainFyPyTestCase(TestCase):
-
     def _test_main_flow(
         self,
         target_folder: str,
