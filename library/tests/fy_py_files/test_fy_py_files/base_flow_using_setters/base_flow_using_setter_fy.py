@@ -36,5 +36,4 @@ class SetterTest_BaseFlow(
         self._greeting2 = greeting2
         super().__init__(*args, **kwargs)
 
-    pass
     # fy:end <<<===
