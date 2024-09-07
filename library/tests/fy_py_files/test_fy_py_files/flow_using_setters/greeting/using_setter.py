@@ -10,4 +10,6 @@ class Greeting_UsingSetter_PropertyMixin:
     @_greeting.setter
     def _greeting(self, greeting: datetime.datetime) -> None:
         self.__greeting = greeting
-        # fy:end <<<===
+
+
+# fy:end <<<===

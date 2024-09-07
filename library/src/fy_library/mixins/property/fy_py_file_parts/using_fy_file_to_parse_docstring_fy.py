@@ -12,6 +12,7 @@ property fy_py_file_parts: FyPyFileParts using fy_file_to_parse_docstring:
 import abc
 import re
 from functools import cached_property
+from typing import Final
 
 from fy_library.constants import (
     FY_PY_FILE_SIGNATURE,
@@ -31,6 +32,7 @@ _FY_CODE_REGEX = re.compile(
     rf"{FY_CODE_FILE_END_SIGNATURE}",
     flags=re.DOTALL,
 )
+_FY_END_MARKER_REGEX: Final = re.compile(rf"\s*{FY_END_MARKER}\n")
 
 
 # fy:start ===>>>
@@ -56,7 +58,7 @@ class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
         ]
 
         pre_marker_file_content = non_fy_code.split(f"{FY_START_MARKER}\n")[0]
-        post_marker_file_content = non_fy_code.split(f"{FY_END_MARKER}\n")[-1]
+        post_marker_file_content = _FY_END_MARKER_REGEX.split(non_fy_code)[-1]
 
         fy_py_file_parts = FyPyFileParts(
             pre_fy_code=pre_fy_code,

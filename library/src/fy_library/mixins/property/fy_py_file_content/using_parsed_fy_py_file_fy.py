@@ -18,6 +18,7 @@ from fy_library.constants import (
     FY_START_MARKER,
     FY_END_MARKER,
 )
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
 from fy_library.mixins.property.generated_fy_py_code.abc_fy import (
     GeneratedFyPyCode_PropertyMixin_ABC,
 )
@@ -45,6 +46,11 @@ class FyPyFileContent_UsingParsedFyPyFile_PropertyMixin(
         stripped_pre_marker_file_content = (
             self._parsed_fy_py_file.pre_marker_file_content.strip()
         )
+        end_marker_space = (
+            " " * 4
+            if self._parsed_fy_py_file.file_type == ParsedFyPyFileKind.BASE_FLOW
+            else " " * 8
+        )
         fy_py_file_content = (
             f"{self._parsed_fy_py_file.pre_fy_code}"
             f"{FY_PY_FILE_SIGNATURE}"
@@ -57,7 +63,7 @@ class FyPyFileContent_UsingParsedFyPyFile_PropertyMixin(
             f"{self._mixin_imports_code}"
             f"\n\n{FY_START_MARKER}\n"
             f"{self._generated_fy_py_code}"
-            f"{FY_END_MARKER}\n"
+            f"{end_marker_space}{FY_END_MARKER}\n"
             f"{self._parsed_fy_py_file.post_marker_file_content}"
         )
 
