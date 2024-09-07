@@ -3,10 +3,10 @@ method greet(argument: str) -> None using greeting:
     property greeting
 """
 
+import abc
 from fy_py_files.test_fy_py_files.mixins.method.with_property.abc_fy import (
     Greeting_PropertyMixin_ABC,
 )
-import abc
 
 
 # fy:start ===>>>

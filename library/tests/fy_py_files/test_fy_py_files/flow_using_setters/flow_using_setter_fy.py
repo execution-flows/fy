@@ -4,6 +4,8 @@ flow SetterTest -> None:
     property greeting2 using setter
 """
 
+import datetime
+from typing import Any
 from fy_core.base.flow_base import FlowBase
 from fy_py_files.test_fy_py_files.flow_using_setters.greeting.using_setter import (
     Greeting_UsingSetter_PropertyMixin,
@@ -11,8 +13,6 @@ from fy_py_files.test_fy_py_files.flow_using_setters.greeting.using_setter impor
 from fy_py_files.test_fy_py_files.flow_using_setters.greeting2.using_setter import (
     Greeting2_UsingSetter_PropertyMixin,
 )
-from typing import Any
-import datetime
 
 
 # fy:start ===>>>

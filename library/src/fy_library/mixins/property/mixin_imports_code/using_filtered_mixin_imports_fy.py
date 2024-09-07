@@ -24,6 +24,6 @@ class MixinImportsCode_UsingFilteredMixinImports_PropertyMixin(
     def _mixin_imports_code(self) -> str:
         # fy:end <<<===
         return "\n".join(
-            sorted(self._filtered_mixin_imports)
+            self._filtered_mixin_imports
             + ([""] if self._filtered_mixin_imports else [])
         )

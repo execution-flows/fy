@@ -4,10 +4,10 @@ property greeting: str using french_greeting:
 """
 
 from functools import cached_property
+import abc
 from fy_py_files.test_fy_py_files.property_with_property.abc_fy import (
     FrenchGreeting_PropertyMixin_ABC,
 )
-import abc
 
 
 # fy:start ===>>>

@@ -13,6 +13,7 @@ property fy_file_kind: ParsedFyPyFileKind using fy_code:
 import abc
 import re
 from functools import cached_property
+from typing import Final
 
 from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
@@ -29,6 +30,10 @@ from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
 
 _FLOW_MATCH_REGEX = re.compile(
     rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*"
+    rf"->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*$",
+)
+_BASE_FLOW_MATCH_REGEX: Final = re.compile(
+    rf"^base\s+flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*"
     rf"->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*$",
 )
 _METHOD_MATCH_REGEX = re.compile(
@@ -62,6 +67,8 @@ class FyFileKind_UsingFyCode_PropertyMixin(
         for fy_code_line in self._fy_code.split("\n"):
             if _FLOW_MATCH_REGEX.match(fy_code_line) is not None:
                 return ParsedFyPyFileKind.FLOW
+            if _BASE_FLOW_MATCH_REGEX.match(fy_code_line) is not None:
+                return ParsedFyPyFileKind.BASE_FLOW
             if _METHOD_MATCH_REGEX.match(fy_code_line) is not None:
                 return ParsedFyPyFileKind.METHOD
             if _ABSTRACT_METHOD_REGEX.match(fy_code_line) is not None:

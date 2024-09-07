@@ -15,11 +15,13 @@ from fy_library.domain.fy_py_template_models import (
     AbstractPropertyTemplateModel,
     PropertyTemplateModel,
     PropertySetterTemplateModel,
+    BaseFlowTemplateModel,
 )
 
 
 class ParsedFyPyFileKind(Enum):
     FLOW = "flow"
+    BASE_FLOW = "base_flow"
     METHOD = "method"
     ABSTRACT_METHOD = "abstract_method"
     ABSTRACT_PROPERTY = "abstract_property"
@@ -44,6 +46,11 @@ class ParsedFyPyFile(FyPyFileParts):
 class ParsedFlowFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.FLOW] = ParsedFyPyFileKind.FLOW
     template_model: FlowTemplateModel
+
+
+class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
+    file_type: Literal[ParsedFyPyFileKind.BASE_FLOW] = ParsedFyPyFileKind.BASE_FLOW
+    template_model: BaseFlowTemplateModel
 
 
 class ParsedMethodFyPyFile(ParsedFyPyFile):

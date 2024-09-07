@@ -27,6 +27,8 @@ class Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin(
         match self._parsed_fy_py_file.file_type:
             case ParsedFyPyFileKind.FLOW:
                 return "flow.jinja2"
+            case ParsedFyPyFileKind.BASE_FLOW:
+                return "base_flow.jinja2"
             case ParsedFyPyFileKind.METHOD:
                 return "method.jinja2"
             case ParsedFyPyFileKind.ABSTRACT_METHOD:
