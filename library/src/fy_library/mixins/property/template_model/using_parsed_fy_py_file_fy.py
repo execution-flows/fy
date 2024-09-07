@@ -26,9 +26,6 @@ from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
 from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
-from fy_library.mixins.property.property_setter_mixins.abc_fy import (
-    PropertySetterMixins_PropertyMixin_ABC,
-)
 
 
 # fy:start ===>>>
@@ -36,7 +33,6 @@ class TemplateModel_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
     ParsedFyPyFile_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
-    PropertySetterMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
