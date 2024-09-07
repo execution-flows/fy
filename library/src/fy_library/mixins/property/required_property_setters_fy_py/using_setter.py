@@ -9,8 +9,6 @@ class RequiredPropertySettersFyPy_UsingSetter_PropertyMixin:
         return self.__required_property_setters_fy_py
 
     @_required_property_setters_fy_py.setter
-    def _required_property_setters_fy_py(
-        self, required_property_setters_fy_py: List[ParsedFyPyFile]
-    ) -> None:
+    def _required_property_setters_fy_py(self, required_property_setters_fy_py: List[ParsedFyPyFile]) -> None:
         self.__required_property_setters_fy_py = required_property_setters_fy_py
         # fy:end <<<===

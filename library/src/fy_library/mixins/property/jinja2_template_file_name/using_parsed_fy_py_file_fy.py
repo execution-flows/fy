@@ -35,6 +35,8 @@ class Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin(
                 return "abstract_property.jinja2"
             case ParsedFyPyFileKind.PROPERTY:
                 return "property.jinja2"
+            case ParsedFyPyFileKind.BASE_FLOW:
+                return "base_flow.jinja2"
             case _:
                 raise NotImplementedError(
                     f"No Execution Flow kind for {self._parsed_fy_py_file.file_type}"

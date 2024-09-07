@@ -27,6 +27,7 @@ from fy_library.flows.imports.abstract_method_imports_fy import (
 from fy_library.flows.imports.abstract_property_imports_fy import (
     AbstractPropertyImportsFlow_Flow,
 )
+from fy_library.flows.imports.base_flow_imports_fy import BaseFlowImports_Flow
 from fy_library.flows.imports.flow_imports_fy import FlowImports_Flow
 from fy_library.flows.imports.method_imports_fy import MethodImports_Flow
 from fy_library.flows.imports.property_imports_fy import PropertyImports_Flow
@@ -84,6 +85,17 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                         ParsedPropertyFyPyFile, self._parsed_fy_py_file
                     ).template_model.abstract_property_mixins,
                     mixin_import_map=self._mixin_import_map,
+                )()
+            case ParsedFyPyFileKind.BASE_FLOW:
+                return BaseFlowImports_Flow(
+                    property_mixins=cast(
+                        ParsedFlowFyPyFile, self._parsed_fy_py_file
+                    ).template_model.properties,
+                    parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
+                    mixin_import_map=self._mixin_import_map,
+                    method_mixins=cast(
+                        ParsedFlowFyPyFile, self._parsed_fy_py_file
+                    ).template_model.methods,
                 )()
             case _:
                 raise NotImplementedError(

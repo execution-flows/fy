@@ -9,8 +9,6 @@ class ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin:
         return self.__parsed_fy_py_files_map_by_key
 
     @_parsed_fy_py_files_map_by_key.setter
-    def _parsed_fy_py_files_map_by_key(
-        self, parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile]
-    ) -> None:
+    def _parsed_fy_py_files_map_by_key(self, parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile]) -> None:
         self.__parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         # fy:end <<<===

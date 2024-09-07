@@ -9,8 +9,6 @@ class AbstractMethodMixins_UsingSetter_PropertyMixin:
         return self.__abstract_method_mixins
 
     @_abstract_method_mixins.setter
-    def _abstract_method_mixins(
-        self, abstract_method_mixins: List[AbstractMethodModel]
-    ) -> None:
+    def _abstract_method_mixins(self, abstract_method_mixins: List[AbstractMethodModel]) -> None:
         self.__abstract_method_mixins = abstract_method_mixins
         # fy:end <<<===

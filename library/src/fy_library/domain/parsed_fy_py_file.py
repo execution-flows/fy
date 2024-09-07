@@ -25,6 +25,7 @@ class ParsedFyPyFileKind(Enum):
     ABSTRACT_PROPERTY = "abstract_property"
     PROPERTY = "property"
     PROPERTY_SETTER = "property_setter"
+    BASE_FLOW = "base_flow"
 
 
 class FyPyFileParts(BaseModel):
@@ -44,6 +45,11 @@ class ParsedFyPyFile(FyPyFileParts):
 class ParsedFlowFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.FLOW] = ParsedFyPyFileKind.FLOW
     template_model: FlowTemplateModel
+
+
+class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
+    file_type: Literal[ParsedFyPyFileKind.BASE_FLOW] = ParsedFyPyFileKind.BASE_FLOW
+    template_model: BaseTemplateModel
 
 
 class ParsedMethodFyPyFile(ParsedFyPyFile):

@@ -24,6 +24,7 @@ from fy_library.flows.parse_abstract_method_fy_code_fy import (
 from fy_library.flows.parse_abstract_property_fy_code_fy import (
     ParseAbstractPropertyFyCode_Flow,
 )
+from fy_library.flows.parse_base_flow_fy_code_fy import ParseBaseFlowFyCode_Flow
 from fy_library.flows.parse_flow_fy_code_fy import ParseFlowFyCode_Flow
 from fy_library.flows.parse_method_fy_code_fy import ParseMethodFyCode_Flow
 from fy_library.flows.parse_property_fy_code_fy import ParsePropertyFyCode_Flow
@@ -94,6 +95,14 @@ class ParseFyPyFile_UsingFyFileKind_And_FyCode_MethodMixin(
                 )
             case ParsedFyPyFileKind.PROPERTY:
                 parse_fy_code = ParsePropertyFyCode_Flow(
+                    pre_fy_code=self._pre_fy_code,
+                    fy_code=self._fy_code,
+                    pre_marker_file_content=self._pre_marker_file_content,
+                    post_marker_file_content=self._post_marker_file_content,
+                    fy_py_file_to_parse=self._fy_py_file_to_parse,
+                )
+            case ParsedFyPyFileKind.BASE_FLOW:
+                parse_fy_code = ParseBaseFlowFyCode_Flow(
                     pre_fy_code=self._pre_fy_code,
                     fy_code=self._fy_code,
                     pre_marker_file_content=self._pre_marker_file_content,

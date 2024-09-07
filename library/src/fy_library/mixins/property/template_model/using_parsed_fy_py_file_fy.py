@@ -18,6 +18,8 @@ from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
     FlowTemplateModelWithPropertySetters,
     FlowTemplateModel,
+    BaseFlowTemplateModel,
+    BaseFlowTemplateModelWithPropertySetters,
 )
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
 from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
@@ -38,10 +40,15 @@ class TemplateModel_UsingParsedFyPyFile_PropertyMixin(
     @cached_property
     def _template_model(self) -> BaseTemplateModel:
         # fy:end <<<===
-        if self._parsed_fy_py_file.file_type != ParsedFyPyFileKind.FLOW:
+        if self._parsed_fy_py_file.file_type != (
+            ParsedFyPyFileKind.FLOW or ParsedFyPyFileKind.BASE_FLOW
+        ):
             return self._parsed_fy_py_file.template_model
 
-        assert isinstance(self._parsed_fy_py_file.template_model, FlowTemplateModel)
+        assert isinstance(
+            self._parsed_fy_py_file.template_model,
+            FlowTemplateModel or BaseFlowTemplateModel,
+        )
         property_setters = [
             self._parsed_fy_py_files_map_by_key[
                 property_setter.property_name.snake_case
@@ -51,9 +58,25 @@ class TemplateModel_UsingParsedFyPyFile_PropertyMixin(
             == PROPERTY_SETTER_IMPLEMENTATION_NAME
         ]
 
-        return FlowTemplateModelWithPropertySetters.model_validate(
-            {
-                **self._parsed_fy_py_file.template_model.model_dump(),
-                "property_setters": property_setters,
-            }
+        flow_template_model_with_property_setters = (
+            FlowTemplateModelWithPropertySetters.model_validate(
+                {
+                    **self._parsed_fy_py_file.template_model.model_dump(),
+                    "property_setters": property_setters,
+                }
+            )
+        )
+
+        base_flow_template_model_with_property_setters = (
+            BaseFlowTemplateModelWithPropertySetters.model_validate(
+                {
+                    **self._parsed_fy_py_file.template_model.model_dump(),
+                    "property_setters": property_setters,
+                }
+            )
+        )
+
+        return (
+            flow_template_model_with_property_setters
+            or base_flow_template_model_with_property_setters
         )

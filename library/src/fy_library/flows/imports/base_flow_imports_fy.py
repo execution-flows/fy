@@ -5,7 +5,7 @@
 from typing import List
 
 
-flow FlowImports -> List[str]:
+flow BaseFlowImports -> List[str]:
     property property_mixins using setter
     property method_mixins using setter
     property parsed_fy_py_files_map_by_key using setter
@@ -18,16 +18,18 @@ flow FlowImports -> List[str]:
     property method_mixins_import using method_mixins_and_mixin_import_map
 """
 
-from typing import List, Any, Dict
-
 from fy_core.base.flow_base import FlowBase
-from fy_library.domain.fy_py_template_models import PropertyMixinModel, MethodMixinModel
+from fy_library.domain.fy_py_template_models import MethodMixinModel
+from fy_library.domain.fy_py_template_models import PropertyMixinModel
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 from fy_library.mixins.property.imports.import_any__using_property_setters_exists_fy import (
     ImportAny_UsingPropertySettersExists_PropertyMixin,
 )
 from fy_library.mixins.property.imports.import_flow_base__using_constant_fy import (
     ImportFlowBase_UsingConstant_PropertyMixin,
+)
+from fy_library.mixins.property.imports.method_mixins_imports__using_method_mixins_and_mixin_import_map_fy import (
+    MethodMixinsImport_UsingMethodMixinsAndMixinImportMap_PropertyMixin,
 )
 from fy_library.mixins.property.imports.property_mixins_imports__using_property_mixins_and_mixin_import_map_fy import (
     PropertyMixinsImport_UsingPropertyMixinsAndMixinImportMap_PropertyMixin,
@@ -47,18 +49,16 @@ from fy_library.mixins.property.property_mixins.using_setter import (
 from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy import (
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
 )
-
-from fy_library.mixins.property.imports.method_mixins_imports__using_method_mixins_and_mixin_import_map_fy import (
-    MethodMixinsImport_UsingMethodMixinsAndMixinImportMap_PropertyMixin,
-)
-
 from fy_library.mixins.property.user_imports_from_property_mixins.using_property_setter_imports_fy import (
     UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
 )
+from typing import Any
+from typing import Dict
+from typing import List
 
 
 # fy:start ===>>>
-class FlowImports_Flow(
+class BaseFlowImports_Flow(
     # Property Mixins
     PropertyMixins_UsingSetter_PropertyMixin,
     MethodMixins_UsingSetter_PropertyMixin,
