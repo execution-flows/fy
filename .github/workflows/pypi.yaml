@@ -110,20 +110,11 @@ jobs:
         shell: bash
         run: poetry publish --build
 
-      - name: "Commit & Push changes"
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: "v${{ steps.fy-library-version.outputs.fy-library-version }}"
-          tags: true
-
-      # GitHub Action page: https://github.com/marketplace/actions/create-release
-      - name: Create new release
-        uses: "ncipollo/release-action@v1"
-        with:
-          tag: "v${{ steps.fy-library-version.outputs.fy-library-version }}"
-          makeLatest: true
-          generateReleaseNotes: true
+      - name: "Commit changes"
+        shell: bash
+        run: |
+          git add .
+          git commit -m 'v${{ steps.fy-library-version.outputs.fy-library-version }}'
 
       - name: "[library] Revert local dependency and Increase version"
         id: library-dev-version
@@ -151,3 +142,11 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: "started v${{ steps.library-dev-version.outputs.library-dev-version }}"
           tags: true
+
+      # GitHub Action page: https://github.com/marketplace/actions/create-release
+      - name: Create new release
+        uses: "ncipollo/release-action@v1"
+        with:
+          tag: "v${{ steps.fy-library-version.outputs.fy-library-version }}"
+          makeLatest: true
+          generateReleaseNotes: true
