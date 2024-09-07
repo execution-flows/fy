@@ -71,6 +71,7 @@ class BaseFlowTemplateModel(BaseTemplateModel):
     properties: List[PropertyMixinModel]
     methods: List[MethodMixinModel]
     abstract_property_mixins: List[AbstractPropertyModel]
+    abstract_method_mixins: List[AbstractMethodModel]
 
     @computed_field
     @property

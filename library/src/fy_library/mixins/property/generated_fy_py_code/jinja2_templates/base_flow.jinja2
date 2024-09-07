@@ -17,6 +17,12 @@ class {{ python_class_name.pascal_case }}(
     {{ abstract_property_mixin.property_name.pascal_case }}_PropertyMixin_ABC,
 {%- endfor %}
 {%- endif %}
+{%- if abstract_method_mixins %}
+    # Abstract Method Mixins
+    {%- for abstract_method_mixin in abstract_method_mixins %}
+    {{ abstract_method_mixin.method_name.pascal_case }}_MethodMixin_ABC,
+{%- endfor %}
+{%- endif %}
     # Base
     FlowBase[{{ return_type }}],
     abc.ABC,
