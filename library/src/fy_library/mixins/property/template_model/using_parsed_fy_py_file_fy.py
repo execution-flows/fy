@@ -19,7 +19,6 @@ from fy_library.domain.fy_py_template_models import (
     FlowTemplateModelWithPropertySetters,
     FlowTemplateModel,
     BaseFlowTemplateModel,
-    BaseFlowTemplateModelWithPropertySetters,
 )
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
 from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
@@ -67,16 +66,4 @@ class TemplateModel_UsingParsedFyPyFile_PropertyMixin(
             )
         )
 
-        base_flow_template_model_with_property_setters = (
-            BaseFlowTemplateModelWithPropertySetters.model_validate(
-                {
-                    **self._parsed_fy_py_file.template_model.model_dump(),
-                    "property_setters": property_setters,
-                }
-            )
-        )
-
-        return (
-            flow_template_model_with_property_setters
-            or base_flow_template_model_with_property_setters
-        )
+        return flow_template_model_with_property_setters

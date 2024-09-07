@@ -29,7 +29,8 @@ class ParsedFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin(
     @cached_property
     def _parsed_fy_py_files_map_by_key(self) -> Dict[str, ParsedFyPyFile]:
         # fy:end <<<===
-        return {
+        test = {
             parsed_fy_py_file.template_model.entity_key: parsed_fy_py_file
             for parsed_fy_py_file in self._parsed_fy_py_files
         }
+        return test

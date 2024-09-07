@@ -18,6 +18,8 @@ flow BaseFlowImports -> List[str]:
     property method_mixins_import using method_mixins_and_mixin_import_map
 """
 
+from typing import Any, Dict, List
+
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import MethodMixinModel
 from fy_library.domain.fy_py_template_models import PropertyMixinModel
@@ -52,9 +54,6 @@ from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy i
 from fy_library.mixins.property.user_imports_from_property_mixins.using_property_setter_imports_fy import (
     UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
 )
-from typing import Any
-from typing import Dict
-from typing import List
 
 
 # fy:start ===>>>
@@ -90,6 +89,7 @@ class BaseFlowImports_Flow(
 
     def __call__(self) -> List[str]:
         # fy:end <<<===
+        print(self._property_mixins)
         return (
             self._user_imports_from_mixins
             + self._import_any

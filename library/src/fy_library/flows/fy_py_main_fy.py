@@ -13,6 +13,7 @@ flow FyPy_Main -> None:
     property parsed_fy_py_files using fy_py_parser
     property parsed_fy_py_files_map_by_key using parsed_fy_py_files
     property required_property_setters_fy_py using parsed_fy_py_files
+    property base_flow_required_property_setters_fy_py using parsed_fy_py_files
     property mixin_import_map using parsed_fy_py_files
 """
 
@@ -48,6 +49,10 @@ from fy_library.mixins.property.required_property_setters_fy_py.using_parsed_fy_
     RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin,
 )
 
+from fy_library.mixins.property.base_flow_required_property_setters_fy_py.using_parsed_fy_py_files_fy import (
+    BaseFlowRequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class FyPy_Main_Flow(
@@ -58,6 +63,7 @@ class FyPy_Main_Flow(
     ParsedFyPyFiles_UsingFyPyParser_PropertyMixin,
     ParsedFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin,
     RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin,
+    BaseFlowRequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin,
     MixinImportMap_UsingParsedFyPyFiles_PropertyMixin,
     # Base
     FlowBase[None],
@@ -81,5 +87,6 @@ class FyPy_Main_Flow(
             parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
         )()
         GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
-            required_property_setters_fy_py=self._required_property_setters_fy_py
+            required_property_setters_fy_py=self._required_property_setters_fy_py,
+            base_flow_required_property_setters_fy_py=self._base_flow_required_property_setters_fy_py,
         )()

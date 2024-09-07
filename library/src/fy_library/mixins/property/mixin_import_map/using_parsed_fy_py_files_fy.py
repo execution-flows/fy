@@ -8,6 +8,7 @@ from typing import Dict
 property mixin_import_map: Dict[str, str] using parsed_fy_py_files:
     property parsed_fy_py_files
     property required_property_setters_fy_py
+    property base_flow_required_property_setters_fy_py
     property project_root_folder
 """
 
@@ -26,12 +27,17 @@ from fy_library.mixins.property.required_property_setters_fy_py.abc_fy import (
     RequiredPropertySettersFyPy_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.base_flow_required_property_setters_fy_py.abc_fy import (
+    BaseFlowRequiredPropertySettersFyPy_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(
     # Property_mixins
     ParsedFyPyFiles_PropertyMixin_ABC,
     RequiredPropertySettersFyPy_PropertyMixin_ABC,
+    BaseFlowRequiredPropertySettersFyPy_PropertyMixin_ABC,
     ProjectRootFolder_PropertyMixin_ABC,
     abc.ABC,
 ):
@@ -44,6 +50,7 @@ class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(
             )
             for parsed_fy_py_file in self._parsed_fy_py_files
             + self._required_property_setters_fy_py
+            + self._base_flow_required_property_setters_fy_py
         }
         return mixin_import_map
 

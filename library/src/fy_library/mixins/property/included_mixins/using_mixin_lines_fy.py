@@ -30,7 +30,6 @@ class IncludedMixins_UsingMixinModels_PropertyMixin(
     @cached_property
     def _included_mixins(self) -> IncludedMixinsModel:
         # fy:end <<<===
-
         included_mixins = IncludedMixinsModel(
             abstract_method_mixins=[
                 mixin_model
@@ -53,5 +52,4 @@ class IncludedMixins_UsingMixinModels_PropertyMixin(
                 if mixin_model.kind == MixinModelKind.PROPERTY
             ],
         )
-
         return included_mixins
