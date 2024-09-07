@@ -70,6 +70,7 @@ class BaseFlowTemplateModel(BaseTemplateModel):
     return_type: str
     properties: List[PropertyMixinModel]
     methods: List[MethodMixinModel]
+    abstract_property_mixins: List[AbstractPropertyModel]
 
     @computed_field
     @property

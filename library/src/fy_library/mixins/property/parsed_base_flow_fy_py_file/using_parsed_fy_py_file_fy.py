@@ -80,6 +80,7 @@ class ParsedBaseFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 return_type=self._base_flow_file_split.return_type,
                 properties=self._included_mixins.property_mixins,
                 methods=self._included_mixins.method_mixins,
+                abstract_property_mixins=self._included_mixins.abstract_property_mixins,
             ),
         )
 
