@@ -19,12 +19,12 @@ from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
 from fy_library.domain.fy_py_template_models import (
     PropertySetterTemplateModel,
     AbstractPropertyTemplateModel,
+    PropertyMixinModel,
 )
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     PropertySetterFyPyFile,
     ParsedFyPyFileKind,
-    ParsedFlowFyPyFile,
 )
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_files.abc_fy import (
@@ -45,6 +45,14 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
     @cached_property
     def _required_property_setters_fy_py(self) -> List[ParsedFyPyFile]:
         # fy:end <<<===
+        def get_properties(
+            parsed_fy_py_file: ParsedFyPyFile,
+        ) -> List[PropertyMixinModel]:
+            assert hasattr(parsed_fy_py_file.template_model, "properties")
+            return cast(
+                List[PropertyMixinModel], parsed_fy_py_file.template_model.properties
+            )
+
         required_setters = {
             flow_property.property_name.snake_case: PropertySetterFyPyFile(
                 pre_fy_code="",
@@ -71,10 +79,9 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
                 ),
             )
             for parsed_fy_py_file in self._parsed_fy_py_files
-            if parsed_fy_py_file.file_type == ParsedFyPyFileKind.FLOW
-            for flow_property in cast(
-                ParsedFlowFyPyFile, parsed_fy_py_file
-            ).template_model.properties
+            if parsed_fy_py_file.file_type
+            in {ParsedFyPyFileKind.FLOW, ParsedFyPyFileKind.BASE_FLOW}
+            for flow_property in get_properties(parsed_fy_py_file)
             if (
                 flow_property.implementation_name.snake_case
                 == PROPERTY_SETTER_IMPLEMENTATION_NAME

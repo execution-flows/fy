@@ -27,6 +27,7 @@ class {{ python_class_name.pascal_case }}(
         self._{{ property_setter.abstract_property_name.snake_case }} = {{ property_setter.abstract_property_name.snake_case }}
     {%- endfor %}
         super().__init__(*args, **kwargs)
-{% endif %}
+{%- else %}
     pass
+{%- endif %}
 
