@@ -9,6 +9,7 @@ flow BaseFlowImports -> List[str]:
     property property_mixins using setter
     property method_mixins using setter
     property abstract_property_mixins using setter
+    property abstract_method_mixins using setter
     property parsed_fy_py_files_map_by_key using setter
     property mixin_import_map using setter
     property property_setter_mixins using property_mixins
@@ -19,6 +20,7 @@ flow BaseFlowImports -> List[str]:
     property property_mixins_import using property_mixins_and_mixin_import_map
     property method_mixins_import using method_mixins_and_mixin_import_map
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
+    property import_abstract_method_mixins using abstract_method_mixin_and_mixin_import_map
 """
 
 from typing import List, Any, Dict
@@ -28,6 +30,7 @@ from fy_library.domain.fy_py_template_models import (
     PropertyMixinModel,
     MethodMixinModel,
     AbstractPropertyModel,
+    AbstractMethodModel,
 )
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 from fy_library.mixins.property.abstract_property_mixins.using_setter import (
@@ -71,6 +74,13 @@ from fy_library.mixins.property.imports.import__abstract_property_mixins__using_
     ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
 )
 
+from fy_library.mixins.property.abstract_method_mixins.using_setter import (
+    AbstractMethodMixins_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.imports.import_abstract_method_mixins__using_abstract_method_mixin_and_mixin_import_map__fy import (
+    ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class BaseFlowImports_Flow(
@@ -78,6 +88,7 @@ class BaseFlowImports_Flow(
     PropertyMixins_UsingSetter_PropertyMixin,
     MethodMixins_UsingSetter_PropertyMixin,
     AbstractPropertyMixins_UsingSetter_PropertyMixin,
+    AbstractMethodMixins_UsingSetter_PropertyMixin,
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
@@ -88,6 +99,7 @@ class BaseFlowImports_Flow(
     PropertyMixinsImport_UsingPropertyMixinsAndMixinImportMap_PropertyMixin,
     MethodMixinsImport_UsingMethodMixinsAndMixinImportMap_PropertyMixin,
     ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
+    ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):
@@ -97,6 +109,7 @@ class BaseFlowImports_Flow(
         property_mixins: List[PropertyMixinModel],
         method_mixins: List[MethodMixinModel],
         abstract_property_mixins: List[AbstractPropertyModel],
+        abstract_method_mixins: List[AbstractMethodModel],
         parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
         mixin_import_map: Dict[str, str],
         **kwargs: Any,
@@ -104,6 +117,7 @@ class BaseFlowImports_Flow(
         self._property_mixins = property_mixins
         self._method_mixins = method_mixins
         self._abstract_property_mixins = abstract_property_mixins
+        self._abstract_method_mixins = abstract_method_mixins
         self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         self._mixin_import_map = mixin_import_map
         super().__init__(*args, **kwargs)
@@ -118,4 +132,5 @@ class BaseFlowImports_Flow(
             + self._property_mixins_import
             + self._method_mixins_import
             + self._import_abstract_property_mixins
+            + self._import_abstract_method_mixins
         )
