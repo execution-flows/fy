@@ -18,4 +18,4 @@ class HelloWorld_Flow(
 ):
     def __call__(self) -> None:
         # fy:end <<<===
-        pass
+        self._greet()
