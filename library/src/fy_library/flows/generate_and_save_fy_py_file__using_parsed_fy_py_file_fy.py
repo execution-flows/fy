@@ -8,6 +8,8 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property parsed_fy_py_files_map_by_key using setter
     property mixin_imports using parsed_fy_py_file
     property jinja2_template_file_name using parsed_fy_py_file
+    property property_mixins using template_model_properties
+    property property_setter_mixins using property_mixins
     property template_model using parsed_fy_py_file
     property generated_fy_py_code using jinja2_templates
     property filtered_mixin_imports using remove_existing_imports
@@ -52,6 +54,12 @@ from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
 from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
 )
+from fy_library.mixins.property.property_mixins.using_template_model_properties_fy import (
+    PropertyMixins_UsingTemplateModelProperties_PropertyMixin,
+)
+from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy import (
+    PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
+)
 from fy_library.mixins.property.template_model.using_parsed_fy_py_file_fy import (
     TemplateModel_UsingParsedFyPyFile_PropertyMixin,
 )
@@ -65,6 +73,8 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     MixinImports_UsingParsedFyPyFile_PropertyMixin,
     Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
+    PropertyMixins_UsingTemplateModelProperties_PropertyMixin,
+    PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
     TemplateModel_UsingParsedFyPyFile_PropertyMixin,
     GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
     FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,

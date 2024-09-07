@@ -7,4 +7,6 @@ class Greeting2_UsingSetter_PropertyMixin:
     @_greeting2.setter
     def _greeting2(self, greeting2: str) -> None:
         self.__greeting2 = greeting2
-        # fy:end <<<===
+
+
+# fy:end <<<===

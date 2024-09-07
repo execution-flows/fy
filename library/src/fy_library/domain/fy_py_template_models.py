@@ -65,6 +65,18 @@ class FlowTemplateModel(BaseTemplateModel):
         return self.flow_name.snake_case
 
 
+class BaseFlowTemplateModel(BaseTemplateModel):
+    base_flow_name: PythonEntityName
+    return_type: str
+    properties: List[PropertyMixinModel]
+    methods: List[MethodMixinModel]
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return self.base_flow_name.snake_case
+
+
 class MethodTemplateModel(BaseTemplateModel):
     method_name: PythonEntityName
     implementation_name: PythonEntityName
@@ -104,6 +116,10 @@ class AbstractPropertyTemplateModel(BaseTemplateModel):
 
 
 class FlowTemplateModelWithPropertySetters(FlowTemplateModel):
+    property_setters: List[AbstractPropertyTemplateModel]
+
+
+class BaseFlowTemplateModelWithPropertySetters(BaseFlowTemplateModel):
     property_setters: List[AbstractPropertyTemplateModel]
 
 
