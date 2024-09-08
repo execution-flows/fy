@@ -92,5 +92,7 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
                 return CreateMethodTemplateModel_UsingParsedFyPyFile_Flow(
                     parsed_fy_py_file=self._parsed_fy_py_file,
                 )()
-            case _:
-                return self._parsed_fy_py_file.template_model
+
+        raise NotImplementedError(
+            f"No File Type for {self._parsed_fy_py_file.file_type}"
+        )
