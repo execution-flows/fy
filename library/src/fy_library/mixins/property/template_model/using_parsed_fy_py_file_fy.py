@@ -16,7 +16,7 @@ from functools import cached_property
 from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
 )
-from fy_library.flows.create_template_model_using_parsed_fy_py_file_fy import (
+from fy_library.flows.create_template_model_using_parsed_fy_py_file.main_fy import (
     CreateTemplateModelUsingParsedFyPyFile_Flow,
 )
 from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (

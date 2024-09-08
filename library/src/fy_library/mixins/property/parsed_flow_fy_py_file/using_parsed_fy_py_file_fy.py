@@ -69,6 +69,10 @@ class ParsedFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
             user_imports=self._flow_file_split.user_imports,
+            flow_name=flow_name,
+            return_type=self._flow_file_split.return_type,
+            properties=self._included_mixins.property_mixins,
+            methods=self._included_mixins.method_mixins,
             template_model=FlowTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{flow_name.pascal_case}_Flow"
