@@ -52,8 +52,8 @@ class CreateAbstractPropertyTemplateModel_UsingParsedFyPyFileAndPropertySettersT
         )
         return AbstractPropertyTemplateModel(
             python_class_name=PythonEntityName.from_pascal_case(
-                f"{parsed_abstract_property_fy_py_file.template_model.abstract_property_name.pascal_case}_PropertyMixin_ABC"
+                f"{parsed_abstract_property_fy_py_file.abstract_property_name.pascal_case}_PropertyMixin_ABC"
             ),
-            abstract_property_name=parsed_abstract_property_fy_py_file.template_model.abstract_property_name,
-            property_type=parsed_abstract_property_fy_py_file.template_model.property_type,
+            abstract_property_name=parsed_abstract_property_fy_py_file.abstract_property_name,
+            property_type=parsed_abstract_property_fy_py_file.property_type,
         )

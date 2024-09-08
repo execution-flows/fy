@@ -11,14 +11,21 @@ flow CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateMo
     property property_mixins using template_model_properties
     property property_setter_mixins using property_mixins
     property parsed_fy_py_files using property_setter_mixins__mapped_to_abstract_property
-    property template_models using parsed_fy_py_files__with_property_setters
 """
+
+from typing import Any, cast
+from typing import Dict
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import (
     BaseFlowTemplateModel,
+    AbstractPropertyTemplateModel,
 )
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedBaseFlowFyPyFile
+from fy_library.domain.parsed_fy_py_file import (
+    ParsedFyPyFile,
+    ParsedBaseFlowFyPyFile,
+    ParsedAbstractPropertyFyPyFile,
+)
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
@@ -35,11 +42,6 @@ from fy_library.mixins.property.property_mixins.using_template_model_properties_
 from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy import (
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
 )
-from fy_library.mixins.property.template_models.using_parsed_fy_py_files__with_property_setters__fy import (
-    TemplateModels_UsingParsedFyPyFiles_WithPropertySetters_PropertyMixin,
-)
-from typing import Any
-from typing import Dict
 
 
 # fy:start ===>>>
@@ -50,7 +52,6 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
     PropertyMixins_UsingTemplateModelProperties_PropertyMixin,
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
     ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_PropertyMixin,
-    TemplateModels_UsingParsedFyPyFiles_WithPropertySetters_PropertyMixin,
     # Base
     FlowBase[BaseFlowTemplateModel],
 ):
@@ -79,5 +80,17 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
             methods=parsed_base_flow_fy_py_file.methods,
             abstract_property_mixins=parsed_base_flow_fy_py_file.abstract_property_mixins,
             abstract_method_mixins=parsed_base_flow_fy_py_file.abstract_method_mixins,
-            property_setters=self._template_models,
+            # TODO: change to ParsedAbstractPropertyFyPyFile after completed migration
+            property_setters=[
+                AbstractPropertyTemplateModel(
+                    python_class_name=PythonEntityName.from_pascal_case(""),
+                    abstract_property_name=cast(
+                        ParsedAbstractPropertyFyPyFile, parsed_fy_py_file
+                    ).abstract_property_name,
+                    property_type=cast(
+                        ParsedAbstractPropertyFyPyFile, parsed_fy_py_file
+                    ).property_type,
+                )
+                for parsed_fy_py_file in self._parsed_fy_py_files
+            ],
         )
