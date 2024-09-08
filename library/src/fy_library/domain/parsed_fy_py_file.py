@@ -17,6 +17,7 @@ from fy_library.domain.fy_py_template_models import (
     PropertyMixinModel,
     MethodMixinModel,
     AbstractPropertyModel,
+    AbstractMethodModel,
 )
 from fy_library.domain.python_entity_name import PythonEntityName
 
@@ -65,6 +66,7 @@ class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
     properties: List[PropertyMixinModel]
     methods: List[MethodMixinModel]
     abstract_property_mixins: List[AbstractPropertyModel]
+    abstract_method_mixins: List[AbstractMethodModel]
 
     @computed_field
     @property

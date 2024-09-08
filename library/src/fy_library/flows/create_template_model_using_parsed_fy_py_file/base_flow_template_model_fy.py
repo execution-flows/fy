@@ -78,5 +78,6 @@ class BaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_
             properties=parsed_base_flow_fy_py_file.properties,
             methods=parsed_base_flow_fy_py_file.methods,
             abstract_property_mixins=parsed_base_flow_fy_py_file.abstract_property_mixins,
+            abstract_method_mixins=parsed_base_flow_fy_py_file.abstract_method_mixins,
             property_setters=self._template_models,
         )

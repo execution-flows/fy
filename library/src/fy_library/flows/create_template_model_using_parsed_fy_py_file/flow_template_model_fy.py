@@ -2,10 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from fy_library.domain.fy_py_template_models import FlowTemplateModelWithPropertySetters
+from fy_library.domain.fy_py_template_models import FlowTemplateModel
 
 
-flow CreateFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels -> FlowTemplateModelWithPropertySetters:
+flow CreateFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels -> FlowTemplateModel:
     property parsed_fy_py_file using setter
     property parsed_fy_py_files_map_by_key using setter
     property property_mixins using template_model_properties
@@ -38,7 +38,7 @@ from fy_library.mixins.property.template_models.using_parsed_fy_py_files__with_p
 from typing import Any
 from typing import Dict
 
-from fy_library.domain.fy_py_template_models import FlowTemplateModelWithPropertySetters
+from fy_library.domain.fy_py_template_models import FlowTemplateModel
 
 
 # fy:start ===>>>
@@ -51,7 +51,7 @@ class CreateFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertyS
     ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_PropertyMixin,
     TemplateModels_UsingParsedFyPyFiles_WithPropertySetters_PropertyMixin,
     # Base
-    FlowBase[FlowTemplateModelWithPropertySetters],
+    FlowBase[FlowTemplateModel],
 ):
     def __init__(
         self,
@@ -64,11 +64,11 @@ class CreateFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertyS
         self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         super().__init__(*args, **kwargs)
 
-    def __call__(self) -> FlowTemplateModelWithPropertySetters:
+    def __call__(self) -> FlowTemplateModel:
         # fy:end <<<===
         parsed_flow_fy_py_file = self._parsed_fy_py_file
         assert isinstance(parsed_flow_fy_py_file, ParsedFlowFyPyFile)
-        return FlowTemplateModelWithPropertySetters(
+        return FlowTemplateModel(
             python_class_name=PythonEntityName.from_pascal_case(
                 f"{parsed_flow_fy_py_file.flow_name.pascal_case}_Flow"
             ),
