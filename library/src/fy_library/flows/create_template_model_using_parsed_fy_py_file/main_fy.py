@@ -12,7 +12,6 @@ flow CreateTemplateModelUsingParsedFyPyFile -> BaseTemplateModel:
     property property_setter_mixins using property_mixins
     property parsed_fy_py_files using property_setter_mixins__mapped_to_abstract_property
     property template_models using parsed_fy_py_files__with_property_setters
-    property optional_flow_template_model_with_property_setters using parsed_fy_py_file_and_property_setters_template_models
     property optional_base_flow_template_model_with_property_setters using parsed_fy_py_file_and_property_setters_template_models
 """
 
@@ -24,12 +23,12 @@ from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
 )
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
+from fy_library.flows.create_template_model_using_parsed_fy_py_file.flow_template_model_fy import (
+    CreateFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow,
+)
 from fy_library.mixins.property.optional_base_flow_template_model_with_property_setters.using_parsed_fy_py_file_and_property_setters_template_models_fy import (
     OptionalBaseFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels_PropertyMixin,
-)
-from fy_library.mixins.property.optional_flow_template_model_with_property_setters.using_parsed_fy_py_file_and_property_setters_template_models_fy import (
-    OptionalFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels_PropertyMixin,
 )
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
@@ -60,7 +59,6 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
     ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_PropertyMixin,
     TemplateModels_UsingParsedFyPyFiles_WithPropertySetters_PropertyMixin,
-    OptionalFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels_PropertyMixin,
     OptionalBaseFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels_PropertyMixin,
     # Base
     FlowBase[BaseTemplateModel],
@@ -78,8 +76,14 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
 
     def __call__(self) -> BaseTemplateModel:
         # fy:end <<<===
-        return (
-            self._optional_base_flow_template_model_with_property_setters
-            or self._optional_flow_template_model_with_property_setters
-            or self._parsed_fy_py_file.template_model
-        )
+        match self._parsed_fy_py_file.file_type:
+            case ParsedFyPyFileKind.FLOW:
+                return CreateFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
+                    parsed_fy_py_file=self._parsed_fy_py_file,
+                    parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
+                )()
+            case _:
+                return (
+                    self._optional_base_flow_template_model_with_property_setters
+                    or self._parsed_fy_py_file.template_model
+                )
