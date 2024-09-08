@@ -4,11 +4,9 @@
 """fy
 flow CreateAbstractPropertyTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels -> AbstractPropertyTemplateModel:
     property parsed_fy_py_file using setter
-    property parsed_fy_py_files_map_by_key using setter
 """
 
 from typing import Any
-from typing import Dict
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import AbstractPropertyTemplateModel
@@ -20,16 +18,12 @@ from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
-    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
-)
 
 
 # fy:start ===>>>
 class CreateAbstractPropertyTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
     # Property Mixins
     ParsedFyPyFile_UsingSetter_PropertyMixin,
-    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     # Base
     FlowBase[AbstractPropertyTemplateModel],
 ):
@@ -37,11 +31,9 @@ class CreateAbstractPropertyTemplateModel_UsingParsedFyPyFileAndPropertySettersT
         self,
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
-        parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file
-        self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> AbstractPropertyTemplateModel:
