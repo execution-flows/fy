@@ -1,21 +1,21 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from enum import Enum
 from pathlib import Path
 from typing import Literal, List
 
 from pydantic import BaseModel, computed_field
-from enum import Enum
 
 from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
     MethodTemplateModel,
-    PropertyTemplateModel,
     PropertySetterTemplateModel,
     PropertyMixinModel,
     MethodMixinModel,
     AbstractPropertyModel,
     AbstractMethodModel,
+    entity_key,
 )
 from fy_library.domain.python_entity_name import PythonEntityName
 
@@ -106,7 +106,18 @@ class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):
 
 class ParsedPropertyFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.PROPERTY] = ParsedFyPyFileKind.PROPERTY
-    template_model: PropertyTemplateModel
+    property_name: PythonEntityName
+    implementation_name: PythonEntityName
+    abstract_property_mixins: List[AbstractPropertyModel]
+    property_type: str
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return entity_key(
+            mixin_name__snake_case=self.property_name.snake_case,
+            mixin_implementation_name__snake_case=self.implementation_name.snake_case,
+        )
 
 
 class PropertySetterFyPyFile(ParsedFyPyFile):

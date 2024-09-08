@@ -30,6 +30,9 @@ from fy_library.flows.create_template_model_using_parsed_fy_py_file.base_flow_te
 from fy_library.flows.create_template_model_using_parsed_fy_py_file.flow_template_model_fy import (
     CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow,
 )
+from fy_library.flows.create_template_model_using_parsed_fy_py_file.property_template_model_fy import (
+    CreatePropertyTemplateModel_UsingParsedFyPyFile_Flow,
+)
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -76,6 +79,10 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
                 )()
             case ParsedFyPyFileKind.ABSTRACT_METHOD:
                 return CreateAbstractMethodTemplateModel_UsingParsedFyPyFile_Flow(
+                    parsed_fy_py_file=self._parsed_fy_py_file,
+                )()
+            case ParsedFyPyFileKind.PROPERTY:
+                return CreatePropertyTemplateModel_UsingParsedFyPyFile_Flow(
                     parsed_fy_py_file=self._parsed_fy_py_file,
                 )()
             case _:
