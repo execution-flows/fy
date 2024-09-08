@@ -14,13 +14,15 @@ from typing import Any
 from typing import Dict
 
 from fy_core.base.flow_base import FlowBase
-
 from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
 )
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
+from fy_library.flows.create_template_model_using_parsed_fy_py_file.abstract_method_template_model_fy import (
+    CreateAbstractMethodTemplateModel_UsingParsedFyPyFile_Flow,
+)
 from fy_library.flows.create_template_model_using_parsed_fy_py_file.abstract_property_template_model_fy import (
-    CreateAbstractPropertyTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow,
+    CreateAbstractPropertyTemplateModel_UsingParsedFyPyFile_Flow,
 )
 from fy_library.flows.create_template_model_using_parsed_fy_py_file.base_flow_template_model_fy import (
     CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow,
@@ -69,7 +71,11 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
                     parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                 )()
             case ParsedFyPyFileKind.ABSTRACT_PROPERTY:
-                return CreateAbstractPropertyTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
+                return CreateAbstractPropertyTemplateModel_UsingParsedFyPyFile_Flow(
+                    parsed_fy_py_file=self._parsed_fy_py_file,
+                )()
+            case ParsedFyPyFileKind.ABSTRACT_METHOD:
+                return CreateAbstractMethodTemplateModel_UsingParsedFyPyFile_Flow(
                     parsed_fy_py_file=self._parsed_fy_py_file,
                 )()
             case _:

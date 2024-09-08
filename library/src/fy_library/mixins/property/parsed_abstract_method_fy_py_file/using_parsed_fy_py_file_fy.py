@@ -17,7 +17,7 @@ property parsed_abstract_method_fy_py_file: ParsedAbstractMethodFyPyFile using  
 import abc
 from functools import cached_property
 
-from fy_library.domain.fy_py_template_models import AbstractMethodTemplateModel
+from fy_library.domain.fy_py_template_models import TemporaryBaseTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedAbstractMethodFyPyFile
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.abstract_method_file_split.abc_fy import (
@@ -65,13 +65,14 @@ class ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
             user_imports=self._abstract_method_file_split.user_imports,
-            template_model=AbstractMethodTemplateModel(
+            abstract_method_name=abstract_method_name,
+            arguments=self._abstract_method_file_split.arguments,
+            return_type=self._abstract_method_file_split.return_type,
+            template_model=TemporaryBaseTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{abstract_method_name.pascal_case}_MethodMixin_ABC"
                 ),
-                abstract_method_name=abstract_method_name,
-                arguments=self._abstract_method_file_split.arguments,
-                return_type=self._abstract_method_file_split.return_type,
+                entity_key_value=abstract_method_name.snake_case,
             ),
         )
 

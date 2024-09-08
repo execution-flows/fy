@@ -2,18 +2,17 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-flow CreateAbstractPropertyTemplateModel_UsingParsedFyPyFile -> AbstractPropertyTemplateModel:
+flow CreateAbstractMethodTemplateModel_UsingParsedFyPyFile -> AbstractMethodTemplateModel:
     property parsed_fy_py_file using setter
 """
 
-from typing import Any
-
-from fy_core.base.flow_base import FlowBase
-from fy_library.domain.fy_py_template_models import AbstractPropertyTemplateModel
+from fy_library.domain.fy_py_template_models import AbstractMethodTemplateModel
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
-    ParsedAbstractPropertyFyPyFile,
+    ParsedAbstractMethodFyPyFile,
 )
+from typing import Any
+from fy_core.base.flow_base import FlowBase
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
@@ -21,11 +20,11 @@ from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
 
 
 # fy:start ===>>>
-class CreateAbstractPropertyTemplateModel_UsingParsedFyPyFile_Flow(
+class CreateAbstractMethodTemplateModel_UsingParsedFyPyFile_Flow(
     # Property Mixins
     ParsedFyPyFile_UsingSetter_PropertyMixin,
     # Base
-    FlowBase[AbstractPropertyTemplateModel],
+    FlowBase[AbstractMethodTemplateModel],
 ):
     def __init__(
         self,
@@ -36,16 +35,18 @@ class CreateAbstractPropertyTemplateModel_UsingParsedFyPyFile_Flow(
         self._parsed_fy_py_file = parsed_fy_py_file
         super().__init__(*args, **kwargs)
 
-    def __call__(self) -> AbstractPropertyTemplateModel:
+    def __call__(self) -> AbstractMethodTemplateModel:
         # fy:end <<<===
-        parsed_abstract_property_fy_py_file = self._parsed_fy_py_file
+        parsed_abstract_method_fy_py_file = self._parsed_fy_py_file
+
         assert isinstance(
-            parsed_abstract_property_fy_py_file, ParsedAbstractPropertyFyPyFile
+            parsed_abstract_method_fy_py_file, ParsedAbstractMethodFyPyFile
         )
-        return AbstractPropertyTemplateModel(
+        return AbstractMethodTemplateModel(
             python_class_name=PythonEntityName.from_pascal_case(
-                f"{parsed_abstract_property_fy_py_file.abstract_property_name.pascal_case}_PropertyMixin_ABC"
+                f"{parsed_abstract_method_fy_py_file.abstract_method_name.pascal_case}_MethodMixin_ABC"
             ),
-            abstract_property_name=parsed_abstract_property_fy_py_file.abstract_property_name,
-            property_type=parsed_abstract_property_fy_py_file.property_type,
+            abstract_method_name=parsed_abstract_method_fy_py_file.abstract_method_name,
+            arguments=parsed_abstract_method_fy_py_file.arguments,
+            return_type=parsed_abstract_method_fy_py_file.return_type,
         )
