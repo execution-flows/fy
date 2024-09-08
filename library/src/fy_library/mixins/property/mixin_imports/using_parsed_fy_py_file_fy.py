@@ -87,10 +87,10 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                 return MethodImports_Flow(
                     abstract_property_mixins=cast(
                         ParsedMethodFyPyFile, self._parsed_fy_py_file
-                    ).template_model.abstract_property_mixins,
+                    ).abstract_property_mixins,
                     abstract_method_mixins=cast(
                         ParsedMethodFyPyFile, self._parsed_fy_py_file
-                    ).template_model.abstract_method_mixins,
+                    ).abstract_method_mixins,
                     mixin_import_map=self._mixin_import_map,
                 )()
             case ParsedFyPyFileKind.ABSTRACT_METHOD:

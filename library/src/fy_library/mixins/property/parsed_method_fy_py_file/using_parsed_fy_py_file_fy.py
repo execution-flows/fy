@@ -18,7 +18,10 @@ property parsed_method_fy_py_file: ParsedMethodFyPyFile using parsed_fy_py_file:
 import abc
 from functools import cached_property
 
-from fy_library.domain.fy_py_template_models import MethodTemplateModel
+from fy_library.domain.fy_py_template_models import (
+    entity_key,
+    TemporaryBaseTemplateModel,
+)
 from fy_library.domain.parsed_fy_py_file import ParsedMethodFyPyFile
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.fy_code.abc_fy import (
@@ -74,16 +77,20 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
             user_imports=self._method_file_split.user_imports,
-            template_model=MethodTemplateModel(
+            method_name=method_name,
+            implementation_name=implementation_name,
+            abstract_property_mixins=self._included_mixins.abstract_property_mixins,
+            abstract_method_mixins=self._included_mixins.abstract_method_mixins,
+            arguments=self._method_file_split.arguments,
+            return_type=self._method_file_split.return_type,
+            template_model=TemporaryBaseTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
                 ),
-                method_name=method_name,
-                implementation_name=implementation_name,
-                abstract_property_mixins=self._included_mixins.abstract_property_mixins,
-                abstract_method_mixins=self._included_mixins.abstract_method_mixins,
-                arguments=self._method_file_split.arguments,
-                return_type=self._method_file_split.return_type,
+                entity_key_value=entity_key(
+                    mixin_name__snake_case=method_name.snake_case,
+                    mixin_implementation_name__snake_case=implementation_name.snake_case,
+                ),
             ),
         )
 

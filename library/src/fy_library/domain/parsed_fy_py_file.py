@@ -9,7 +9,6 @@ from pydantic import BaseModel, computed_field
 
 from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
-    MethodTemplateModel,
     PropertySetterTemplateModel,
     PropertyMixinModel,
     MethodMixinModel,
@@ -74,7 +73,20 @@ class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
 
 class ParsedMethodFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.METHOD] = ParsedFyPyFileKind.METHOD
-    template_model: MethodTemplateModel
+    method_name: PythonEntityName
+    implementation_name: PythonEntityName
+    abstract_property_mixins: List[AbstractPropertyModel]
+    abstract_method_mixins: List[AbstractMethodModel]
+    arguments: str | None
+    return_type: str
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return entity_key(
+            mixin_name__snake_case=self.method_name.snake_case,
+            mixin_implementation_name__snake_case=self.implementation_name.snake_case,
+        )
 
 
 class ParsedAbstractMethodFyPyFile(ParsedFyPyFile):
