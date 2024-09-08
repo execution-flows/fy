@@ -71,7 +71,6 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
             case ParsedFyPyFileKind.ABSTRACT_PROPERTY:
                 return CreateAbstractPropertyTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
                     parsed_fy_py_file=self._parsed_fy_py_file,
-                    parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                 )()
             case _:
                 return self._parsed_fy_py_file.template_model
