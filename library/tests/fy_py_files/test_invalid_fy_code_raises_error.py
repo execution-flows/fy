@@ -28,8 +28,10 @@ class TestRaisesAssertionError(MainFyPyTestCase):
     def test_property_invalid_abstract_mixins_raises_correct_error(self) -> None:
         with self.assertRaisesRegex(
             expected_exception=AssertionError,
-            expected_regex=r"Property .*/property_invalid_abstract_mixin_fy.py cannot include other property "
-            r"implementations",
+            expected_regex=(
+                r"Property .*/property_invalid_abstract_mixin_fy.py "
+                r"cannot include other method implementations"
+            ),
         ):
             self._test_main_flow(
                 target_folder="invalid_fy_code_raises_correct_error/property_invalid_abstract_mixins",
