@@ -32,6 +32,6 @@ class PropertyMixins_UsingTemplateModelProperties_PropertyMixin(
     @cached_property
     def _property_mixins(self) -> List[PropertyMixinModel]:
         # fy:end <<<===
-        assert hasattr(self._parsed_fy_py_file.template_model, "properties")
+        assert hasattr(self._parsed_fy_py_file, "properties")
 
-        return self._parsed_fy_py_file.template_model.properties
+        return self._parsed_fy_py_file.properties

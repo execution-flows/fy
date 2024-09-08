@@ -14,9 +14,9 @@ from fy_library.domain.fy_py_template_models import (
     AbstractPropertyTemplateModel,
     PropertyTemplateModel,
     PropertySetterTemplateModel,
-    BaseFlowTemplateModel,
     PropertyMixinModel,
     MethodMixinModel,
+    AbstractPropertyModel,
 )
 from fy_library.domain.python_entity_name import PythonEntityName
 
@@ -60,7 +60,16 @@ class ParsedFlowFyPyFile(ParsedFyPyFile):
 
 class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.BASE_FLOW] = ParsedFyPyFileKind.BASE_FLOW
-    template_model: BaseFlowTemplateModel
+    base_flow_name: PythonEntityName
+    return_type: str
+    properties: List[PropertyMixinModel]
+    methods: List[MethodMixinModel]
+    abstract_property_mixins: List[AbstractPropertyModel]
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return self.base_flow_name.snake_case
 
 
 class ParsedMethodFyPyFile(ParsedFyPyFile):

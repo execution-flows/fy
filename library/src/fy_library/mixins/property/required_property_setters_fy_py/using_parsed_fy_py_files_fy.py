@@ -48,10 +48,8 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
         def get_properties(
             parsed_fy_py_file: ParsedFyPyFile,
         ) -> List[PropertyMixinModel]:
-            assert hasattr(parsed_fy_py_file.template_model, "properties")
-            return cast(
-                List[PropertyMixinModel], parsed_fy_py_file.template_model.properties
-            )
+            assert hasattr(parsed_fy_py_file, "properties")
+            return cast(List[PropertyMixinModel], parsed_fy_py_file.properties)
 
         required_setters = {
             flow_property.property_name.snake_case: PropertySetterFyPyFile(

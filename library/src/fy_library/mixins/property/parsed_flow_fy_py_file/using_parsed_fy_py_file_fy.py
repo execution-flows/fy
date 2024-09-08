@@ -18,7 +18,7 @@ property parsed_flow_fy_py_file: ParsedFlowFyPyFile using parsed_fy_py_file:
 import abc
 from functools import cached_property
 
-from fy_library.domain.fy_py_template_models import FlowTemplateModel
+from fy_library.domain.fy_py_template_models import TemporaryBaseTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedFlowFyPyFile
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.flow_file_split.abc_fy import (
@@ -74,14 +74,11 @@ class ParsedFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             properties=self._included_mixins.property_mixins,
             methods=self._included_mixins.method_mixins,
             # TODO: remove after removed from the base class.
-            template_model=FlowTemplateModel(
+            template_model=TemporaryBaseTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{flow_name.pascal_case}_Flow"
                 ),
-                flow_name=flow_name,
-                return_type=self._flow_file_split.return_type,
-                properties=self._included_mixins.property_mixins,
-                methods=self._included_mixins.method_mixins,
+                entity_key_value=flow_name.snake_case,
             ),
         )
 
