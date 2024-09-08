@@ -15,8 +15,6 @@ from typing import List
 
 from fy_library.domain.fy_py_template_models import (
     PropertyMixinModel,
-    FlowTemplateModel,
-    BaseFlowTemplateModel,
 )
 
 from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
@@ -34,8 +32,6 @@ class PropertyMixins_UsingTemplateModelProperties_PropertyMixin(
     @cached_property
     def _property_mixins(self) -> List[PropertyMixinModel]:
         # fy:end <<<===
-        assert isinstance(
-            self._parsed_fy_py_file.template_model, FlowTemplateModel
-        ) or isinstance(self._parsed_fy_py_file.template_model, BaseFlowTemplateModel)
+        assert hasattr(self._parsed_fy_py_file.template_model, "properties")
 
         return self._parsed_fy_py_file.template_model.properties
