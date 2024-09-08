@@ -5,7 +5,7 @@
 from fy_library.domain.fy_py_template_models import FlowTemplateModelWithPropertySetters
 
 
-flow FlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels -> FlowTemplateModelWithPropertySetters:
+flow CreateFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels -> FlowTemplateModelWithPropertySetters:
     property parsed_fy_py_file using setter
     property parsed_fy_py_files_map_by_key using setter
     property property_mixins using template_model_properties
@@ -42,7 +42,7 @@ from fy_library.domain.fy_py_template_models import FlowTemplateModelWithPropert
 
 
 # fy:start ===>>>
-class FlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
+class CreateFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
     # Property Mixins
     ParsedFyPyFile_UsingSetter_PropertyMixin,
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
