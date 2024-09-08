@@ -11,7 +11,6 @@ from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
     MethodTemplateModel,
     AbstractMethodTemplateModel,
-    AbstractPropertyTemplateModel,
     PropertyTemplateModel,
     PropertySetterTemplateModel,
     PropertyMixinModel,
@@ -90,7 +89,13 @@ class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.ABSTRACT_PROPERTY] = (
         ParsedFyPyFileKind.ABSTRACT_PROPERTY
     )
-    template_model: AbstractPropertyTemplateModel
+    abstract_property_name: PythonEntityName
+    property_type: str
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return self.abstract_property_name.snake_case
 
 
 class ParsedPropertyFyPyFile(ParsedFyPyFile):

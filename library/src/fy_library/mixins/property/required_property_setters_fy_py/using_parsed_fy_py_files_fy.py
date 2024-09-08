@@ -18,13 +18,13 @@ from typing import List, cast
 from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
 from fy_library.domain.fy_py_template_models import (
     PropertySetterTemplateModel,
-    AbstractPropertyTemplateModel,
     PropertyMixinModel,
 )
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     PropertySetterFyPyFile,
     ParsedFyPyFileKind,
+    ParsedAbstractPropertyFyPyFile,
 )
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_files.abc_fy import (
@@ -69,10 +69,10 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
                         f"{flow_property.property_name.pascal_case}_UsingSetter_PropertyMixin"
                     ),
                     property_type=cast(
-                        AbstractPropertyTemplateModel,
+                        ParsedAbstractPropertyFyPyFile,
                         self._parsed_fy_py_files_map_by_key[
                             flow_property.property_name.snake_case
-                        ].template_model,
+                        ],
                     ).property_type,
                 ),
             )
