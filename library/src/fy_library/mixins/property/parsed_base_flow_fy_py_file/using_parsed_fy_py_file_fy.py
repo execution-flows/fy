@@ -77,6 +77,9 @@ class ParsedBaseFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             methods=self._included_mixins.method_mixins,
             abstract_property_mixins=self._included_mixins.abstract_property_mixins,
             abstract_method_mixins=self._included_mixins.abstract_method_mixins,
+            python_class_name=PythonEntityName.from_pascal_case(
+                f"{base_flow_name.pascal_case}_BaseFlow"
+            ),
             # TODO: remove after template_model removed from the base class.
             template_model=TemporaryBaseTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(

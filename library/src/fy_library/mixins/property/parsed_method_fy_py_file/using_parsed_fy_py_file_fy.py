@@ -83,6 +83,9 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             abstract_method_mixins=self._included_mixins.abstract_method_mixins,
             arguments=self._method_file_split.arguments,
             return_type=self._method_file_split.return_type,
+            python_class_name=PythonEntityName.from_pascal_case(
+                f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
+            ),
             template_model=TemporaryBaseTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"

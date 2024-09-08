@@ -40,6 +40,7 @@ class ParsedFyPyFile(FyPyFileParts):
     file_type: ParsedFyPyFileKind
     file_path: Path
     user_imports: str
+    python_class_name: PythonEntityName
     template_model: BaseTemplateModel
 
 

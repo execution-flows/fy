@@ -63,6 +63,9 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
                 user_imports=self._parsed_fy_py_files_map_by_key[
                     flow_property.property_name.snake_case
                 ].user_imports,
+                python_class_name=PythonEntityName.from_pascal_case(
+                    f"{flow_property.property_name.pascal_case}_UsingSetter_PropertyMixin"
+                ),
                 template_model=PropertySetterTemplateModel(
                     property_name=flow_property.property_name,
                     python_class_name=PythonEntityName.from_pascal_case(

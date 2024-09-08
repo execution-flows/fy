@@ -80,6 +80,9 @@ class ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             implementation_name=implementation_name,
             abstract_property_mixins=self._included_mixins.abstract_property_mixins,
             property_type=self._property_file_split.property_type,
+            python_class_name=PythonEntityName.from_pascal_case(
+                f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"
+            ),
             template_model=TemporaryBaseTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"
