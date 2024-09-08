@@ -20,10 +20,10 @@ from fy_library.domain.fy_py_template_models import (
 )
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
 from fy_library.flows.create_template_model_using_parsed_fy_py_file.base_flow_template_model_fy import (
-    BaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow,
+    CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow,
 )
 from fy_library.flows.create_template_model_using_parsed_fy_py_file.flow_template_model_fy import (
-    CreateFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow,
+    CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow,
 )
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
@@ -56,12 +56,12 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
         # fy:end <<<===
         match self._parsed_fy_py_file.file_type:
             case ParsedFyPyFileKind.FLOW:
-                return CreateFlowTemplateModelWithPropertySetters_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
+                return CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
                     parsed_fy_py_file=self._parsed_fy_py_file,
                     parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                 )()
             case ParsedFyPyFileKind.BASE_FLOW:
-                return BaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
+                return CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
                     parsed_fy_py_file=self._parsed_fy_py_file,
                     parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                 )()
