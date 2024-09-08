@@ -2,13 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from pathlib import Path
-from typing import Literal
+from typing import Literal, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, computed_field
 from enum import Enum
 
 from fy_library.domain.fy_py_template_models import (
-    FlowTemplateModel,
     BaseTemplateModel,
     MethodTemplateModel,
     AbstractMethodTemplateModel,
@@ -16,7 +15,10 @@ from fy_library.domain.fy_py_template_models import (
     PropertyTemplateModel,
     PropertySetterTemplateModel,
     BaseFlowTemplateModel,
+    PropertyMixinModel,
+    MethodMixinModel,
 )
+from fy_library.domain.python_entity_name import PythonEntityName
 
 
 class ParsedFyPyFileKind(Enum):
@@ -45,7 +47,15 @@ class ParsedFyPyFile(FyPyFileParts):
 
 class ParsedFlowFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.FLOW] = ParsedFyPyFileKind.FLOW
-    template_model: FlowTemplateModel
+    flow_name: PythonEntityName
+    return_type: str
+    properties: List[PropertyMixinModel]
+    methods: List[MethodMixinModel]
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return self.flow_name.snake_case
 
 
 class ParsedBaseFlowFyPyFile(ParsedFyPyFile):

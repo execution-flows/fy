@@ -20,6 +20,7 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedMethodFyPyFile,
     ParsedFlowFyPyFile,
     ParsedPropertyFyPyFile,
+    ParsedBaseFlowFyPyFile,
 )
 from fy_library.flows.imports.abstract_method_imports_fy import (
     AbstractMethodImportsFlow_Flow,
@@ -58,25 +59,25 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                 return FlowImports_Flow(
                     property_mixins=cast(
                         ParsedFlowFyPyFile, self._parsed_fy_py_file
-                    ).template_model.properties,
+                    ).properties,
                     parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                     mixin_import_map=self._mixin_import_map,
                     method_mixins=cast(
                         ParsedFlowFyPyFile, self._parsed_fy_py_file
-                    ).template_model.methods,
+                    ).methods,
                 )()
             case ParsedFyPyFileKind.BASE_FLOW:
                 return BaseFlowImports_Flow(
                     property_mixins=cast(
-                        ParsedFlowFyPyFile, self._parsed_fy_py_file
+                        ParsedBaseFlowFyPyFile, self._parsed_fy_py_file
                     ).template_model.properties,
                     parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                     mixin_import_map=self._mixin_import_map,
                     method_mixins=cast(
-                        ParsedFlowFyPyFile, self._parsed_fy_py_file
+                        ParsedBaseFlowFyPyFile, self._parsed_fy_py_file
                     ).template_model.methods,
                     abstract_property_mixins=cast(
-                        ParsedPropertyFyPyFile, self._parsed_fy_py_file
+                        ParsedBaseFlowFyPyFile, self._parsed_fy_py_file
                     ).template_model.abstract_property_mixins,
                     abstract_method_mixins=cast(
                         ParsedMethodFyPyFile, self._parsed_fy_py_file
