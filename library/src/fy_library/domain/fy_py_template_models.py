@@ -53,30 +53,12 @@ class BaseTemplateModel(BaseModel, abc.ABC):
         raise NotImplementedError()
 
 
-class FlowTemplateModel(BaseTemplateModel):
-    flow_name: PythonEntityName
-    return_type: str
-    properties: List[PropertyMixinModel]
-    methods: List[MethodMixinModel]
+class TemporaryBaseTemplateModel(BaseTemplateModel):
+    entity_key_value: str
 
-    @computed_field
     @property
     def entity_key(self) -> str:
-        return self.flow_name.snake_case
-
-
-class BaseFlowTemplateModel(BaseTemplateModel):
-    base_flow_name: PythonEntityName
-    return_type: str
-    properties: List[PropertyMixinModel]
-    methods: List[MethodMixinModel]
-    abstract_property_mixins: List[AbstractPropertyModel]
-    abstract_method_mixins: List[AbstractMethodModel]
-
-    @computed_field
-    @property
-    def entity_key(self) -> str:
-        return self.base_flow_name.snake_case
+        return self.entity_key_value
 
 
 class MethodTemplateModel(BaseTemplateModel):
@@ -117,12 +99,32 @@ class AbstractPropertyTemplateModel(BaseTemplateModel):
         return self.abstract_property_name.snake_case
 
 
-class FlowTemplateModelWithPropertySetters(FlowTemplateModel):
+class FlowTemplateModel(BaseTemplateModel):
+    flow_name: PythonEntityName
+    return_type: str
+    properties: List[PropertyMixinModel]
+    methods: List[MethodMixinModel]
     property_setters: List[AbstractPropertyTemplateModel]
 
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return self.flow_name.snake_case
 
-class BaseFlowTemplateModelWithPropertySetters(BaseFlowTemplateModel):
+
+class BaseFlowTemplateModel(BaseTemplateModel):
+    base_flow_name: PythonEntityName
+    return_type: str
+    properties: List[PropertyMixinModel]
+    methods: List[MethodMixinModel]
+    abstract_property_mixins: List[AbstractPropertyModel]
+    abstract_method_mixins: List[AbstractMethodModel]
     property_setters: List[AbstractPropertyTemplateModel]
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return self.base_flow_name.snake_case
 
 
 class PropertyTemplateModel(BaseTemplateModel):

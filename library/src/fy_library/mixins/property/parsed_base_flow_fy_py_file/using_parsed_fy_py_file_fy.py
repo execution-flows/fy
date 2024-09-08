@@ -18,9 +18,12 @@ property parsed_base_flow_fy_py_file: ParsedBaseFlowFyPyFile using parsed_fy_py_
 import abc
 from functools import cached_property
 
-from fy_library.domain.fy_py_template_models import BaseFlowTemplateModel
+from fy_library.domain.fy_py_template_models import TemporaryBaseTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedBaseFlowFyPyFile
 from fy_library.domain.python_entity_name import PythonEntityName
+from fy_library.mixins.property.base_flow_file_split.abc_fy import (
+    BaseFlowFileSplit_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
@@ -38,10 +41,6 @@ from fy_library.mixins.property.pre_fy_code.abc_fy import (
 )
 from fy_library.mixins.property.pre_marker_file_content.abc_fy import (
     PreMarkerFileContent_PropertyMixin_ABC,
-)
-
-from fy_library.mixins.property.base_flow_file_split.abc_fy import (
-    BaseFlowFileSplit_PropertyMixin_ABC,
 )
 
 
@@ -72,16 +71,18 @@ class ParsedBaseFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             post_marker_file_content=self._post_marker_file_content,
             file_path=self._fy_py_file_to_parse,
             user_imports=self._base_flow_file_split.user_imports,
-            template_model=BaseFlowTemplateModel(
+            base_flow_name=base_flow_name,
+            return_type=self._base_flow_file_split.return_type,
+            properties=self._included_mixins.property_mixins,
+            methods=self._included_mixins.method_mixins,
+            abstract_property_mixins=self._included_mixins.abstract_property_mixins,
+            abstract_method_mixins=self._included_mixins.abstract_method_mixins,
+            # TODO: remove after template_model removed from the base class.
+            template_model=TemporaryBaseTemplateModel(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{base_flow_name.pascal_case}_BaseFlow"
                 ),
-                base_flow_name=base_flow_name,
-                return_type=self._base_flow_file_split.return_type,
-                properties=self._included_mixins.property_mixins,
-                methods=self._included_mixins.method_mixins,
-                abstract_property_mixins=self._included_mixins.abstract_property_mixins,
-                abstract_method_mixins=self._included_mixins.abstract_method_mixins,
+                entity_key_value=base_flow_name.snake_case,
             ),
         )
 
