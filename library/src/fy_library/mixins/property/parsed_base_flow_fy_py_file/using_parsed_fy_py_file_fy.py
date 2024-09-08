@@ -81,6 +81,7 @@ class ParsedBaseFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 properties=self._included_mixins.property_mixins,
                 methods=self._included_mixins.method_mixins,
                 abstract_property_mixins=self._included_mixins.abstract_property_mixins,
+                abstract_method_mixins=self._included_mixins.abstract_method_mixins,
             ),
         )
 
