@@ -10,7 +10,6 @@ from enum import Enum
 from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
     MethodTemplateModel,
-    AbstractMethodTemplateModel,
     PropertyTemplateModel,
     PropertySetterTemplateModel,
     PropertyMixinModel,
@@ -82,7 +81,14 @@ class ParsedAbstractMethodFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.ABSTRACT_METHOD] = (
         ParsedFyPyFileKind.ABSTRACT_METHOD
     )
-    template_model: AbstractMethodTemplateModel
+    abstract_method_name: PythonEntityName
+    arguments: str | None
+    return_type: str
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return self.abstract_method_name.snake_case
 
 
 class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):
