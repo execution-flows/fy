@@ -59,7 +59,15 @@ repo_name: execution-flows/fy
 
 # Order of pages
 nav:
-  - Introduction: index.md
+  - Introduction:
+      - Background: introduction/background.md
+      - Execution Flows Explained: introduction/explained.md
+      - An Example: introduction/example.md
+      - Comparisons:
+          - Comparison with traditional programming ways: introduction/comparisons.md
+      - Benefits:
+          - A couple of non-obvious benefits: introduction/benefits.md
+          - Summary: introduction/summary.md
   - Getting Started:
       - Installation and setup: getting_started/installation.md
       - Project Structure: getting_started/project_structure.md
