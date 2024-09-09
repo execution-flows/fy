@@ -4,10 +4,9 @@
 """fy
 flow GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters -> None:
     property required_property_setters_fy_py using setter
-    property parsed_fy_py_files_map_by_key using setter
 """
 
-from typing import Any, List, Dict
+from typing import Any, List
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
@@ -18,16 +17,11 @@ from fy_library.mixins.property.required_property_setters_fy_py.using_setter imp
     RequiredPropertySettersFyPy_UsingSetter_PropertyMixin,
 )
 
-from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
-    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
-)
-
 
 # fy:start ===>>>
 class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
     # Property Mixins
     RequiredPropertySettersFyPy_UsingSetter_PropertyMixin,
-    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     # Base
     FlowBase[None],
 ):
@@ -35,11 +29,9 @@ class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
         self,
         *args: Any,
         required_property_setters_fy_py: List[ParsedFyPyFile],
-        parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
         **kwargs: Any,
     ):
         self._required_property_setters_fy_py = required_property_setters_fy_py
-        self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> None:
@@ -47,5 +39,4 @@ class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
         for parsed_fy_py_file in self._required_property_setters_fy_py:
             GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
                 parsed_fy_py_file=parsed_fy_py_file,
-                parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
             )()

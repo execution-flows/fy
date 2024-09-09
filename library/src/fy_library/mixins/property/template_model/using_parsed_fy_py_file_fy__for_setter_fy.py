@@ -7,22 +7,17 @@ from fy_library.domain.fy_py_template_models import BaseTemplateModel
 
 property template_model: BaseTemplateModel using parsed_fy_py_file__for_setter:
     property parsed_fy_py_file
-    property parsed_fy_py_files_map_by_key
 """
 
 import abc
 from functools import cached_property
 
 from fy_library.domain.fy_py_template_models import BaseTemplateModel
-from fy_library.flows.create_template_model_using_parsed_fy_py_file.main_fy import (
-    CreateTemplateModelUsingParsedFyPyFile_Flow,
+from fy_library.flows.create_template_model_using_parsed_fy_py_file.property_setter_template_model_fy import (
+    CreatePropertySetterTemplateModel_UsingParsedFyPyFile_Flow,
 )
 from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
-)
-
-from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
-    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
 
 
@@ -30,13 +25,11 @@ from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
 class TemplateModel_UsingParsedFyPyFile_ForSetter_PropertyMixin(
     # Property_mixins
     ParsedFyPyFile_PropertyMixin_ABC,
-    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
     def _template_model(self) -> BaseTemplateModel:
         # fy:end <<<===
-        return CreateTemplateModelUsingParsedFyPyFile_Flow(
+        return CreatePropertySetterTemplateModel_UsingParsedFyPyFile_Flow(
             parsed_fy_py_file=self._parsed_fy_py_file,
-            parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
         )()
