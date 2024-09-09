@@ -81,5 +81,6 @@ class FyPy_Main_Flow(
             parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
         )()
         GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
-            required_property_setters_fy_py=self._required_property_setters_fy_py
+            required_property_setters_fy_py=self._required_property_setters_fy_py,
+            parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
         )()

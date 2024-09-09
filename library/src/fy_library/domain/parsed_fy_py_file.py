@@ -7,9 +7,9 @@ from typing import Literal, List
 
 from pydantic import BaseModel, computed_field
 
+from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
 from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
-    PropertySetterTemplateModel,
     PropertyMixinModel,
     MethodMixinModel,
     AbstractPropertyModel,
@@ -137,4 +137,13 @@ class PropertySetterFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.PROPERTY_SETTER] = (
         ParsedFyPyFileKind.PROPERTY_SETTER
     )
-    template_model: PropertySetterTemplateModel
+    property_name: PythonEntityName
+    property_type: str
+
+    @computed_field
+    @property
+    def entity_key(self) -> str:
+        return entity_key(
+            mixin_name__snake_case=self.property_name.snake_case,
+            mixin_implementation_name__snake_case=PROPERTY_SETTER_IMPLEMENTATION_NAME,
+        )

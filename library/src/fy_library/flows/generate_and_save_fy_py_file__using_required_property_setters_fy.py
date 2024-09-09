@@ -4,6 +4,7 @@
 """fy
 flow GenerateAndSaveFyPyFile_UsingRequiredPropertySetters -> None:
     property parsed_fy_py_file using setter
+    property parsed_fy_py_files_map_by_key using setter
     property jinja2_template_file_name using property_setter_constant
     property template_model using parsed_fy_py_file__for_setter
     property generated_fy_py_code using jinja2_templates
@@ -11,7 +12,7 @@ flow GenerateAndSaveFyPyFile_UsingRequiredPropertySetters -> None:
     method generate_and_save_fy_py_code using parsed_fy_py_file__and__fy_py_file_content
 """
 
-from typing import Any
+from typing import Any, Dict
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
@@ -34,11 +35,16 @@ from fy_library.mixins.property.template_model.using_parsed_fy_py_file_fy__for_s
     TemplateModel_UsingParsedFyPyFile_ForSetter_PropertyMixin,
 )
 
+from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
+    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
     # Property Mixins
     ParsedFyPyFile_UsingSetter_PropertyMixin,
+    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     Jinja2TemplateFileName_UsingPropertySetterConstant_PropertyMixin,
     TemplateModel_UsingParsedFyPyFile_ForSetter_PropertyMixin,
     GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
@@ -52,9 +58,11 @@ class GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
         self,
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
+        parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file
+        self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> None:
