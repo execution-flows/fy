@@ -33,7 +33,6 @@ class PythonEntityName(BaseModel):
     def from_pascal_case(cls, pascal_case_name: str) -> "PythonEntityName":
         pascal_case_phrases = pascal_case_name.split("_")
         snake_case_phrases = [
-            # TODO: make only the first letter lowercase
             "_".join(
                 pascal_case_word.lower()
                 for pascal_case_word in _PASCAL_CASE_REGEX.split(pascal_case_phrase)
