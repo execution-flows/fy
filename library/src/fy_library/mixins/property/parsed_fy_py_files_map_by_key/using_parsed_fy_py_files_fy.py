@@ -30,6 +30,6 @@ class ParsedFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin(
     def _parsed_fy_py_files_map_by_key(self) -> Dict[str, ParsedFyPyFile]:
         # fy:end <<<===
         return {
-            parsed_fy_py_file.entity_key: parsed_fy_py_file  # type: ignore
+            parsed_fy_py_file.entity_key: parsed_fy_py_file
             for parsed_fy_py_file in self._parsed_fy_py_files
         }

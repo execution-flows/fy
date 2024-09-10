@@ -4,12 +4,11 @@
 from enum import Enum
 from pathlib import Path
 from typing import Literal, List
-
+import abc
 from pydantic import BaseModel, computed_field
 
 from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
 from fy_library.domain.fy_py_template_models import (
-    BaseTemplateModel,
     PropertyMixinModel,
     MethodMixinModel,
     AbstractPropertyModel,
@@ -41,7 +40,11 @@ class ParsedFyPyFile(FyPyFileParts):
     file_path: Path
     user_imports: str
     python_class_name: PythonEntityName
-    template_model: BaseTemplateModel
+
+    @property
+    @abc.abstractmethod
+    def entity_key(self) -> str:
+        raise NotImplementedError()
 
 
 class ParsedFlowFyPyFile(ParsedFyPyFile):

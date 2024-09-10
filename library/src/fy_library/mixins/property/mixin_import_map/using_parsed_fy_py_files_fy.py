@@ -39,7 +39,7 @@ class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(
     def _mixin_import_map(self) -> Dict[str, str]:
         # fy:end <<<===
         mixin_import_map = {
-            parsed_fy_py_file.entity_key: self.__parsed_file_python_import(  # type: ignore
+            parsed_fy_py_file.entity_key: self.__parsed_file_python_import(
                 parsed_fy_py_file
             )
             for parsed_fy_py_file in self._parsed_fy_py_files
