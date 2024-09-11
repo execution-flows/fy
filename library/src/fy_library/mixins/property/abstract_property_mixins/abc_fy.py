@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 from typing import List
-from fy_library.domain.fy_py_template_models import AbstractPropertyModel
+from fy_library.domain.mixin_models import AbstractPropertyModel
 
 
 property abstract_property_mixins: List[AbstractPropertyModel]
