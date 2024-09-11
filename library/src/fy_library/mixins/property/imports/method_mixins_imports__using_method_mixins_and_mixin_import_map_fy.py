@@ -14,7 +14,7 @@ import abc
 from functools import cached_property
 from typing import List
 
-from fy_library.domain.fy_py_template_models import entity_key
+from fy_library.domain.parsed_fy_py_file import entity_key
 from fy_library.mixins.property.method_mixins.abc_fy import (
     MethodMixins_PropertyMixin_ABC,
 )
