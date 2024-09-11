@@ -9,11 +9,13 @@ from pydantic import BaseModel, computed_field
 
 from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
 from fy_library.domain.fy_py_template_models import (
-    PropertyMixinModel,
-    MethodMixinModel,
-    AbstractPropertyModel,
-    AbstractMethodModel,
     entity_key,
+)
+from fy_library.domain.mixin_models import (
+    MethodMixinModel,
+    AbstractMethodModel,
+    AbstractPropertyModel,
+    PropertyMixinModel,
 )
 from fy_library.domain.python_entity_name import PythonEntityName
 

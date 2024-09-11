@@ -15,9 +15,7 @@ import abc
 from functools import cached_property
 from typing import List
 
-from fy_library.domain.fy_py_template_models import (
-    BaseMixinModel,
-)
+from fy_library.domain.mixin_models import BaseMixinModel
 from fy_library.flows.mixin_model.mixin_line_to_mixin_model_fy import (
     MixinLineToMixinModel_Flow,
 )

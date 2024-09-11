@@ -2,12 +2,17 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import abc
-from enum import Enum
 from typing import List
 
 from pydantic import BaseModel, computed_field
 
 from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
+from fy_library.domain.mixin_models import (
+    MethodMixinModel,
+    AbstractMethodModel,
+    AbstractPropertyModel,
+    PropertyMixinModel,
+)
 from fy_library.domain.python_entity_name import PythonEntityName
 
 
@@ -15,33 +20,6 @@ def entity_key(
     mixin_name__snake_case: str, mixin_implementation_name__snake_case: str
 ) -> str:
     return f"{mixin_name__snake_case}.{mixin_implementation_name__snake_case}"
-
-
-class MixinModelKind(Enum):
-    ABSTRACT_PROPERTY = "abstract_property"
-    ABSTRACT_METHOD = "abstract_method"
-    PROPERTY = "property"
-    METHOD = "method"
-
-
-class BaseMixinModel(BaseModel):
-    kind: MixinModelKind
-
-
-class AbstractPropertyModel(BaseMixinModel):
-    property_name: PythonEntityName
-
-
-class AbstractMethodModel(BaseMixinModel):
-    method_name: PythonEntityName
-
-
-class PropertyMixinModel(AbstractPropertyModel):
-    implementation_name: PythonEntityName
-
-
-class MethodMixinModel(AbstractMethodModel):
-    implementation_name: PythonEntityName
 
 
 class BaseTemplateModel(BaseModel, abc.ABC):

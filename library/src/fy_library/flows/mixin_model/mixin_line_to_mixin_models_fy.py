@@ -13,11 +13,11 @@ from typing import Any
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.constants import FY_ENTITY_REGEX_STRING
-from fy_library.domain.fy_py_template_models import BaseMixinModel
-from fy_library.domain.fy_py_template_models import (
-    MixinModelKind,
+from fy_library.domain.mixin_models import (
     MethodMixinModel,
     AbstractMethodModel,
+    BaseMixinModel,
+    MixinModelKind,
     AbstractPropertyModel,
     PropertyMixinModel,
 )

@@ -12,9 +12,7 @@ property included_mixins: IncludedMixinsModel using mixin_models:
 import abc
 from functools import cached_property
 
-from fy_library.domain.fy_py_template_models import (
-    MixinModelKind,
-)
+from fy_library.domain.mixin_models import MixinModelKind
 from fy_library.mixins.property.included_mixins.abc_fy import IncludedMixinsModel
 from fy_library.mixins.property.mixin_models.abc_fy import (
     MixinModels_PropertyMixin_ABC,

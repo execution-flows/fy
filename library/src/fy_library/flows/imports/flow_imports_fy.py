@@ -22,7 +22,7 @@ flow FlowImports -> List[str]:
 from typing import List, Any, Dict
 
 from fy_core.base.flow_base import FlowBase
-from fy_library.domain.fy_py_template_models import PropertyMixinModel, MethodMixinModel
+from fy_library.domain.mixin_models import MethodMixinModel, PropertyMixinModel
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 from fy_library.mixins.property.imports.import_any__using_property_setters_exists_fy import (
     ImportAny_UsingPropertySettersExists_PropertyMixin,

@@ -13,7 +13,7 @@ import re
 from functools import cached_property
 
 from fy_library.constants import FY_ENTITY_REGEX_STRING
-from fy_library.domain.fy_py_template_models import AbstractMethodModel, MixinModelKind
+from fy_library.domain.mixin_models import AbstractMethodModel, MixinModelKind
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.mixin_line.abc_fy import (
     MixinLine_PropertyMixin_ABC,

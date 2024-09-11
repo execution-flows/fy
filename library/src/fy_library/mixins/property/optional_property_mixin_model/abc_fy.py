@@ -10,7 +10,7 @@ property optional_property_mixin_model: PropertyMixinModel | None
 
 import abc
 
-from fy_library.domain.fy_py_template_models import PropertyMixinModel
+from fy_library.domain.mixin_models import PropertyMixinModel
 
 
 # fy:start ===>>>

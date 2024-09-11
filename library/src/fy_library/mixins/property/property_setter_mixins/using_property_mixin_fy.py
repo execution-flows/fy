@@ -15,7 +15,7 @@ from functools import cached_property
 from typing import List
 
 from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
-from fy_library.domain.fy_py_template_models import PropertyMixinModel
+from fy_library.domain.mixin_models import PropertyMixinModel
 from fy_library.mixins.property.property_mixins.abc_fy import (
     PropertyMixins_PropertyMixin_ABC,
 )

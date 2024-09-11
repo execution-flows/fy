@@ -12,7 +12,7 @@ property mixin_models: List[BaseMixinModel]
 import abc
 from typing import List
 
-from fy_library.domain.fy_py_template_models import BaseMixinModel
+from fy_library.domain.mixin_models import BaseMixinModel
 
 
 # fy:start ===>>>

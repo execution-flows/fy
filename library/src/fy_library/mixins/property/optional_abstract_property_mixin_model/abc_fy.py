@@ -8,7 +8,7 @@ from fy_library.domain.fy_py_template_models import AbstractPropertyModel
 property optional_abstract_property_mixin_model: AbstractPropertyModel | None
 """
 
-from fy_library.domain.fy_py_template_models import AbstractPropertyModel
+from fy_library.domain.mixin_models import AbstractPropertyModel
 import abc
 
 

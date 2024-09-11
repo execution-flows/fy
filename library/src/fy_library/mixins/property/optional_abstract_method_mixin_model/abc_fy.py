@@ -10,7 +10,7 @@ property optional_abstract_method_mixin_model: MethodMixinModel | None
 
 import abc
 
-from fy_library.domain.fy_py_template_models import MethodMixinModel
+from fy_library.domain.mixin_models import MethodMixinModel
 
 
 # fy:start ===>>>

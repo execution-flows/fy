@@ -26,11 +26,11 @@ flow BaseFlowImports -> List[str]:
 from typing import List, Any, Dict
 
 from fy_core.base.flow_base import FlowBase
-from fy_library.domain.fy_py_template_models import (
-    PropertyMixinModel,
+from fy_library.domain.mixin_models import (
     MethodMixinModel,
-    AbstractPropertyModel,
     AbstractMethodModel,
+    AbstractPropertyModel,
+    PropertyMixinModel,
 )
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 from fy_library.mixins.property.abstract_property_mixins.using_setter import (

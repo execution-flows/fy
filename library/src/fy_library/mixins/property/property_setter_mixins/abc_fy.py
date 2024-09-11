@@ -9,7 +9,7 @@ from fy_library.domain.fy_py_template_models import PropertyMixinModel
 property property_setter_mixins: List[PropertyMixinModel]
 """
 
-from fy_library.domain.fy_py_template_models import PropertyMixinModel
+from fy_library.domain.mixin_models import PropertyMixinModel
 from typing import List
 import abc
 

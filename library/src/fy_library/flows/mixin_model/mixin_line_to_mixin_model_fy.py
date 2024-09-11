@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from fy_core.base.flow_base import FlowBase
-from fy_library.domain.fy_py_template_models import BaseMixinModel
+from fy_library.domain.mixin_models import BaseMixinModel
 from fy_library.mixins.property.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )

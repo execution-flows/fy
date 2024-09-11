@@ -1,6 +1,6 @@
 # fy:start ===>>>
 from typing import List
-from fy_library.domain.fy_py_template_models import AbstractMethodModel
+from fy_library.domain.mixin_models import AbstractMethodModel
 
 
 class AbstractMethodMixins_UsingSetter_PropertyMixin:
