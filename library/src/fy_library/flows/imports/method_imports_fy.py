@@ -18,10 +18,7 @@ from typing import Any, Dict
 from typing import List
 
 from fy_core.base.flow_base import FlowBase
-from fy_library.domain.fy_py_template_models import (
-    AbstractPropertyModel,
-    AbstractMethodModel,
-)
+from fy_library.domain.mixin_models import AbstractMethodModel, AbstractPropertyModel
 from fy_library.mixins.property.abstract_method_mixins.using_setter import (
     AbstractMethodMixins_UsingSetter_PropertyMixin,
 )

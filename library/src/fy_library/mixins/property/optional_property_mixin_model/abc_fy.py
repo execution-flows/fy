@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from fy_library.domain.fy_py_template_models import PropertyMixinModel
+from fy_library.domain.mixin_models import PropertyMixinModel
 
 
 property optional_property_mixin_model: PropertyMixinModel | None
@@ -10,7 +10,7 @@ property optional_property_mixin_model: PropertyMixinModel | None
 
 import abc
 
-from fy_library.domain.fy_py_template_models import PropertyMixinModel
+from fy_library.domain.mixin_models import PropertyMixinModel
 
 
 # fy:start ===>>>

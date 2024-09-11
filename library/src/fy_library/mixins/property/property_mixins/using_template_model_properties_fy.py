@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 from typing import List
-from fy_library.domain.fy_py_template_models import PropertyMixinModel
+from fy_library.domain.mixin_models import PropertyMixinModel
 
 
 property property_mixins: List[PropertyMixinModel] using template_model_properties:
@@ -13,9 +13,7 @@ property property_mixins: List[PropertyMixinModel] using template_model_properti
 from functools import cached_property
 from typing import List
 
-from fy_library.domain.fy_py_template_models import (
-    PropertyMixinModel,
-)
+from fy_library.domain.mixin_models import PropertyMixinModel
 
 from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,

@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 from typing import List
-from fy_library.domain.fy_py_template_models import AbstractMethodModel
+from fy_library.domain.mixin_models import AbstractMethodModel
 
 
 property abstract_method_mixins: List[AbstractMethodModel]
@@ -12,7 +12,7 @@ property abstract_method_mixins: List[AbstractMethodModel]
 import abc
 from typing import List
 
-from fy_library.domain.fy_py_template_models import AbstractMethodModel
+from fy_library.domain.mixin_models import AbstractMethodModel
 
 
 # fy:start ===>>>

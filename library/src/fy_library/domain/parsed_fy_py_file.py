@@ -8,14 +8,19 @@ import abc
 from pydantic import BaseModel, computed_field
 
 from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
-from fy_library.domain.fy_py_template_models import (
-    PropertyMixinModel,
+from fy_library.domain.mixin_models import (
     MethodMixinModel,
-    AbstractPropertyModel,
     AbstractMethodModel,
-    entity_key,
+    AbstractPropertyModel,
+    PropertyMixinModel,
 )
 from fy_library.domain.python_entity_name import PythonEntityName
+
+
+def entity_key(
+    mixin_name__snake_case: str, mixin_implementation_name__snake_case: str
+) -> str:
+    return f"{mixin_name__snake_case}.{mixin_implementation_name__snake_case}"
 
 
 class ParsedFyPyFileKind(Enum):

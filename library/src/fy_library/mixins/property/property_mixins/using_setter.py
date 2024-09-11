@@ -1,6 +1,6 @@
 # fy:start ===>>>
 from typing import List
-from fy_library.domain.fy_py_template_models import PropertyMixinModel
+from fy_library.domain.mixin_models import PropertyMixinModel
 
 
 class PropertyMixins_UsingSetter_PropertyMixin:

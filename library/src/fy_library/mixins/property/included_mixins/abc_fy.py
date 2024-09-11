@@ -10,10 +10,10 @@ from typing import List
 
 from pydantic import BaseModel
 
-from fy_library.domain.fy_py_template_models import (
+from fy_library.domain.mixin_models import (
+    MethodMixinModel,
     AbstractMethodModel,
     AbstractPropertyModel,
-    MethodMixinModel,
     PropertyMixinModel,
 )
 

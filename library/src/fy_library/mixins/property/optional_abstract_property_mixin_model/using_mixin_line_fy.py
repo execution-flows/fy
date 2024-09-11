@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from fy_library.domain.fy_py_template_models import AbstractPropertyModel
+from fy_library.domain.mixin_models import AbstractPropertyModel
 
 
 property optional_abstract_property_mixin_model: AbstractPropertyModel | None using mixin_line:
@@ -14,10 +14,7 @@ import re
 from functools import cached_property
 
 from fy_library.constants import FY_ENTITY_REGEX_STRING
-from fy_library.domain.fy_py_template_models import (
-    AbstractPropertyModel,
-    MixinModelKind,
-)
+from fy_library.domain.mixin_models import MixinModelKind, AbstractPropertyModel
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.mixin_line.abc_fy import (
     MixinLine_PropertyMixin_ABC,
