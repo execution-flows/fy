@@ -12,6 +12,7 @@ from fy_library.domain.mixin_models import (
     AbstractPropertyModel,
     PropertyMixinModel,
 )
+from fy_library.domain.parsed_fy_py_file import ParsedAbstractPropertyFyPyFile
 from fy_library.domain.python_entity_name import PythonEntityName
 
 
@@ -48,7 +49,7 @@ class FlowTemplateModel(BaseTemplateModel):
     return_type: str
     properties: List[PropertyMixinModel]
     methods: List[MethodMixinModel]
-    property_setters: List[AbstractPropertyTemplateModel]
+    property_setters: List[ParsedAbstractPropertyFyPyFile]
 
 
 class BaseFlowTemplateModel(BaseTemplateModel):
@@ -58,7 +59,7 @@ class BaseFlowTemplateModel(BaseTemplateModel):
     methods: List[MethodMixinModel]
     abstract_property_mixins: List[AbstractPropertyModel]
     abstract_method_mixins: List[AbstractMethodModel]
-    property_setters: List[AbstractPropertyTemplateModel]
+    property_setters: List[ParsedAbstractPropertyFyPyFile]
 
 
 class PropertyTemplateModel(BaseTemplateModel):
