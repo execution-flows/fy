@@ -9,6 +9,7 @@ property flow_file_split: FlowFileSplitModel using flow_regex:
 import abc
 import re
 from functools import cached_property
+from typing import Final
 
 from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
@@ -19,7 +20,7 @@ from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
 
-_FLOW_STRING_SPLIT_REGEX = re.compile(
+_FLOW_STRING_SPLIT_REGEX: Final = re.compile(
     rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s+->"
     rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
 )

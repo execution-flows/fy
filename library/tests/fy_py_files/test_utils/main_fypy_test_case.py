@@ -3,6 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import re
 from pathlib import Path
+from typing import Final
 from unittest import TestCase
 
 from fy_library.constants import (
@@ -14,7 +15,7 @@ from fy_library.constants import (
 )
 from fy_library.flows.fy_py_main_fy import FyPy_Main_Flow
 
-_GENERATED_CONTENT_REGEX = re.compile(
+_GENERATED_CONTENT_REGEX: Final = re.compile(
     rf"^(?P<fy_code>.*{FY_PY_FILE_SIGNATURE}.*{FY_CODE_FILE_END_SIGNATURE}\n)"
     r"(?P<imports>.*)"
     rf"{FY_START_MARKER}(?P<generated_code>.*){FY_END_MARKER}\n"

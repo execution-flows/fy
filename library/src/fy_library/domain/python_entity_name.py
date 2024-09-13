@@ -3,10 +3,11 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import re
+from typing import Final
 
 from pydantic import BaseModel
 
-_PASCAL_CASE_REGEX = re.compile("(?<=.)(?=[A-Z])")
+_PASCAL_CASE_REGEX: Final = re.compile("(?<=.)(?=[A-Z])")
 
 
 class PythonEntityName(BaseModel):

@@ -11,6 +11,7 @@ property optional_abstract_method_mixin_model: AbstractMethodModel | None using 
 
 import re
 from functools import cached_property
+from typing import Final
 
 from fy_library.constants import FY_ENTITY_REGEX_STRING
 from fy_library.domain.mixin_models import AbstractMethodModel, MixinModelKind
@@ -20,7 +21,7 @@ from fy_library.mixins.property.mixin_line.abc_fy import (
 )
 import abc
 
-_ABSTRACT_METHOD_MIXIN_REGEX = re.compile(
+_ABSTRACT_METHOD_MIXIN_REGEX: Final = re.compile(
     rf"^\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})$"
 )
 

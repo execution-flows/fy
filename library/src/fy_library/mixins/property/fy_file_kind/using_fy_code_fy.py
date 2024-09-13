@@ -28,7 +28,7 @@ from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
     FyPyFileToParse_PropertyMixin_ABC,
 )
 
-_FLOW_MATCH_REGEX = re.compile(
+_FLOW_MATCH_REGEX: Final = re.compile(
     rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*"
     rf"->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*$",
 )
@@ -36,20 +36,20 @@ _BASE_FLOW_MATCH_REGEX: Final = re.compile(
     rf"^base\s+flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*"
     rf"->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*$",
 )
-_METHOD_MATCH_REGEX = re.compile(
+_METHOD_MATCH_REGEX: Final = re.compile(
     rf"^method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s*"
     rf"(?P<arguments>\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s+->"
     rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s+"
     rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*$"
 )
-_ABSTRACT_METHOD_REGEX = re.compile(
+_ABSTRACT_METHOD_REGEX: Final = re.compile(
     rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
     rf"\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
 )
-_ABSTRACT_PROPERTY_REGEX = re.compile(
+_ABSTRACT_PROPERTY_REGEX: Final = re.compile(
     rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
 )
-_PROPERTY_REGEX = re.compile(
+_PROPERTY_REGEX: Final = re.compile(
     rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
 )
 

@@ -9,6 +9,7 @@ property method_file_split: MethodFileSplitModel using method_regex:
 import abc
 import re
 from functools import cached_property
+from typing import Final
 
 from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
@@ -20,7 +21,7 @@ from fy_library.mixins.property.fy_code.abc_fy import (
 )
 from fy_library.mixins.property.method_file_split.abc_fy import MethodFileSplitModel
 
-_METHOD_STRING_SPLIT_REGEX = re.compile(
+_METHOD_STRING_SPLIT_REGEX: Final = re.compile(
     rf"method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s*"
     rf"(?P<arguments>\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s+->"
     rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s+"
