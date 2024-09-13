@@ -9,6 +9,7 @@ property property_file_split: PropertyFileSplitModel using property_regex:
 import abc
 import re
 from functools import cached_property
+from typing import Final
 
 from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
@@ -21,7 +22,7 @@ from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
 
-_PROPERTY_REGEX = re.compile(
+_PROPERTY_REGEX: Final = re.compile(
     rf"(?P<property_annotation>@cached)?\s*"
     rf"property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
     rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*"

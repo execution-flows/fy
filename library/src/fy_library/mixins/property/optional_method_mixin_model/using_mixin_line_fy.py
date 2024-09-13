@@ -11,6 +11,7 @@ property optional_method_mixin_model: MethodMixinModel | None using mixin_line:
 
 import re
 from functools import cached_property
+from typing import Final
 
 from fy_library.constants import FY_ENTITY_REGEX_STRING
 from fy_library.domain.mixin_models import MethodMixinModel, MixinModelKind
@@ -20,7 +21,7 @@ from fy_library.mixins.property.mixin_line.abc_fy import (
 )
 import abc
 
-_FLOW_METHOD_REGEX = re.compile(
+_FLOW_METHOD_REGEX: Final = re.compile(
     rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
     rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
 )

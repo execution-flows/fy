@@ -12,6 +12,7 @@ property optional_abstract_property_mixin_model: AbstractPropertyModel | None us
 import abc
 import re
 from functools import cached_property
+from typing import Final
 
 from fy_library.constants import FY_ENTITY_REGEX_STRING
 from fy_library.domain.mixin_models import MixinModelKind, AbstractPropertyModel
@@ -20,7 +21,7 @@ from fy_library.mixins.property.mixin_line.abc_fy import (
     MixinLine_PropertyMixin_ABC,
 )
 
-_ABSTRACT_PROPERTY_MIXIN_REGEX = re.compile(
+_ABSTRACT_PROPERTY_MIXIN_REGEX: Final = re.compile(
     rf"^\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})$"
 )
 

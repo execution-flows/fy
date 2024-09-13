@@ -12,6 +12,7 @@ property abstract_property_file_split: AbstractPropertyFileSplitModel using abst
 import abc
 import re
 from functools import cached_property
+from typing import Final
 
 from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
@@ -24,7 +25,7 @@ from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
 
-_ABSTRACT_PROPERTY_REGEX = re.compile(
+_ABSTRACT_PROPERTY_REGEX: Final = re.compile(
     rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
     rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
 )

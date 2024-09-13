@@ -25,7 +25,7 @@ from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
     FyPyFileToParse_PropertyMixin_ABC,
 )
 
-_FY_CODE_REGEX = re.compile(
+_FY_CODE_REGEX: Final = re.compile(
     rf"^(?P<pre_fy_code>\s*#.*\n)*"
     rf"{FY_PY_FILE_SIGNATURE}"
     rf"(?P<fy_code>.*)"

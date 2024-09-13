@@ -11,6 +11,7 @@ property optional_property_mixin_model: PropertyMixinModel | None using mixin_li
 
 import re
 from functools import cached_property
+from typing import Final
 
 from fy_library.constants import FY_ENTITY_REGEX_STRING
 from fy_library.domain.mixin_models import MixinModelKind, PropertyMixinModel
@@ -20,7 +21,7 @@ from fy_library.mixins.property.mixin_line.abc_fy import (
 )
 import abc
 
-_FLOW_PROPERTY_REGEX = re.compile(
+_FLOW_PROPERTY_REGEX: Final = re.compile(
     rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
     rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
 )

@@ -9,7 +9,7 @@ flow MixinLineToMixinModels -> BaseMixinModel:
 
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, Final
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.constants import FY_ENTITY_REGEX_STRING
@@ -29,21 +29,21 @@ from fy_library.mixins.property.mixin_line.using_setter import (
     MixinLine_UsingSetter_PropertyMixin,
 )
 
-_FLOW_METHOD_REGEX = re.compile(
+_FLOW_METHOD_REGEX: Final = re.compile(
     rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
     rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
 )
 
-_FLOW_PROPERTY_REGEX = re.compile(
+_FLOW_PROPERTY_REGEX: Final = re.compile(
     rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
     rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
 )
 
-_ABSTRACT_PROPERTY_MIXIN_REGEX = re.compile(
+_ABSTRACT_PROPERTY_MIXIN_REGEX: Final = re.compile(
     rf"^\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})$"
 )
 
-_ABSTRACT_METHOD_MIXIN_REGEX = re.compile(
+_ABSTRACT_METHOD_MIXIN_REGEX: Final = re.compile(
     rf"^\s+method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})$"
 )
 
