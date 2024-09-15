@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fy_tool_cli"
-version = "0.3.5-dev"
+version = "0.3.6"
 description = ""
 authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@icloud.com>"]
 readme = "README.md"
@@ -11,7 +11,7 @@ fy = "fy_tool_cli.main:fy_cli"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 
-fy_library = {path = "../library"}
+fy_library = "0.3.6"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "0.6.4"
