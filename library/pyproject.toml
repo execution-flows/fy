@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fy_library"
-version = "0.3.5-dev"
+version = "0.3.7-dev"
 description = "Implementation of fy tool functionality - parsing and generating."
 authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@icloud.com>"]
 readme = "README.md"
