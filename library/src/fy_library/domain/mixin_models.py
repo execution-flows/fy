@@ -15,6 +15,7 @@ class MixinModelKind(Enum):
 
 
 class BaseMixinModel(BaseModel):
+    python_class_name: PythonEntityName
     kind: MixinModelKind
 
 
