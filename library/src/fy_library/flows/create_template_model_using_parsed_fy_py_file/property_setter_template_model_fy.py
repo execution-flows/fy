@@ -10,7 +10,6 @@ from fy_library.domain.fy_py_template_models import PropertySetterTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, PropertySetterFyPyFile
 from typing import Any
 from fy_core.base.flow_base import FlowBase
-from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -37,9 +36,7 @@ class CreatePropertySetterTemplateModel_UsingParsedFyPyFile_Flow(
         parsed_property_setter_fy_py_file = self._parsed_fy_py_file
         assert isinstance(parsed_property_setter_fy_py_file, PropertySetterFyPyFile)
         return PropertySetterTemplateModel(
-            python_class_name=PythonEntityName.from_pascal_case(
-                f"{parsed_property_setter_fy_py_file.property_name.pascal_case}_UsingSetter_PropertyMixin"
-            ),
+            python_class_name=parsed_property_setter_fy_py_file.python_class_name,
             property_name=parsed_property_setter_fy_py_file.property_name,
             property_type=parsed_property_setter_fy_py_file.property_type,
         )

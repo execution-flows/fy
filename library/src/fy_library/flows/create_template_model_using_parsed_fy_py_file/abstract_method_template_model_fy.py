@@ -6,14 +6,15 @@ flow CreateAbstractMethodTemplateModel_UsingParsedFyPyFile -> AbstractMethodTemp
     property parsed_fy_py_file using setter
 """
 
+from typing import Any
+
+from fy_core.base.flow_base import FlowBase
+
 from fy_library.domain.fy_py_template_models import AbstractMethodTemplateModel
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     ParsedAbstractMethodFyPyFile,
 )
-from typing import Any
-from fy_core.base.flow_base import FlowBase
-from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -43,9 +44,7 @@ class CreateAbstractMethodTemplateModel_UsingParsedFyPyFile_Flow(
             parsed_abstract_method_fy_py_file, ParsedAbstractMethodFyPyFile
         )
         return AbstractMethodTemplateModel(
-            python_class_name=PythonEntityName.from_pascal_case(
-                f"{parsed_abstract_method_fy_py_file.abstract_method_name.pascal_case}_MethodMixin_ABC"
-            ),
+            python_class_name=parsed_abstract_method_fy_py_file.python_class_name,
             abstract_method_name=parsed_abstract_method_fy_py_file.abstract_method_name,
             arguments=parsed_abstract_method_fy_py_file.arguments,
             return_type=parsed_abstract_method_fy_py_file.return_type,

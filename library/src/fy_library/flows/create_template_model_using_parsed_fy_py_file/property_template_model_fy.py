@@ -11,7 +11,6 @@ from typing import Any
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import PropertyTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedPropertyFyPyFile
-from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -38,9 +37,7 @@ class CreatePropertyTemplateModel_UsingParsedFyPyFile_Flow(
         parsed_property_fy_py_file = self._parsed_fy_py_file
         assert isinstance(parsed_property_fy_py_file, ParsedPropertyFyPyFile)
         return PropertyTemplateModel(
-            python_class_name=PythonEntityName.from_pascal_case(
-                f"{parsed_property_fy_py_file.property_name.pascal_case}_Using{parsed_property_fy_py_file.implementation_name.pascal_case}_PropertyMixin"
-            ),
+            python_class_name=parsed_property_fy_py_file.python_class_name,
             property_name=parsed_property_fy_py_file.property_name,
             implementation_name=parsed_property_fy_py_file.implementation_name,
             abstract_property_mixins=parsed_property_fy_py_file.abstract_property_mixins,
