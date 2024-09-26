@@ -38,18 +38,20 @@ class OptionalPropertyMixinModel_UsingMixinLine_PropertyMixin(
         # fy:end <<<===
         flow_property_fy_search = _FLOW_PROPERTY_REGEX.search(self._mixin_line)
 
-        if flow_property_fy_search:
-            property_name: PythonEntityName = PythonEntityName.from_snake_case(
-                flow_property_fy_search.group("property_name")
-            )
-            implementation_name: PythonEntityName = PythonEntityName.from_snake_case(
-                flow_property_fy_search.group("implementation_name")
-            )
-            return PropertyMixinModel(
-                python_class_name=PythonEntityName.from_pascal_case(
-                    f"{ property_name.pascal_case }_Using{ implementation_name.pascal_case }_PropertyMixin"
-                ),
-                kind=MixinModelKind.PROPERTY,
-                property_name=property_name,
-                implementation_name=implementation_name,
-            )
+        if flow_property_fy_search is None:
+            return None
+
+        property_name: PythonEntityName = PythonEntityName.from_snake_case(
+            flow_property_fy_search.group("property_name")
+        )
+        implementation_name: PythonEntityName = PythonEntityName.from_snake_case(
+            flow_property_fy_search.group("implementation_name")
+        )
+        return PropertyMixinModel(
+            python_class_name=PythonEntityName.from_pascal_case(
+                f"{ property_name.pascal_case }_Using{ implementation_name.pascal_case }_PropertyMixin"
+            ),
+            kind=MixinModelKind.PROPERTY,
+            property_name=property_name,
+            implementation_name=implementation_name,
+        )

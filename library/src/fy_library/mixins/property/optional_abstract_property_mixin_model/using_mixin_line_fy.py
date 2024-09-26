@@ -38,15 +38,16 @@ class OptionalAbstractPropertyMixinModel_UsingMixinLine_PropertyMixin(
         declared_abstract_property_mixin = _ABSTRACT_PROPERTY_MIXIN_REGEX.search(
             self._mixin_line
         )
-        if declared_abstract_property_mixin:
-            property_name = PythonEntityName.from_snake_case(
-                declared_abstract_property_mixin.group("abstract_property_name")
-            )
+        if declared_abstract_property_mixin is None:
+            return None
+        property_name = PythonEntityName.from_snake_case(
+            declared_abstract_property_mixin.group("abstract_property_name")
+        )
 
-            return AbstractPropertyModel(
-                python_class_name=PythonEntityName.from_pascal_case(
-                    f"{ property_name.pascal_case }_PropertyMixin_ABC"
-                ),
-                kind=MixinModelKind.ABSTRACT_PROPERTY,
-                property_name=property_name,
-            )
+        return AbstractPropertyModel(
+            python_class_name=PythonEntityName.from_pascal_case(
+                f"{ property_name.pascal_case }_PropertyMixin_ABC"
+            ),
+            kind=MixinModelKind.ABSTRACT_PROPERTY,
+            property_name=property_name,
+        )

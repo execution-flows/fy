@@ -38,14 +38,16 @@ class OptionalAbstractMethodMixinModel_UsingMixinLine_PropertyMixin(
         declared_abstract_method_mixin = _ABSTRACT_METHOD_MIXIN_REGEX.search(
             self._mixin_line
         )
-        if declared_abstract_method_mixin:
-            method_name = PythonEntityName.from_snake_case(
-                declared_abstract_method_mixin.group("abstract_method_name")
-            )
-            return AbstractMethodModel(
-                python_class_name=PythonEntityName.from_pascal_case(
-                    f"{method_name.pascal_case}_MethodMixin_ABC"
-                ),
-                kind=MixinModelKind.ABSTRACT_METHOD,
-                method_name=method_name,
-            )
+        if declared_abstract_method_mixin is None:
+            return None
+
+        method_name = PythonEntityName.from_snake_case(
+            declared_abstract_method_mixin.group("abstract_method_name")
+        )
+        return AbstractMethodModel(
+            python_class_name=PythonEntityName.from_pascal_case(
+                f"{method_name.pascal_case}_MethodMixin_ABC"
+            ),
+            kind=MixinModelKind.ABSTRACT_METHOD,
+            method_name=method_name,
+        )

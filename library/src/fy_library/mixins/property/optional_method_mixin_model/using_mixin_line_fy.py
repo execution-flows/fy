@@ -38,18 +38,20 @@ class OptionalMethodMixinModel_UsingMixinLine_PropertyMixin(
         # fy:end <<<===
         flow_method_fy_search = _FLOW_METHOD_REGEX.search(self._mixin_line)
 
-        if flow_method_fy_search:
-            method_name = PythonEntityName.from_snake_case(
-                flow_method_fy_search.group("method_name")
-            )
-            implementation_name = PythonEntityName.from_snake_case(
-                flow_method_fy_search.group("implementation_name")
-            )
-            return MethodMixinModel(
-                python_class_name=PythonEntityName.from_pascal_case(
-                    f"{ method_name.pascal_case }_Using{ implementation_name.pascal_case }_MethodMixin"
-                ),
-                kind=MixinModelKind.METHOD,
-                method_name=method_name,
-                implementation_name=implementation_name,
-            )
+        if flow_method_fy_search is None:
+            return None
+
+        method_name = PythonEntityName.from_snake_case(
+            flow_method_fy_search.group("method_name")
+        )
+        implementation_name = PythonEntityName.from_snake_case(
+            flow_method_fy_search.group("implementation_name")
+        )
+        return MethodMixinModel(
+            python_class_name=PythonEntityName.from_pascal_case(
+                f"{ method_name.pascal_case }_Using{ implementation_name.pascal_case }_MethodMixin"
+            ),
+            kind=MixinModelKind.METHOD,
+            method_name=method_name,
+            implementation_name=implementation_name,
+        )
