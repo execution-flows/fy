@@ -9,6 +9,7 @@ property optional_property_mixin_model: PropertyMixinModel | None using mixin_li
     property mixin_line
 """
 
+import abc
 import re
 from functools import cached_property
 from typing import Final
@@ -19,7 +20,6 @@ from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.mixin_line.abc_fy import (
     MixinLine_PropertyMixin_ABC,
 )
-import abc
 
 _FLOW_PROPERTY_REGEX: Final = re.compile(
     rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
@@ -37,16 +37,19 @@ class OptionalPropertyMixinModel_UsingMixinLine_PropertyMixin(
     def _optional_property_mixin_model(self) -> PropertyMixinModel | None:
         # fy:end <<<===
         flow_property_fy_search = _FLOW_PROPERTY_REGEX.search(self._mixin_line)
-        return (
-            PropertyMixinModel(
-                kind=MixinModelKind.PROPERTY,
-                property_name=PythonEntityName.from_snake_case(
-                    flow_property_fy_search.group("property_name")
-                ),
-                implementation_name=PythonEntityName.from_snake_case(
-                    flow_property_fy_search.group("implementation_name")
-                ),
+
+        if flow_property_fy_search:
+            property_name: PythonEntityName = PythonEntityName.from_snake_case(
+                flow_property_fy_search.group("property_name")
             )
-            if flow_property_fy_search is not None
-            else None
-        )
+            implementation_name: PythonEntityName = PythonEntityName.from_snake_case(
+                flow_property_fy_search.group("implementation_name")
+            )
+            return PropertyMixinModel(
+                python_class_name=PythonEntityName.from_pascal_case(
+                    f"{ property_name.pascal_case }_Using{ implementation_name.pascal_case }_PropertyMixin"
+                ),
+                kind=MixinModelKind.PROPERTY,
+                property_name=property_name,
+                implementation_name=implementation_name,
+            )

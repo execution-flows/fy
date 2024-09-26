@@ -23,6 +23,7 @@ class AbstractMethodModel(BaseMixinModel):
 
 
 class MethodMixinModel(AbstractMethodModel):
+    python_class_name: PythonEntityName
     implementation_name: PythonEntityName
 
 
@@ -31,4 +32,5 @@ class AbstractPropertyModel(BaseMixinModel):
 
 
 class PropertyMixinModel(AbstractPropertyModel):
+    python_class_name: PythonEntityName
     implementation_name: PythonEntityName
