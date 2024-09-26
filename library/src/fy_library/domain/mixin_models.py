@@ -19,11 +19,11 @@ class BaseMixinModel(BaseModel):
 
 
 class AbstractMethodModel(BaseMixinModel):
+    python_class_name: PythonEntityName
     method_name: PythonEntityName
 
 
 class MethodMixinModel(AbstractMethodModel):
-    python_class_name: PythonEntityName
     implementation_name: PythonEntityName
 
 
