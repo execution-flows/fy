@@ -9,12 +9,12 @@ flow CreateAbstractPropertyTemplateModel_UsingParsedFyPyFile -> AbstractProperty
 from typing import Any
 
 from fy_core.base.flow_base import FlowBase
+
 from fy_library.domain.fy_py_template_models import AbstractPropertyTemplateModel
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     ParsedAbstractPropertyFyPyFile,
 )
-from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -43,9 +43,7 @@ class CreateAbstractPropertyTemplateModel_UsingParsedFyPyFile_Flow(
             parsed_abstract_property_fy_py_file, ParsedAbstractPropertyFyPyFile
         )
         return AbstractPropertyTemplateModel(
-            python_class_name=PythonEntityName.from_pascal_case(
-                f"{parsed_abstract_property_fy_py_file.abstract_property_name.pascal_case}_PropertyMixin_ABC"
-            ),
+            python_class_name=parsed_abstract_property_fy_py_file.python_class_name,
             abstract_property_name=parsed_abstract_property_fy_py_file.abstract_property_name,
             property_type=parsed_abstract_property_fy_py_file.property_type,
         )

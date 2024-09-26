@@ -25,7 +25,6 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     ParsedBaseFlowFyPyFile,
 )
-from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -70,9 +69,7 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
         parsed_base_flow_fy_py_file = self._parsed_fy_py_file
         assert isinstance(parsed_base_flow_fy_py_file, ParsedBaseFlowFyPyFile)
         return BaseFlowTemplateModel(
-            python_class_name=PythonEntityName.from_pascal_case(
-                f"{parsed_base_flow_fy_py_file.base_flow_name.pascal_case}_BaseFlow"
-            ),
+            python_class_name=parsed_base_flow_fy_py_file.python_class_name,
             base_flow_name=parsed_base_flow_fy_py_file.base_flow_name,
             return_type=parsed_base_flow_fy_py_file.return_type,
             properties=parsed_base_flow_fy_py_file.properties,

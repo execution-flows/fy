@@ -10,7 +10,6 @@ from fy_library.domain.fy_py_template_models import MethodTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedMethodFyPyFile
 from typing import Any
 from fy_core.base.flow_base import FlowBase
-from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -37,9 +36,7 @@ class CreateMethodTemplateModel_UsingParsedFyPyFile_Flow(
         parsed_method_fy_py_file = self._parsed_fy_py_file
         assert isinstance(parsed_method_fy_py_file, ParsedMethodFyPyFile)
         return MethodTemplateModel(
-            python_class_name=PythonEntityName.from_pascal_case(
-                f"{parsed_method_fy_py_file.method_name.pascal_case}_Using{parsed_method_fy_py_file.implementation_name.pascal_case}_MethodMixin"
-            ),
+            python_class_name=parsed_method_fy_py_file.python_class_name,
             method_name=parsed_method_fy_py_file.method_name,
             implementation_name=parsed_method_fy_py_file.implementation_name,
             abstract_method_mixins=parsed_method_fy_py_file.abstract_method_mixins,
