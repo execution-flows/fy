@@ -28,9 +28,9 @@ class MethodMixinModel(AbstractMethodModel):
 
 
 class AbstractPropertyModel(BaseMixinModel):
+    python_class_name: PythonEntityName
     property_name: PythonEntityName
 
 
 class PropertyMixinModel(AbstractPropertyModel):
-    python_class_name: PythonEntityName
     implementation_name: PythonEntityName
