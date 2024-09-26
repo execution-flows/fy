@@ -15,11 +15,11 @@ class MixinModelKind(Enum):
 
 
 class BaseMixinModel(BaseModel):
+    python_class_name: PythonEntityName
     kind: MixinModelKind
 
 
 class AbstractMethodModel(BaseMixinModel):
-    python_class_name: PythonEntityName
     method_name: PythonEntityName
 
 
@@ -28,7 +28,6 @@ class MethodMixinModel(AbstractMethodModel):
 
 
 class AbstractPropertyModel(BaseMixinModel):
-    python_class_name: PythonEntityName
     property_name: PythonEntityName
 
 
