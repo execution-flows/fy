@@ -8,6 +8,7 @@ import abc
 from pydantic import BaseModel, computed_field
 
 from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
+from fy_library.domain.annotation_object import Annotation
 from fy_library.domain.mixin_models import (
     MethodMixinModel,
     AbstractMethodModel,
@@ -68,6 +69,7 @@ class ParsedFlowFyPyFile(ParsedFyPyFile):
 class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.BASE_FLOW] = ParsedFyPyFileKind.BASE_FLOW
     base_flow_name: PythonEntityName
+    annotations: List[Annotation]
     return_type: str
     properties: List[PropertyMixinModel]
     methods: List[MethodMixinModel]
