@@ -47,19 +47,19 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
         base_flow_file_split = _BASE_FLOW_STRING_SPLIT_REGEX.split(self._fy_code)
 
         check_if_annotations_are_ordered = [
-            bool(re.match(_CHECK_ANNOTATIONS, annotation))
-            for annotation in base_flow_file_split[0].split("\n")
+            bool(re.match(_CHECK_ANNOTATIONS, maybe_annotation))
+            for maybe_annotation in base_flow_file_split[0].split("\n")
+            if maybe_annotation != ""
         ]
-        if len(check_if_annotations_are_ordered) > 2:
-            for index in range(len(check_if_annotations_are_ordered[:-1])):
-                current_annotation = base_flow_file_split[index]
-                next_annotation = base_flow_file_split[index + 1]
-                if current_annotation is True and next_annotation is True:
-                    continue
-                else:
-                    raise AssertionError(
-                        f"Base flow has unordered annotations in {base_flow_file_split[1]}_BaseFlow."
-                    )
+
+        first_annotation_found: bool = False
+        for is_annotation in check_if_annotations_are_ordered:
+            if is_annotation and not first_annotation_found:
+                first_annotation_found = True
+            if not is_annotation and first_annotation_found:
+                raise AssertionError(
+                    f"Base flow has unordered annotations in {base_flow_file_split[1]}_BaseFlow."
+                )
 
         annotations: List[Annotation] = []
 
