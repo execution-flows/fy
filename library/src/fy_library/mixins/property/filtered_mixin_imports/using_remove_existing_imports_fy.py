@@ -59,7 +59,7 @@ class FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin(
 
         user_imports_results = []
         for user_import in self._parsed_fy_py_file.user_imports.split("\n"):
-            if user_import == "" or user_import == "@callable":
+            if user_import == "":
                 continue
             import_regex_result = _IMPORT_REGEX.search(user_import)
             import_part = import_regex_result.group(
