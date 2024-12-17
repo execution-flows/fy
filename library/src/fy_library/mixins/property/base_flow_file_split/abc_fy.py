@@ -12,6 +12,7 @@ from pydantic import BaseModel
 
 class BaseFlowFileSplitModel(BaseModel):
     user_imports: str
+    callable_annotation: bool
     base_flow_name: str
     return_type: str
     mixins: str

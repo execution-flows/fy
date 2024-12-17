@@ -40,6 +40,10 @@ class {{ python_class_name.pascal_case }}(
     {%- endfor %}
         super().__init__(*args, **kwargs)
 {%- else %}
+    {%- if callable_annotation is sameas true %}
+    def __call__(self) -> {{ return_type}}:
+    {%- else %}
     pass
+    {%- endif  -%}
 {%- endif %}
 

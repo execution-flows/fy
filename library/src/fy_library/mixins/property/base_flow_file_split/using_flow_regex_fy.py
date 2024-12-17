@@ -25,10 +25,13 @@ from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
 
+
 _BASE_FLOW_STRING_SPLIT_REGEX: Final = re.compile(
     rf"base\s+flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s+->"
     rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
 )
+
+_CHECK_IF_CALLABLE: Final = re.compile(r"(?P<callable_annotation>@callable)")
 
 
 # fy:start ===>>>
@@ -42,12 +45,20 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
         # fy:end <<<===
         base_flow_file_split = _BASE_FLOW_STRING_SPLIT_REGEX.split(self._fy_code)
 
+        base_flow_callable_split = base_flow_file_split[0].split("\n")
+
+        if_callable: bool = False
+
+        if len(base_flow_callable_split) > 1:
+            if_callable = True
+
         assert (
             len(base_flow_file_split)
         ) == 4, f"Flow file split length {len(base_flow_file_split)} is invalid."
 
         base_flow_file_split_model = BaseFlowFileSplitModel(
             user_imports=base_flow_file_split[0],
+            callable_annotation=if_callable,
             base_flow_name=base_flow_file_split[1],
             return_type=base_flow_file_split[2],
             mixins=base_flow_file_split[3],
