@@ -60,7 +60,7 @@ class BaseFlowTemplateModel(BaseTemplateModel):
     abstract_property_mixins: List[AbstractPropertyModel]
     abstract_method_mixins: List[AbstractMethodModel]
     property_setters: List[ParsedAbstractPropertyFyPyFile]
-    callable_annotation: bool
+    callable_annotation: str
 
 
 class PropertyTemplateModel(BaseTemplateModel):

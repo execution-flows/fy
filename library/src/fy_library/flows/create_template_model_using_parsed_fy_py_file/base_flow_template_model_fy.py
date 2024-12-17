@@ -68,10 +68,16 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
         # fy:end <<<===
         parsed_base_flow_fy_py_file = self._parsed_fy_py_file
         assert isinstance(parsed_base_flow_fy_py_file, ParsedBaseFlowFyPyFile)
+
+        callable_annotation = "".join(
+            "@callable" if "@callable" in annotation.name else ""
+            for annotation in parsed_base_flow_fy_py_file.annotations
+        )
+
         return BaseFlowTemplateModel(
             python_class_name=parsed_base_flow_fy_py_file.python_class_name,
             base_flow_name=parsed_base_flow_fy_py_file.base_flow_name,
-            callable_annotation=parsed_base_flow_fy_py_file.callable_annotation,
+            callable_annotation=callable_annotation,
             return_type=parsed_base_flow_fy_py_file.return_type,
             properties=parsed_base_flow_fy_py_file.properties,
             methods=parsed_base_flow_fy_py_file.methods,

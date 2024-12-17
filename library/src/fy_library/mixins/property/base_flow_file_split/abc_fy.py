@@ -6,13 +6,16 @@ property base_flow_file_split: BaseFlowFileSplitModel
 """
 
 import abc
+from typing import List
 
 from pydantic import BaseModel
+
+from fy_library.domain.annotation_object import Annotation
 
 
 class BaseFlowFileSplitModel(BaseModel):
     user_imports: str
-    callable_annotation: bool
+    annotations: List[Annotation] | None
     base_flow_name: str
     return_type: str
     mixins: str

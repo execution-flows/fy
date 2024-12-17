@@ -12,12 +12,13 @@ property base_flow_file_split: BaseFlowFileSplitModel using base_flow_regex:
 import abc
 import re
 from functools import cached_property
-from typing import Final
+from typing import Final, List
 
 from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,
 )
+from fy_library.domain.annotation_object import Annotation
 from fy_library.mixins.property.base_flow_file_split.abc_fy import (
     BaseFlowFileSplitModel,
 )
@@ -31,7 +32,7 @@ _BASE_FLOW_STRING_SPLIT_REGEX: Final = re.compile(
     rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
 )
 
-_CHECK_IF_CALLABLE: Final = re.compile(r"(?P<callable_annotation>@callable)")
+_CHECK_ANNOTATIONS: Final = re.compile(r"(?P<annotations>@\w+)")
 
 
 # fy:start ===>>>
@@ -45,20 +46,25 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
         # fy:end <<<===
         base_flow_file_split = _BASE_FLOW_STRING_SPLIT_REGEX.split(self._fy_code)
 
-        base_flow_callable_split = base_flow_file_split[0].split("\n")
+        find_annotations = re.findall(_CHECK_ANNOTATIONS, base_flow_file_split[0])
 
-        if_callable: bool = False
+        annotations: List[Annotation] = []
 
-        if len(base_flow_callable_split) > 1:
-            if_callable = True
+        for annotation in find_annotations:
+            annotation_object = Annotation(
+                name=annotation,
+            )
+            annotations.append(annotation_object)
+
+        user_imports = re.sub(_CHECK_ANNOTATIONS, "", base_flow_file_split[0])
 
         assert (
             len(base_flow_file_split)
         ) == 4, f"Flow file split length {len(base_flow_file_split)} is invalid."
 
         base_flow_file_split_model = BaseFlowFileSplitModel(
-            user_imports=base_flow_file_split[0],
-            callable_annotation=if_callable,
+            user_imports=user_imports,
+            annotations=annotations,
             base_flow_name=base_flow_file_split[1],
             return_type=base_flow_file_split[2],
             mixins=base_flow_file_split[3],
