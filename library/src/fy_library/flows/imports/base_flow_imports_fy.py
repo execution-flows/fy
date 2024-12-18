@@ -33,11 +33,20 @@ from fy_library.domain.mixin_models import (
     PropertyMixinModel,
 )
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.mixins.property.abstract_method_mixins.using_setter import (
+    AbstractMethodMixins_UsingSetter_PropertyMixin,
+)
 from fy_library.mixins.property.abstract_property_mixins.using_setter import (
     AbstractPropertyMixins_UsingSetter_PropertyMixin,
 )
+from fy_library.mixins.property.imports.import__abstract_property_mixins__using_abstract_property_mixin_and_mixin_import_map__fy import (
+    ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
+)
 from fy_library.mixins.property.imports.import_abc__using_constant_fy import (
     ImportAbc_UsingConstant_PropertyMixin,
+)
+from fy_library.mixins.property.imports.import_abstract_method_mixins__using_abstract_method_mixin_and_mixin_import_map__fy import (
+    ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_PropertyMixin,
 )
 from fy_library.mixins.property.imports.import_any__using_property_setters_exists_fy import (
     ImportAny_UsingPropertySettersExists_PropertyMixin,
@@ -60,9 +69,6 @@ from fy_library.mixins.property.mixin_import_map.using_setter import (
 from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.property_mixins.using_setter import (
-    PropertyMixins_UsingSetter_PropertyMixin,
-)
 from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy import (
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
 )
@@ -70,15 +76,8 @@ from fy_library.mixins.property.user_imports_from_property_mixins.using_property
     UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
 )
 
-from fy_library.mixins.property.imports.import__abstract_property_mixins__using_abstract_property_mixin_and_mixin_import_map__fy import (
-    ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
-)
-
-from fy_library.mixins.property.abstract_method_mixins.using_setter import (
-    AbstractMethodMixins_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.imports.import_abstract_method_mixins__using_abstract_method_mixin_and_mixin_import_map__fy import (
-    ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_PropertyMixin,
+from fy_library.mixins.property.property_mixins.using_setter import (
+    PropertyMixins_UsingSetter_PropertyMixin,
 )
 
 

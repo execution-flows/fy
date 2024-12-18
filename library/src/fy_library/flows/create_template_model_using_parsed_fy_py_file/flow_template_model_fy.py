@@ -25,6 +25,7 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     ParsedFlowFyPyFile,
 )
+from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -71,6 +72,11 @@ class CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModel
         return FlowTemplateModel(
             python_class_name=parsed_flow_fy_py_file.python_class_name,
             flow_name=parsed_flow_fy_py_file.flow_name,
+            declared_base_flow=PythonEntityName.from_pascal_case(
+                f"{parsed_flow_fy_py_file.declared_base_flow}_BaseFlow"
+            )
+            if parsed_flow_fy_py_file.declared_base_flow != ""
+            else None,
             return_type=parsed_flow_fy_py_file.return_type,
             properties=parsed_flow_fy_py_file.properties,
             methods=parsed_flow_fy_py_file.methods,

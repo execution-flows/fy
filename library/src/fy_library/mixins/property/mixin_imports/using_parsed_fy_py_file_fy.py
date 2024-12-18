@@ -65,6 +65,7 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                     method_mixins=cast(
                         ParsedFlowFyPyFile, self._parsed_fy_py_file
                     ).methods,
+                    parsed_fy_py_file=self._parsed_fy_py_file,
                 )()
             case ParsedFyPyFileKind.BASE_FLOW:
                 return BaseFlowImports_Flow(

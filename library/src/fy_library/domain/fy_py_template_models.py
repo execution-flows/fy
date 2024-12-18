@@ -46,6 +46,7 @@ class AbstractPropertyTemplateModel(BaseTemplateModel):
 
 class FlowTemplateModel(BaseTemplateModel):
     flow_name: PythonEntityName
+    declared_base_flow: PythonEntityName | None
     return_type: str
     properties: List[PropertyMixinModel]
     methods: List[MethodMixinModel]
