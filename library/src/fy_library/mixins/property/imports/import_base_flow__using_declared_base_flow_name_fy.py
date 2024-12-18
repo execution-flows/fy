@@ -34,9 +34,6 @@ class ImportBaseFlow_UsingDeclaredBaseFlowName_PropertyMixin(
     @cached_property
     def _import_base_flow(self) -> List[str]:
         # fy:end <<<===
-        correct_base_flow_import: List[str] = []
-        if self._base_flow_import != "":
-            correct_base_flow_import = [
-                self._mixin_import_map[self._base_flow_import.lower()]
-            ]
-        return correct_base_flow_import
+        if self._base_flow_import == "":
+            return []
+        return [self._mixin_import_map[self._base_flow_import.lower()]]

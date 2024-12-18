@@ -22,7 +22,7 @@ from fy_library.mixins.property.fy_code.abc_fy import (
 
 _FLOW_STRING_SPLIT_REGEX: Final = re.compile(
     rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s*"
-    rf"(?P<declared_base_flow>\(({FY_ENTITY_REGEX_STRING})\))?\s+->"
+    rf"\(?(?P<declared_base_flow>{FY_ENTITY_REGEX_STRING})?\)?\s+->"
     rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
 )
 
@@ -38,22 +38,18 @@ class FlowFileSplit_UsingFlowRegex_PropertyMixin(
         # fy:end <<<===
         flow_file_split = _FLOW_STRING_SPLIT_REGEX.split(self._fy_code)
 
-        declared_base_flow: str = ""
-        if len(flow_file_split) == 6:
-            declared_base_flow = flow_file_split[3]
-            flow_file_split.pop(3)
-            flow_file_split.pop(2)
-
         assert (
             len(flow_file_split)
-        ) == 4, f"Flow file split length {len(flow_file_split)} is invalid."
+        ) == 5, f"Flow file split length {len(flow_file_split)} is invalid."
 
         flow_file_split_model = FlowFileSplitModel(
             user_imports=flow_file_split[0],
             flow_name=flow_file_split[1],
-            declared_base_flow=declared_base_flow if declared_base_flow else "",
-            return_type=flow_file_split[2],
-            mixins=flow_file_split[3],
+            declared_base_flow=flow_file_split[2]
+            if flow_file_split[2] is not None
+            else "",
+            return_type=flow_file_split[3],
+            mixins=flow_file_split[4],
         )
 
         return flow_file_split_model

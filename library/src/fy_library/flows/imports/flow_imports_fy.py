@@ -10,7 +10,7 @@ flow FlowImports -> List[str]:
     property method_mixins using setter
     property parsed_fy_py_files_map_by_key using setter
     property mixin_import_map using setter
-    property parsed_fy_py_file using setter
+    property parsed_flow_fy_py_file using setter
     property base_flow_import using declared_base_flow_name
     property property_setter_mixins using property_mixins
     property user_imports_from_mixins using property_setter_mixins
@@ -27,7 +27,9 @@ from typing import List, Any, Dict
 from fy_core.base.flow_base import FlowBase
 
 from fy_library.domain.mixin_models import MethodMixinModel, PropertyMixinModel
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.mixins.property.base_flow_import.using_declared_base_flow_name_fy import (
+    BaseFlowImport_UsingDeclaredBaseFlowName_PropertyMixin,
+)
 from fy_library.mixins.property.imports.import_any__using_property_setters_exists_fy import (
     ImportAny_UsingPropertySettersExists_PropertyMixin,
 )
@@ -49,8 +51,14 @@ from fy_library.mixins.property.method_mixins.using_setter import (
 from fy_library.mixins.property.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
 )
+from fy_library.mixins.property.parsed_flow_fy_py_file.using_setter import (
+    ParsedFlowFyPyFile_UsingSetter_PropertyMixin,
+)
 from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.property_mixins.using_setter import (
+    PropertyMixins_UsingSetter_PropertyMixin,
 )
 from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy import (
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
@@ -59,17 +67,8 @@ from fy_library.mixins.property.user_imports_from_property_mixins.using_property
     UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
 )
 
-from fy_library.mixins.property.property_mixins.using_setter import (
-    PropertyMixins_UsingSetter_PropertyMixin,
-)
-
-from fy_library.mixins.property.base_flow_import.using_declared_base_flow_name_fy import (
-    BaseFlowImport_UsingDeclaredBaseFlowName_PropertyMixin,
-)
-
-from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
-    ParsedFyPyFile_UsingSetter_PropertyMixin,
-)
+from fy_library.domain.parsed_fy_py_file import ParsedFlowFyPyFile
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 
 
 # fy:start ===>>>
@@ -79,7 +78,7 @@ class FlowImports_Flow(
     MethodMixins_UsingSetter_PropertyMixin,
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
-    ParsedFyPyFile_UsingSetter_PropertyMixin,
+    ParsedFlowFyPyFile_UsingSetter_PropertyMixin,
     BaseFlowImport_UsingDeclaredBaseFlowName_PropertyMixin,
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
     UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
@@ -98,28 +97,28 @@ class FlowImports_Flow(
         method_mixins: List[MethodMixinModel],
         parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
         mixin_import_map: Dict[str, str],
-        parsed_fy_py_file: ParsedFyPyFile,
+        parsed_flow_fy_py_file: ParsedFlowFyPyFile,
         **kwargs: Any,
     ):
         self._property_mixins = property_mixins
         self._method_mixins = method_mixins
         self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         self._mixin_import_map = mixin_import_map
-        self._parsed_fy_py_file = parsed_fy_py_file
+        self._parsed_flow_fy_py_file = parsed_flow_fy_py_file
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> List[str]:
         # fy:end <<<===
-        correct_base_flow_import = (
+        base_flow_import = (
             self._import_flow_base
-            if not self._import_base_flow
+            if self._import_base_flow == []
             else self._import_base_flow
         )
 
         return (
             self._user_imports_from_mixins
             + self._import_any
-            + correct_base_flow_import
+            + base_flow_import
             + self._property_mixins_import
             + self._method_mixins_import
         )
