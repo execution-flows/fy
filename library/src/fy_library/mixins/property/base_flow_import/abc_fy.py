@@ -2,26 +2,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-property flow_file_split: FlowFileSplitModel
+property base_flow_import: str
 """
 
 import abc
 
-from pydantic import BaseModel
-
-
-class FlowFileSplitModel(BaseModel):
-    user_imports: str
-    flow_name: str
-    declared_base_flow: str
-    return_type: str
-    mixins: str
-
 
 # fy:start ===>>>
-class FlowFileSplit_PropertyMixin_ABC(abc.ABC):
+class BaseFlowImport_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _flow_file_split(self) -> FlowFileSplitModel:
+    def _base_flow_import(self) -> str:
         raise NotImplementedError()
         # fy:end <<<===

@@ -29,7 +29,7 @@ from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
 )
 
 _FLOW_MATCH_REGEX: Final = re.compile(
-    rf"^flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*"
+    rf"^flow\s+{FY_ENTITY_REGEX_STRING}\s*(\({FY_ENTITY_REGEX_STRING}\))?\s*"
     rf"->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*$",
 )
 _BASE_FLOW_MATCH_REGEX: Final = re.compile(

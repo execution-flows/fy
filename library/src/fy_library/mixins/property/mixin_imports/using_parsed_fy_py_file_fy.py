@@ -56,15 +56,17 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
         # fy:end <<<===
         match self._parsed_fy_py_file.file_type:
             case ParsedFyPyFileKind.FLOW:
+                parsed_flow_fy_py_file = cast(
+                    ParsedFlowFyPyFile, self._parsed_fy_py_file
+                )
                 return FlowImports_Flow(
-                    property_mixins=cast(
-                        ParsedFlowFyPyFile, self._parsed_fy_py_file
-                    ).properties,
+                    property_mixins=parsed_flow_fy_py_file.properties,
                     parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                     mixin_import_map=self._mixin_import_map,
                     method_mixins=cast(
                         ParsedFlowFyPyFile, self._parsed_fy_py_file
                     ).methods,
+                    parsed_flow_fy_py_file=parsed_flow_fy_py_file,
                 )()
             case ParsedFyPyFileKind.BASE_FLOW:
                 return BaseFlowImports_Flow(
