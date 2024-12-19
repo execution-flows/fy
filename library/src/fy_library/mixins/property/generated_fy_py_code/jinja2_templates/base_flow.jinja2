@@ -24,7 +24,11 @@ class {{ python_class_name.pascal_case }}(
 {%- endfor %}
 {%- endif %}
     # Base
+    {% if declared_base_flow is not none -%}
+    {{ declared_base_flow.pascal_case }},
+{%- else -%}
     FlowBase[{{ return_type }}],
+{%- endif %}
     abc.ABC,
 ):{% if property_setters %}
     def __init__(

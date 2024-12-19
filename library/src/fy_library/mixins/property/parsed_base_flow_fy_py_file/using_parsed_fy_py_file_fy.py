@@ -73,6 +73,7 @@ class ParsedBaseFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             user_imports=self._base_flow_file_split.user_imports,
             annotations=self._base_flow_file_split.annotations,
             base_flow_name=base_flow_name,
+            declared_base_flow=self._base_flow_file_split.declared_base_flow,
             return_type=self._base_flow_file_split.return_type,
             properties=self._included_mixins.property_mixins,
             methods=self._included_mixins.method_mixins,
