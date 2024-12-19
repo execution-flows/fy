@@ -21,3 +21,8 @@ jobs:
     uses: ./.github/workflows/python_version_tests.yaml
     with:
       PYTHON_VERSION: "3.12"
+
+  test-3_13:
+    uses: ./.github/workflows/python_version_tests.yaml
+    with:
+      PYTHON_VERSION: "3.13"
