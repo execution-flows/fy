@@ -33,7 +33,7 @@ _FLOW_MATCH_REGEX: Final = re.compile(
     rf"->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*$",
 )
 _BASE_FLOW_MATCH_REGEX: Final = re.compile(
-    rf"^base\s+flow\s+{FY_ENTITY_REGEX_STRING}(\s+extends\s+{FY_ENTITY_REGEX_STRING})?\s*"
+    rf"^base\s+flow\s+{FY_ENTITY_REGEX_STRING}\s*(\({FY_ENTITY_REGEX_STRING}\))?\s*"
     rf"->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*:\s*$",
 )
 _METHOD_MATCH_REGEX: Final = re.compile(

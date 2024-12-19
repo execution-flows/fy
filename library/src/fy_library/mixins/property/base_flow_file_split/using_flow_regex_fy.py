@@ -28,7 +28,8 @@ from fy_library.mixins.property.fy_code.abc_fy import (
 
 
 _BASE_FLOW_STRING_SPLIT_REGEX: Final = re.compile(
-    rf"base\s+flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s+->"
+    rf"base\s+flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s*"
+    rf"\(?(?P<declared_base_flow>{FY_ENTITY_REGEX_STRING})?\)?\s+->"
     rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}):\s*\n"
 )
 
@@ -74,14 +75,17 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
 
         assert (
             len(base_flow_file_split)
-        ) == 4, f"Flow file split length {len(base_flow_file_split)} is invalid."
+        ) == 5, f"Flow file split length {len(base_flow_file_split)} is invalid."
 
         base_flow_file_split_model = BaseFlowFileSplitModel(
             user_imports=user_imports,
             annotations=annotations,
             base_flow_name=base_flow_file_split[1],
-            return_type=base_flow_file_split[2],
-            mixins=base_flow_file_split[3],
+            declared_base_flow=base_flow_file_split[2]
+            if base_flow_file_split[2] is not None
+            else "",
+            return_type=base_flow_file_split[3],
+            mixins=base_flow_file_split[4],
         )
 
         return base_flow_file_split_model
