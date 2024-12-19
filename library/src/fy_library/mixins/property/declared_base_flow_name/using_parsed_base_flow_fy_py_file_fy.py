@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-property base_flow_import: str using parsed_base_flow_fy_py_file:
+property declared_base_flow_name: str using parsed_base_flow_fy_py_file:
     property parsed_base_flow_fy_py_file
 """
 
@@ -15,12 +15,12 @@ from fy_library.mixins.property.parsed_base_flow_fy_py_file.abc_fy import (
 
 
 # fy:start ===>>>
-class BaseFlowImport_UsingParsedBaseFlowFyPyFile_PropertyMixin(
+class DeclaredBaseFlowName_UsingParsedBaseFlowFyPyFile_PropertyMixin(
     # Property_mixins
     ParsedBaseFlowFyPyFile_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
-    def _base_flow_import(self) -> str:
+    def _declared_base_flow_name(self) -> str:
         # fy:end <<<===
         return self._parsed_base_flow_fy_py_file.declared_base_flow

@@ -13,7 +13,7 @@ flow BaseFlowImports -> List[str]:
     property parsed_fy_py_files_map_by_key using setter
     property mixin_import_map using setter
     property parsed_base_flow_fy_py_file using setter
-    property base_flow_import using parsed_base_flow_fy_py_file
+    property declared_base_flow_name using parsed_base_flow_fy_py_file
     property property_setter_mixins using property_mixins
     property user_imports_from_mixins using property_setter_mixins
     property import_abc using constant
@@ -91,8 +91,8 @@ from fy_library.mixins.property.parsed_base_flow_fy_py_file.using_setter import 
     ParsedBaseFlowFyPyFile_UsingSetter_PropertyMixin,
 )
 
-from fy_library.mixins.property.base_flow_import.using_parsed_base_flow_fy_py_file_fy import (
-    BaseFlowImport_UsingParsedBaseFlowFyPyFile_PropertyMixin,
+from fy_library.mixins.property.declared_base_flow_name.using_parsed_base_flow_fy_py_file_fy import (
+    DeclaredBaseFlowName_UsingParsedBaseFlowFyPyFile_PropertyMixin,
 )
 
 
@@ -106,7 +106,7 @@ class BaseFlowImports_Flow(
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     ParsedBaseFlowFyPyFile_UsingSetter_PropertyMixin,
-    BaseFlowImport_UsingParsedBaseFlowFyPyFile_PropertyMixin,
+    DeclaredBaseFlowName_UsingParsedBaseFlowFyPyFile_PropertyMixin,
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
     UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
     ImportAbc_UsingConstant_PropertyMixin,
