@@ -21,9 +21,6 @@ flow ParseBaseFlowFyCode -> ParsedFyPyFile:
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 
-from fy_library.mixins.property.base_flow_file_split.using_flow_regex_fy import (
-    BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin,
-)
 from fy_library.mixins.property.fy_code.using_setter import (
     FyCode_UsingSetter_PropertyMixin,
 )
@@ -53,6 +50,10 @@ from fy_library.mixins.property.pre_marker_file_content.using_setter import (
 )
 from pathlib import Path
 from typing import Any
+
+from fy_library.mixins.property.base_flow_file_split.using_base_flow_regex_fy import (
+    BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin,
+)
 
 
 # fy:start ===>>>
