@@ -11,7 +11,7 @@ flow FlowImports -> List[str]:
     property parsed_fy_py_files_map_by_key using setter
     property mixin_import_map using setter
     property parsed_flow_fy_py_file using setter
-    property base_flow_import using declared_base_flow_name
+    property declared_base_flow_name using parsed_flow_fy_py_file
     property property_setter_mixins using property_mixins
     property user_imports_from_mixins using property_setter_mixins
     property import_any using property_setters_exists
@@ -27,9 +27,7 @@ from typing import List, Any, Dict
 from fy_core.base.flow_base import FlowBase
 
 from fy_library.domain.mixin_models import MethodMixinModel, PropertyMixinModel
-from fy_library.mixins.property.base_flow_import.using_declared_base_flow_name_fy import (
-    BaseFlowImport_UsingDeclaredBaseFlowName_PropertyMixin,
-)
+
 from fy_library.mixins.property.imports.import_any__using_property_setters_exists_fy import (
     ImportAny_UsingPropertySettersExists_PropertyMixin,
 )
@@ -70,6 +68,10 @@ from fy_library.mixins.property.user_imports_from_property_mixins.using_property
 from fy_library.domain.parsed_fy_py_file import ParsedFlowFyPyFile
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 
+from fy_library.mixins.property.declared_base_flow_name.using_parsed_flow_fy_py_file_fy import (
+    DeclaredBaseFlowName_UsingParsedFlowFyPyFile_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class FlowImports_Flow(
@@ -79,7 +81,7 @@ class FlowImports_Flow(
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     ParsedFlowFyPyFile_UsingSetter_PropertyMixin,
-    BaseFlowImport_UsingDeclaredBaseFlowName_PropertyMixin,
+    DeclaredBaseFlowName_UsingParsedFlowFyPyFile_PropertyMixin,
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
     UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
     ImportAny_UsingPropertySettersExists_PropertyMixin,
