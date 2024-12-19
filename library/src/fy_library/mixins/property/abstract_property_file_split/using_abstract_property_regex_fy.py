@@ -27,7 +27,9 @@ from fy_library.mixins.property.fy_code.abc_fy import (
 
 _ABSTRACT_PROPERTY_REGEX: Final = re.compile(
     rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
-    rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
+    rf"(\[(?P<generic_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})]:"
+    rf"|"
+    rf":\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}))\s*$",
 )
 
 
@@ -43,13 +45,18 @@ class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
         abstract_property_file_split = _ABSTRACT_PROPERTY_REGEX.split(self._fy_code)
 
         assert (
-            len(abstract_property_file_split) == 4
+            len(abstract_property_file_split) == 6
         ), f"Abstract property file split length {len(abstract_property_file_split)} is invalid"
 
         abstract_property_file_split_model = AbstractPropertyFileSplitModel(
             user_imports=abstract_property_file_split[0],
             abstract_property_name=abstract_property_file_split[1],
-            property_type=abstract_property_file_split[2],
+            generics=abstract_property_file_split[3]
+            if abstract_property_file_split[3] is not None
+            else "",
+            property_type=abstract_property_file_split[4]
+            if abstract_property_file_split[4] is not None
+            else "",
         )
 
         return abstract_property_file_split_model

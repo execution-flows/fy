@@ -1,6 +1,13 @@
-class {{ python_class_name.pascal_case }}(abc.ABC):
+class {{ python_class_name.pascal_case }}(
+{%- if generics %}
+    Generic[{{ generics }}],
+    abc.ABC,
+):
+{%- else -%}
+abc.ABC):
+{%- endif %}
     @property
     @abc.abstractmethod
-    def _{{ abstract_property_name.snake_case }}(self) -> {{ property_type }}:
+    def _{{ abstract_property_name.snake_case }}(self) -> {% if property_type %}{{ property_type }}{% endif %}{% if generics %}{{ generics }}{% endif %}:
         raise NotImplementedError()
 
