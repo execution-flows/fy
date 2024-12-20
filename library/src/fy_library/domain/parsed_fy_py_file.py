@@ -121,6 +121,7 @@ class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):
         ParsedFyPyFileKind.ABSTRACT_PROPERTY
     )
     abstract_property_name: PythonEntityName
+    generics_def: str
     property_type: str
 
     @computed_field

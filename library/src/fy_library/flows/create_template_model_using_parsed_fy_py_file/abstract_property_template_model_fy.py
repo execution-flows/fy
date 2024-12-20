@@ -45,5 +45,6 @@ class CreateAbstractPropertyTemplateModel_UsingParsedFyPyFile_Flow(
         return AbstractPropertyTemplateModel(
             python_class_name=parsed_abstract_property_fy_py_file.python_class_name,
             abstract_property_name=parsed_abstract_property_fy_py_file.abstract_property_name,
+            generics_def=parsed_abstract_property_fy_py_file.generics_def,
             property_type=parsed_abstract_property_fy_py_file.property_type,
         )

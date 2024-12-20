@@ -21,6 +21,7 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedFlowFyPyFile,
     ParsedPropertyFyPyFile,
     ParsedBaseFlowFyPyFile,
+    ParsedAbstractPropertyFyPyFile,
 )
 from fy_library.flows.imports.abstract_method_imports_fy import (
     AbstractMethodImportsFlow_Flow,
@@ -94,7 +95,11 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
             case ParsedFyPyFileKind.ABSTRACT_METHOD:
                 return AbstractMethodImportsFlow_Flow()()
             case ParsedFyPyFileKind.ABSTRACT_PROPERTY:
-                return AbstractPropertyImportsFlow_Flow()()
+                return AbstractPropertyImportsFlow_Flow(
+                    parsed_abstract_property_fy_py_file=cast(
+                        ParsedAbstractPropertyFyPyFile, self._parsed_fy_py_file
+                    ),
+                )()
             case ParsedFyPyFileKind.PROPERTY:
                 return PropertyImports_Flow(
                     abstract_property_mixins=cast(

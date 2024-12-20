@@ -13,6 +13,7 @@ from pydantic import BaseModel
 class AbstractPropertyFileSplitModel(BaseModel):
     user_imports: str
     abstract_property_name: str
+    generics_def: str
     property_type: str
 
 
