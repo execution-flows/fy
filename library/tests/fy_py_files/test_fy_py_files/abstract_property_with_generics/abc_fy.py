@@ -5,7 +5,7 @@
 from .greeting_t import GreetingT
 
 
-property abstract_property_with_generics[GreetingT]:
+property abstract_property_with_generics[GreetingT]
 """
 
 import abc

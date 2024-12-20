@@ -41,7 +41,7 @@ class AbstractMethodTemplateModel(BaseTemplateModel):
 
 class AbstractPropertyTemplateModel(BaseTemplateModel):
     abstract_property_name: PythonEntityName
-    generics: str
+    generics_def: str
     property_type: str
 
 
