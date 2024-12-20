@@ -31,5 +31,5 @@ class {{ python_class_name.pascal_case }}(
     {%- endfor %}
         super().__init__(*args, **kwargs)
 {% endif %}
-    def __call__(self) -> {{ return_type}}:
+    def __call__(self) -> {{ return_type }}:
 

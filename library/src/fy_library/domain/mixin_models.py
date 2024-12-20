@@ -29,6 +29,7 @@ class MethodMixinModel(AbstractMethodModel):
 
 class AbstractPropertyModel(BaseMixinModel):
     property_name: PythonEntityName
+    generics_impl: str
 
 
 class PropertyMixinModel(AbstractPropertyModel):

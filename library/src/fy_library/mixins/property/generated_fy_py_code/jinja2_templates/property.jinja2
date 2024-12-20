@@ -2,8 +2,8 @@ class {{ python_class_name.pascal_case }}
 {%- if abstract_property_mixins -%}
 (
     # Property_mixins
-{%- for abstract_property in abstract_property_mixins %}
-    {{ abstract_property.python_class_name.pascal_case }},
+{%- for abstract_property_mixin in abstract_property_mixins %}
+    {{ abstract_property_mixin.python_class_name.pascal_case }}{% if abstract_property_mixin.generics_impl %}[{{ abstract_property_mixin.generics_impl }}]{% endif %},
 {%- endfor %}
     {%- if generics_def %}
     Generic[{{ generics_def }}],
