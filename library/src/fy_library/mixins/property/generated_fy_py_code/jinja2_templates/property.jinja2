@@ -10,11 +10,12 @@ class {{ python_class_name.pascal_case }}
     {%- endif %}
     abc.ABC,
 )
-{%- endif %}
-    {%- if generics_def and not abstract_property_mixins -%}
+{%- else %}
+    {%- if generics_def -%}
 (
     Generic[{{ generics_def }}],
 )
+        {%- endif -%}
 {%- endif %}:
     @cached_property
     def _{{ property_name.snake_case }}(self) -> {{ property_type }}:
