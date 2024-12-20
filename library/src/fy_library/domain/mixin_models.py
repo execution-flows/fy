@@ -21,6 +21,7 @@ class BaseMixinModel(BaseModel):
 
 class AbstractMethodModel(BaseMixinModel):
     method_name: PythonEntityName
+    generics_impl: str
 
 
 class MethodMixinModel(AbstractMethodModel):
