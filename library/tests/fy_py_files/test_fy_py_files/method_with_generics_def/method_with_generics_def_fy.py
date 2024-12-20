@@ -18,4 +18,4 @@ class Greet_UsingConstant_MethodMixin(
 ):
     def _greet(self, greeting: str) -> int:
         # fy:end <<<===
-        pass
+        return 1
