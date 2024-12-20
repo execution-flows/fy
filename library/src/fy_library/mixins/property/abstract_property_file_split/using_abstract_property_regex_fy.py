@@ -27,7 +27,7 @@ from fy_library.mixins.property.fy_code.abc_fy import (
 
 _ABSTRACT_PROPERTY_REGEX: Final = re.compile(
     rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
-    rf"(\[(?P<generic_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})]"
+    rf"(?:\[(?P<generic_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})]"
     rf"|"
     rf":\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}))\s*$",
 )
@@ -45,29 +45,25 @@ class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
         abstract_property_file_split = _ABSTRACT_PROPERTY_REGEX.split(self._fy_code)
 
         assert (
-            len(abstract_property_file_split) == 6
+            len(abstract_property_file_split) == 5
         ), f"Abstract property file split length {len(abstract_property_file_split)} is invalid"
 
         assert (
             (
-                abstract_property_file_split[3] is None
-                or abstract_property_file_split[4] is None
+                abstract_property_file_split[2] is None
+                or abstract_property_file_split[3] is None
             )
             and (
-                abstract_property_file_split[3]
-                or abstract_property_file_split[4] is not None
+                abstract_property_file_split[2]
+                or abstract_property_file_split[3] is not None
             )
         ), "Abstract property requires exactly one generic or property type, not both or neither."
 
         abstract_property_file_split_model = AbstractPropertyFileSplitModel(
             user_imports=abstract_property_file_split[0],
             abstract_property_name=abstract_property_file_split[1],
-            generics_def=abstract_property_file_split[3]
-            if abstract_property_file_split[3] is not None
-            else "",
-            property_type=abstract_property_file_split[4]
-            if abstract_property_file_split[4] is not None
-            else "",
+            generics_def=abstract_property_file_split[2] or "",
+            property_type=abstract_property_file_split[3] or "",
         )
 
         return abstract_property_file_split_model
