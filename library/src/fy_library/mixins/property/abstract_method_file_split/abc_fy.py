@@ -12,7 +12,7 @@ from pydantic import BaseModel
 class AbstractMethodFileSplitModel(BaseModel):
     user_imports: str
     abstract_method_name: str
-    generics: str
+    generics_def: str
     arguments: str | None
     return_type: str
 

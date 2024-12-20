@@ -49,6 +49,6 @@ class AbstractMethodImportsFlow_Flow(
         # fy:end <<<===
         return (
             self._import_abc + self._import_generic
-            if self._parsed_abstract_method_fy_py_file.generics != ""
+            if self._parsed_abstract_method_fy_py_file.generics_def != ""
             else self._import_abc
         )

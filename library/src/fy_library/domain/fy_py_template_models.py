@@ -35,7 +35,7 @@ class MethodTemplateModel(BaseTemplateModel):
 
 class AbstractMethodTemplateModel(BaseTemplateModel):
     abstract_method_name: PythonEntityName
-    generics: str
+    generics_def: str
     arguments: str | None
     return_type: str
 
