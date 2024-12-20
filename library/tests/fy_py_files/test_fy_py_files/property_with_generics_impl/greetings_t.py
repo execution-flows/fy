@@ -7,6 +7,6 @@ GreetingT = TypeVar(
     "GreetingT",
 )
 
-SpanishGreetingT = TypeVar(
-    "SpanishGreetingT",
-)
+
+class SpanishGreeting:
+    pass
