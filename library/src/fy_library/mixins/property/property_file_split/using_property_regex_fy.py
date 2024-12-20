@@ -23,8 +23,8 @@ from fy_library.mixins.property.fy_code.abc_fy import (
 )
 
 _PROPERTY_REGEX: Final = re.compile(
-    rf"(?P<property_annotation>@cached)?\s*"
     rf"property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
+    rf"\s*(?:\[(?P<generics>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?"
     rf"\s*:\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*"
     rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
 )
@@ -47,9 +47,10 @@ class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
 
         property_file_split_model = PropertyFileSplitModel(
             user_imports=property_file_split[0],
-            property_name=property_file_split[2],
+            property_name=property_file_split[1],
             implementation_name=property_file_split[4],
-            property_type=property_file_split[3],
+            generics_def=property_file_split[2] or "",
+            property_type=property_file_split[3] or "",
             mixins=property_file_split[5],
         )
 

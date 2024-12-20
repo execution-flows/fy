@@ -5,8 +5,17 @@ class {{ python_class_name.pascal_case }}
 {%- for abstract_property in abstract_property_mixins %}
     {{ abstract_property.python_class_name.pascal_case }},
 {%- endfor %}
+    {%- if generics_def %}
+    Generic[{{ generics_def }}],
+    {%- endif %}
     abc.ABC,
 )
+{%- else %}
+    {%- if generics_def -%}
+(
+    Generic[{{ generics_def }}],
+)
+        {%- endif -%}
 {%- endif %}:
     @cached_property
     def _{{ property_name.snake_case }}(self) -> {{ property_type }}:

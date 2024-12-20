@@ -78,6 +78,7 @@ class ParsedPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             property_name=property_name,
             implementation_name=implementation_name,
             abstract_property_mixins=self._included_mixins.abstract_property_mixins,
+            generics_def=self._property_file_split.generics_def,
             property_type=self._property_file_split.property_type,
             python_class_name=PythonEntityName.from_pascal_case(
                 f"{property_name.pascal_case}_Using{implementation_name.pascal_case}_PropertyMixin"

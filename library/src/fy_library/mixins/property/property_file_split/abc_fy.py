@@ -13,6 +13,7 @@ class PropertyFileSplitModel(BaseModel):
     user_imports: str
     property_name: str
     implementation_name: str
+    generics_def: str
     property_type: str
     mixins: str
 
