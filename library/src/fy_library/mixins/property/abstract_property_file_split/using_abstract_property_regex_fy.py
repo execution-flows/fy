@@ -49,15 +49,12 @@ class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
         ), f"Abstract property file split length {len(abstract_property_file_split)} is invalid"
 
         assert (
-            (
-                abstract_property_file_split[2] is None
-                or abstract_property_file_split[3] is None
-            )
-            and (
-                abstract_property_file_split[2]
-                or abstract_property_file_split[3] is not None
-            )
-        ), "Abstract property requires exactly one generic or property type, not both or neither."
+            abstract_property_file_split[2] is None
+            or abstract_property_file_split[3] is None
+        ) and (
+            abstract_property_file_split[2]
+            or abstract_property_file_split[3] is not None
+        ), "Abstract property requires either generic or property type"
 
         abstract_property_file_split_model = AbstractPropertyFileSplitModel(
             user_imports=abstract_property_file_split[0],
