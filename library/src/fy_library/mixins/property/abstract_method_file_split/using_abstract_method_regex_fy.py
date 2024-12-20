@@ -50,15 +50,11 @@ class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
         ), f"Abstract Method file split length {len(abstract_method_file_split)} is invalid"
 
         assert (
-            (
-                abstract_method_file_split[2] is None
-                or abstract_method_file_split[4] is None
-            )
-            and (
-                abstract_method_file_split[2]
-                or abstract_method_file_split[4] is not None
-            )
-        ), "Abstract method requires exactly one generic or method return type, not both or neither."
+            abstract_method_file_split[2] is None
+            or abstract_method_file_split[4] is None
+        ) and (
+            abstract_method_file_split[2] or abstract_method_file_split[4] is not None
+        ), "Abstract method requires either generic or method return type."
 
         abstract_method_file_split_model = AbstractMethodFileSplitModel(
             user_imports=abstract_method_file_split[0],
