@@ -5,7 +5,7 @@
 from .method_greeting_t import MethodGreetingT
 
 
-method greet[MethodGreetingT](greeting: str)
+method greet[MethodGreetingT](greeting: str) -> int
 """
 
 import abc
@@ -19,6 +19,6 @@ class Greet_MethodMixin_ABC(
     abc.ABC,
 ):
     @abc.abstractmethod
-    def _greet(self, greeting: str) -> MethodGreetingT:
+    def _greet(self, greeting: str) -> int:
         raise NotImplementedError()
         # fy:end <<<===
