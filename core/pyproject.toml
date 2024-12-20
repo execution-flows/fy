@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "fy_core"
-version = "0.1.1"
+version = "0.1.2"
 description = "Core classes for implementing Execution Flows in Python projects."
 authors = ["Vinko Buble <vinkobuble@gmail.com>","Jere Perisic <jereperisic@icloud.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.10,<3.14"
 
 [build-system]
 requires = ["poetry-core"]
