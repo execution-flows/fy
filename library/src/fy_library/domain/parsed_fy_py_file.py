@@ -107,6 +107,7 @@ class ParsedAbstractMethodFyPyFile(ParsedFyPyFile):
         ParsedFyPyFileKind.ABSTRACT_METHOD
     )
     abstract_method_name: PythonEntityName
+    generics: str
     arguments: str | None
     return_type: str
 

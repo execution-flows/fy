@@ -1,4 +1,11 @@
-class {{ python_class_name.pascal_case }}(abc.ABC):
+class {{ python_class_name.pascal_case }}(
+{%- if generics %}
+    Generic[{{ generics }}],
+    abc.ABC,
+):
+{%- else -%}
+abc.ABC):
+{%- endif %}
     @abc.abstractmethod
     def _{{ abstract_method_name.snake_case }}(self{% if arguments %}, {{ arguments }}{% endif %}) -> {{ return_type }}:
         raise NotImplementedError()

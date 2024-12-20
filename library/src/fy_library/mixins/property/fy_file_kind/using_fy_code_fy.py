@@ -43,7 +43,7 @@ _METHOD_MATCH_REGEX: Final = re.compile(
     rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*$"
 )
 _ABSTRACT_METHOD_REGEX: Final = re.compile(
-    rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
+    rf"^method\s+{FY_ENTITY_REGEX_STRING}\s*(\[{PYTHON_MULTI_ENTITY_REGEX_STRING}])?(\({PYTHON_ARGUMENTS_REGEX_STRING}\))?"
     rf"\s*->\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
 )
 _ABSTRACT_PROPERTY_REGEX: Final = re.compile(
