@@ -23,7 +23,8 @@ from fy_library.mixins.property.method_file_split.abc_fy import MethodFileSplitM
 
 _METHOD_STRING_SPLIT_REGEX: Final = re.compile(
     rf"method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s*"
-    rf"(?P<arguments>\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s+->"
+    rf"(?:\[(?P<generics_def>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?"
+    rf"(?:\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?\s+->"
     rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s+"
     rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*\n"
 )
@@ -47,8 +48,9 @@ class MethodFileSplit_UsingMethodRegex_PropertyMixin(
         method_file_split_model = MethodFileSplitModel(
             user_imports=method_file_split[0],
             method_name=method_file_split[1],
-            implementation_name=method_file_split[5],
+            generics_def=method_file_split[2] or "",
             arguments=method_file_split[3],
+            implementation_name=method_file_split[5],
             return_type=method_file_split[4],
             mixins=method_file_split[6],
         )
