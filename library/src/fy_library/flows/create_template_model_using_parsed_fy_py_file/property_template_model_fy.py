@@ -41,5 +41,6 @@ class CreatePropertyTemplateModel_UsingParsedFyPyFile_Flow(
             property_name=parsed_property_fy_py_file.property_name,
             implementation_name=parsed_property_fy_py_file.implementation_name,
             abstract_property_mixins=parsed_property_fy_py_file.abstract_property_mixins,
+            generics_def=parsed_property_fy_py_file.generics_def,
             property_type=parsed_property_fy_py_file.property_type,
         )

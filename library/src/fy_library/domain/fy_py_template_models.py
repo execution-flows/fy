@@ -71,6 +71,7 @@ class PropertyTemplateModel(BaseTemplateModel):
     property_name: PythonEntityName
     implementation_name: PythonEntityName
     abstract_property_mixins: List[AbstractPropertyModel]
+    generics_def: str
     property_type: str
 
 

@@ -50,7 +50,7 @@ _ABSTRACT_PROPERTY_REGEX: Final = re.compile(
     rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*((\[{PYTHON_MULTI_ENTITY_REGEX_STRING}])|:\s*({PYTHON_MULTI_ENTITY_REGEX_STRING}))\s*$",
 )
 _PROPERTY_REGEX: Final = re.compile(
-    rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*:\s*({PYTHON_MULTI_ENTITY_REGEX_STRING})\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
+    rf"^property\s+{FY_ENTITY_REGEX_STRING}\s*((\[{PYTHON_MULTI_ENTITY_REGEX_STRING}])?:\s*({PYTHON_MULTI_ENTITY_REGEX_STRING}))\s+using\s+{FY_ENTITY_REGEX_STRING}\s*:\s*$",
 )
 
 

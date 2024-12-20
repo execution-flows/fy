@@ -8,9 +8,11 @@ from typing import List
 flow PropertyImports -> List[str]:
     property abstract_property_mixins using setter
     property mixin_import_map using setter
+    property parsed_property_fy_py_file using setter
     property cached_import using constant
     property import_abc using when_abstract_property_mixins_exists
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
+    property import_generic using generic_constant
 """
 
 from typing import List, Any, Dict
@@ -33,15 +35,26 @@ from fy_library.mixins.property.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
 )
 
+from fy_library.mixins.property.imports.import_generic__using_generic_constant_fy import (
+    ImportGeneric_UsingGenericConstant_PropertyMixin,
+)
+
+from fy_library.domain.parsed_fy_py_file import ParsedPropertyFyPyFile
+from fy_library.mixins.property.parsed_property_fy_py_file.using_setter import (
+    ParsedPropertyFyPyFile_UsingSetter_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class PropertyImports_Flow(
     # Property Mixins
     AbstractPropertyMixins_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
+    ParsedPropertyFyPyFile_UsingSetter_PropertyMixin,
     CachedImport_UsingConstant_PropertyMixin,
     ImportAbc_UsingWhenAbstractPropertyMixinsExists_PropertyMixin,
     ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
+    ImportGeneric_UsingGenericConstant_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):
@@ -50,16 +63,25 @@ class PropertyImports_Flow(
         *args: Any,
         abstract_property_mixins: List[AbstractPropertyModel],
         mixin_import_map: Dict[str, str],
+        parsed_property_fy_py_file: ParsedPropertyFyPyFile,
         **kwargs: Any,
     ):
         self._abstract_property_mixins = abstract_property_mixins
         self._mixin_import_map = mixin_import_map
+        self._parsed_property_fy_py_file = parsed_property_fy_py_file
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> List[str]:
         # fy:end <<<===
+        property_imports = (
+            self._import_generic
+            if self._parsed_property_fy_py_file.generics_def != ""
+            else []
+        )
+
         return (
             self._cached_import
             + self._import_abc
+            + property_imports
             + self._import_abstract_property_mixins
         )
