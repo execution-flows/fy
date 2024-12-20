@@ -46,6 +46,7 @@ class CreateAbstractMethodTemplateModel_UsingParsedFyPyFile_Flow(
         return AbstractMethodTemplateModel(
             python_class_name=parsed_abstract_method_fy_py_file.python_class_name,
             abstract_method_name=parsed_abstract_method_fy_py_file.abstract_method_name,
+            generics_def=parsed_abstract_method_fy_py_file.generics_def,
             arguments=parsed_abstract_method_fy_py_file.arguments,
             return_type=parsed_abstract_method_fy_py_file.return_type,
         )

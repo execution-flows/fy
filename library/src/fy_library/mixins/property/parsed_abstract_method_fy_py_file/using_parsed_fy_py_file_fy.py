@@ -66,6 +66,7 @@ class ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             file_path=self._fy_py_file_to_parse,
             user_imports=self._abstract_method_file_split.user_imports,
             abstract_method_name=abstract_method_name,
+            generics_def=self._abstract_method_file_split.generics_def,
             arguments=self._abstract_method_file_split.arguments,
             return_type=self._abstract_method_file_split.return_type,
             python_class_name=PythonEntityName.from_pascal_case(

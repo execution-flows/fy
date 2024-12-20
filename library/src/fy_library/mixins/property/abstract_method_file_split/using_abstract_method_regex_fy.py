@@ -28,8 +28,9 @@ from fy_library.mixins.property.fy_code.abc_fy import (
 
 _ABSTRACT_METHOD_REGEX: Final = re.compile(
     rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
-    rf"\s*(\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
-    rf"\s*->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
+    rf"\s*(?:\[(?P<generics>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?"
+    rf"\s*(?:\((?P<arguments>{PYTHON_ARGUMENTS_REGEX_STRING})\))?"
+    rf"\s*(?:->\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}))?\s*$",
 )
 
 
@@ -48,11 +49,19 @@ class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
             len(abstract_method_file_split) == 6
         ), f"Abstract Method file split length {len(abstract_method_file_split)} is invalid"
 
+        assert (
+            abstract_method_file_split[2] is None
+            or abstract_method_file_split[4] is None
+        ) and (
+            abstract_method_file_split[2] or abstract_method_file_split[4] is not None
+        ), "Abstract method requires either generic or method return type."
+
         abstract_method_file_split_model = AbstractMethodFileSplitModel(
             user_imports=abstract_method_file_split[0],
             abstract_method_name=abstract_method_file_split[1],
+            generics_def=abstract_method_file_split[2] or "",
             arguments=abstract_method_file_split[3],
-            return_type=abstract_method_file_split[4],
+            return_type=abstract_method_file_split[4] or "",
         )
 
         return abstract_method_file_split_model
