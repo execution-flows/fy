@@ -155,6 +155,7 @@ class PropertySetterFyPyFile(ParsedFyPyFile):
         ParsedFyPyFileKind.PROPERTY_SETTER
     )
     property_name: PythonEntityName
+    generics_def: str
     property_type: str
 
     @computed_field
