@@ -13,6 +13,7 @@ base flow HelloWorld[GreetingT] -> None:
 """
 
 import abc
+from typing import Generic
 from fy_core.base.flow_base import FlowBase
 from fy_py_files.test_fy_py_files.base_flow_with_generics.property.property_fy import (
     Greeting_UsingGreetingMessage_PropertyMixin,
@@ -41,6 +42,7 @@ class HelloWorld_BaseFlow(
     Greet_MethodMixin_ABC[Greet],
     # Base
     FlowBase[None],
+    Generic[GreetingT],
     abc.ABC,
 ):
     pass

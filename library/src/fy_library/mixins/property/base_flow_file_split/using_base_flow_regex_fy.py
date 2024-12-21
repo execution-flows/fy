@@ -82,7 +82,7 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
             user_imports=user_imports,
             annotations=annotations,
             base_flow_name=base_flow_file_split[1],
-            generics=base_flow_file_split[2] or "",
+            generics_def=base_flow_file_split[2] or "",
             declared_base_flow=base_flow_file_split[3] or "",
             return_type=base_flow_file_split[4],
             mixins=base_flow_file_split[5],

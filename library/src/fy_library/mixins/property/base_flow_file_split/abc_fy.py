@@ -17,6 +17,7 @@ class BaseFlowFileSplitModel(BaseModel):
     user_imports: str
     annotations: List[Annotation]
     base_flow_name: str
+    generics_def: str
     declared_base_flow: str
     return_type: str
     mixins: str
