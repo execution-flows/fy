@@ -13,7 +13,10 @@ import re
 from functools import cached_property
 from typing import Final
 
-from fy_library.constants import FY_ENTITY_REGEX_STRING
+from fy_library.constants import (
+    FY_ENTITY_REGEX_STRING,
+    PYTHON_MULTI_ENTITY_REGEX_STRING,
+)
 from fy_library.domain.mixin_models import MethodMixinModel, MixinModelKind
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.mixin_line.abc_fy import (
@@ -23,7 +26,8 @@ import abc
 
 _FLOW_METHOD_REGEX: Final = re.compile(
     rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
-    rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*$"
+    rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*"
+    rf"(?:\[(?P<generics_impl>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?$"
 )
 
 
@@ -54,5 +58,5 @@ class OptionalMethodMixinModel_UsingMixinLine_PropertyMixin(
             kind=MixinModelKind.METHOD,
             method_name=method_name,
             implementation_name=implementation_name,
-            generics_impl="",
+            generics_impl=flow_method_fy_search.group("generics_impl") or "",
         )
