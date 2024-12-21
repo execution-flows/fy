@@ -3,10 +3,10 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 from typing import List
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file import PropertySetterFyPyFile
 
 
-property required_property_setters_fy_py: List[ParsedFyPyFile] using parsed_fy_py_files:
+property required_property_setters_fy_py: List[PropertySetterFyPyFile] using parsed_fy_py_files:
     property parsed_fy_py_files
     property parsed_fy_py_files_map_by_key
 """
@@ -44,7 +44,7 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
     abc.ABC,
 ):
     @cached_property
-    def _required_property_setters_fy_py(self) -> List[ParsedFyPyFile]:
+    def _required_property_setters_fy_py(self) -> List[PropertySetterFyPyFile]:
         # fy:end <<<===
         def get_properties(
             parsed_fy_py_file: ParsedFyPyFile,
@@ -67,6 +67,12 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{flow_property.property_name.pascal_case}_UsingSetter_PropertyMixin"
                 ),
+                generics_def=cast(
+                    ParsedAbstractPropertyFyPyFile,
+                    self._parsed_fy_py_files_map_by_key[
+                        flow_property.property_name.snake_case
+                    ],
+                ).generics_def,
                 property_type=cast(
                     ParsedAbstractPropertyFyPyFile,
                     self._parsed_fy_py_files_map_by_key[

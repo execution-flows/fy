@@ -9,7 +9,8 @@ flow GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters -> None:
 from typing import Any, List
 
 from fy_core.base.flow_base import FlowBase
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+
+from fy_library.domain.parsed_fy_py_file import PropertySetterFyPyFile
 from fy_library.flows.generate_and_save_fy_py_file__using_required_property_setters_fy import (
     GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow,
 )
@@ -28,7 +29,7 @@ class GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters_Flow(
     def __init__(
         self,
         *args: Any,
-        required_property_setters_fy_py: List[ParsedFyPyFile],
+        required_property_setters_fy_py: List[PropertySetterFyPyFile],
         **kwargs: Any,
     ):
         self._required_property_setters_fy_py = required_property_setters_fy_py

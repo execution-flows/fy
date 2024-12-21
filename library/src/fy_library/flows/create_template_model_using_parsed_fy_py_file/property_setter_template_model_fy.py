@@ -39,4 +39,5 @@ class CreatePropertySetterTemplateModel_UsingParsedFyPyFile_Flow(
             python_class_name=parsed_property_setter_fy_py_file.python_class_name,
             property_name=parsed_property_setter_fy_py_file.property_name,
             property_type=parsed_property_setter_fy_py_file.property_type,
+            generics_def=parsed_property_setter_fy_py_file.generics_def,
         )
