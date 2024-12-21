@@ -7,6 +7,10 @@ GreetingT = TypeVar(
     "GreetingT",
 )
 
+GreetT = TypeVar(
+    "GreetT",
+)
+
 
 class FrenchGreeting:
     pass

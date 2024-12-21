@@ -2,11 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from .greetings_t import GreetingT, FrenchGreeting, Greet
+from .greetings_t import GreetingT, Greet
 
 
 flow HelloWorld[GreetingT] -> None:
-    property greeting using greeting_message[FrenchGreeting]
+    property greeting using greeting_message[GreetingT]
     method greet using greeting[Greet]
 """
 
@@ -18,13 +18,13 @@ from fy_py_files.test_fy_py_files.flow_with_generics_impl.abc_property.property_
 from fy_py_files.test_fy_py_files.flow_with_generics_impl.method.method_fy import (
     Greet_UsingGreeting_MethodMixin,
 )
-from .greetings_t import GreetingT, FrenchGreeting, Greet
+from .greetings_t import GreetingT, Greet
 
 
 # fy:start ===>>>
 class HelloWorld_Flow(
     # Property Mixins
-    Greeting_UsingGreetingMessage_PropertyMixin[FrenchGreeting],
+    Greeting_UsingGreetingMessage_PropertyMixin[GreetingT],
     # Method Mixins
     Greet_UsingGreeting_MethodMixin[Greet],
     # Base
