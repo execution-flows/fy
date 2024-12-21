@@ -14,7 +14,10 @@ import re
 from functools import cached_property
 from typing import Final
 
-from fy_library.constants import FY_ENTITY_REGEX_STRING
+from fy_library.constants import (
+    FY_ENTITY_REGEX_STRING,
+    PYTHON_MULTI_ENTITY_REGEX_STRING,
+)
 from fy_library.domain.mixin_models import MixinModelKind, AbstractPropertyModel
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.mixin_line.abc_fy import (
@@ -22,7 +25,7 @@ from fy_library.mixins.property.mixin_line.abc_fy import (
 )
 
 _ABSTRACT_PROPERTY_MIXIN_REGEX: Final = re.compile(
-    rf"^\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})$"
+    rf"^\s+property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})(?:\[(?P<generics_impl>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?$"
 )
 
 
@@ -50,4 +53,5 @@ class OptionalAbstractPropertyMixinModel_UsingMixinLine_PropertyMixin(
             ),
             kind=MixinModelKind.ABSTRACT_PROPERTY,
             property_name=property_name,
+            generics_impl=declared_abstract_property_mixin.group("generics_impl") or "",
         )

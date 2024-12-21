@@ -54,4 +54,5 @@ class OptionalPropertyMixinModel_UsingMixinLine_PropertyMixin(
             kind=MixinModelKind.PROPERTY,
             property_name=property_name,
             implementation_name=implementation_name,
+            generics_impl="",
         )

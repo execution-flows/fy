@@ -77,11 +77,12 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
             file_path=self._fy_py_file_to_parse,
             user_imports=self._method_file_split.user_imports,
             method_name=method_name,
-            implementation_name=implementation_name,
             abstract_property_mixins=self._included_mixins.abstract_property_mixins,
             abstract_method_mixins=self._included_mixins.abstract_method_mixins,
+            generics_def=self._method_file_split.generics_def,
             arguments=self._method_file_split.arguments,
             return_type=self._method_file_split.return_type,
+            implementation_name=implementation_name,
             python_class_name=PythonEntityName.from_pascal_case(
                 f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
             ),

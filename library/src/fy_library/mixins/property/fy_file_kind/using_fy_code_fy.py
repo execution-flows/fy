@@ -38,6 +38,7 @@ _BASE_FLOW_MATCH_REGEX: Final = re.compile(
 )
 _METHOD_MATCH_REGEX: Final = re.compile(
     rf"^method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s*"
+    rf"(\[{PYTHON_MULTI_ENTITY_REGEX_STRING}])?"
     rf"(?P<arguments>\(({PYTHON_ARGUMENTS_REGEX_STRING})\))?\s+->"
     rf"\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s+"
     rf"using\s+(?P<implementation_name>{FY_ENTITY_REGEX_STRING})\s*:\s*$"

@@ -13,9 +13,10 @@ from pydantic import BaseModel
 class MethodFileSplitModel(BaseModel):
     user_imports: str
     method_name: str
-    implementation_name: str
+    generics_def: str
     arguments: str | None
     return_type: str
+    implementation_name: str
     mixins: str
 
 
