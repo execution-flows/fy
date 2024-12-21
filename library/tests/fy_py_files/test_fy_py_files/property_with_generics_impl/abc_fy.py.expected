@@ -5,7 +5,7 @@
 from .greetings_t import SpanishGreeting
 
 
-property spanish_greeting: SpanishGreeting
+property greeting: SpanishGreeting
 """
 
 import abc
@@ -13,9 +13,9 @@ from .greetings_t import SpanishGreeting
 
 
 # fy:start ===>>>
-class SpanishGreeting_PropertyMixin_ABC(abc.ABC):
+class Greeting_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _spanish_greeting(self) -> SpanishGreeting:
+    def _greeting(self) -> SpanishGreeting:
         raise NotImplementedError()
         # fy:end <<<===

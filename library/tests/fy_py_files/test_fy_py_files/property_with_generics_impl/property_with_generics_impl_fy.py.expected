@@ -6,14 +6,14 @@ from .greetings_t import GreetingT, SpanishGreeting
 
 
 property hello_world[GreetingT]: str using spanish_greeting:
-    property spanish_greeting[SpanishGreeting]
+    property greeting[SpanishGreeting]
 """
 
 from functools import cached_property
 import abc
 from typing import Generic
 from fy_py_files.test_fy_py_files.property_with_generics_impl.abc_fy import (
-    SpanishGreeting_PropertyMixin_ABC,
+    Greeting_PropertyMixin_ABC,
 )
 from .greetings_t import GreetingT, SpanishGreeting
 
@@ -21,7 +21,7 @@ from .greetings_t import GreetingT, SpanishGreeting
 # fy:start ===>>>
 class HelloWorld_UsingSpanishGreeting_PropertyMixin(
     # Property_mixins
-    SpanishGreeting_PropertyMixin_ABC[SpanishGreeting],
+    Greeting_PropertyMixin_ABC[SpanishGreeting],
     Generic[GreetingT],
     abc.ABC,
 ):
