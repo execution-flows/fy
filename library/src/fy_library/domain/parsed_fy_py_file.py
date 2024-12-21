@@ -56,6 +56,7 @@ class ParsedFyPyFile(FyPyFileParts):
 class ParsedFlowFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.FLOW] = ParsedFyPyFileKind.FLOW
     flow_name: PythonEntityName
+    generics_def: str
     declared_base_flow: str
     return_type: str
     properties: List[PropertyMixinModel]

@@ -72,6 +72,7 @@ class CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModel
         return FlowTemplateModel(
             python_class_name=parsed_flow_fy_py_file.python_class_name,
             flow_name=parsed_flow_fy_py_file.flow_name,
+            generics_def=parsed_flow_fy_py_file.generics_def,
             declared_base_flow=PythonEntityName.from_pascal_case(
                 f"{parsed_flow_fy_py_file.declared_base_flow}_BaseFlow"
             )

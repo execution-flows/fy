@@ -19,7 +19,7 @@ flow FlowImports -> List[str]:
     property import_base_flow using declared_base_flow_name
     property property_mixins_import using property_mixins_and_mixin_import_map
     property method_mixins_import using method_mixins_and_mixin_import_map
-
+    property import_generic using generic_constant
 """
 
 from typing import List, Any, Dict
@@ -72,6 +72,10 @@ from fy_library.mixins.property.declared_base_flow_name.using_parsed_flow_fy_py_
     DeclaredBaseFlowName_UsingParsedFlowFyPyFile_PropertyMixin,
 )
 
+from fy_library.mixins.property.imports.import_generic__using_generic_constant_fy import (
+    ImportGeneric_UsingGenericConstant_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class FlowImports_Flow(
@@ -89,6 +93,7 @@ class FlowImports_Flow(
     ImportBaseFlow_UsingDeclaredBaseFlowName_PropertyMixin,
     PropertyMixinsImport_UsingPropertyMixinsAndMixinImportMap_PropertyMixin,
     MethodMixinsImport_UsingMethodMixinsAndMixinImportMap_PropertyMixin,
+    ImportGeneric_UsingGenericConstant_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):
@@ -117,10 +122,17 @@ class FlowImports_Flow(
             else self._import_base_flow
         )
 
+        generic_import = (
+            self._import_generic
+            if self._parsed_flow_fy_py_file.generics_def != ""
+            else []
+        )
+
         return (
             self._user_imports_from_mixins
             + self._import_any
             + base_flow_import
+            + generic_import
             + self._property_mixins_import
             + self._method_mixins_import
         )
