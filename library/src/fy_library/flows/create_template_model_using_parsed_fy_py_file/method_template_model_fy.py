@@ -38,9 +38,10 @@ class CreateMethodTemplateModel_UsingParsedFyPyFile_Flow(
         return MethodTemplateModel(
             python_class_name=parsed_method_fy_py_file.python_class_name,
             method_name=parsed_method_fy_py_file.method_name,
-            implementation_name=parsed_method_fy_py_file.implementation_name,
             abstract_method_mixins=parsed_method_fy_py_file.abstract_method_mixins,
             abstract_property_mixins=parsed_method_fy_py_file.abstract_property_mixins,
+            generics_def=parsed_method_fy_py_file.generics_def,
             arguments=parsed_method_fy_py_file.arguments,
+            implementation_name=parsed_method_fy_py_file.implementation_name,
             return_type=parsed_method_fy_py_file.return_type,
         )

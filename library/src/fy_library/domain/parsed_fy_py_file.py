@@ -87,10 +87,11 @@ class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
 class ParsedMethodFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.METHOD] = ParsedFyPyFileKind.METHOD
     method_name: PythonEntityName
-    implementation_name: PythonEntityName
     abstract_property_mixins: List[AbstractPropertyModel]
     abstract_method_mixins: List[AbstractMethodModel]
+    generics_def: str
     arguments: str | None
+    implementation_name: PythonEntityName
     return_type: str
 
     @computed_field
