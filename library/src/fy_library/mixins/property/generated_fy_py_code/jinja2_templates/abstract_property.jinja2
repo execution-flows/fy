@@ -8,6 +8,6 @@ abc.ABC):
 {%- endif %}
     @property
     @abc.abstractmethod
-    def _{{ abstract_property_name.snake_case }}(self) -> {% if property_type %}{{ property_type }}{% endif %}{% if generics_def %}{{ generics_def }}{% endif %}:
+    def _{{ abstract_property_name.snake_case }}(self) -> {{ property_type }}{{ generics_def }}:
         raise NotImplementedError()
 

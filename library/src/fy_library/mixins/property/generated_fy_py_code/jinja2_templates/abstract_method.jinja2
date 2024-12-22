@@ -7,6 +7,6 @@ class {{ python_class_name.pascal_case }}(
 abc.ABC):
 {%- endif %}
     @abc.abstractmethod
-    def _{{ abstract_method_name.snake_case }}(self{% if arguments %}, {{ arguments }}{% endif %}) -> {% if return_type %}{{ return_type }}{% endif %}{% if generics_def %}{{ generics_def }}{% endif %}:
+    def _{{ abstract_method_name.snake_case }}(self{% if arguments %}, {{ arguments }}{% endif %}) -> {{ return_type }}{{ generics_def }}:
         raise NotImplementedError()
 
