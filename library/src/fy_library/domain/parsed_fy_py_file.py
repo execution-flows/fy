@@ -71,6 +71,7 @@ class ParsedFlowFyPyFile(ParsedFyPyFile):
 class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.BASE_FLOW] = ParsedFyPyFileKind.BASE_FLOW
     base_flow_name: PythonEntityName
+    generics_def: str
     declared_base_flow: str
     annotations: List[Annotation]
     return_type: str
