@@ -10,9 +10,9 @@ flow PropertyImports -> List[str]:
     property mixin_import_map using setter
     property parsed_property_fy_py_file using setter
     property cached_import using constant
+    property import_generic using generic_constant
     property import_abc using when_abstract_property_mixins_exists
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
-    property import_generic using generic_constant
 """
 
 from typing import List, Any, Dict
@@ -52,9 +52,9 @@ class PropertyImports_Flow(
     MixinImportMap_UsingSetter_PropertyMixin,
     ParsedPropertyFyPyFile_UsingSetter_PropertyMixin,
     CachedImport_UsingConstant_PropertyMixin,
+    ImportGeneric_UsingGenericConstant_PropertyMixin,
     ImportAbc_UsingWhenAbstractPropertyMixinsExists_PropertyMixin,
     ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
-    ImportGeneric_UsingGenericConstant_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):

@@ -13,6 +13,7 @@ flow BaseFlowImports -> List[str]:
     property parsed_fy_py_files_map_by_key using setter
     property mixin_import_map using setter
     property parsed_base_flow_fy_py_file using setter
+    property import_generic using generic_constant
     property declared_base_flow_name using parsed_base_flow_fy_py_file
     property property_setter_mixins using property_mixins
     property user_imports_from_mixins using property_setter_mixins
@@ -24,7 +25,6 @@ flow BaseFlowImports -> List[str]:
     property method_mixins_import using method_mixins_and_mixin_import_map
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
     property import_abstract_method_mixins using abstract_method_mixin_and_mixin_import_map
-    property import_generic using generic_constant
 """
 
 from typing import List, Any, Dict
@@ -111,6 +111,7 @@ class BaseFlowImports_Flow(
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     ParsedBaseFlowFyPyFile_UsingSetter_PropertyMixin,
+    ImportGeneric_UsingGenericConstant_PropertyMixin,
     DeclaredBaseFlowName_UsingParsedBaseFlowFyPyFile_PropertyMixin,
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
     UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
@@ -122,7 +123,6 @@ class BaseFlowImports_Flow(
     MethodMixinsImport_UsingMethodMixinsAndMixinImportMap_PropertyMixin,
     ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
     ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_PropertyMixin,
-    ImportGeneric_UsingGenericConstant_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):

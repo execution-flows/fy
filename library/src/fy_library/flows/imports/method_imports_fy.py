@@ -10,10 +10,10 @@ flow MethodImports -> List[str]:
     property abstract_method_mixins using setter
     property mixin_import_map using setter
     property parsed_method_fy_py_file using setter
+    property import_generic using generic_constant
     property import_abc using when_abstract_property_and_abstract_method_exists
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
     property import_abstract_method_mixins using abstract_method_mixin_and_mixin_import_map
-    property import_generic using generic_constant
 """
 
 from typing import Any, Dict
@@ -56,10 +56,10 @@ class MethodImports_Flow(
     AbstractMethodMixins_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     ParsedMethodFyPyFile_UsingSetter_PropertyMixin,
+    ImportGeneric_UsingGenericConstant_PropertyMixin,
     ImportAbc_UsingWhenAbstractPropertyAndAbstractMethodExists_PropertyMixin,
     ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
     ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_PropertyMixin,
-    ImportGeneric_UsingGenericConstant_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):

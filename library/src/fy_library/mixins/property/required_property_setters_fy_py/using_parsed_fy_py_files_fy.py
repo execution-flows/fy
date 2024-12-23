@@ -25,8 +25,8 @@ from fy_library.domain.parsed_fy_py_file import (
     PropertySetterFyPyFile,
     ParsedFyPyFileKind,
     ParsedAbstractPropertyFyPyFile,
-    entity_key,
 )
+from fy_library.domain.entity_key import entity_key
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_files.abc_fy import (
     ParsedFyPyFiles_PropertyMixin_ABC,
