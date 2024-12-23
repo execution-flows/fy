@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from ..greetings_t import FrenchGreeting, GreetingT
+from ..greetings_t import GreetingT
 
 
 property greeting[GreetingT]: GreetingT using greeting_message:

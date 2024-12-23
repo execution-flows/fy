@@ -3,22 +3,22 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 from typing import List
-from fy_library.domain.mixin_models import AbstractPropertyModel
+from fy_library.domain.mixin_models import BaseMixinModel
 
 
-property mro_ordered_abstract_mixins: List[AbstractPropertyModel]
+property mro_ordered_abstract_mixins: List[BaseMixinModel]
 """
 
 import abc
 from typing import List
 
-from fy_library.domain.mixin_models import AbstractPropertyModel
+from fy_library.domain.mixin_models import BaseMixinModel
 
 
 # fy:start ===>>>
 class MroOrderedAbstractMixins_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _mro_ordered_abstract_mixins(self) -> List[AbstractPropertyModel]:
+    def _mro_ordered_abstract_mixins(self) -> List[BaseMixinModel]:
         raise NotImplementedError()
         # fy:end <<<===

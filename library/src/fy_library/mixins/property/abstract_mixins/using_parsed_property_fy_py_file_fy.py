@@ -3,17 +3,17 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 from typing import List
-from fy_library.domain.parsed_fy_py_file import AbstractPropertyModel
+from fy_library.domain.parsed_fy_py_file import BaseMixinModel
 
 
-property abstract_mixins: List[AbstractPropertyModel] using parsed_property_fy_py_file:
+property abstract_mixins: List[BaseMixinModel] using parsed_property_fy_py_file:
     property parsed_fy_py_file
 """
 
 from functools import cached_property
-from typing import List
+from typing import List, cast
 
-from fy_library.domain.mixin_models import AbstractPropertyModel
+from fy_library.domain.mixin_models import BaseMixinModel
 from fy_library.domain.parsed_fy_py_file import (
     ParsedPropertyFyPyFile,
 )
@@ -31,9 +31,11 @@ class AbstractMixins_UsingParsedPropertyFyPyFile_PropertyMixin(
     abc.ABC,
 ):
     @cached_property
-    def _abstract_mixins(self) -> List[AbstractPropertyModel]:
+    def _abstract_mixins(self) -> List[BaseMixinModel]:
         # fy:end <<<===
         parsed_property_fy_py_file = self._parsed_fy_py_file
         assert isinstance(parsed_property_fy_py_file, ParsedPropertyFyPyFile)
 
-        return parsed_property_fy_py_file.abstract_property_mixins
+        return cast(
+            List[BaseMixinModel], parsed_property_fy_py_file.abstract_property_mixins
+        )

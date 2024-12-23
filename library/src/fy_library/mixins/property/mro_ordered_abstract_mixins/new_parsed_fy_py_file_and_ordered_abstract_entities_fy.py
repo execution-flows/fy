@@ -3,10 +3,10 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 from typing import List
-from fy_library.domain.mixin_models import AbstractPropertyModel
+from fy_library.domain.mixin_models import BaseMixinModel
 
 
-property mro_ordered_abstract_mixins: List[AbstractPropertyModel] using abstract_mixins_and_ordered_abstract_entities:
+property mro_ordered_abstract_mixins: List[BaseMixinModel] using abstract_mixins_and_ordered_abstract_entities:
     property abstract_mixins
     property ordered_abstract_entities
 """
@@ -14,7 +14,7 @@ property mro_ordered_abstract_mixins: List[AbstractPropertyModel] using abstract
 from functools import cached_property
 from typing import List
 
-from fy_library.domain.mixin_models import AbstractPropertyModel
+from fy_library.domain.mixin_models import BaseMixinModel
 
 import abc
 from fy_library.mixins.property.abstract_mixins.abc_fy import (
@@ -33,9 +33,9 @@ class MroOrderedAbstractMixins_UsingAbstractMixinsAndOrderedAbstractEntities_Pro
     abc.ABC,
 ):
     @cached_property
-    def _mro_ordered_abstract_mixins(self) -> List[AbstractPropertyModel]:
+    def _mro_ordered_abstract_mixins(self) -> List[BaseMixinModel]:
         # fy:end <<<===
         return sorted(
             self._abstract_mixins,
-            key=lambda m: self._ordered_abstract_entities[m.property_name.snake_case],
+            key=lambda m: self._ordered_abstract_entities[m.entity_key],
         )
