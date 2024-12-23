@@ -8,6 +8,7 @@ from fy_library.domain.fy_py_template_models import BaseTemplateModel
 property template_model: BaseTemplateModel using parsed_fy_py_file:
     property parsed_fy_py_file
     property parsed_fy_py_files_map_by_key
+    property ordered_abstract_entities
 """
 
 import abc
@@ -26,12 +27,17 @@ from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.ordered_abstract_entities.abc_fy import (
+    OrderedAbstractEntities_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class TemplateModel_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
     ParsedFyPyFile_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+    OrderedAbstractEntities_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
@@ -40,4 +46,5 @@ class TemplateModel_UsingParsedFyPyFile_PropertyMixin(
         return CreateTemplateModelUsingParsedFyPyFile_Flow(
             parsed_fy_py_file=self._parsed_fy_py_file,
             parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
+            ordered_abstract_entities=self._ordered_abstract_entities,
         )()

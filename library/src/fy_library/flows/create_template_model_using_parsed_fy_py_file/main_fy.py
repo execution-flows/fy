@@ -8,6 +8,7 @@ from fy_library.domain.fy_py_template_models import BaseTemplateModel
 flow CreateTemplateModelUsingParsedFyPyFile -> BaseTemplateModel:
     property parsed_fy_py_file using setter
     property parsed_fy_py_files_map_by_key using setter
+    property ordered_abstract_entities using setter
 """
 
 from typing import Any
@@ -43,12 +44,17 @@ from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter impor
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
 )
 
+from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
+    OrderedAbstractEntities_UsingSetter_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class CreateTemplateModelUsingParsedFyPyFile_Flow(
     # Property Mixins
     ParsedFyPyFile_UsingSetter_PropertyMixin,
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
+    OrderedAbstractEntities_UsingSetter_PropertyMixin,
     # Base
     FlowBase[BaseTemplateModel],
 ):
@@ -57,10 +63,12 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
         parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
+        ordered_abstract_entities: Dict[str, int],
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file
         self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
+        self._ordered_abstract_entities = ordered_abstract_entities
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> BaseTemplateModel:
@@ -87,6 +95,7 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
             case ParsedFyPyFileKind.PROPERTY:
                 return CreatePropertyTemplateModel_UsingParsedFyPyFile_Flow(
                     parsed_fy_py_file=self._parsed_fy_py_file,
+                    ordered_abstract_entities=self._ordered_abstract_entities,
                 )()
             case ParsedFyPyFileKind.METHOD:
                 return CreateMethodTemplateModel_UsingParsedFyPyFile_Flow(
