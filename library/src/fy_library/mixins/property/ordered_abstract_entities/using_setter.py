@@ -2,14 +2,14 @@
 from typing import Dict
 
 
-class OrderedAbstractEntities_UsingSetter_PropertyMixin:
+class AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin:
     @property
-    def _ordered_abstract_entities(self) -> Dict[str, int]:
-        return self.__ordered_abstract_entities
+    def _abstract_entities_ordering_index(self) -> Dict[str, int]:
+        return self.__abstract_entities_ordering_index
 
-    @_ordered_abstract_entities.setter
-    def _ordered_abstract_entities(
-        self, ordered_abstract_entities: Dict[str, int]
+    @_abstract_entities_ordering_index.setter
+    def _abstract_entities_ordering_index(
+        self, abstract_entities_ordering_index: Dict[str, int]
     ) -> None:
-        self.__ordered_abstract_entities = ordered_abstract_entities
+        self.__abstract_entities_ordering_index = abstract_entities_ordering_index
         # fy:end <<<===

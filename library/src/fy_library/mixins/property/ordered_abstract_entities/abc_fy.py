@@ -5,7 +5,7 @@
 from typing import Dict
 
 
-property ordered_abstract_entities: Dict[str, int]
+property abstract_entities_ordering_index: Dict[str, int]
 """
 
 import abc
@@ -14,9 +14,9 @@ from typing import Dict
 
 
 # fy:start ===>>>
-class OrderedAbstractEntities_PropertyMixin_ABC(abc.ABC):
+class AbstractEntitiesOrderingIndex_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _ordered_abstract_entities(self) -> Dict[str, int]:
+    def _abstract_entities_ordering_index(self) -> Dict[str, int]:
         raise NotImplementedError()
         # fy:end <<<===

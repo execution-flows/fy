@@ -6,7 +6,7 @@ flow GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles -> None:
     property parsed_fy_py_files using setter
     property mixin_import_map using setter
     property parsed_fy_py_files_map_by_key using setter
-    property ordered_abstract_entities using setter
+    property abstract_entities_ordering_index using setter
 """
 
 from typing import List, Any, Dict
@@ -29,7 +29,7 @@ from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter impor
 )
 
 from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
-    OrderedAbstractEntities_UsingSetter_PropertyMixin,
+    AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
 )
 
 
@@ -39,7 +39,7 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
     ParsedFyPyFiles_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
-    OrderedAbstractEntities_UsingSetter_PropertyMixin,
+    AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
     # Base
     FlowBase[None],
 ):
@@ -49,13 +49,13 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
         parsed_fy_py_files: List[ParsedFyPyFile],
         mixin_import_map: Dict[str, str],
         parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
-        ordered_abstract_entities: Dict[str, int],
+        abstract_entities_ordering_index: Dict[str, int],
         **kwargs: Any,
     ):
         self._parsed_fy_py_files = parsed_fy_py_files
         self._mixin_import_map = mixin_import_map
         self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
-        self._ordered_abstract_entities = ordered_abstract_entities
+        self._abstract_entities_ordering_index = abstract_entities_ordering_index
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> None:
@@ -65,5 +65,5 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
                 parsed_fy_py_file=parsed_fy_py_file,
                 mixin_import_map=self._mixin_import_map,
                 parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
-                ordered_abstract_entities=self._ordered_abstract_entities,
+                abstract_entities_ordering_index=self._abstract_entities_ordering_index,
             )()

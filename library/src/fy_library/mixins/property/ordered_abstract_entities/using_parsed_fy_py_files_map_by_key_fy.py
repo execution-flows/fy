@@ -5,7 +5,7 @@
 from typing import Dict
 
 
-property ordered_abstract_entities: Dict[str, int] using parsed_fy_py_files_map_by_key:
+property abstract_entities_ordering_index: Dict[str, int] using parsed_fy_py_files_map_by_key:
     property parsed_fy_py_files_map_by_key
 """
 
@@ -22,15 +22,15 @@ from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
 
 
 # fy:start ===>>>
-class OrderedAbstractEntities_UsingParsedFyPyFilesMapByKey_PropertyMixin(
+class AbstractEntitiesOrderingIndex_UsingParsedFyPyFilesMapByKey_PropertyMixin(
     # Property_mixins
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
-    def _ordered_abstract_entities(self) -> Dict[str, int]:
+    def _abstract_entities_ordering_index(self) -> Dict[str, int]:
         # fy:end <<<===
-        ordered_abstract_entities = {
+        abstract_entities_ordering_index = {
             entity_key: entity_num
             for entity_num, entity_key in enumerate(self._parsed_fy_py_files_map_by_key)
             if self._parsed_fy_py_files_map_by_key[entity_key].file_type
@@ -39,4 +39,4 @@ class OrderedAbstractEntities_UsingParsedFyPyFilesMapByKey_PropertyMixin(
                 ParsedFyPyFileKind.ABSTRACT_PROPERTY,
             }
         }
-        return ordered_abstract_entities
+        return abstract_entities_ordering_index

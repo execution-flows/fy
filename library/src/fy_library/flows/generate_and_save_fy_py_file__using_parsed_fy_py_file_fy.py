@@ -6,7 +6,7 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property parsed_fy_py_file using setter
     property mixin_import_map using setter
     property parsed_fy_py_files_map_by_key using setter
-    property ordered_abstract_entities using setter
+     property abstract_entities_ordering_index using setter
     property mixin_imports using parsed_fy_py_file
     property jinja2_template_file_name using parsed_fy_py_file
     property template_model using parsed_fy_py_file
@@ -58,7 +58,7 @@ from fy_library.mixins.property.template_model.using_parsed_fy_py_file_fy import
 )
 
 from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
-    OrderedAbstractEntities_UsingSetter_PropertyMixin,
+    AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
 )
 
 
@@ -68,7 +68,7 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
     ParsedFyPyFile_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
-    OrderedAbstractEntities_UsingSetter_PropertyMixin,
+    AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
     MixinImports_UsingParsedFyPyFile_PropertyMixin,
     Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
     TemplateModel_UsingParsedFyPyFile_PropertyMixin,
@@ -87,13 +87,13 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
         parsed_fy_py_file: ParsedFyPyFile,
         mixin_import_map: Dict[str, str],
         parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
-        ordered_abstract_entities: Dict[str, int],
+        abstract_entities_ordering_index: Dict[str, int],
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file
         self._mixin_import_map = mixin_import_map
         self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
-        self._ordered_abstract_entities = ordered_abstract_entities
+        self._abstract_entities_ordering_index = abstract_entities_ordering_index
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> None:
