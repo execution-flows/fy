@@ -8,8 +8,12 @@ class TestSortingMethods(MainFyPyTestCase):
     def test_sorting_methods(self) -> None:
         self._test_main_flow(target_folder="ordered_abstract_methods_test")
 
-        # from .test_fy_py_files.ordered_abstract_methods_test.flow_fy import (
-        #     Message_Flow,
-        # )
+        from .test_fy_py_files.ordered_abstract_methods_test.flow_fy import (
+            Message_Flow,
+        )
 
-        # self.assertEqual(Message_Flow()(), "required_1required_2required_2required_1")
+        print(Message_Flow()())
+        self.assertEqual(
+            Message_Flow()(),
+            "required_1required_2required_2required_1required_1required_2",
+        )
