@@ -100,6 +100,7 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
             case ParsedFyPyFileKind.METHOD:
                 return CreateMethodTemplateModel_UsingParsedFyPyFile_Flow(
                     parsed_fy_py_file=self._parsed_fy_py_file,
+                    abstract_entities_ordering_index=self._abstract_entities_ordering_index,
                 )()
 
         raise NotImplementedError(
