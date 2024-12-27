@@ -7,4 +7,6 @@ class FyCode_UsingSetter_PropertyMixin:
     @_fy_code.setter
     def _fy_code(self, fy_code: str) -> None:
         self.__fy_code = fy_code
-        # fy:end <<<===
+
+
+# fy:end <<<===

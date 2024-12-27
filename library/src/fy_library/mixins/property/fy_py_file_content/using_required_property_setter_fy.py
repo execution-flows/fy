@@ -31,9 +31,9 @@ _NEW_LINE: Final = "\n"
 # fy:start ===>>>
 class FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin(
     # Property_mixins
-    ParsedFyPyFile_PropertyMixin_ABC,
-    GeneratedFyPyCode_PropertyMixin_ABC,
     ImportGeneric_PropertyMixin_ABC,
+    GeneratedFyPyCode_PropertyMixin_ABC,
+    ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

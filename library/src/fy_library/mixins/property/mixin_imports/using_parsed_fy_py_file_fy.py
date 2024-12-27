@@ -48,9 +48,9 @@ from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
 # fy:start ===>>>
 class MixinImports_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
-    ParsedFyPyFile_PropertyMixin_ABC,
-    MixinImportMap_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+    MixinImportMap_PropertyMixin_ABC,
+    ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

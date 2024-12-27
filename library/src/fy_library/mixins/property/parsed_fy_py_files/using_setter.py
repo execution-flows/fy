@@ -11,4 +11,6 @@ class ParsedFyPyFiles_UsingSetter_PropertyMixin:
     @_parsed_fy_py_files.setter
     def _parsed_fy_py_files(self, parsed_fy_py_files: List[ParsedFyPyFile]) -> None:
         self.__parsed_fy_py_files = parsed_fy_py_files
-        # fy:end <<<===
+
+
+# fy:end <<<===

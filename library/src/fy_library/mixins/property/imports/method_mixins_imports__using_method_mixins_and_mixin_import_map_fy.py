@@ -26,8 +26,8 @@ from fy_library.mixins.property.mixin_import_map.abc_fy import (
 # fy:start ===>>>
 class MethodMixinsImport_UsingMethodMixinsAndMixinImportMap_PropertyMixin(
     # Property_mixins
-    MethodMixins_PropertyMixin_ABC,
     MixinImportMap_PropertyMixin_ABC,
+    MethodMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

@@ -60,8 +60,8 @@ _PROPERTY_REGEX: Final = re.compile(
 # fy:start ===>>>
 class FyFileKind_UsingFyCode_PropertyMixin(
     # Property_mixins
-    FyPyFileToParse_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

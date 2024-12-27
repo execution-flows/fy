@@ -12,4 +12,6 @@ class ParsedMethodFyPyFile_UsingSetter_PropertyMixin:
         self, parsed_method_fy_py_file: ParsedMethodFyPyFile
     ) -> None:
         self.__parsed_method_fy_py_file = parsed_method_fy_py_file
-        # fy:end <<<===
+
+
+# fy:end <<<===

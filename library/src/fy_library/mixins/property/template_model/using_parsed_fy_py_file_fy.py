@@ -35,9 +35,9 @@ from fy_library.mixins.property.ordered_abstract_entities.abc_fy import (
 # fy:start ===>>>
 class TemplateModel_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
-    ParsedFyPyFile_PropertyMixin_ABC,
-    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
+    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+    ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

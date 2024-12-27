@@ -45,10 +45,10 @@ class ParsedAbstractPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
     PreFyCode_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
-    PreMarkerFileContent_PropertyMixin_ABC,
-    PostMarkerFileContent_PropertyMixin_ABC,
     FyPyFileToParse_PropertyMixin_ABC,
     AbstractPropertyFileSplit_PropertyMixin_ABC,
+    PreMarkerFileContent_PropertyMixin_ABC,
+    PostMarkerFileContent_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

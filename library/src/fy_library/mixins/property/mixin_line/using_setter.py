@@ -7,4 +7,6 @@ class MixinLine_UsingSetter_PropertyMixin:
     @_mixin_line.setter
     def _mixin_line(self, mixin_line: str) -> None:
         self.__mixin_line = mixin_line
-        # fy:end <<<===
+
+
+# fy:end <<<===

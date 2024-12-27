@@ -11,4 +11,6 @@ class PropertyMixins_UsingSetter_PropertyMixin:
     @_property_mixins.setter
     def _property_mixins(self, property_mixins: List[PropertyMixinModel]) -> None:
         self.__property_mixins = property_mixins
-        # fy:end <<<===
+
+
+# fy:end <<<===
