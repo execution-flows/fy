@@ -6,7 +6,7 @@ from typing import List
 from fy_library.domain.mixin_models import BaseMixinModel
 
 
-property abstract_mixins: List[BaseMixinModel] using parsed_method_fy_py_file_with_filtered_method_mixins:
+property abstract_mixins: List[BaseMixinModel] using parsed_method_fy_py_file:
     property parsed_fy_py_file
 """
 
@@ -24,7 +24,7 @@ from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
 
 
 # fy:start ===>>>
-class AbstractMixins_UsingParsedMethodFyPyFileWithFilteredMethodMixins_PropertyMixin(
+class AbstractMixins_UsingParsedMethodFyPyFile_PropertyMixin(
     # Property_mixins
     ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,

@@ -5,8 +5,7 @@
 flow CreateMethodTemplateModel_UsingParsedFyPyFile -> MethodTemplateModel:
     property parsed_fy_py_file using setter
     property abstract_entities_ordering_index using setter
-    property abstract_mixins using parsed_method_fy_py_file_with_filtered_method_mixins
-        property abstract_mixins using parsed_method_fy_py_file_with_filtered_property_mixins
+    property abstract_mixins using parsed_method_fy_py_file
     property mro_ordered_abstract_mixins using abstract_mixins_and_ordered_abstract_entities
 """
 
@@ -18,6 +17,10 @@ from fy_library.domain.parsed_fy_py_file import (
 )
 from typing import Any, Dict, List
 from fy_core.base.flow_base import FlowBase
+
+from fy_library.mixins.property.abstract_mixins.using_parsed_method_fy_py_file_with_filtered_method_mixins_fy import (
+    AbstractMixins_UsingParsedMethodFyPyFile_PropertyMixin,
+)
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -30,21 +33,13 @@ from fy_library.mixins.property.mro_ordered_abstract_mixins.new_parsed_fy_py_fil
     MroOrderedAbstractMixins_UsingAbstractMixinsAndOrderedAbstractEntities_PropertyMixin,
 )
 
-from fy_library.mixins.property.abstract_mixins.using_parsed_method_fy_py_file_with_filtered_method_mixins_fy import (
-    AbstractMixins_UsingParsedMethodFyPyFileWithFilteredMethodMixins_PropertyMixin,
-)
-from fy_library.mixins.property.abstract_mixins.using_parsed_method_fy_py_file_with_filtered_property_mixins_fy import (
-    AbstractMixins_UsingParsedMethodFyPyFileWithFilteredPropertyMixins_PropertyMixin,
-)
-
 
 # fy:start ===>>>
 class CreateMethodTemplateModel_UsingParsedFyPyFile_Flow(
     # Property Mixins
     ParsedFyPyFile_UsingSetter_PropertyMixin,
     AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
-    AbstractMixins_UsingParsedMethodFyPyFileWithFilteredMethodMixins_PropertyMixin,
-    AbstractMixins_UsingParsedMethodFyPyFileWithFilteredPropertyMixins_PropertyMixin,
+    AbstractMixins_UsingParsedMethodFyPyFile_PropertyMixin,
     MroOrderedAbstractMixins_UsingAbstractMixinsAndOrderedAbstractEntities_PropertyMixin,
     # Base
     FlowBase[MethodTemplateModel],
