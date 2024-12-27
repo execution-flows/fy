@@ -32,7 +32,9 @@ class AbstractEntitiesOrderingIndex_UsingParsedFyPyFilesMapByKey_PropertyMixin(
         # fy:end <<<===
         abstract_entities_ordering_index = {
             entity_key: entity_num
-            for entity_num, entity_key in enumerate(self._parsed_fy_py_files_map_by_key)
+            for entity_num, entity_key in enumerate(
+                sorted(self._parsed_fy_py_files_map_by_key)
+            )
             if self._parsed_fy_py_files_map_by_key[entity_key].file_type
             in {
                 ParsedFyPyFileKind.ABSTRACT_METHOD,
