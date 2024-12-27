@@ -9,7 +9,7 @@ readme = "README.md"
 fy = "fy_tool_cli.main:fy_cli"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.10,<3.14"
 
 fy_library = {path = "../library"}
 
