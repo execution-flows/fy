@@ -9,10 +9,10 @@ method greet[GreetT](message: str) -> str using greeting:
 """
 
 import abc
-from typing import Generic
 from fy_py_files.test_fy_py_files.base_flow_with_generics.method.abc_fy import (
     Greet_MethodMixin_ABC,
 )
+from typing import Generic
 from ..greetings_t import GreetT
 
 

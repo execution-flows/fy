@@ -11,14 +11,15 @@ flow HelloWorld[GreetingT] -> None:
 """
 
 from fy_core.base.flow_base import FlowBase
-from typing import Generic
 from fy_py_files.test_fy_py_files.flow_with_generics_impl.abc_property.property_fy import (
     Greeting_UsingGreetingMessage_PropertyMixin,
 )
 from fy_py_files.test_fy_py_files.flow_with_generics_impl.method.method_fy import (
     Greet_UsingGreeting_MethodMixin,
 )
-from .greetings_t import GreetingT, Greet
+from typing import Generic
+from .greetings_t import Greet
+from .greetings_t import GreetingT
 
 
 # fy:start ===>>>

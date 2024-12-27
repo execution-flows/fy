@@ -3,8 +3,8 @@ property greeting: str using french_greeting:
     property french_greeting
 """
 
-from functools import cached_property
 import abc
+from functools import cached_property
 from fy_py_files.test_fy_py_files.property_with_property.abc_fy import (
     FrenchGreeting_PropertyMixin_ABC,
 )

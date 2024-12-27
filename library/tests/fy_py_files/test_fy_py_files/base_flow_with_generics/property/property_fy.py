@@ -8,12 +8,12 @@ from ..greetings_t import GreetingT
 property greeting[GreetingT]: GreetingT using greeting_message:
 """
 
-from functools import cached_property
 import abc
-from typing import Generic
+from functools import cached_property
 from fy_py_files.test_fy_py_files.base_flow_with_generics.property.abc_fy import (
     Greeting_PropertyMixin_ABC,
 )
+from typing import Generic
 from ..greetings_t import GreetingT
 
 

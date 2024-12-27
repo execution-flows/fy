@@ -7,13 +7,13 @@ property property_impl_2: str using impl_2:
     property property_required_1
 """
 
-from functools import cached_property
 import abc
-from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property2.abc_fy import (
-    PropertyRequired2_PropertyMixin_ABC,
-)
+from functools import cached_property
 from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property1.abc_fy import (
     PropertyRequired1_PropertyMixin_ABC,
+)
+from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property2.abc_fy import (
+    PropertyRequired2_PropertyMixin_ABC,
 )
 from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property4.abc_fy import (
     PropertyImpl2_PropertyMixin_ABC,

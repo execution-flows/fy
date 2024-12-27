@@ -10,11 +10,11 @@ flow SetterUsesGenericTest -> None:
 """
 
 from ..greetings_t import GreetingT
-from typing import Any
 from fy_core.base.flow_base import FlowBase
 from fy_py_files.test_fy_py_files.flow_uses_setters_with_generics_impl.greeting.using_setter import (
     Greeting_UsingSetter_PropertyMixin,
 )
+from typing import Any
 from .greetings_t import FrenchGreeting
 
 
