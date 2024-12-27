@@ -9,6 +9,7 @@ property optional_method_mixin_model: MethodMixinModel | None using mixin_line:
     property mixin_line
 """
 
+import abc
 import re
 from functools import cached_property
 from typing import Final
@@ -22,7 +23,9 @@ from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.mixin_line.abc_fy import (
     MixinLine_PropertyMixin_ABC,
 )
-import abc
+from fy_library.mixins.property.optional_method_mixin_model.abc_fy import (
+    OptionalMethodMixinModel_PropertyMixin_ABC,
+)
 
 _FLOW_METHOD_REGEX: Final = re.compile(
     rf"^\s+method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s+"
@@ -35,6 +38,7 @@ _FLOW_METHOD_REGEX: Final = re.compile(
 class OptionalMethodMixinModel_UsingMixinLine_PropertyMixin(
     # Property_mixins
     MixinLine_PropertyMixin_ABC,
+    OptionalMethodMixinModel_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

@@ -20,11 +20,16 @@ from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.template_model.abc_fy import (
+    TemplateModel_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class TemplateModel_UsingParsedFyPyFile_ForSetter_PropertyMixin(
     # Property_mixins
     ParsedFyPyFile_PropertyMixin_ABC,
+    TemplateModel_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

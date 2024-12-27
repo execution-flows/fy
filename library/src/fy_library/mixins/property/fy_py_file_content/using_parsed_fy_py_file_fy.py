@@ -19,6 +19,9 @@ from fy_library.constants import (
     FY_END_MARKER,
 )
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.mixins.property.fy_py_file_content.abc_fy import (
+    FyPyFileContent_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.generated_fy_py_code.abc_fy import (
     GeneratedFyPyCode_PropertyMixin_ABC,
 )
@@ -35,8 +38,9 @@ _NEW_LINE: Final = "\n"
 # fy:start ===>>>
 class FyPyFileContent_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
-    MixinImportsCode_PropertyMixin_ABC,
+    FyPyFileContent_PropertyMixin_ABC,
     GeneratedFyPyCode_PropertyMixin_ABC,
+    MixinImportsCode_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,
 ):

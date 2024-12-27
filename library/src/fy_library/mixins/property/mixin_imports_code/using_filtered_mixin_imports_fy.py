@@ -13,11 +13,16 @@ from fy_library.mixins.property.filtered_mixin_imports.abc_fy import (
     FilteredMixinImports_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.mixin_imports_code.abc_fy import (
+    MixinImportsCode_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class MixinImportsCode_UsingFilteredMixinImports_PropertyMixin(
     # Property_mixins
     FilteredMixinImports_PropertyMixin_ABC,
+    MixinImportsCode_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

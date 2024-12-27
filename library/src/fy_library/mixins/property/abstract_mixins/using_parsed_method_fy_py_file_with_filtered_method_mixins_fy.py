@@ -22,10 +22,15 @@ from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.abstract_mixins.abc_fy import (
+    AbstractMixins_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class AbstractMixins_UsingParsedMethodFyPyFile_PropertyMixin(
     # Property_mixins
+    AbstractMixins_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,
 ):

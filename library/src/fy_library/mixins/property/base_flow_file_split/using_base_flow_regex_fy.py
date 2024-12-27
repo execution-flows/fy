@@ -21,6 +21,7 @@ from fy_library.constants import (
 from fy_library.domain.annotation_object import Annotation
 from fy_library.mixins.property.base_flow_file_split.abc_fy import (
     BaseFlowFileSplitModel,
+    BaseFlowFileSplit_PropertyMixin_ABC,
 )
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
@@ -40,6 +41,7 @@ _CHECK_ANNOTATIONS: Final = re.compile(r"(?P<annotations>@\w+)")
 # fy:start ===>>>
 class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
     # Property_mixins
+    BaseFlowFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):

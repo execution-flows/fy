@@ -15,7 +15,10 @@ from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,
 )
-from fy_library.mixins.property.flow_file_split.abc_fy import FlowFileSplitModel
+from fy_library.mixins.property.flow_file_split.abc_fy import (
+    FlowFileSplitModel,
+    FlowFileSplit_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
@@ -31,6 +34,7 @@ _FLOW_STRING_SPLIT_REGEX: Final = re.compile(
 # fy:start ===>>>
 class FlowFileSplit_UsingFlowRegex_PropertyMixin(
     # Property_mixins
+    FlowFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):

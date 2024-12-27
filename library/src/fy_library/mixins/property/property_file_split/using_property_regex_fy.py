@@ -15,8 +15,10 @@ from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,
 )
-from fy_library.mixins.property.property_file_split.abc_fy import PropertyFileSplitModel
-
+from fy_library.mixins.property.property_file_split.abc_fy import (
+    PropertyFileSplitModel,
+    PropertyFileSplit_PropertyMixin_ABC,
+)
 
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
@@ -34,6 +36,7 @@ _PROPERTY_REGEX: Final = re.compile(
 class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
     # Property_mixins
     FyCode_PropertyMixin_ABC,
+    PropertyFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

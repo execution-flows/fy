@@ -24,12 +24,17 @@ from fy_library.mixins.property.ordered_abstract_entities.abc_fy import (
     AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.mro_ordered_abstract_mixins.abc_fy import (
+    MroOrderedAbstractMixins_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class MroOrderedAbstractMixins_UsingAbstractMixinsAndOrderedAbstractEntities_PropertyMixin(
     # Property_mixins
-    AbstractMixins_PropertyMixin_ABC,
     AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
+    AbstractMixins_PropertyMixin_ABC,
+    MroOrderedAbstractMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

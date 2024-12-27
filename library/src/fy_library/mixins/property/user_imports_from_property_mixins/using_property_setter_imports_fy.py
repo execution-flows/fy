@@ -25,8 +25,8 @@ from fy_library.mixins.property.property_setter_mixins.abc_fy import (
 # fy:start ===>>>
 class UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin(
     # Property_mixins
-    PropertySetterMixins_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+    PropertySetterMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

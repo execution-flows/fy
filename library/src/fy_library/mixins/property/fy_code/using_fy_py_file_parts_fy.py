@@ -13,10 +13,15 @@ from fy_library.mixins.property.fy_py_file_parts.abc_fy import (
     FyPyFileParts_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.fy_code.abc_fy import (
+    FyCode_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class FyCode_UsingFyPyFileParts_PropertyMixin(
     # Property_mixins
+    FyCode_PropertyMixin_ABC,
     FyPyFileParts_PropertyMixin_ABC,
     abc.ABC,
 ):

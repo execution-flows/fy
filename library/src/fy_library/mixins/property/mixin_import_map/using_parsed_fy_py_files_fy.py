@@ -26,12 +26,17 @@ from fy_library.mixins.property.required_property_setters_fy_py.abc_fy import (
     RequiredPropertySettersFyPy_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.mixin_import_map.abc_fy import (
+    MixinImportMap_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(
     # Property_mixins
-    ProjectRootFolder_PropertyMixin_ABC,
+    MixinImportMap_PropertyMixin_ABC,
     ParsedFyPyFiles_PropertyMixin_ABC,
+    ProjectRootFolder_PropertyMixin_ABC,
     RequiredPropertySettersFyPy_PropertyMixin_ABC,
     abc.ABC,
 ):

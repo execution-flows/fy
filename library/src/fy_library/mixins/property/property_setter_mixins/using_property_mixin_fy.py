@@ -20,11 +20,16 @@ from fy_library.mixins.property.property_mixins.abc_fy import (
     PropertyMixins_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.property_setter_mixins.abc_fy import (
+    PropertySetterMixins_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class PropertySetterMixins_UsingPropertyMixins_PropertyMixin(
     # Property_mixins
     PropertyMixins_PropertyMixin_ABC,
+    PropertySetterMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

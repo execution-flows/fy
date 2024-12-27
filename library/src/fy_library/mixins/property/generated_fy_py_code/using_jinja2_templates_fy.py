@@ -15,6 +15,9 @@ from typing import Final
 import jinja2
 from jinja2 import Environment, FileSystemLoader
 
+from fy_library.mixins.property.generated_fy_py_code.abc_fy import (
+    GeneratedFyPyCode_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.jinja2_template_file_name.abc_fy import (
     Jinja2TemplateFileName_PropertyMixin_ABC,
 )
@@ -32,6 +35,7 @@ _JINJA2_TEMPLATE_ENVIRONMENT: Final = Environment(
 # fy:start ===>>>
 class GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin(
     # Property_mixins
+    GeneratedFyPyCode_PropertyMixin_ABC,
     Jinja2TemplateFileName_PropertyMixin_ABC,
     TemplateModel_PropertyMixin_ABC,
     abc.ABC,

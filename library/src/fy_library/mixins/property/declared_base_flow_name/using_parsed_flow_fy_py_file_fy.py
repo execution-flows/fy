@@ -14,10 +14,15 @@ from fy_library.mixins.property.parsed_flow_fy_py_file.abc_fy import (
     ParsedFlowFyPyFile_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.declared_base_flow_name.abc_fy import (
+    DeclaredBaseFlowName_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class DeclaredBaseFlowName_UsingParsedFlowFyPyFile_PropertyMixin(
     # Property_mixins
+    DeclaredBaseFlowName_PropertyMixin_ABC,
     ParsedFlowFyPyFile_PropertyMixin_ABC,
     abc.ABC,
 ):

@@ -26,12 +26,17 @@ from fy_library.mixins.property.mixin_lines.abc_fy import (
     MixinLines_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.mixin_models.abc_fy import (
+    MixinModels_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class MixinModels_UsingMixinLines_PropertyMixin(
     # Property_mixins
     FyPyFileToParse_PropertyMixin_ABC,
     MixinLines_PropertyMixin_ABC,
+    MixinModels_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

@@ -17,10 +17,15 @@ from fy_library.mixins.property.property_file_split.abc_fy import (
     PropertyFileSplit_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.mixin_lines.abc_fy import (
+    MixinLines_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class MixinLines_UsingPropertyFileSplit_PropertyMixin(
     # Property_mixins
+    MixinLines_PropertyMixin_ABC,
     PropertyFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):

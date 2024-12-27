@@ -23,6 +23,9 @@ from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.mixin_line.abc_fy import (
     MixinLine_PropertyMixin_ABC,
 )
+from fy_library.mixins.property.optional_property_mixin_model.abc_fy import (
+    OptionalPropertyMixinModel_PropertyMixin_ABC,
+)
 
 _FLOW_PROPERTY_REGEX: Final = re.compile(
     rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
@@ -35,6 +38,7 @@ _FLOW_PROPERTY_REGEX: Final = re.compile(
 class OptionalPropertyMixinModel_UsingMixinLine_PropertyMixin(
     # Property_mixins
     MixinLine_PropertyMixin_ABC,
+    OptionalPropertyMixinModel_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

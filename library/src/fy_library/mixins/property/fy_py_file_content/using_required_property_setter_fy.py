@@ -14,15 +14,17 @@ from typing import Final
 
 from fy_library.constants import FY_START_MARKER, FY_END_MARKER
 from fy_library.domain.parsed_fy_py_file import PropertySetterFyPyFile
+from fy_library.mixins.property.fy_py_file_content.abc_fy import (
+    FyPyFileContent_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.generated_fy_py_code.abc_fy import (
     GeneratedFyPyCode_PropertyMixin_ABC,
 )
-from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
-    ParsedFyPyFile_PropertyMixin_ABC,
-)
-
 from fy_library.mixins.property.imports.import_generic__abc_fy import (
     ImportGeneric_PropertyMixin_ABC,
+)
+from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
+    ParsedFyPyFile_PropertyMixin_ABC,
 )
 
 _NEW_LINE: Final = "\n"
@@ -31,8 +33,9 @@ _NEW_LINE: Final = "\n"
 # fy:start ===>>>
 class FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin(
     # Property_mixins
-    ImportGeneric_PropertyMixin_ABC,
+    FyPyFileContent_PropertyMixin_ABC,
     GeneratedFyPyCode_PropertyMixin_ABC,
+    ImportGeneric_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,
 ):

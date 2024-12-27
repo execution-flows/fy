@@ -29,11 +29,16 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedPropertyFyPyFile,
 )
 
+from fy_library.mixins.property.parsed_fy_py_files_with_own_abstract_mixin.abc_fy import (
+    ParsedFyPyFilesWithOwnAbstractMixin_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyMixin(
     # Property_mixins
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+    ParsedFyPyFilesWithOwnAbstractMixin_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

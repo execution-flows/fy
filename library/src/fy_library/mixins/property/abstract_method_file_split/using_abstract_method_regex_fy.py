@@ -21,6 +21,7 @@ from fy_library.constants import (
 )
 from fy_library.mixins.property.abstract_method_file_split.abc_fy import (
     AbstractMethodFileSplitModel,
+    AbstractMethodFileSplit_PropertyMixin_ABC,
 )
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
@@ -37,6 +38,7 @@ _ABSTRACT_METHOD_REGEX: Final = re.compile(
 # fy:start ===>>>
 class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
     # Property_mixins
+    AbstractMethodFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):

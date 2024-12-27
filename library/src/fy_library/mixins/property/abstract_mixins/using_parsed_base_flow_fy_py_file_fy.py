@@ -20,10 +20,15 @@ from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
 from typing import List, cast
 from fy_library.domain.mixin_models import BaseMixinModel
 
+from fy_library.mixins.property.abstract_mixins.abc_fy import (
+    AbstractMixins_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class AbstractMixins_UsingParsedBaseFlowFyPyFile_PropertyMixin(
     # Property_mixins
+    AbstractMixins_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,
 ):

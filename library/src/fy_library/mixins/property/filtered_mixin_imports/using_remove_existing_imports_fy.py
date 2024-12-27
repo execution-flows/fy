@@ -15,6 +15,9 @@ import re
 from functools import cached_property
 from typing import List, Set, Final
 
+from fy_library.mixins.property.filtered_mixin_imports.abc_fy import (
+    FilteredMixinImports_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.mixin_imports.abc_fy import (
     MixinImports_PropertyMixin_ABC,
 )
@@ -30,6 +33,7 @@ _IMPORT_REGEX: Final = re.compile(
 # fy:start ===>>>
 class FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin(
     # Property_mixins
+    FilteredMixinImports_PropertyMixin_ABC,
     MixinImports_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,
