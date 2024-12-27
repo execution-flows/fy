@@ -11,9 +11,12 @@ flow CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateMo
     property property_mixins using template_model_properties
     property property_setter_mixins using property_mixins
     property parsed_fy_py_files using property_setter_mixins__mapped_to_abstract_property
+    property abstract_entities_ordering_index using setter
+    property abstract_mixins using parsed_base_flow_fy_py_file
+    property mro_ordered_abstract_mixins using abstract_mixins_and_ordered_abstract_entities
 """
 
-from typing import Any
+from typing import Any, List
 from typing import Dict
 
 from fy_core.base.flow_base import FlowBase
@@ -21,11 +24,21 @@ from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import (
     BaseFlowTemplateModel,
 )
+from fy_library.domain.mixin_models import BaseMixinModel, MixinModelKind
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     ParsedBaseFlowFyPyFile,
 )
 from fy_library.domain.python_entity_name import PythonEntityName
+from fy_library.mixins.property.abstract_mixins.using_parsed_base_flow_fy_py_file_fy import (
+    AbstractMixins_UsingParsedBaseFlowFyPyFile_PropertyMixin,
+)
+from fy_library.mixins.property.mro_ordered_abstract_mixins.new_parsed_fy_py_file_and_ordered_abstract_entities_fy import (
+    MroOrderedAbstractMixins_UsingAbstractMixinsAndOrderedAbstractEntities_PropertyMixin,
+)
+from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
+    AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
+)
 from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
@@ -51,6 +64,9 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
     PropertyMixins_UsingTemplateModelProperties_PropertyMixin,
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
     ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_PropertyMixin,
+    AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
+    AbstractMixins_UsingParsedBaseFlowFyPyFile_PropertyMixin,
+    MroOrderedAbstractMixins_UsingAbstractMixinsAndOrderedAbstractEntities_PropertyMixin,
     # Base
     FlowBase[BaseFlowTemplateModel],
 ):
@@ -59,10 +75,12 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
         parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
+        abstract_entities_ordering_index: Dict[str, int],
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file
         self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
+        self._abstract_entities_ordering_index = abstract_entities_ordering_index
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> BaseFlowTemplateModel:
@@ -74,6 +92,17 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
             "@callable" == annotation.name
             for annotation in parsed_base_flow_fy_py_file.annotations
         )
+
+        abstract_method_mixins: List[BaseMixinModel] = [
+            abstract_property
+            for abstract_property in self._mro_ordered_abstract_mixins
+            if abstract_property.kind == MixinModelKind.ABSTRACT_METHOD
+        ]
+        abstract_property_mixins: List[BaseMixinModel] = [
+            abstract_method
+            for abstract_method in self._mro_ordered_abstract_mixins
+            if abstract_method.kind == MixinModelKind.ABSTRACT_PROPERTY
+        ]
 
         return BaseFlowTemplateModel(
             python_class_name=parsed_base_flow_fy_py_file.python_class_name,
@@ -88,7 +117,7 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
             return_type=parsed_base_flow_fy_py_file.return_type,
             properties=parsed_base_flow_fy_py_file.properties,
             methods=parsed_base_flow_fy_py_file.methods,
-            abstract_property_mixins=parsed_base_flow_fy_py_file.abstract_property_mixins,
-            abstract_method_mixins=parsed_base_flow_fy_py_file.abstract_method_mixins,
+            abstract_property_mixins=abstract_property_mixins,
+            abstract_method_mixins=abstract_method_mixins,
             property_setters=self._parsed_fy_py_files,
         )
