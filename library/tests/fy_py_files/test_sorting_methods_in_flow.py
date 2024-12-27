@@ -12,7 +12,6 @@ class TestSortingMethods(MainFyPyTestCase):
             Message_Flow,
         )
 
-        print(Message_Flow()())
         self.assertEqual(
             Message_Flow()(),
             "required_1required_2required_2required_1required_1required_2",
