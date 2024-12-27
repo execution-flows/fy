@@ -16,6 +16,9 @@ from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method2.abc_fy i
 from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method1.abc_fy import (
     MethodRequired1_MethodMixin_ABC,
 )
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method4.abc_fy import (
+    MethodImpl2_MethodMixin_ABC,
+)
 from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property2.abc_fy import (
     PropertyRequired2_PropertyMixin_ABC,
 )
@@ -30,6 +33,7 @@ class MethodImpl2_UsingImpl2_MethodMixin(
     PropertyRequired1_PropertyMixin_ABC,
     PropertyRequired2_PropertyMixin_ABC,
     # Method_mixins
+    MethodImpl2_MethodMixin_ABC,
     MethodRequired1_MethodMixin_ABC,
     MethodRequired2_MethodMixin_ABC,
     abc.ABC,

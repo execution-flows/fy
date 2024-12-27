@@ -15,6 +15,7 @@ from fy_library.domain.mixin_models import (
     AbstractMethodModel,
     AbstractPropertyModel,
     PropertyMixinModel,
+    MixinModelKind,
 )
 from fy_library.domain.python_entity_name import PythonEntityName
 
@@ -113,6 +114,17 @@ class ParsedAbstractMethodFyPyFile(ParsedFyPyFile):
     @property
     def entity_key(self) -> str:
         return self.abstract_method_name.snake_case
+
+
+def convert_parsed_abstract_method_fy_py_file_to_abstract_method_mixin(
+    parsed_abstract_method_fy_py_file: ParsedAbstractMethodFyPyFile,
+) -> AbstractMethodModel:
+    return AbstractMethodModel(
+        python_class_name=parsed_abstract_method_fy_py_file.python_class_name,
+        kind=MixinModelKind.ABSTRACT_METHOD,
+        method_name=parsed_abstract_method_fy_py_file.abstract_method_name,
+        generics_impl=parsed_abstract_method_fy_py_file.generics_def,
+    )
 
 
 class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):

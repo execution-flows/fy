@@ -8,13 +8,20 @@ from ..greetings_t import GreetT
 method greet[GreetT](message: str) -> str using greeting:
 """
 
+import abc
 from typing import Generic
+from fy_py_files.test_fy_py_files.base_flow_with_generics.method.abc_fy import (
+    Greet_MethodMixin_ABC,
+)
 from ..greetings_t import GreetT
 
 
 # fy:start ===>>>
 class Greet_UsingGreeting_MethodMixin(
+    # Method_mixins
+    Greet_MethodMixin_ABC[GreetT],
     Generic[GreetT],
+    abc.ABC,
 ):
     def _greet(self, message: str) -> str:
         # fy:end <<<===

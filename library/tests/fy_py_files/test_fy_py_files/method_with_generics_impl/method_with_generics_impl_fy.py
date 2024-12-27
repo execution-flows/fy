@@ -2,12 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from .greetings_t import GreetingT, FrenchGreeting, SpanishGreet
+from .greetings_t import GreetT, FrenchGreeting
 
 
-method greet[GreetingT](greeting: str) -> int using constant:
+method greet[GreetT](greeting: str) -> int using constant:
     property french_greeting[FrenchGreeting]
-    method greet[SpanishGreet]
 """
 
 import abc
@@ -18,7 +17,7 @@ from fy_py_files.test_fy_py_files.method_with_generics_impl.abc_method.abc_fy im
 from fy_py_files.test_fy_py_files.method_with_generics_impl.abc_property.abc_fy import (
     FrenchGreeting_PropertyMixin_ABC,
 )
-from .greetings_t import GreetingT, FrenchGreeting, SpanishGreet
+from .greetings_t import GreetT, FrenchGreeting
 
 
 # fy:start ===>>>
@@ -26,8 +25,8 @@ class Greet_UsingConstant_MethodMixin(
     # Property_mixins
     FrenchGreeting_PropertyMixin_ABC[FrenchGreeting],
     # Method_mixins
-    Greet_MethodMixin_ABC[SpanishGreet],
-    Generic[GreetingT],
+    Greet_MethodMixin_ABC[GreetT],
+    Generic[GreetT],
     abc.ABC,
 ):
     def _greet(self, greeting: str) -> int:
