@@ -15,11 +15,15 @@ from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property2.abc_f
 from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property1.abc_fy import (
     PropertyRequired1_PropertyMixin_ABC,
 )
+from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property4.abc_fy import (
+    PropertyImpl2_PropertyMixin_ABC,
+)
 
 
 # fy:start ===>>>
 class PropertyImpl2_UsingImpl2_PropertyMixin(
     # Property_mixins
+    PropertyImpl2_PropertyMixin_ABC,
     PropertyRequired1_PropertyMixin_ABC,
     PropertyRequired2_PropertyMixin_ABC,
     abc.ABC,

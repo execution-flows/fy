@@ -24,6 +24,9 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedMethodFyPyFile,
     convert_parsed_abstract_method_fy_py_file_to_abstract_method_mixin,
     ParsedAbstractMethodFyPyFile,
+    ParsedAbstractPropertyFyPyFile,
+    convert_parsed_abstract_property_fy_py_file_to_abstract_method_mixin,
+    ParsedPropertyFyPyFile,
 )
 
 
@@ -77,8 +80,33 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                         }
                     )
                 case ParsedFyPyFileKind.PROPERTY:
-                    # TODO: implement
-                    return parsed_fy_py_file
+                    parsed_property_fy_py_file = cast(
+                        ParsedPropertyFyPyFile, parsed_fy_py_file
+                    )
+                    if (
+                        parsed_property_fy_py_file.property_name.snake_case
+                        not in self._parsed_fy_py_files_map_by_key
+                    ):
+                        return parsed_fy_py_file
+
+                    parsed_abstract_property_fy_py_file = cast(
+                        ParsedAbstractPropertyFyPyFile,
+                        self._parsed_fy_py_files_map_by_key[
+                            parsed_property_fy_py_file.property_name.snake_case
+                        ],
+                    )
+
+                    return ParsedPropertyFyPyFile.model_validate(
+                        {
+                            **parsed_property_fy_py_file.model_dump(),
+                            "abstract_property_mixins": parsed_property_fy_py_file.abstract_property_mixins
+                            + [
+                                convert_parsed_abstract_property_fy_py_file_to_abstract_method_mixin(
+                                    parsed_abstract_property_fy_py_file=parsed_abstract_property_fy_py_file
+                                )
+                            ],
+                        }
+                    )
 
         return [
             with_own_abstract_mixin_if_exists(

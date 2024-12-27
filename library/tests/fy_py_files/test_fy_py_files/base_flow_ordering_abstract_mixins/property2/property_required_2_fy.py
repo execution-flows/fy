@@ -6,10 +6,18 @@ property property_required_2: str using required_2:
 """
 
 from functools import cached_property
+import abc
+from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property2.abc_fy import (
+    PropertyRequired2_PropertyMixin_ABC,
+)
 
 
 # fy:start ===>>>
-class PropertyRequired2_UsingRequired2_PropertyMixin:
+class PropertyRequired2_UsingRequired2_PropertyMixin(
+    # Property_mixins
+    PropertyRequired2_PropertyMixin_ABC,
+    abc.ABC,
+):
     @cached_property
     def _property_required_2(self) -> str:
         # fy:end <<<===
