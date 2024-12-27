@@ -10,14 +10,15 @@ method greet[GreetT](greeting: str) -> int using constant:
 """
 
 import abc
-from typing import Generic
 from fy_py_files.test_fy_py_files.method_with_generics_impl.abc_method.abc_fy import (
     Greet_MethodMixin_ABC,
 )
 from fy_py_files.test_fy_py_files.method_with_generics_impl.abc_property.abc_fy import (
     FrenchGreeting_PropertyMixin_ABC,
 )
-from .greetings_t import GreetT, FrenchGreeting
+from typing import Generic
+from .greetings_t import FrenchGreeting
+from .greetings_t import GreetT
 
 
 # fy:start ===>>>

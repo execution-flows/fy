@@ -5,8 +5,8 @@
 property property_required_2: str using required_2:
 """
 
-from functools import cached_property
 import abc
+from functools import cached_property
 from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property2.abc_fy import (
     PropertyRequired2_PropertyMixin_ABC,
 )

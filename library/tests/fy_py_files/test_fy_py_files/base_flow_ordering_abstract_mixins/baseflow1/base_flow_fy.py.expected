@@ -12,17 +12,17 @@ base flow Ordering -> str:
 
 import abc
 from fy_core.base.flow_base import FlowBase
-from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property2.abc_fy import (
-    PropertyRequired2_PropertyMixin_ABC,
-)
-from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property1.abc_fy import (
-    PropertyRequired1_PropertyMixin_ABC,
+from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.method1.abc_fy import (
+    MethodRequired1_MethodMixin_ABC,
 )
 from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.method2.abc_fy import (
     MethodRequired2_MethodMixin_ABC,
 )
-from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.method1.abc_fy import (
-    MethodRequired1_MethodMixin_ABC,
+from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property1.abc_fy import (
+    PropertyRequired1_PropertyMixin_ABC,
+)
+from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property2.abc_fy import (
+    PropertyRequired2_PropertyMixin_ABC,
 )
 
 

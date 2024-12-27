@@ -9,13 +9,14 @@ property hello_world[GreetingT]: str using spanish_greeting:
     property greeting[SpanishGreeting]
 """
 
-from functools import cached_property
 import abc
-from typing import Generic
+from functools import cached_property
 from fy_py_files.test_fy_py_files.property_with_generics_impl.abc_fy import (
     Greeting_PropertyMixin_ABC,
 )
-from .greetings_t import GreetingT, SpanishGreeting
+from typing import Generic
+from .greetings_t import GreetingT
+from .greetings_t import SpanishGreeting
 
 
 # fy:start ===>>>

@@ -12,17 +12,17 @@ flow Message(Ordering) -> str:
 from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.baseflow1.base_flow_fy import (
     Ordering_BaseFlow,
 )
-from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property1.property_required_1_fy import (
-    PropertyRequired1_UsingRequired1_PropertyMixin,
-)
-from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property2.property_required_2_fy import (
-    PropertyRequired2_UsingRequired2_PropertyMixin,
-)
 from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.method1.method_required_1_fy import (
     MethodRequired1_UsingRequired1_MethodMixin,
 )
 from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.method2.method_required_2_fy import (
     MethodRequired2_UsingRequired2_MethodMixin,
+)
+from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property1.property_required_1_fy import (
+    PropertyRequired1_UsingRequired1_PropertyMixin,
+)
+from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property2.property_required_2_fy import (
+    PropertyRequired2_UsingRequired2_PropertyMixin,
 )
 
 
