@@ -35,12 +35,17 @@ from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.required_property_setters_fy_py.abc_fy import (
+    RequiredPropertySettersFyPy_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
     # Property_mixins
     ParsedFyPyFiles_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+    RequiredPropertySettersFyPy_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

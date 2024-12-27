@@ -31,13 +31,18 @@ from fy_library.mixins.property.ordered_abstract_entities.abc_fy import (
     AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.template_model.abc_fy import (
+    TemplateModel_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class TemplateModel_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
+    AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
-    AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
+    TemplateModel_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

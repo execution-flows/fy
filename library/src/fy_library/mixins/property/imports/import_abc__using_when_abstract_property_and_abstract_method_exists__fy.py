@@ -26,8 +26,8 @@ import abc
 # fy:start ===>>>
 class ImportAbc_UsingWhenAbstractPropertyAndAbstractMethodExists_PropertyMixin(
     # Property_mixins
-    AbstractPropertyMixins_PropertyMixin_ABC,
     AbstractMethodMixins_PropertyMixin_ABC,
+    AbstractPropertyMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

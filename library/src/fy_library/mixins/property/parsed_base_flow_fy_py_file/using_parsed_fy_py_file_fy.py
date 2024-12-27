@@ -43,17 +43,22 @@ from fy_library.mixins.property.pre_marker_file_content.abc_fy import (
     PreMarkerFileContent_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.parsed_base_flow_fy_py_file.abc_fy import (
+    ParsedBaseFlowFyPyFile_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class ParsedBaseFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
-    PreFyCode_PropertyMixin_ABC,
-    FyCode_PropertyMixin_ABC,
-    PreMarkerFileContent_PropertyMixin_ABC,
-    PostMarkerFileContent_PropertyMixin_ABC,
-    FyPyFileToParse_PropertyMixin_ABC,
     BaseFlowFileSplit_PropertyMixin_ABC,
+    FyCode_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
     IncludedMixins_PropertyMixin_ABC,
+    ParsedBaseFlowFyPyFile_PropertyMixin_ABC,
+    PostMarkerFileContent_PropertyMixin_ABC,
+    PreFyCode_PropertyMixin_ABC,
+    PreMarkerFileContent_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

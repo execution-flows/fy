@@ -39,10 +39,9 @@ class Message_Flow(
 ):
     def __call__(self) -> str:
         # fy:end <<<===
-        Ordering_BaseFlow.__call__()
         return (
-            self._method_impl_1()
-            + self._method_impl_2()
+            self._method_required_1()
+            + self._method_required_2()
             + self._property_required_1
             + self._property_required_2
         )

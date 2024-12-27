@@ -21,6 +21,9 @@ from fy_library.constants import (
     FY_END_MARKER,
 )
 from fy_library.domain.parsed_fy_py_file import FyPyFileParts
+from fy_library.mixins.property.fy_py_file_parts.abc_fy import (
+    FyPyFileParts_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
     FyPyFileToParse_PropertyMixin_ABC,
 )
@@ -38,6 +41,7 @@ _FY_END_MARKER_REGEX: Final = re.compile(rf"\s*{FY_END_MARKER}\n")
 # fy:start ===>>>
 class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
     # Property_mixins
+    FyPyFileParts_PropertyMixin_ABC,
     FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,
 ):

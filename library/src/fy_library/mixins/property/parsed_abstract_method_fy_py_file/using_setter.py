@@ -12,4 +12,6 @@ class ParsedAbstractMethodFyPyFile_UsingSetter_PropertyMixin:
         self, parsed_abstract_method_fy_py_file: ParsedAbstractMethodFyPyFile
     ) -> None:
         self.__parsed_abstract_method_fy_py_file = parsed_abstract_method_fy_py_file
-        # fy:end <<<===
+
+
+# fy:end <<<===

@@ -5,9 +5,18 @@
 method method_required_1 -> str using required_1:
 """
 
+import abc
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method1.abc_fy import (
+    MethodRequired1_MethodMixin_ABC,
+)
+
 
 # fy:start ===>>>
-class MethodRequired1_UsingRequired1_MethodMixin:
+class MethodRequired1_UsingRequired1_MethodMixin(
+    # Method_mixins
+    MethodRequired1_MethodMixin_ABC,
+    abc.ABC,
+):
     def _method_required_1(self) -> str:
         # fy:end <<<===
         return "required_1"

@@ -20,6 +20,7 @@ from fy_library.constants import (
 )
 from fy_library.mixins.property.abstract_property_file_split.abc_fy import (
     AbstractPropertyFileSplitModel,
+    AbstractPropertyFileSplit_PropertyMixin_ABC,
 )
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
@@ -36,6 +37,7 @@ _ABSTRACT_PROPERTY_REGEX: Final = re.compile(
 # fy:start ===>>>
 class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
     # Property_mixins
+    AbstractPropertyFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     abc.ABC,
 ):

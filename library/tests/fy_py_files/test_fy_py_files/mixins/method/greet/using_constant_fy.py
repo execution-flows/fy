@@ -2,9 +2,18 @@
 method greet -> None using constant:
 """
 
+import abc
+from fy_py_files.test_fy_py_files.mixins.method.greet.abc_fy import (
+    Greet_MethodMixin_ABC,
+)
+
 
 # fy:start ===>>>
-class Greet_UsingConstant_MethodMixin:
+class Greet_UsingConstant_MethodMixin(
+    # Method_mixins
+    Greet_MethodMixin_ABC,
+    abc.ABC,
+):
     def _greet(self) -> None:
         # fy:end <<<===
         print("Hello World!")

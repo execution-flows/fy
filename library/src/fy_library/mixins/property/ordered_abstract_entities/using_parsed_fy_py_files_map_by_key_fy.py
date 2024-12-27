@@ -20,10 +20,15 @@ from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.ordered_abstract_entities.abc_fy import (
+    AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class AbstractEntitiesOrderingIndex_UsingParsedFyPyFilesMapByKey_PropertyMixin(
     # Property_mixins
+    AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     abc.ABC,
 ):

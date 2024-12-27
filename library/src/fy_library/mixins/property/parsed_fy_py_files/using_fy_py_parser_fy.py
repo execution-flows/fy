@@ -20,11 +20,16 @@ from fy_library.mixins.property.fy_py_files_to_parse.abc_fy import (
     FyPyFilesToParse_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.parsed_fy_py_files.abc_fy import (
+    ParsedFyPyFiles_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class ParsedFyPyFiles_UsingFyPyParser_PropertyMixin(
     # Property_mixins
     FyPyFilesToParse_PropertyMixin_ABC,
+    ParsedFyPyFiles_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

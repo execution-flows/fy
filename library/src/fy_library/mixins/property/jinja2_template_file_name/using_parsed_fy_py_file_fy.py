@@ -14,10 +14,15 @@ from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.jinja2_template_file_name.abc_fy import (
+    Jinja2TemplateFileName_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
+    Jinja2TemplateFileName_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,
 ):

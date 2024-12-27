@@ -19,7 +19,10 @@ from fy_library.constants import (
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
-from fy_library.mixins.property.method_file_split.abc_fy import MethodFileSplitModel
+from fy_library.mixins.property.method_file_split.abc_fy import (
+    MethodFileSplitModel,
+    MethodFileSplit_PropertyMixin_ABC,
+)
 
 _METHOD_STRING_SPLIT_REGEX: Final = re.compile(
     rf"method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s*"
@@ -34,6 +37,7 @@ _METHOD_STRING_SPLIT_REGEX: Final = re.compile(
 class MethodFileSplit_UsingMethodRegex_PropertyMixin(
     # Property_mixins
     FyCode_PropertyMixin_ABC,
+    MethodFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

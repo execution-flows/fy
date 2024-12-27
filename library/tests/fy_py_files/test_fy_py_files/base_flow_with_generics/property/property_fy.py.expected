@@ -9,13 +9,20 @@ property greeting[GreetingT]: GreetingT using greeting_message:
 """
 
 from functools import cached_property
+import abc
 from typing import Generic
+from fy_py_files.test_fy_py_files.base_flow_with_generics.property.abc_fy import (
+    Greeting_PropertyMixin_ABC,
+)
 from ..greetings_t import GreetingT
 
 
 # fy:start ===>>>
 class Greeting_UsingGreetingMessage_PropertyMixin(
+    # Property_mixins
+    Greeting_PropertyMixin_ABC[GreetingT],
     Generic[GreetingT],
+    abc.ABC,
 ):
     @cached_property
     def _greeting(self) -> GreetingT:

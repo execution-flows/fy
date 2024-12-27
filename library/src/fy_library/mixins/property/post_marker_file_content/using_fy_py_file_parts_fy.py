@@ -13,11 +13,16 @@ from fy_library.mixins.property.fy_py_file_parts.abc_fy import (
     FyPyFileParts_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.post_marker_file_content.abc_fy import (
+    PostMarkerFileContent_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class PostMarkerFileContent_UsingFyPyFileParts_PropertyMixin(
     # Property_mixins
     FyPyFileParts_PropertyMixin_ABC,
+    PostMarkerFileContent_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

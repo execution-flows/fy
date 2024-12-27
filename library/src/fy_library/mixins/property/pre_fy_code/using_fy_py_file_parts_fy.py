@@ -13,11 +13,16 @@ from fy_library.mixins.property.fy_py_file_parts.abc_fy import (
     FyPyFileParts_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.pre_fy_code.abc_fy import (
+    PreFyCode_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class PreFyCode_UsingFyPyFileParts_PropertyMixin(
     # Property_mixins
     FyPyFileParts_PropertyMixin_ABC,
+    PreFyCode_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

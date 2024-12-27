@@ -12,4 +12,6 @@ class ParsedPropertyFyPyFile_UsingSetter_PropertyMixin:
         self, parsed_property_fy_py_file: ParsedPropertyFyPyFile
     ) -> None:
         self.__parsed_property_fy_py_file = parsed_property_fy_py_file
-        # fy:end <<<===
+
+
+# fy:end <<<===

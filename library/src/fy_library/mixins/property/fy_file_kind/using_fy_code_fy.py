@@ -24,6 +24,9 @@ from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
+from fy_library.mixins.property.fy_file_kind.abc_fy import (
+    FyFileKind_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
     FyPyFileToParse_PropertyMixin_ABC,
 )
@@ -60,8 +63,9 @@ _PROPERTY_REGEX: Final = re.compile(
 # fy:start ===>>>
 class FyFileKind_UsingFyCode_PropertyMixin(
     # Property_mixins
-    FyPyFileToParse_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
+    FyFileKind_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

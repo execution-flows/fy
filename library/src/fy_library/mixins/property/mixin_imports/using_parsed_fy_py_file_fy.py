@@ -44,12 +44,17 @@ from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.mixin_imports.abc_fy import (
+    MixinImports_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class MixinImports_UsingParsedFyPyFile_PropertyMixin(
     # Property_mixins
-    ParsedFyPyFile_PropertyMixin_ABC,
     MixinImportMap_PropertyMixin_ABC,
+    MixinImports_PropertyMixin_ABC,
+    ParsedFyPyFile_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     abc.ABC,
 ):

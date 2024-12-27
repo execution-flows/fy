@@ -12,4 +12,6 @@ class AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin:
         self, abstract_entities_ordering_index: Dict[str, int]
     ) -> None:
         self.__abstract_entities_ordering_index = abstract_entities_ordering_index
-        # fy:end <<<===
+
+
+# fy:end <<<===

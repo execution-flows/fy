@@ -22,12 +22,17 @@ from fy_library.mixins.property.property_setter_mixins.abc_fy import (
 from typing import List
 import abc
 
+from fy_library.mixins.property.parsed_fy_py_files.abc_fy import (
+    ParsedFyPyFiles_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_PropertyMixin(
     # Property_mixins
-    PropertySetterMixins_PropertyMixin_ABC,
+    ParsedFyPyFiles_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+    PropertySetterMixins_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

@@ -13,4 +13,6 @@ class AbstractPropertyMixins_UsingSetter_PropertyMixin:
         self, abstract_property_mixins: List[AbstractPropertyModel]
     ) -> None:
         self.__abstract_property_mixins = abstract_property_mixins
-        # fy:end <<<===
+
+
+# fy:end <<<===

@@ -13,4 +13,6 @@ class RequiredPropertySettersFyPy_UsingSetter_PropertyMixin:
         self, required_property_setters_fy_py: List[PropertySetterFyPyFile]
     ) -> None:
         self.__required_property_setters_fy_py = required_property_setters_fy_py
-        # fy:end <<<===
+
+
+# fy:end <<<===
