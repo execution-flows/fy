@@ -13,9 +13,7 @@ import abc
 
 from fy_py_files.test_fy_py_files.multiple_imports.abc_fy import Message
 
-from fy_py_files.test_fy_py_files.multiple_imports.abc_fy import (
-    Hello_PropertyMixin_ABC,
-)
+from fy_py_files.test_fy_py_files.multiple_imports.abc_fy import Hello_PropertyMixin_ABC
 
 
 # fy:start ===>>>

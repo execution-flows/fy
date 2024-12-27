@@ -67,12 +67,12 @@ class FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin(
                 + import_line_split[1:]
             )
 
-        return self.__group_imports(
+        return self.__format_imports(
             sorted(list(mixin_imports_result), key=lambda i: import_sort_key(i))
             + sorted(list(user_imports_results), key=lambda i: import_sort_key(i))
         )
 
-    def __group_imports(self, imports: list[str]) -> list[str]:
+    def __format_imports(self, imports: list[str]) -> list[str]:
         result_imports: list[str] = []
         for import_line in imports:
             if import_line.startswith("import ") or len(import_line) <= 88:
@@ -91,18 +91,25 @@ class FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin(
         pre_marker_imports: set[str],
     ) -> list[str]:
         result_imports: list[str] = []
+
+        def import_line_generate_and_append(import_classes: str, from_package: str):
+            for import_class in import_classes.split(","):
+                import_class = import_class.strip()
+                if import_class != "":
+                    generated_import_line = f"{from_package} import {import_class}"
+                    if generated_import_line not in pre_marker_imports:
+                        result_imports.append(generated_import_line)
+
         collecting_from_import: str | None = None
+
         for pre_marker_line in import_lines:
             if collecting_from_import is not None:
                 end_of_imports = pre_marker_line.strip().endswith(")")
                 if end_of_imports:
                     pre_marker_line = pre_marker_line.strip()[:-1]
-                for import_class in pre_marker_line.split(","):
-                    import_class = import_class.strip()
-                    if import_class != "":
-                        import_line = f"{collecting_from_import} import {import_class}"
-                        if import_line not in pre_marker_imports:
-                            result_imports.append(import_line)
+                import_line_generate_and_append(
+                    import_classes=pre_marker_line, from_package=collecting_from_import
+                )
                 if end_of_imports:
                     collecting_from_import = None
 
@@ -126,12 +133,9 @@ class FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin(
             start_of_collection = from_classes.strip().startswith("(")
             if start_of_collection:
                 from_classes = from_classes.strip()[1:]
-            for import_class in from_classes.split(","):
-                import_class = import_class.strip()
-                if import_class != "":
-                    import_line = f"{from_import} import {import_class}"
-                    if import_line not in pre_marker_imports:
-                        result_imports.append(import_line)
+            import_line_generate_and_append(
+                import_classes=from_classes, from_package=from_import
+            )
             if start_of_collection:
                 collecting_from_import = from_import
             continue
