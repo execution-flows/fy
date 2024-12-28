@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-base flow WithAbcProperty -> None:
+base flow with_abc_property -> None:
     property greeting
 fy"""
 

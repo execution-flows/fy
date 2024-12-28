@@ -1,16 +1,19 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 base flow hello_world -> None:
+    method greet using constant
 fy"""
 
 import abc
 from fy_core.base.flow_base import FlowBase
+from fy_py_files.test_fy_py_files.base_flow_using_method.using_constant_fy import (
+    Greet_UsingConstant_MethodMixin,
+)
 
 
 # fy:start ===>>>
 class HelloWorld_BaseFlow(
+    # Method Mixins
+    Greet_UsingConstant_MethodMixin,
     # Base
     FlowBase[None],
     abc.ABC,

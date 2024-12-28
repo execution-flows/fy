@@ -37,4 +37,4 @@ class ImportBaseFlow_UsingDeclaredBaseFlowName_PropertyMixin(
         # fy:end <<<===
         if self._declared_base_flow_name == "":
             return []
-        return [self._mixin_import_map[self._declared_base_flow_name.lower()]]
+        return [self._mixin_import_map[self._declared_base_flow_name]]
