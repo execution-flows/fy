@@ -5,7 +5,7 @@
 method generate_and_save_fy_py_code -> None using parsed_fy_py_file__and__fy_py_file_content:
     property parsed_fy_py_file
     property fy_py_file_content
-"""
+fy"""
 
 import abc
 

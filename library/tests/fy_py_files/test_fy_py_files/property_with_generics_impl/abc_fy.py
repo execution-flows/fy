@@ -6,7 +6,7 @@ from .greetings_t import SpanishGreeting
 
 
 property greeting: SpanishGreeting
-"""
+fy"""
 
 import abc
 from .greetings_t import SpanishGreeting

@@ -6,7 +6,7 @@ from fy_py_files.test_fy_py_files.multiple_imports.abc_fy import Message
 
 
 property hello: Message using domain:
-"""
+fy"""
 
 from functools import cached_property
 import abc

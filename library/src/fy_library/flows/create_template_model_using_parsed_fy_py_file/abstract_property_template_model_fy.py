@@ -4,7 +4,7 @@
 """fy
 flow CreateAbstractPropertyTemplateModel_UsingParsedFyPyFile -> AbstractPropertyTemplateModel:
     property parsed_fy_py_file using setter
-"""
+fy"""
 
 from typing import Any
 

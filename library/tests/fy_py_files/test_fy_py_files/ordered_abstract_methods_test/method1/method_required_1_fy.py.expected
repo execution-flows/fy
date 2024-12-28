@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 method method_required_1 -> str using required_1:
-"""
+fy"""
 
 import abc
 from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method1.abc_fy import (

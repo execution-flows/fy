@@ -4,7 +4,7 @@
 """fy
 property method_file_split: MethodFileSplitModel using method_regex:
     property fy_code
-"""
+fy"""
 
 import abc
 import re

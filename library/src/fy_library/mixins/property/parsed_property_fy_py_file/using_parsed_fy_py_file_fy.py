@@ -13,7 +13,7 @@ property parsed_property_fy_py_file: ParsedPropertyFyPyFile using parsed_fy_py_f
     property fy_py_file_to_parse
     property property_file_split
     property included_mixins
-"""
+fy"""
 
 import abc
 from functools import cached_property

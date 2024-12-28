@@ -6,7 +6,7 @@ from ..greetings_t import FrenchGreeting
 
 
 property french_greeting: FrenchGreeting
-"""
+fy"""
 
 import abc
 from ..greetings_t import FrenchGreeting

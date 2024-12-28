@@ -8,7 +8,7 @@ from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 
 property parsed_fy_py_files: List[ParsedFyPyFile] using fy_py_parser:
     property fy_py_files_to_parse
-"""
+fy"""
 
 import abc
 from functools import cached_property

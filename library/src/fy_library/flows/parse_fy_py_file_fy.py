@@ -13,7 +13,7 @@ flow ParseFyPyFile -> ParsedFyPyFile:
     property post_marker_file_content using fy_py_file_parts
     property pre_marker_file_content using fy_py_file_parts
     property fy_file_kind using fy_code
-"""
+fy"""
 
 from pathlib import Path
 from typing import Any

@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property jinja2_template_file_name: str using property_setter_constant:
-"""
+fy"""
 
 from functools import cached_property
 

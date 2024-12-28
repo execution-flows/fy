@@ -4,7 +4,7 @@
 """fy
 property jinja2_template_file_name: str using parsed_fy_py_file:
     property parsed_fy_py_file
-"""
+fy"""
 
 import abc
 from functools import cached_property

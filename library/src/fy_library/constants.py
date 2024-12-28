@@ -5,7 +5,7 @@ from typing import Final
 
 FY_PY_FILE_SIGNATURE: Final = '"""fy\n'
 
-FY_CODE_FILE_END_SIGNATURE: Final = '"""'
+FY_CODE_FILE_END_SIGNATURE: Final = 'fy"""'
 
 FY_ENTITY_REGEX_STRING: Final = r"\w+"
 

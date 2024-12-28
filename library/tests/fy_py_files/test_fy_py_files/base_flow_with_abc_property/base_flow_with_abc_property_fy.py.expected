@@ -4,7 +4,7 @@
 """fy
 base flow WithAbcProperty -> None:
     property greeting
-"""
+fy"""
 
 import abc
 from fy_core.base.flow_base import FlowBase

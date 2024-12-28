@@ -6,7 +6,7 @@ from typing import Dict
 
 
 property abstract_entities_ordering_index: Dict[str, int]
-"""
+fy"""
 
 import abc
 

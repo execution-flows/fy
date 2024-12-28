@@ -8,7 +8,7 @@ base flow Ordering -> str:
     property property_required_1
     method method_required_2
     method method_required_1
-"""
+fy"""
 
 import abc
 from fy_core.base.flow_base import FlowBase

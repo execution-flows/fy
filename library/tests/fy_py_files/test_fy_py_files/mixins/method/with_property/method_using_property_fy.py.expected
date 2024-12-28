@@ -1,7 +1,7 @@
 """fy
 method greet(argument: str) -> None using greeting:
     property greeting
-"""
+fy"""
 
 import abc
 from fy_py_files.test_fy_py_files.mixins.method.with_property.abc_fy import (

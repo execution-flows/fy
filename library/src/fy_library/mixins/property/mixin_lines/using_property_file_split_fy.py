@@ -7,7 +7,7 @@ from typing import List
 
 property mixin_lines: List[str] using property_file_split:
     property property_file_split
-"""
+fy"""
 
 import abc
 from functools import cached_property

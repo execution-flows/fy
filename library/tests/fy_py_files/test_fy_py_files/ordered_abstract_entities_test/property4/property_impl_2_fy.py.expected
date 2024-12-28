@@ -5,7 +5,7 @@
 property property_impl_2: str using impl_2:
     property property_required_2
     property property_required_1
-"""
+fy"""
 
 import abc
 from functools import cached_property

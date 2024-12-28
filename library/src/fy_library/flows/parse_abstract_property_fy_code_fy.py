@@ -14,7 +14,7 @@ flow ParseAbstractPropertyFyCode -> ParsedFyPyFile:
     property abstract_property_file_split using abstract_property_regex
     property parsed_abstract_property_fy_py_file using parsed_fy_py_file
 
-"""
+fy"""
 
 from pathlib import Path
 from typing import Any

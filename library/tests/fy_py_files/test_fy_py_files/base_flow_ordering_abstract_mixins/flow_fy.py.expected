@@ -7,7 +7,7 @@ flow Message(Ordering) -> str:
     property property_required_2 using required_2
     method method_required_1 using required_1
     method method_required_2 using required_2
-"""
+fy"""
 
 from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.baseflow1.base_flow_fy import (
     Ordering_BaseFlow,

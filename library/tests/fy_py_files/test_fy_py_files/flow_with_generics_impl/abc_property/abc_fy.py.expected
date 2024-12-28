@@ -6,7 +6,7 @@ from ..greetings_t import GreetingT
 
 
 property greeting[GreetingT]: GreetingT
-"""
+fy"""
 
 import abc
 from typing import Generic

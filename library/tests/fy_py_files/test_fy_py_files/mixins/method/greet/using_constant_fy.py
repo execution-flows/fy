@@ -1,6 +1,6 @@
 """fy
 method greet -> None using constant:
-"""
+fy"""
 
 import abc
 from fy_py_files.test_fy_py_files.mixins.method.greet.abc_fy import (

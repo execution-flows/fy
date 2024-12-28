@@ -3,7 +3,7 @@ import datetime
 
 
 property greeting: datetime.datetime
-"""
+fy"""
 
 import abc
 import datetime

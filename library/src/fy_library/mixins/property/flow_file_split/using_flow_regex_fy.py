@@ -4,7 +4,7 @@
 """fy
 property flow_file_split: FlowFileSplitModel using flow_regex:
     property fy_code
-"""
+fy"""
 
 import abc
 import re

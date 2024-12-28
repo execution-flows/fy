@@ -1,7 +1,7 @@
 """fy
 base flow HelloWorld -> None:
     method greet using constant
-"""
+fy"""
 
 import abc
 from fy_core.base.flow_base import FlowBase

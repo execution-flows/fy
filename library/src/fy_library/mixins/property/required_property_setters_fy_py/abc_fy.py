@@ -7,7 +7,7 @@ from fy_library.domain.parsed_fy_py_file import PropertySetterFyPyFile
 
 
 property required_property_setters_fy_py: List[PropertySetterFyPyFile]
-"""
+fy"""
 
 import abc
 from typing import List

@@ -15,7 +15,7 @@ flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
     property mixin_imports_code using filtered_mixin_imports
     property fy_py_file_content using parsed_fy_py_file
     method generate_and_save_fy_py_code using parsed_fy_py_file__and__fy_py_file_content
-"""
+fy"""
 
 from typing import Any, Dict
 

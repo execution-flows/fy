@@ -6,7 +6,7 @@ from typing import Dict
 
 
 property mixin_import_map: Dict[str, str]
-"""
+fy"""
 
 from typing import Dict
 import abc

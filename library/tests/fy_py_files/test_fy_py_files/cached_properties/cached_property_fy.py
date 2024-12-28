@@ -1,6 +1,6 @@
 """fy
 property greeting: str using greeting:
-"""
+fy"""
 
 import abc
 from functools import cached_property

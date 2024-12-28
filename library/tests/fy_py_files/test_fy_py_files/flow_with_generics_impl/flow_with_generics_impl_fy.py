@@ -8,7 +8,7 @@ from .greetings_t import GreetingT, Greet
 flow HelloWorld[GreetingT] -> None:
     property greeting using greeting_message[GreetingT]
     method greet using greeting[Greet]
-"""
+fy"""
 
 from fy_core.base.flow_base import FlowBase
 from fy_py_files.test_fy_py_files.flow_with_generics_impl.abc_property.property_fy import (

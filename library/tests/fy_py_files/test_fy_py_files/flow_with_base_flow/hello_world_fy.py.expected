@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 flow HelloWorld(Greeting) -> None:
-"""
+fy"""
 
 from fy_py_files.test_fy_py_files.flow_with_base_flow.greeting_base_flow_fy import (
     Greeting_BaseFlow,

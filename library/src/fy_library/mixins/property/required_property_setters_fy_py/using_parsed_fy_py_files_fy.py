@@ -9,7 +9,7 @@ from fy_library.domain.parsed_fy_py_file import PropertySetterFyPyFile
 property required_property_setters_fy_py: List[PropertySetterFyPyFile] using parsed_fy_py_files:
     property parsed_fy_py_files
     property parsed_fy_py_files_map_by_key
-"""
+fy"""
 
 import abc
 from functools import cached_property

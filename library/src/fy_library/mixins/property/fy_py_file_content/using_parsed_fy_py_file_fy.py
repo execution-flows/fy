@@ -6,7 +6,7 @@ property fy_py_file_content: str using parsed_fy_py_file:
     property parsed_fy_py_file
     property mixin_imports_code
     property generated_fy_py_code
-"""
+fy"""
 
 import abc
 from functools import cached_property

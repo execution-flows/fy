@@ -9,7 +9,7 @@ from typing import List
 property import_base_flow: List[str] using declared_base_flow_name:
     property declared_base_flow_name
     property mixin_import_map
-"""
+fy"""
 
 from functools import cached_property
 

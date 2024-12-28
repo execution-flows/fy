@@ -7,7 +7,7 @@ from fy_library.domain.mixin_models import MethodMixinModel
 
 property optional_method_mixin_model: MethodMixinModel | None using mixin_line:
     property mixin_line
-"""
+fy"""
 
 import abc
 import re

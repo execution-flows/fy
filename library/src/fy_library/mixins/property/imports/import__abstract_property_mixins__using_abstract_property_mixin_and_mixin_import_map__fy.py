@@ -8,7 +8,7 @@ from typing import List
 property import_abstract_property_mixins: List[str] using abstract_property_mixin_and_mixin_import_map:
     property mixin_import_map
     property abstract_property_mixins
-"""
+fy"""
 
 from functools import cached_property
 from typing import List

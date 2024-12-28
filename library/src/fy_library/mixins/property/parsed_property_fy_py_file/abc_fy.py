@@ -6,7 +6,7 @@ from fy_library.domain.parsed_fy_py_file import ParsedPropertyFyPyFile
 
 
 property parsed_property_fy_py_file: ParsedPropertyFyPyFile
-"""
+fy"""
 
 from fy_library.domain.parsed_fy_py_file import ParsedPropertyFyPyFile
 import abc

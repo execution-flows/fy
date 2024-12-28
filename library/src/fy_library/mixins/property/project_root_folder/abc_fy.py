@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 property project_root_folder: Path
-"""
+fy"""
 
 import abc
 from pathlib import Path

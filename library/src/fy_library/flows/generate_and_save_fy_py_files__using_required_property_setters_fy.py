@@ -4,7 +4,7 @@
 """fy
 flow GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters -> None:
     property required_property_setters_fy_py using setter
-"""
+fy"""
 
 from typing import Any, List
 

@@ -7,7 +7,7 @@ flow Message -> str:
     property property_required_2 using required_2
     property property_impl_1 using impl_1
     property property_impl_2 using impl_2
-"""
+fy"""
 
 from fy_core.base.flow_base import FlowBase
 from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property1.property_required_1_fy import (

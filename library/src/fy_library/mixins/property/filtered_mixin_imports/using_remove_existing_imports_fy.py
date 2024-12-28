@@ -8,7 +8,7 @@ from typing import List
 property filtered_mixin_imports: List[str] using remove_existing_imports:
     property mixin_imports
     property parsed_fy_py_file
-"""
+fy"""
 
 import abc
 import re

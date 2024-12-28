@@ -14,7 +14,7 @@ flow CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateMo
     property abstract_entities_ordering_index using setter
     property abstract_mixins using parsed_base_flow_fy_py_file
     property mro_ordered_abstract_mixins using abstract_mixins_and_ordered_abstract_entities
-"""
+fy"""
 
 from typing import Any, List
 from typing import Dict

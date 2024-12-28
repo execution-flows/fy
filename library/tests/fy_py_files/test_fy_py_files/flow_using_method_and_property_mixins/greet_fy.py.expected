@@ -1,7 +1,7 @@
 """fy
 method greet -> None using greeting:
     property greeting
-"""
+fy"""
 
 import abc
 from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.abc_fy import (

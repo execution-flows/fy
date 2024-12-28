@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property abstract_method_file_split: AbstractMethodFileSplitModel
-"""
+fy"""
 
 import abc
 from pydantic import BaseModel

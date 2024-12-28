@@ -8,7 +8,7 @@ from typing import List
 property user_imports_from_mixins: List[str] using property_setter_mixins:
     property parsed_fy_py_files_map_by_key
     property property_setter_mixins
-"""
+fy"""
 
 import abc
 from functools import cached_property

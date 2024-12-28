@@ -13,7 +13,7 @@ flow PropertyImports -> List[str]:
     property import_generic using generic_constant
     property import_abc using when_abstract_property_mixins_exists
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
-"""
+fy"""
 
 from typing import List, Any, Dict
 

@@ -10,7 +10,7 @@ base flow HelloWorld[GreetingT] -> None:
     property greeting[GreetingT]
     method greet using greeting[Greet]
     method greet[Greet]
-"""
+fy"""
 
 import abc
 from fy_core.base.flow_base import FlowBase

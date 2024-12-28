@@ -11,7 +11,7 @@ flow CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels
     property property_mixins using template_model_properties
     property property_setter_mixins using property_mixins
     property parsed_fy_py_files using property_setter_mixins__mapped_to_abstract_property
-"""
+fy"""
 
 from typing import Any
 from typing import Dict

@@ -7,7 +7,7 @@ flow CreatePropertyTemplateModel_UsingParsedFyPyFile -> PropertyTemplateModel:
     property abstract_entities_ordering_index using setter
     property abstract_mixins using parsed_property_fy_py_file
     property mro_ordered_abstract_mixins using abstract_mixins_and_ordered_abstract_entities
-"""
+fy"""
 
 from typing import Any, Dict
 

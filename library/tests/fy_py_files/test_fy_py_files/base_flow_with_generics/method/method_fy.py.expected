@@ -6,7 +6,7 @@ from ..greetings_t import GreetT
 
 
 method greet[GreetT](message: str) -> str using greeting:
-"""
+fy"""
 
 import abc
 from fy_py_files.test_fy_py_files.base_flow_with_generics.method.abc_fy import (

@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property base_flow_file_split: BaseFlowFileSplitModel
-"""
+fy"""
 
 import abc
 from typing import List

@@ -4,7 +4,7 @@
 """fy
 property mixin_imports_code: str using filtered_mixin_imports:
     property filtered_mixin_imports
-"""
+fy"""
 
 import abc
 from functools import cached_property

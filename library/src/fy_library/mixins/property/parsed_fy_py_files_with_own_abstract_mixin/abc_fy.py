@@ -7,7 +7,7 @@ from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 
 
 property parsed_fy_py_files_with_own_abstract_mixin: List[ParsedFyPyFile]
-"""
+fy"""
 
 import abc
 from typing import List

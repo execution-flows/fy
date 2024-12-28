@@ -6,7 +6,7 @@ from ..greetings_t import GreetingT
 
 
 property greeting[GreetingT]: GreetingT using greeting_message:
-"""
+fy"""
 
 import abc
 from functools import cached_property

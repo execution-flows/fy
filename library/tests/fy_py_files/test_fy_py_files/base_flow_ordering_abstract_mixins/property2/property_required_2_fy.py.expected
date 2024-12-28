@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property property_required_2: str using required_2:
-"""
+fy"""
 
 import abc
 from functools import cached_property

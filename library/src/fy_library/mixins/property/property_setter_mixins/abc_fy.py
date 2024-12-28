@@ -7,7 +7,7 @@ from fy_library.domain.mixin_models import PropertyMixinModel
 
 
 property property_setter_mixins: List[PropertyMixinModel]
-"""
+fy"""
 
 from fy_library.domain.mixin_models import PropertyMixinModel
 from typing import List

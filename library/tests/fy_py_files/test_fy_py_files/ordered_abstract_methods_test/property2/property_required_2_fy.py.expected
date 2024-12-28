@@ -4,7 +4,7 @@
 """fy
 property property_required_2: str using required_2:
     property property_required_1
-"""
+fy"""
 
 import abc
 from functools import cached_property
