@@ -5,7 +5,7 @@
 from .greetings_t import GreetingT
 
 
-property greeting[GreetingT]
+property greeting[GreetingT]: GreetingT
 """
 
 import abc
