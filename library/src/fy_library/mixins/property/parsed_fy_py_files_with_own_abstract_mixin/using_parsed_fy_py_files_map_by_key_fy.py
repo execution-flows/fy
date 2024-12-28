@@ -11,13 +11,11 @@ property parsed_fy_py_files_with_own_abstract_mixin: List[ParsedFyPyFile] using 
     property parsed_fy_py_files_map_by_key
 """
 
-from functools import cached_property
 import abc
-
-from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
-    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
-)
+from functools import cached_property
 from typing import List, cast
+
+from fy_library.domain.mixin_models import AbstractPropertyModel, MixinModelKind
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     ParsedFyPyFileKind,
@@ -25,10 +23,11 @@ from fy_library.domain.parsed_fy_py_file import (
     convert_parsed_abstract_method_fy_py_file_to_abstract_method_mixin,
     ParsedAbstractMethodFyPyFile,
     ParsedAbstractPropertyFyPyFile,
-    convert_parsed_abstract_property_fy_py_file_to_abstract_method_mixin,
     ParsedPropertyFyPyFile,
 )
-
+from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
+    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.parsed_fy_py_files_with_own_abstract_mixin.abc_fy import (
     ParsedFyPyFilesWithOwnAbstractMixin_PropertyMixin_ABC,
 )
@@ -106,8 +105,12 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                             **parsed_property_fy_py_file.model_dump(),
                             "abstract_property_mixins": parsed_property_fy_py_file.abstract_property_mixins
                             + [
-                                convert_parsed_abstract_property_fy_py_file_to_abstract_method_mixin(
-                                    parsed_abstract_property_fy_py_file=parsed_abstract_property_fy_py_file
+                                AbstractPropertyModel(
+                                    python_class_name=parsed_abstract_property_fy_py_file.python_class_name,
+                                    kind=MixinModelKind.ABSTRACT_PROPERTY,
+                                    property_name=parsed_property_fy_py_file.property_name,
+                                    generics_impl=parsed_property_fy_py_file.generics_def
+                                    or parsed_property_fy_py_file.property_type,
                                 )
                             ],
                         }
