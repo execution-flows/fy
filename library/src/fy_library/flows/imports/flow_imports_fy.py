@@ -5,7 +5,7 @@
 from typing import List
 
 
-flow FlowImports -> List[str]:
+flow flow_imports -> List[str]:
     property property_mixins using setter
     property method_mixins using setter
     property parsed_fy_py_files_map_by_key using setter

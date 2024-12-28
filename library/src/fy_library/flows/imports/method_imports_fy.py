@@ -5,7 +5,7 @@
 from typing import List
 
 
-flow MethodImports -> List[str]:
+flow method_imports -> List[str]:
     property abstract_property_mixins using setter
     property abstract_method_mixins using setter
     property mixin_import_map using setter
