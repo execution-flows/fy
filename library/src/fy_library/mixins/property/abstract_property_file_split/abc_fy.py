@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property abstract_property_file_split: AbstractPropertyFileSplitModel
-fyfy"""
+fy"""
 
 import abc
 

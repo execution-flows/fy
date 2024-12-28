@@ -7,7 +7,7 @@ from fy_library.mixins.property.abstract_property_file_split.abc_fy import Abstr
 
 property abstract_property_file_split: AbstractPropertyFileSplitModel using abstract_property_regex:
     property fy_code
-fyfy"""
+fy"""
 
 import abc
 import re
