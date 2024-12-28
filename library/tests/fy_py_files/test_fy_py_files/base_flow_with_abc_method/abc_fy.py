@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 method greet -> str
-"""
+fy"""
 
 import abc
 

@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property multi_type_abstract_property: dict[str, str]
-"""
+fy"""
 
 import abc
 

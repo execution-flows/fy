@@ -6,7 +6,7 @@ from typing import List
 
 
 property import_generic: List[str]
-"""
+fy"""
 
 import abc
 from typing import List

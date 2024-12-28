@@ -4,7 +4,7 @@
 """fy
 @callable
 base flow HelloCallable -> None:
-"""
+fy"""
 
 import abc
 from fy_core.base.flow_base import FlowBase

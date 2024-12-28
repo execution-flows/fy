@@ -13,7 +13,7 @@ flow ParseAbstractMethodFyCode -> ParsedFyPyFile:
     property fy_py_file_to_parse using setter
     property abstract_method_file_split using abstract_method_regex
     property parsed_abstract_method_fy_py_file using parsed_fy_py_file
-"""
+fy"""
 
 from pathlib import Path
 from typing import Any

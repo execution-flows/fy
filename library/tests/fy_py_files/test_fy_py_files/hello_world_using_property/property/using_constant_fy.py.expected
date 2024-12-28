@@ -2,7 +2,7 @@
 from pathlib import Path
 
 property greeting: Path using constant:
-"""
+fy"""
 
 from functools import cached_property
 from pathlib import Path

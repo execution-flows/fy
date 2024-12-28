@@ -14,7 +14,7 @@ flow MethodImports -> List[str]:
     property import_abc using when_abstract_property_and_abstract_method_exists
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
     property import_abstract_method_mixins using abstract_method_mixin_and_mixin_import_map
-"""
+fy"""
 
 from typing import Any, Dict
 from typing import List

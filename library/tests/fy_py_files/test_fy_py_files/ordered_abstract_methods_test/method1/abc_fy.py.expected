@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 method method_required_1 -> str
-"""
+fy"""
 
 import abc
 

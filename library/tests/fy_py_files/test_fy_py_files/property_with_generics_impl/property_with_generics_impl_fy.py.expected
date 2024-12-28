@@ -7,7 +7,7 @@ from .greetings_t import GreetingT, SpanishGreeting
 
 property hello_world[GreetingT]: str using spanish_greeting:
     property greeting[SpanishGreeting]
-"""
+fy"""
 
 import abc
 from functools import cached_property

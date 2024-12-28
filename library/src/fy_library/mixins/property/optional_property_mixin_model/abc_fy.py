@@ -6,7 +6,7 @@ from fy_library.domain.mixin_models import PropertyMixinModel
 
 
 property optional_property_mixin_model: PropertyMixinModel | None
-"""
+fy"""
 
 import abc
 

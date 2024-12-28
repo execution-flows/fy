@@ -6,7 +6,7 @@ from typing import List
 
 
 property mixin_imports: List[str]
-"""
+fy"""
 
 from typing import List
 import abc

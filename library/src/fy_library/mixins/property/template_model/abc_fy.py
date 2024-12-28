@@ -6,7 +6,7 @@ from fy_library.domain.fy_py_template_models import BaseTemplateModel
 
 
 property template_model: BaseTemplateModel
-"""
+fy"""
 
 import abc
 

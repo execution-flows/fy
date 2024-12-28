@@ -6,7 +6,7 @@ from typing import List
 
 
 property filtered_mixin_imports: List[str]
-"""
+fy"""
 
 from typing import List
 import abc

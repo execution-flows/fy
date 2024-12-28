@@ -3,7 +3,7 @@ import datetime
 
 
 method encrypt(message: str) -> datetime.datetime
-"""
+fy"""
 
 import abc
 import datetime

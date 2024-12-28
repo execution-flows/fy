@@ -6,7 +6,7 @@ from .greetings_t import GreetingT
 
 
 property hello_world[GreetingT]: str using spanish_greeting:
-"""
+fy"""
 
 from functools import cached_property
 from typing import Generic

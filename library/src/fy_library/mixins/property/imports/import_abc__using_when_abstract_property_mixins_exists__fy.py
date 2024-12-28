@@ -7,7 +7,7 @@ from typing import List
 
 property import_abc: List[str] using when_abstract_property_mixins_exists:
     property abstract_property_mixins
-"""
+fy"""
 
 import abc
 from functools import cached_property

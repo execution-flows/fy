@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 flow HelloWorld -> None:
-"""
+fy"""
 
 from fy_core.base.flow_base import FlowBase
 

@@ -9,7 +9,7 @@ from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 
 property parsed_fy_py_files_with_own_abstract_mixin: List[ParsedFyPyFile] using parsed_fy_py_files_map_by_key:
     property parsed_fy_py_files_map_by_key
-"""
+fy"""
 
 import abc
 from functools import cached_property

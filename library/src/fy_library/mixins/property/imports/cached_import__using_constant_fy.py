@@ -6,7 +6,7 @@ from typing import List
 
 
 property cached_import: List[str] using constant:
-"""
+fy"""
 
 from functools import cached_property
 from typing import List

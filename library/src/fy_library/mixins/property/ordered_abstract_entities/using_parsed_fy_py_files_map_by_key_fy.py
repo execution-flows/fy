@@ -7,7 +7,7 @@ from typing import Dict
 
 property abstract_entities_ordering_index: Dict[str, int] using parsed_fy_py_files_map_by_key:
     property parsed_fy_py_files_map_by_key
-"""
+fy"""
 
 from functools import cached_property
 

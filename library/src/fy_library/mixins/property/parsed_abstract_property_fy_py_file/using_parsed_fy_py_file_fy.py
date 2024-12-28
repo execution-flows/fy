@@ -12,7 +12,7 @@ property parsed_abstract_property_fy_py_file: ParsedAbstractPropertyFyPyFile usi
     property post_marker_file_content
     property fy_py_file_to_parse
     property abstract_property_file_split
-"""
+fy"""
 
 import abc
 from functools import cached_property

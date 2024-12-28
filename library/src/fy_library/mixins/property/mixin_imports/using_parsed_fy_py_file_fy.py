@@ -9,7 +9,7 @@ property mixin_imports: List[str] using parsed_fy_py_file:
     property parsed_fy_py_file
     property mixin_import_map
     property parsed_fy_py_files_map_by_key
-"""
+fy"""
 
 import abc
 from functools import cached_property

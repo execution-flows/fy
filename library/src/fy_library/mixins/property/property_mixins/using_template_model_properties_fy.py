@@ -8,7 +8,7 @@ from fy_library.domain.mixin_models import PropertyMixinModel
 
 property property_mixins: List[PropertyMixinModel] using template_model_properties:
     property parsed_fy_py_file
-"""
+fy"""
 
 from functools import cached_property
 from typing import List

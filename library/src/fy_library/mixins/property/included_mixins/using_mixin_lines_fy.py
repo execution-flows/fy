@@ -7,7 +7,7 @@ from fy_library.mixins.property.included_mixins.abc_fy import IncludedMixinsMode
 
 property included_mixins: IncludedMixinsModel using mixin_models:
     property mixin_models
-"""
+fy"""
 
 import abc
 from functools import cached_property

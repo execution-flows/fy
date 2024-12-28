@@ -6,7 +6,7 @@ from ..greetings_t import GreetT
 
 
 method greet[GreetT](message: str) -> GreetT
-"""
+fy"""
 
 import abc
 from typing import Generic

@@ -16,7 +16,7 @@ flow ParseBaseFlowFyCode -> ParsedFyPyFile:
     property mixin_models using mixin_lines
     property included_mixins using mixin_models
     property parsed_base_flow_fy_py_file using parsed_fy_py_file
-"""
+fy"""
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile

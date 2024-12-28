@@ -6,7 +6,7 @@ from fy_library.domain.mixin_models import AbstractPropertyModel
 
 
 property optional_abstract_property_mixin_model: AbstractPropertyModel | None
-"""
+fy"""
 
 from fy_library.domain.mixin_models import AbstractPropertyModel
 import abc

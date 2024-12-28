@@ -4,7 +4,7 @@
 """fy
 property pre_fy_code: str using fy_py_file_parts:
     property fy_py_file_parts
-"""
+fy"""
 
 import abc
 from functools import cached_property

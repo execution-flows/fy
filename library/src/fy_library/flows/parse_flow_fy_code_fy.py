@@ -16,7 +16,7 @@ flow ParseFlowFyCode -> ParsedFyPyFile:
     property mixin_models using mixin_lines
     property included_mixins using mixin_models
     property parsed_flow_fy_py_file using parsed_fy_py_file
-"""
+fy"""
 
 from pathlib import Path
 from typing import Any

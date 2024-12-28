@@ -6,7 +6,7 @@ from .greetings_t import SpanishGreeting
 
 
 property greeting: SpanishGreeting using spanish_greeting:
-"""
+fy"""
 
 import abc
 from functools import cached_property

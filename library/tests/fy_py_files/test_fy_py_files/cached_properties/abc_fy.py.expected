@@ -1,6 +1,6 @@
 """fy
 property greeting: str
-"""
+fy"""
 
 import abc
 

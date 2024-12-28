@@ -6,7 +6,7 @@ from .greetings_t import GreetingT
 
 
 flow HelloWorld[GreetingT] -> None:
-"""
+fy"""
 
 from fy_core.base.flow_base import FlowBase
 from typing import Generic

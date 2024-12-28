@@ -6,7 +6,7 @@ from typing import List
 
 
 property mixin_lines: List[str]
-"""
+fy"""
 
 import abc
 from typing import List

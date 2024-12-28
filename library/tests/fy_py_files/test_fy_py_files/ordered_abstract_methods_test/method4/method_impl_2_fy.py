@@ -7,7 +7,7 @@ method method_impl_2 -> str using impl_2:
     property property_required_1
     method method_required_2
     method method_required_1
-"""
+fy"""
 
 import abc
 from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method1.abc_fy import (

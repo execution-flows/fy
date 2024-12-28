@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property mixin_imports_code: str
-"""
+fy"""
 
 import abc
 

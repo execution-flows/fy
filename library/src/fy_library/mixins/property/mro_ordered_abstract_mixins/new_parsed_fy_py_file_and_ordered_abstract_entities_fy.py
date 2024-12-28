@@ -9,7 +9,7 @@ from fy_library.domain.mixin_models import BaseMixinModel
 property mro_ordered_abstract_mixins: List[BaseMixinModel] using abstract_mixins_and_ordered_abstract_entities:
     property abstract_mixins
     property abstract_entities_ordering_index
-"""
+fy"""
 
 from functools import cached_property
 from typing import List

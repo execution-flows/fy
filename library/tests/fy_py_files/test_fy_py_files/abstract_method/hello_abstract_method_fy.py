@@ -1,6 +1,6 @@
 """fy
 method greet(greeting: str) -> int
-"""
+fy"""
 
 import abc
 

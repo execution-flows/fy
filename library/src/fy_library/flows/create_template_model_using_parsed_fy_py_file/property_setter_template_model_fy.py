@@ -4,7 +4,7 @@
 """fy
 flow CreatePropertySetterTemplateModel_UsingParsedFyPyFile -> PropertySetterTemplateModel:
     property parsed_fy_py_file using setter
-"""
+fy"""
 
 from fy_library.domain.fy_py_template_models import PropertySetterTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, PropertySetterFyPyFile

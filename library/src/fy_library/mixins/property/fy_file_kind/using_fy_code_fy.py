@@ -8,7 +8,7 @@ from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
 property fy_file_kind: ParsedFyPyFileKind using fy_code:
     property fy_py_file_to_parse
     property fy_code
-"""
+fy"""
 
 import abc
 import re

@@ -1,6 +1,6 @@
 """fy
 method greet(greeting: str) -> str | list[int] | None
-"""
+fy"""
 
 import abc
 

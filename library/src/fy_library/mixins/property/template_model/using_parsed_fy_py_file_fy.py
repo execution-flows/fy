@@ -9,7 +9,7 @@ property template_model: BaseTemplateModel using parsed_fy_py_file:
     property parsed_fy_py_file
     property parsed_fy_py_files_map_by_key
     property abstract_entities_ordering_index
-"""
+fy"""
 
 import abc
 from functools import cached_property

@@ -9,7 +9,7 @@ flow Message -> str:
     method method_impl_2 using impl_2
     method method_required_1 using required_1
     method method_required_2 using required_2
-"""
+fy"""
 
 from fy_core.base.flow_base import FlowBase
 from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method1.method_required_1_fy import (

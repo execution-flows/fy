@@ -1,7 +1,7 @@
 """fy
 property greeting: str using french_greeting:
     property french_greeting
-"""
+fy"""
 
 import abc
 from functools import cached_property

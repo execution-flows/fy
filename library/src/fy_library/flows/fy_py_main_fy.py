@@ -16,7 +16,7 @@ flow FyPy_Main -> None:
     property abstract_entities_ordering_index using parsed_fy_py_files_map_by_key
     property required_property_setters_fy_py using parsed_fy_py_files
     property mixin_import_map using parsed_fy_py_files
-"""
+fy"""
 
 from pathlib import Path
 from typing import Any

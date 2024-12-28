@@ -1,6 +1,6 @@
 """fy
 property french_greeting: str
-"""
+fy"""
 
 import abc
 

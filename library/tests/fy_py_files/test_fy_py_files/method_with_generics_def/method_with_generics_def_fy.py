@@ -6,7 +6,7 @@ from .greetings_t import GreetingT
 
 
 method greet[GreetingT](greeting: str) -> int using constant:
-"""
+fy"""
 
 from typing import Generic
 from .greetings_t import GreetingT

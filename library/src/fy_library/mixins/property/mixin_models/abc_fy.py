@@ -7,7 +7,7 @@ from fy_library.domain.mixin_models import BaseMixinModel
 
 
 property mixin_models: List[BaseMixinModel]
-"""
+fy"""
 
 import abc
 from typing import List

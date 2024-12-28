@@ -8,7 +8,7 @@ from fy_library.domain.mixin_models import PropertyMixinModel
 
 property property_setter_mixins: List[PropertyMixinModel] using property_mixins:
     property property_mixins
-"""
+fy"""
 
 import abc
 from functools import cached_property

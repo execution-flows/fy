@@ -25,7 +25,7 @@ flow BaseFlowImports -> List[str]:
     property method_mixins_import using method_mixins_and_mixin_import_map
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
     property import_abstract_method_mixins using abstract_method_mixin_and_mixin_import_map
-"""
+fy"""
 
 from typing import List, Any, Dict
 

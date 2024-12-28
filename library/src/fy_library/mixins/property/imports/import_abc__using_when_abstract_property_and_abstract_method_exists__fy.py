@@ -8,7 +8,7 @@ from typing import List
 property import_abc: List[str] using when_abstract_property_and_abstract_method_exists:
     property abstract_property_mixins
     property abstract_method_mixins
-"""
+fy"""
 
 from functools import cached_property
 from typing import List

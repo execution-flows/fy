@@ -2,7 +2,7 @@
 base flow SetterTest -> None:
     property greeting using setter
     property greeting2 using setter
-"""
+fy"""
 
 import abc
 import datetime

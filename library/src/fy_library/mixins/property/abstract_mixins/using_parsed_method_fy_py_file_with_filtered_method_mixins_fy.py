@@ -8,7 +8,7 @@ from fy_library.domain.mixin_models import BaseMixinModel
 
 property abstract_mixins: List[BaseMixinModel] using parsed_method_fy_py_file:
     property parsed_fy_py_file
-"""
+fy"""
 
 import abc
 from functools import cached_property

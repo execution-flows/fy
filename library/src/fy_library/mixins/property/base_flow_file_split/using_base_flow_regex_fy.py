@@ -7,7 +7,7 @@ from fy_library.mixins.property.base_flow_file_split.abc_fy import BaseFlowFileS
 
 property base_flow_file_split: BaseFlowFileSplitModel using base_flow_regex:
     property fy_code
-"""
+fy"""
 
 import abc
 import re

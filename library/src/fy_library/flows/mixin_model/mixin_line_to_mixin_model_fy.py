@@ -9,7 +9,7 @@ flow MixinLineToMixinModel -> BaseMixinModel:
     property optional_method_mixin_model using mixin_line
     property optional_abstract_property_mixin_model using mixin_line
     property optional_abstract_method_mixin_model using mixin_line
-"""
+fy"""
 
 from pathlib import Path
 from typing import Any

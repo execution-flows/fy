@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property declared_base_flow_name: str
-"""
+fy"""
 
 import abc
 

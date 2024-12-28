@@ -7,7 +7,7 @@ from fy_library.domain.fy_py_template_models import BaseTemplateModel
 
 property template_model: BaseTemplateModel using parsed_fy_py_file__for_setter:
     property parsed_fy_py_file
-"""
+fy"""
 
 import abc
 from functools import cached_property

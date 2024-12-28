@@ -6,4 +6,4 @@ from .method_greeting_t import MethodGreetingT
 
 
 method greet[MethodGreetingT](greeting: str)
-"""
+fy"""

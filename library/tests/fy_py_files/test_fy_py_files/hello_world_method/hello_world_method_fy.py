@@ -1,6 +1,6 @@
 """fy
 method greet(greeting: str) -> int using constant:
-"""
+fy"""
 
 
 # fy:start ===>>>

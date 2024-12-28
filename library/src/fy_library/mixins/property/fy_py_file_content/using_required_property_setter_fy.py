@@ -6,7 +6,7 @@ property fy_py_file_content: str using required_property_setter:
     property parsed_fy_py_file
     property generated_fy_py_code
     property import_generic
-"""
+fy"""
 
 import abc
 from functools import cached_property

@@ -9,7 +9,7 @@ from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 property parsed_fy_py_files: List[ParsedFyPyFile] using property_setter_mixins__mapped_to_abstract_property:
     property property_setter_mixins
     property parsed_fy_py_files_map_by_key
-"""
+fy"""
 
 from functools import cached_property
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile

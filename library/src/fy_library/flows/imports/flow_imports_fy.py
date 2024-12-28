@@ -20,7 +20,7 @@ flow FlowImports -> List[str]:
     property import_base_flow using declared_base_flow_name
     property property_mixins_import using property_mixins_and_mixin_import_map
     property method_mixins_import using method_mixins_and_mixin_import_map
-"""
+fy"""
 
 from typing import List, Any, Dict
 
