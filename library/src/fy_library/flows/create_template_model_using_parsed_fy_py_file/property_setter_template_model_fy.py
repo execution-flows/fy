@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-flow CreatePropertySetterTemplateModel_UsingParsedFyPyFile -> PropertySetterTemplateModel:
+flow create_property_setter_template_model__using_parsed_fy_py_file -> PropertySetterTemplateModel:
     property parsed_fy_py_file using setter
 fy"""
 

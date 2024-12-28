@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-flow GenerateAndSaveFyPyFiles_UsingRequiredPropertySetters -> None:
+flow generate_and_save_fy_py_files__using_required_property_setters -> None:
     property required_property_setters_fy_py using setter
 fy"""
 

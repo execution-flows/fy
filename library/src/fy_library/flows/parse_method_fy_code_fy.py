@@ -5,7 +5,7 @@
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 
 
-flow ParseMethodFyCode -> ParsedFyPyFile:
+flow parse_method_fy_code -> ParsedFyPyFile:
     property pre_fy_code using setter
     property fy_code using setter
     property pre_marker_file_content using setter

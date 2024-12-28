@@ -1,5 +1,5 @@
 """fy
-flow SetterTest -> None:
+flow setter_test -> None:
     property greeting using setter
     property greeting2 using setter
 fy"""

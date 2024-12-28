@@ -5,7 +5,7 @@
 from fy_library.domain.fy_py_template_models import BaseFlowTemplateModel
 
 
-flow CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels -> BaseFlowTemplateModel:
+flow create_base_flow_template_model__using_parsed_fy_py_file_and_property_setters_template_models -> BaseFlowTemplateModel:
     property parsed_fy_py_file using setter
     property parsed_fy_py_files_map_by_key using setter
     property property_mixins using template_model_properties

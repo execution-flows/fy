@@ -5,7 +5,7 @@
 from .greetings_t import GreetingT
 
 
-flow HelloWorld[GreetingT] -> None:
+flow hello_world[GreetingT] -> None:
 fy"""
 
 from fy_core.base.flow_base import FlowBase
