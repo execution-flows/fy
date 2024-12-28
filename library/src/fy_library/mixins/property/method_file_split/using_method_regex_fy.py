@@ -3,6 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property method_file_split: MethodFileSplitModel using method_regex:
+    property fy_py_file_to_parse
     property fy_code
 fy"""
 
@@ -23,6 +24,9 @@ from fy_library.mixins.property.method_file_split.abc_fy import (
     MethodFileSplitModel,
     MethodFileSplit_PropertyMixin_ABC,
 )
+from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
+    FyPyFileToParse_PropertyMixin_ABC,
+)
 
 _METHOD_STRING_SPLIT_REGEX: Final = re.compile(
     rf"method\s+(?P<method_name>{FY_ENTITY_REGEX_STRING})\s*"
@@ -37,6 +41,7 @@ _METHOD_STRING_SPLIT_REGEX: Final = re.compile(
 class MethodFileSplit_UsingMethodRegex_PropertyMixin(
     # Property_mixins
     FyCode_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
     MethodFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):
@@ -46,8 +51,8 @@ class MethodFileSplit_UsingMethodRegex_PropertyMixin(
         method_file_split = _METHOD_STRING_SPLIT_REGEX.split(self._fy_code)
 
         assert (
-            len(method_file_split)
-        ) == 7, f"Method file split length {len(method_file_split)} is invalid."
+            (len(method_file_split)) == 7
+        ), f"Method file split length {len(method_file_split)} is invalid in {self._fy_py_file_to_parse}"
 
         method_file_split_model = MethodFileSplitModel(
             user_imports=method_file_split[0],

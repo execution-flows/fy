@@ -6,6 +6,7 @@ from fy_library.mixins.property.abstract_method_file_split.abc_fy import Abstrac
 
 
 property abstract_method_file_split: AbstractMethodFileSplitModel using abstract_method_regex:
+    property fy_py_file_to_parse
     property fy_code
 fy"""
 
@@ -26,6 +27,9 @@ from fy_library.mixins.property.abstract_method_file_split.abc_fy import (
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
+from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
+    FyPyFileToParse_PropertyMixin_ABC,
+)
 
 _ABSTRACT_METHOD_REGEX: Final = re.compile(
     rf"method\s+(?P<abstract_method_name>{FY_ENTITY_REGEX_STRING})"
@@ -40,6 +44,7 @@ class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
     # Property_mixins
     AbstractMethodFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
@@ -49,11 +54,11 @@ class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
 
         assert (
             len(abstract_method_file_split) == 6
-        ), f"Abstract Method file split length {len(abstract_method_file_split)} is invalid"
+        ), f"Abstract Method file split length {len(abstract_method_file_split)} is invalid in {self._fy_py_file_to_parse}."
 
         assert (
             abstract_method_file_split[4] is not None
-        ), "Abstract method requires return type."
+        ), f"Abstract method requires return type in {self._fy_py_file_to_parse}."
 
         abstract_method_file_split_model = AbstractMethodFileSplitModel(
             user_imports=abstract_method_file_split[0],

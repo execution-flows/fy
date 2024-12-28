@@ -3,6 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property flow_file_split: FlowFileSplitModel using flow_regex:
+    property fy_py_file_to_parse
     property fy_code
 fy"""
 
@@ -22,6 +23,9 @@ from fy_library.mixins.property.flow_file_split.abc_fy import (
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
+from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
+    FyPyFileToParse_PropertyMixin_ABC,
+)
 
 _FLOW_STRING_SPLIT_REGEX: Final = re.compile(
     rf"flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s*"
@@ -36,6 +40,7 @@ class FlowFileSplit_UsingFlowRegex_PropertyMixin(
     # Property_mixins
     FlowFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
@@ -44,8 +49,8 @@ class FlowFileSplit_UsingFlowRegex_PropertyMixin(
         flow_file_split = _FLOW_STRING_SPLIT_REGEX.split(self._fy_code)
 
         assert (
-            len(flow_file_split)
-        ) == 6, f"Flow file split length {len(flow_file_split)} is invalid."
+            (len(flow_file_split)) == 6
+        ), f"Flow file split length {len(flow_file_split)} is invalid in {self._fy_py_file_to_parse}"
 
         flow_file_split_model = FlowFileSplitModel(
             user_imports=flow_file_split[0],

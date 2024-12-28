@@ -6,6 +6,7 @@ from fy_library.mixins.property.base_flow_file_split.abc_fy import BaseFlowFileS
 
 
 property base_flow_file_split: BaseFlowFileSplitModel using base_flow_regex:
+    property fy_py_file_to_parse
     property fy_code
 fy"""
 
@@ -26,6 +27,9 @@ from fy_library.mixins.property.base_flow_file_split.abc_fy import (
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
+from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
+    FyPyFileToParse_PropertyMixin_ABC,
+)
 
 
 _BASE_FLOW_STRING_SPLIT_REGEX: Final = re.compile(
@@ -43,6 +47,7 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
     # Property_mixins
     BaseFlowFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
@@ -77,8 +82,8 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
         user_imports = re.sub(_CHECK_ANNOTATIONS, "", base_flow_file_split[0])
 
         assert (
-            len(base_flow_file_split)
-        ) == 6, f"Flow file split length {len(base_flow_file_split)} is invalid."
+            (len(base_flow_file_split)) == 6
+        ), f"Flow file split length {len(base_flow_file_split)} is invalid in {self._fy_py_file_to_parse}"
 
         base_flow_file_split_model = BaseFlowFileSplitModel(
             user_imports=user_imports,
