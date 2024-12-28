@@ -109,8 +109,13 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                                     python_class_name=parsed_abstract_property_fy_py_file.python_class_name,
                                     kind=MixinModelKind.ABSTRACT_PROPERTY,
                                     property_name=parsed_property_fy_py_file.property_name,
-                                    generics_impl=parsed_property_fy_py_file.generics_def
-                                    or parsed_property_fy_py_file.property_type,
+                                    generics_impl=(
+                                        parsed_property_fy_py_file.generics_def
+                                        or parsed_property_fy_py_file.property_type
+                                    )
+                                    if parsed_abstract_property_fy_py_file.generics_def
+                                    != ""
+                                    else "",
                                 )
                             ],
                         }
