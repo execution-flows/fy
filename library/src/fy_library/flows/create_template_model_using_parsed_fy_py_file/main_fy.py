@@ -105,5 +105,5 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
                 )()
 
         raise NotImplementedError(
-            f"No Template Model for {self._parsed_fy_py_file.file_type}"
+            f"No template model found for file type '{self._parsed_fy_py_file.file_type}' in '{self._parsed_fy_py_file.file_path}'"
         )

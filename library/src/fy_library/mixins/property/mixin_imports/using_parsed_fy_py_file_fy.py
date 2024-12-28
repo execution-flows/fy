@@ -121,5 +121,5 @@ class MixinImports_UsingParsedFyPyFile_PropertyMixin(
                 )()
             case _:
                 raise NotImplementedError(
-                    f"Mixin imports for {self._parsed_fy_py_file.file_type}"
+                    f"Mixin imports not implemented for file type '{self._parsed_fy_py_file.file_type}' in '{self._parsed_fy_py_file.file_path}'"
                 )
