@@ -141,17 +141,6 @@ class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):
         return self.abstract_property_name.snake_case
 
 
-def convert_parsed_abstract_property_fy_py_file_to_abstract_method_mixin(
-    parsed_abstract_property_fy_py_file: ParsedAbstractPropertyFyPyFile,
-) -> AbstractPropertyModel:
-    return AbstractPropertyModel(
-        python_class_name=parsed_abstract_property_fy_py_file.python_class_name,
-        kind=MixinModelKind.ABSTRACT_PROPERTY,
-        property_name=parsed_abstract_property_fy_py_file.abstract_property_name,
-        generics_impl=parsed_abstract_property_fy_py_file.generics_def,
-    )
-
-
 class ParsedPropertyFyPyFile(ParsedFyPyFile):
     file_type: Literal[ParsedFyPyFileKind.PROPERTY] = ParsedFyPyFileKind.PROPERTY
     property_name: PythonEntityName
