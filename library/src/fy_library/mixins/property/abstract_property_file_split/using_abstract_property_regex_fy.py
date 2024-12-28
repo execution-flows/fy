@@ -6,6 +6,7 @@ from fy_library.mixins.property.abstract_property_file_split.abc_fy import Abstr
 
 
 property abstract_property_file_split: AbstractPropertyFileSplitModel using abstract_property_regex:
+    property fy_py_file_to_parse
     property fy_code
 fy"""
 
@@ -25,6 +26,9 @@ from fy_library.mixins.property.abstract_property_file_split.abc_fy import (
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
+from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
+    FyPyFileToParse_PropertyMixin_ABC,
+)
 
 _ABSTRACT_PROPERTY_REGEX: Final = re.compile(
     rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
@@ -39,6 +43,7 @@ class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
     # Property_mixins
     AbstractPropertyFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property
@@ -48,11 +53,11 @@ class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
 
         assert (
             len(abstract_property_file_split) == 5
-        ), f"Abstract property file split length {len(abstract_property_file_split)}"
+        ), f"Abstract property file split length {len(abstract_property_file_split)} in {self._fy_py_file_to_parse}"
 
         assert (
             abstract_property_file_split[3] is not None
-        ), "Abstract property requires property type"
+        ), f"Abstract property requires property type in {self._fy_py_file_to_parse}"
 
         abstract_property_file_split_model = AbstractPropertyFileSplitModel(
             user_imports=abstract_property_file_split[0],
