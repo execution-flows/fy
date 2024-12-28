@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-flow Message(Ordering) -> str:
+flow message(ordering) -> str:
     property property_required_1 using required_1
     property property_required_2 using required_2
     method method_required_1 using required_1

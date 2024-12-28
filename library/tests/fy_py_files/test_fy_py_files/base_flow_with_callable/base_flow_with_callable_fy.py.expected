@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 @callable
-base flow HelloCallable -> None:
+base flow hello_callable -> None:
 fy"""
 
 import abc
