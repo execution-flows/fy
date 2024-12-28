@@ -5,7 +5,7 @@
 from ..greetings_t import GreetT
 
 
-method greet[GreetT](message: str)
+method greet[GreetT](message: str) -> GreetT
 """
 
 import abc
