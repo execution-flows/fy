@@ -48,7 +48,7 @@ class AbstractPropertyFileSplit_UsingAbstractPropertyRegex_PropertyMixin(
 
         assert (
             len(abstract_property_file_split) == 5
-        ), f"Abstract property file split length {len(abstract_property_file_split)} is invalid"
+        ), f"Abstract property file split length {len(abstract_property_file_split)}"
 
         assert (
             abstract_property_file_split[3] is not None

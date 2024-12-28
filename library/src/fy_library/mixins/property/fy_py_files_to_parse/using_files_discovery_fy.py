@@ -49,6 +49,6 @@ class FyPyFilesToParse_UsingFilesDiscovery_PropertyMixin(
                     fy_py_files.append(fy_py_file)
                 else:
                     raise SyntaxError(
-                        f"File {fy_py_file} does not start with {FY_PY_FILE_SIGNATURE}"
+                        f"Invalid file format at '{fy_py_file}': Missing required signature '{FY_PY_FILE_SIGNATURE}' at start of file"
                     )
         return fy_py_files
