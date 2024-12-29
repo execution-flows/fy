@@ -100,6 +100,13 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                         ],
                     )
 
+                    if any(
+                        abstract_mixin.python_class_name.pascal_case
+                        == parsed_abstract_property_fy_py_file.python_class_name.pascal_case
+                        for abstract_mixin in parsed_property_fy_py_file.abstract_property_mixins
+                    ):
+                        return parsed_fy_py_file
+
                     return ParsedPropertyFyPyFile.model_validate(
                         {
                             **parsed_property_fy_py_file.model_dump(),
