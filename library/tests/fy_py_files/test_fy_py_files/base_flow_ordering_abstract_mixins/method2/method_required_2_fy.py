@@ -3,16 +3,22 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 method method_required_2 -> str using required_2:
+    property property_required_2
 fy"""
 
 import abc
 from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.method2.abc_fy import (
     MethodRequired2_MethodMixin_ABC,
 )
+from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property2.abc_fy import (
+    PropertyRequired2_PropertyMixin_ABC,
+)
 
 
 # fy:start ===>>>
 class MethodRequired2_UsingRequired2_MethodMixin(
+    # Property_mixins
+    PropertyRequired2_PropertyMixin_ABC,
     # Method_mixins
     MethodRequired2_MethodMixin_ABC,
     abc.ABC,

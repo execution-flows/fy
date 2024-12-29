@@ -6,11 +6,11 @@ property fy_py_file_content: str using parsed_fy_py_file:
     property parsed_fy_py_file
     property mixin_imports_code
     property generated_fy_py_code
-fy"""
+"""
 
 import abc
 from functools import cached_property
-from typing import Final
+from typing import Final, cast
 
 from fy_library.constants import (
     FY_CODE_FILE_END_SIGNATURE,
@@ -18,7 +18,11 @@ from fy_library.constants import (
     FY_START_MARKER,
     FY_END_MARKER,
 )
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.annotation_object import Annotation
+from fy_library.domain.parsed_fy_py_file import (
+    ParsedFyPyFileKind,
+    ParsedBaseFlowFyPyFile,
+)
 from fy_library.mixins.property.fy_py_file_content.abc_fy import (
     FyPyFileContent_PropertyMixin_ABC,
 )
@@ -52,7 +56,11 @@ class FyPyFileContent_UsingParsedFyPyFile_PropertyMixin(
         )
         end_marker_space = (
             " " * 4
-            if self._parsed_fy_py_file.file_type == ParsedFyPyFileKind.BASE_FLOW
+            if (
+                self._parsed_fy_py_file.file_type == ParsedFyPyFileKind.BASE_FLOW
+                and Annotation(name="@callable")
+                not in cast(ParsedBaseFlowFyPyFile, self._parsed_fy_py_file).annotations
+            )
             else " " * 8
         )
         fy_py_file_content = (

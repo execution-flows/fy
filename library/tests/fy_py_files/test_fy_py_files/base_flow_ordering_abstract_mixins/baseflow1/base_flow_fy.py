@@ -4,10 +4,10 @@
 """fy
 @callable
 base flow Ordering -> str:
-    property property_required_2
-    property property_required_1
-    method method_required_2
+    property property_required_2 using required_2
+    property property_required_1 using required_1
     method method_required_1
+    method method_required_2
 fy"""
 
 import abc
@@ -18,19 +18,19 @@ from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.method1.abc
 from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.method2.abc_fy import (
     MethodRequired2_MethodMixin_ABC,
 )
-from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property1.abc_fy import (
-    PropertyRequired1_PropertyMixin_ABC,
+from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property1.property_required_1_fy import (
+    PropertyRequired1_UsingRequired1_PropertyMixin,
 )
-from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property2.abc_fy import (
-    PropertyRequired2_PropertyMixin_ABC,
+from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property2.property_required_2_fy import (
+    PropertyRequired2_UsingRequired2_PropertyMixin,
 )
 
 
 # fy:start ===>>>
 class Ordering_BaseFlow(
-    # Abstract Property Mixins
-    PropertyRequired1_PropertyMixin_ABC,
-    PropertyRequired2_PropertyMixin_ABC,
+    # Property Mixins
+    PropertyRequired2_UsingRequired2_PropertyMixin,
+    PropertyRequired1_UsingRequired1_PropertyMixin,
     # Abstract Method Mixins
     MethodRequired1_MethodMixin_ABC,
     MethodRequired2_MethodMixin_ABC,
