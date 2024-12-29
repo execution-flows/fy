@@ -14,6 +14,7 @@ flow FlowImports -> List[str]:
     property import_generic using generic_constant
     property declared_base_flow_name using parsed_flow_fy_py_file
     property property_setter_mixins using property_mixins
+    property property_constant_setter_mixins using property_mixins
     property user_imports_from_mixins using property_setter_mixins
     property import_any using property_setters_exists
     property import_flow_base using constant
@@ -76,6 +77,10 @@ from fy_library.mixins.property.imports.import_generic__using_generic_constant_f
     ImportGeneric_UsingGenericConstant_PropertyMixin,
 )
 
+from fy_library.mixins.property.property_constant_setter_mixins.using_property_mixins_fy import (
+    PropertyConstantSetterMixins_UsingPropertyMixins_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class FlowImports_Flow(
@@ -88,6 +93,7 @@ class FlowImports_Flow(
     ImportGeneric_UsingGenericConstant_PropertyMixin,
     DeclaredBaseFlowName_UsingParsedFlowFyPyFile_PropertyMixin,
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
+    PropertyConstantSetterMixins_UsingPropertyMixins_PropertyMixin,
     UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
     ImportAny_UsingPropertySettersExists_PropertyMixin,
     ImportFlowBase_UsingConstant_PropertyMixin,
