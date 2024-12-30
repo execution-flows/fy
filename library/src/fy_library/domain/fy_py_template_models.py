@@ -55,6 +55,7 @@ class FlowTemplateModel(BaseTemplateModel):
     properties: List[PropertyMixinModel]
     methods: List[MethodMixinModel]
     property_setters: List[ParsedAbstractPropertyFyPyFile]
+    property_constant_setters: List[PropertyMixinModel]
 
 
 class BaseFlowTemplateModel(BaseTemplateModel):

@@ -17,11 +17,14 @@ from fy_library.mixins.property.abstract_property_mixins.abc_fy import (
     AbstractPropertyMixins_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.import_abc.abc_fy import ImportAbc_PropertyMixin_ABC
+
 
 # fy:start ===>>>
 class ImportAbc_UsingWhenAbstractPropertyMixinsExists_PropertyMixin(
     # Property_mixins
     AbstractPropertyMixins_PropertyMixin_ABC,
+    ImportAbc_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

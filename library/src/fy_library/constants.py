@@ -25,3 +25,5 @@ FY_END_MARKER: Final = "# fy:end <<<==="
 FY_PY_FILE_EXTENSION: Final = "_fy.py"
 
 PROPERTY_SETTER_IMPLEMENTATION_NAME: Final = "setter"
+
+PROPERTY_CONSTANT_IMPLEMENTATION_NAME: Final = "constant"

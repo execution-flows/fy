@@ -1,10 +1,10 @@
 """fy
-flow HelloWorld -> None:
-    property greeting using constant("Hello")
+flow HelloWorld -> str:
+    property greeting using constant("Hello World")
 fy"""
 
 from fy_core.base.flow_base import FlowBase
-from fy_py_files.test_fy_py_files.hello_world_using_property.property.using_setter import (
+from fy_py_files.test_fy_py_files.flow_with_constant_setter.property.using_setter import (
     Greeting_UsingSetter_PropertyMixin,
 )
 from typing import Any
@@ -15,16 +15,16 @@ class HelloWorld_Flow(
     # Property Mixins
     Greeting_UsingSetter_PropertyMixin,
     # Base
-    FlowBase[None],
+    FlowBase[str],
 ):
     def __init__(
         self,
         *args: Any,
         **kwargs: Any,
     ):
-        self._greeting = "Hello"
+        self._greeting = "Hello World"
         super().__init__(*args, **kwargs)
 
-    def __call__(self) -> None:
+    def __call__(self) -> str:
         # fy:end <<<===
         print(self._greeting)

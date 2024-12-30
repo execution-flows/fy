@@ -61,6 +61,7 @@ class AbstractPropertyModel(BaseMixinModel):
 
 class PropertyMixinModel(AbstractPropertyModel):
     implementation_name: PythonEntityName
+    constant_value: str
 
     @computed_field
     @property

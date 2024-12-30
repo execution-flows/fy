@@ -37,15 +37,14 @@ from fy_library.flows.imports.property_imports_fy import PropertyImports_Flow
 from fy_library.mixins.property.mixin_import_map.abc_fy import (
     MixinImportMap_PropertyMixin_ABC,
 )
+from fy_library.mixins.property.mixin_imports.abc_fy import (
+    MixinImports_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
 )
 from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
-)
-
-from fy_library.mixins.property.mixin_imports.abc_fy import (
-    MixinImports_PropertyMixin_ABC,
 )
 
 

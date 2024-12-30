@@ -20,11 +20,11 @@ from fy_library.mixins.property.fy_py_file_content.abc_fy import (
 from fy_library.mixins.property.generated_fy_py_code.abc_fy import (
     GeneratedFyPyCode_PropertyMixin_ABC,
 )
-from fy_library.mixins.property.imports.import_generic__abc_fy import (
-    ImportGeneric_PropertyMixin_ABC,
-)
 from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
+)
+from fy_library.mixins.property.import_generic.abc_fy import (
+    ImportGeneric_PropertyMixin_ABC,
 )
 
 _NEW_LINE: Final = "\n"

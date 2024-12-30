@@ -10,6 +10,7 @@ flow CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels
     property parsed_fy_py_files_map_by_key using setter
     property property_mixins using template_model_properties
     property property_setter_mixins using property_mixins
+    property property_constant_setter_mixins using property_mixins
     property parsed_fy_py_files using property_setter_mixins__mapped_to_abstract_property
 fy"""
 
@@ -42,6 +43,10 @@ from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy i
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
 )
 
+from fy_library.mixins.property.property_constant_setter_mixins.using_property_mixins_fy import (
+    PropertyConstantSetterMixins_UsingPropertyMixins_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels_Flow(
@@ -50,6 +55,7 @@ class CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModel
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
     PropertyMixins_UsingTemplateModelProperties_PropertyMixin,
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
+    PropertyConstantSetterMixins_UsingPropertyMixins_PropertyMixin,
     ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_PropertyMixin,
     # Base
     FlowBase[FlowTemplateModel],
@@ -82,4 +88,5 @@ class CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModel
             properties=parsed_flow_fy_py_file.properties,
             methods=parsed_flow_fy_py_file.methods,
             property_setters=self._parsed_fy_py_files,
+            property_constant_setters=self._property_constant_setter_mixins,
         )
