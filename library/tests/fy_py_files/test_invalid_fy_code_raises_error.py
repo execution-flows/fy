@@ -47,3 +47,13 @@ class TestRaisesAssertionError(MainFyPyTestCase):
                 target_folder="invalid_fy_code_raises_correct_error/property_invalid_mixin_keyword",
                 perform_fy_code_deletion=False,
             )
+
+    def test_invalid_property_with_mixin(self) -> None:
+        with self.assertRaisesRegex(
+            expected_exception=AssertionError,
+            expected_regex=r"Abstract property file split length 1 is invalid",
+        ):
+            self._test_main_flow(
+                target_folder="invalid_fy_code_raises_correct_error/invalid_property_with_mixin",
+                perform_fy_code_deletion=False,
+            )

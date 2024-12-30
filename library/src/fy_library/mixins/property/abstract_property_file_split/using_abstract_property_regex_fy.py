@@ -30,6 +30,7 @@ _ABSTRACT_PROPERTY_REGEX: Final = re.compile(
     rf"property\s+(?P<abstract_property_name>{FY_ENTITY_REGEX_STRING})"
     rf"(?:\[(?P<generic_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?"
     rf":\s*(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING})\s*$",
+    flags=re.DOTALL,
 )
 
 
