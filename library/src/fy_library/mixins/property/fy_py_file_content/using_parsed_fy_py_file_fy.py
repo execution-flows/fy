@@ -10,7 +10,7 @@ fy"""
 
 import abc
 from functools import cached_property
-from typing import Final
+from typing import Final, cast
 
 from fy_library.constants import (
     FY_CODE_FILE_END_SIGNATURE,
@@ -18,7 +18,10 @@ from fy_library.constants import (
     FY_START_MARKER,
     FY_END_MARKER,
 )
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file import (
+    ParsedFyPyFileKind,
+    ParsedBaseFlowFyPyFile,
+)
 from fy_library.mixins.property.fy_py_file_content.abc_fy import (
     FyPyFileContent_PropertyMixin_ABC,
 )
@@ -50,11 +53,24 @@ class FyPyFileContent_UsingParsedFyPyFile_PropertyMixin(
         stripped_pre_marker_file_content = (
             self._parsed_fy_py_file.pre_marker_file_content.strip()
         )
-        end_marker_space = (
-            " " * 4
+
+        parsed_blow_fy_py_file = (
+            cast(ParsedBaseFlowFyPyFile, self._parsed_fy_py_file)
             if self._parsed_fy_py_file.file_type == ParsedFyPyFileKind.BASE_FLOW
-            else " " * 8
+            else None
         )
+
+        maybe_annotations = (
+            parsed_blow_fy_py_file.annotations if parsed_blow_fy_py_file else None
+        )
+
+        end_marker_space = " " * (
+            4
+            if not maybe_annotations
+            and self._parsed_fy_py_file.file_type == ParsedFyPyFileKind.BASE_FLOW
+            else 8
+        )
+
         fy_py_file_content = (
             f"{self._parsed_fy_py_file.pre_fy_code}"
             f"{FY_PY_FILE_SIGNATURE}"
