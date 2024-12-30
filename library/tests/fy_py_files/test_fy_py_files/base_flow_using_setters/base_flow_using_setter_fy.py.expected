@@ -1,38 +1,27 @@
 """fy
 base flow SetterTest -> None:
-    property greeting using setter
-    property greeting2 using setter
+    property greeting
+    property greeting2
 fy"""
 
 import abc
-import datetime
 from fy_core.base.flow_base import FlowBase
-from fy_py_files.test_fy_py_files.base_flow_using_setters.greeting.using_setter import (
-    Greeting_UsingSetter_PropertyMixin,
+from fy_py_files.test_fy_py_files.base_flow_using_setters.greeting.abc_fy import (
+    Greeting_PropertyMixin_ABC,
 )
-from fy_py_files.test_fy_py_files.base_flow_using_setters.greeting2.using_setter import (
-    Greeting2_UsingSetter_PropertyMixin,
+from fy_py_files.test_fy_py_files.base_flow_using_setters.greeting2.abc_fy import (
+    Greeting2_PropertyMixin_ABC,
 )
-from typing import Any
 
 
 # fy:start ===>>>
 class SetterTest_BaseFlow(
-    # Property Mixins
-    Greeting_UsingSetter_PropertyMixin,
-    Greeting2_UsingSetter_PropertyMixin,
+    # Abstract Property Mixins
+    Greeting_PropertyMixin_ABC,
+    Greeting2_PropertyMixin_ABC,
     # Base
     FlowBase[None],
     abc.ABC,
 ):
-    def __init__(
-        self,
-        *args: Any,
-        greeting: datetime.datetime,
-        greeting2: str,
-        **kwargs: Any,
-    ):
-        self._greeting = greeting
-        self._greeting2 = greeting2
-        super().__init__(*args, **kwargs)
+    pass
     # fy:end <<<===

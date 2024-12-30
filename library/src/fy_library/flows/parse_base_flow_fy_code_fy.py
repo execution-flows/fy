@@ -91,4 +91,11 @@ class ParseBaseFlowFyCode_Flow(
 
     def __call__(self) -> ParsedFyPyFile:
         # fy:end <<<===
+        assert (
+            len(self._included_mixins.method_mixins) == 0
+        ), f"Base flow {self._fy_py_file_to_parse} cannot include method implementations."
+        assert (
+            len(self._included_mixins.property_mixins) == 0
+        ), f"Base flow {self._fy_py_file_to_parse} cannot include property implementations."
+
         return self._parsed_base_flow_fy_py_file
