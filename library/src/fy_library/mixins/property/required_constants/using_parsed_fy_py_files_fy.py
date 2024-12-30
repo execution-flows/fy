@@ -58,7 +58,9 @@ class RequiredConstants_UsingParsedFyPyFiles_PropertyMixin(
                 post_marker_file_content="",
                 file_path=self._parsed_fy_py_files_map_by_key[
                     flow_property.property_name.snake_case
-                ].file_path.with_name("using_constant.py"),
+                ].file_path.with_name(
+                    f"using_constant_{flow_property.property_name.snake_case}.py"
+                ),
                 user_imports=self._parsed_fy_py_files_map_by_key[
                     flow_property.property_name.snake_case
                 ].user_imports,

@@ -4,7 +4,7 @@ flow HelloWorld -> str:
 fy"""
 
 from fy_core.base.flow_base import FlowBase
-from fy_py_files.test_fy_py_files.flow_with_constant_setter.property.using_constant import (
+from fy_py_files.test_fy_py_files.flow_with_constant_setter.property.using_constant_greeting import (
     Greeting_UsingConstant_PropertyMixin,
 )
 from typing import Any

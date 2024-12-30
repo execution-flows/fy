@@ -1,0 +1,12 @@
+# fy:start ===>>>
+class Greeting_UsingConstant_PropertyMixin:
+    @property
+    def _greeting(self) -> str:
+        return self.__greeting
+
+    @_greeting.setter
+    def _greeting(self, greeting: str) -> None:
+        self.__greeting = greeting
+
+
+# fy:end <<<===

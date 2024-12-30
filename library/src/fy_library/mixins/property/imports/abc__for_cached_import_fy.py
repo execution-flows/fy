@@ -5,7 +5,7 @@
 from typing import List
 
 
-property cached_import: List[str] using constant:
+property cached_import: List[str]
 fy"""
 
 from functools import cached_property

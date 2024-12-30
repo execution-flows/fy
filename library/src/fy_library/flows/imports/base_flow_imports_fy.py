@@ -18,9 +18,9 @@ flow BaseFlowImports -> List[str]:
     property property_setter_mixins using property_mixins
     property property_constant_setter_mixins using property_mixins
     property user_imports_from_mixins using property_setter_mixins
-    property import_abc using constant
+    property import_abc using constant(["import abc"])
     property import_any using property_setters_exists
-    property import_flow_base using constant
+    property import_flow_base using constant(["from fy_core.base.flow_base import FlowBase"])
     property import_base_flow using declared_base_flow_name
     property property_mixins_import using property_mixins_and_mixin_import_map
     property method_mixins_import using method_mixins_and_mixin_import_map

@@ -9,7 +9,7 @@ flow PropertyImports -> List[str]:
     property abstract_property_mixins using setter
     property mixin_import_map using setter
     property parsed_property_fy_py_file using setter
-    property cached_import using constant
+    property cached_import using constant(["from functools import cached_property"])
     property import_generic using generic_constant
     property import_abc using when_abstract_property_mixins_exists
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
