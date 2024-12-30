@@ -33,7 +33,7 @@ class {{ python_class_name.pascal_case }}(
         self._{{ property_setter.abstract_property_name.snake_case }} = {{ property_setter.abstract_property_name.snake_case }}
     {%- endfor %}
     {%- for property_constant_setter in property_constant_setters %}
-        self._{{ property_constant_setter.property_name.snake_case }} = {{ property_constant_setter.constant_value }},
+        self._{{ property_constant_setter.property_name.snake_case }} = {{ property_constant_setter.constant_value }}
     {%- endfor %}
         super().__init__(*args, **kwargs)
 {% endif %}

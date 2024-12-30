@@ -22,9 +22,7 @@ from fy_library.domain.mixin_models import AbstractPropertyModel
 from fy_library.mixins.property.abstract_property_mixins.using_setter import (
     AbstractPropertyMixins_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.imports.cached_import__using_constant_fy import (
-    CachedImport_UsingConstant_PropertyMixin,
-)
+
 from fy_library.mixins.property.imports.import__abstract_property_mixins__using_abstract_property_mixin_and_mixin_import_map__fy import (
     ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
 )
@@ -42,6 +40,10 @@ from fy_library.mixins.property.imports.import_generic__using_generic_constant_f
 from fy_library.domain.parsed_fy_py_file import ParsedPropertyFyPyFile
 from fy_library.mixins.property.parsed_property_fy_py_file.using_setter import (
     ParsedPropertyFyPyFile_UsingSetter_PropertyMixin,
+)
+
+from fy_library.mixins.property.imports.using_constant_cached_import import (
+    CachedImport_UsingConstant_PropertyMixin,
 )
 
 
@@ -69,6 +71,7 @@ class PropertyImports_Flow(
         self._abstract_property_mixins = abstract_property_mixins
         self._mixin_import_map = mixin_import_map
         self._parsed_property_fy_py_file = parsed_property_fy_py_file
+        self._cached_import = ["from functools import cached_property"]
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> List[str]:

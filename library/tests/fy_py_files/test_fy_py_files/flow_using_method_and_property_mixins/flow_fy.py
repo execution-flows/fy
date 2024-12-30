@@ -28,7 +28,7 @@ class HelloWorld_Flow(
         *args: Any,
         **kwargs: Any,
     ):
-        self._greeting = ("Hello world",)
+        self._greeting = "Hello world"
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> None:

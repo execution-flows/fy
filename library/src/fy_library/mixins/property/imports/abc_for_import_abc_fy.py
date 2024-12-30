@@ -5,16 +5,18 @@
 from typing import List
 
 
-property import_abc: List[str] using constant:
+property import_abc: List[str]
 fy"""
 
-from functools import cached_property
 from typing import List
+
+import abc
 
 
 # fy:start ===>>>
-class ImportAbc_UsingConstant_PropertyMixin:
-    @cached_property
+class ImportAbc_PropertyMixin_ABC(abc.ABC):
+    @property
+    @abc.abstractmethod
     def _import_abc(self) -> List[str]:
+        raise NotImplementedError()
         # fy:end <<<===
-        return ["import abc"]

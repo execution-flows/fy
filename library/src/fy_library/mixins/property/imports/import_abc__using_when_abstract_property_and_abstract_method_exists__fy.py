@@ -22,12 +22,17 @@ from fy_library.mixins.property.abstract_property_mixins.abc_fy import (
 )
 import abc
 
+from fy_library.mixins.property.imports.abc_for_import_abc_fy import (
+    ImportAbc_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class ImportAbc_UsingWhenAbstractPropertyAndAbstractMethodExists_PropertyMixin(
     # Property_mixins
     AbstractMethodMixins_PropertyMixin_ABC,
     AbstractPropertyMixins_PropertyMixin_ABC,
+    ImportAbc_PropertyMixin_ABC,
     abc.ABC,
 ):
     @cached_property

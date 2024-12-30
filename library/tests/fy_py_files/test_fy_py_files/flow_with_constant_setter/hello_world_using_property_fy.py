@@ -22,7 +22,7 @@ class HelloWorld_Flow(
         *args: Any,
         **kwargs: Any,
     ):
-        self._greeting = ("Hello World",)
+        self._greeting = "Hello World"
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> str:

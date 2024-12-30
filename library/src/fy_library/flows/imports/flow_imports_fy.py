@@ -35,9 +35,7 @@ from fy_library.mixins.property.imports.import_any__using_property_setters_exist
 from fy_library.mixins.property.imports.import_base_flow__using_declared_base_flow_name_fy import (
     ImportBaseFlow_UsingDeclaredBaseFlowName_PropertyMixin,
 )
-from fy_library.mixins.property.imports.import_flow_base__using_constant_fy import (
-    ImportFlowBase_UsingConstant_PropertyMixin,
-)
+
 from fy_library.mixins.property.imports.method_mixins_imports__using_method_mixins_and_mixin_import_map_fy import (
     MethodMixinsImport_UsingMethodMixinsAndMixinImportMap_PropertyMixin,
 )
@@ -81,6 +79,10 @@ from fy_library.mixins.property.property_constant_setter_mixins.using_property_m
     PropertyConstantSetterMixins_UsingPropertyMixins_PropertyMixin,
 )
 
+from fy_library.mixins.property.imports.using_constant_import_flow_base import (
+    ImportFlowBase_UsingConstant_PropertyMixin,
+)
+
 
 # fy:start ===>>>
 class FlowImports_Flow(
@@ -118,6 +120,7 @@ class FlowImports_Flow(
         self._parsed_fy_py_files_map_by_key = parsed_fy_py_files_map_by_key
         self._mixin_import_map = mixin_import_map
         self._parsed_flow_fy_py_file = parsed_flow_fy_py_file
+        self._import_flow_base = ["from fy_core.base.flow_base import FlowBase"]
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> List[str]:

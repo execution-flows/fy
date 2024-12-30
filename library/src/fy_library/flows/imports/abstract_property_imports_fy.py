@@ -16,14 +16,15 @@ from typing import List, Any
 from fy_core.base.flow_base import FlowBase
 
 from fy_library.domain.parsed_fy_py_file import ParsedAbstractPropertyFyPyFile
-from fy_library.mixins.property.imports.import_abc__using_constant_fy import (
-    ImportAbc_UsingConstant_PropertyMixin,
-)
 from fy_library.mixins.property.imports.import_generic__using_generic_constant_fy import (
     ImportGeneric_UsingGenericConstant_PropertyMixin,
 )
 from fy_library.mixins.property.parsed_abstract_property_fy_py_file.using_setter import (
     ParsedAbstractPropertyFyPyFile_UsingSetter_PropertyMixin,
+)
+
+from fy_library.mixins.property.imports.using_constant_import_abc import (
+    ImportAbc_UsingConstant_PropertyMixin,
 )
 
 
@@ -43,6 +44,7 @@ class AbstractPropertyImportsFlow_Flow(
         **kwargs: Any,
     ):
         self._parsed_abstract_property_fy_py_file = parsed_abstract_property_fy_py_file
+        self._import_abc = ["import abc"]
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> List[str]:

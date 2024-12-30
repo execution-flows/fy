@@ -5,19 +5,18 @@
 from typing import List
 
 
-property import_flow_base: List[str] using constant:
+property import_flow_base: List[str]
 fy"""
 
-from functools import cached_property
 from typing import List
+
+import abc
 
 
 # fy:start ===>>>
-class ImportFlowBase_UsingConstant_PropertyMixin:
-    @cached_property
+class ImportFlowBase_PropertyMixin_ABC(abc.ABC):
+    @property
+    @abc.abstractmethod
     def _import_flow_base(self) -> List[str]:
+        raise NotImplementedError()
         # fy:end <<<===
-        return [
-            # static imports
-            "from fy_core.base.flow_base import FlowBase",
-        ]
