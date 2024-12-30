@@ -8,21 +8,23 @@ from typing import List
 flow AbstractMethodImportsFlow -> List[str]:
     property parsed_abstract_method_fy_py_file using setter
     property import_abc using constant(["import abc"])
-    property import_generic using generic_constant
+    property import_generic using constant(["from typing import Generic"])
 fy"""
 
 from typing import List, Any
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.parsed_fy_py_file import ParsedAbstractMethodFyPyFile
-from fy_library.mixins.property.import_abc.using_constant_import_abc import (
-    ImportAbc_UsingConstant_PropertyMixin,
+from fy_library.mixins.property.import_abc.using_setter import (
+    ImportAbc_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.imports.import_generic__using_generic_constant_fy import (
-    ImportGeneric_UsingGenericConstant_PropertyMixin,
-)
+
 from fy_library.mixins.property.parsed_abstract_method_fy_py_file.using_setter import (
     ParsedAbstractMethodFyPyFile_UsingSetter_PropertyMixin,
+)
+
+from fy_library.mixins.property.import_generic.using_setter import (
+    ImportGeneric_UsingSetter_PropertyMixin,
 )
 
 
@@ -30,8 +32,8 @@ from fy_library.mixins.property.parsed_abstract_method_fy_py_file.using_setter i
 class AbstractMethodImportsFlow_Flow(
     # Property Mixins
     ParsedAbstractMethodFyPyFile_UsingSetter_PropertyMixin,
-    ImportAbc_UsingConstant_PropertyMixin,
-    ImportGeneric_UsingGenericConstant_PropertyMixin,
+    ImportAbc_UsingSetter_PropertyMixin,
+    ImportGeneric_UsingSetter_PropertyMixin,
     # Base
     FlowBase[List[str]],
 ):
@@ -43,6 +45,7 @@ class AbstractMethodImportsFlow_Flow(
     ):
         self._parsed_abstract_method_fy_py_file = parsed_abstract_method_fy_py_file
         self._import_abc = ["import abc"]
+        self._import_generic = ["from typing import Generic"]
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> List[str]:

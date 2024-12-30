@@ -2,7 +2,7 @@
 from typing import List
 
 
-class ImportAbc_UsingConstant_PropertyMixin:
+class ImportAbc_UsingSetter_PropertyMixin:
     @property
     def _import_abc(self) -> List[str]:
         return self.__import_abc

@@ -4,7 +4,7 @@
 """fy
 flow GenerateAndSaveFyPyFile_UsingRequiredPropertySetters -> None:
     property parsed_fy_py_file using setter
-    property import_generic using generic_constant
+    property import_generic using constant(["from typing import Generic"])
     property jinja2_template_file_name using property_setter_constant
     property template_model using parsed_fy_py_file__for_setter
     property generated_fy_py_code using jinja2_templates
@@ -35,8 +35,8 @@ from fy_library.mixins.property.template_model.using_parsed_fy_py_file_fy__for_s
     TemplateModel_UsingParsedFyPyFile_ForSetter_PropertyMixin,
 )
 
-from fy_library.mixins.property.imports.import_generic__using_generic_constant_fy import (
-    ImportGeneric_UsingGenericConstant_PropertyMixin,
+from fy_library.mixins.property.import_generic.using_setter import (
+    ImportGeneric_UsingSetter_PropertyMixin,
 )
 
 
@@ -44,7 +44,7 @@ from fy_library.mixins.property.imports.import_generic__using_generic_constant_f
 class GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
     # Property Mixins
     ParsedFyPyFile_UsingSetter_PropertyMixin,
-    ImportGeneric_UsingGenericConstant_PropertyMixin,
+    ImportGeneric_UsingSetter_PropertyMixin,
     Jinja2TemplateFileName_UsingPropertySetterConstant_PropertyMixin,
     TemplateModel_UsingParsedFyPyFile_ForSetter_PropertyMixin,
     GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
@@ -61,6 +61,7 @@ class GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow(
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file
+        self._import_generic = ["from typing import Generic"]
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> None:

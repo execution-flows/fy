@@ -15,7 +15,6 @@ flow FyPy_Main -> None:
     property parsed_fy_py_files_with_own_abstract_mixin using parsed_fy_py_files_map_by_key
     property abstract_entities_ordering_index using parsed_fy_py_files_map_by_key
     property required_setters using parsed_fy_py_files
-    property required_constants using parsed_fy_py_files
     property required_property_setters_fy_py using parsed_fy_py_files
     property mixin_import_map using parsed_fy_py_files
 fy"""
@@ -49,23 +48,17 @@ from fy_library.mixins.property.parsed_fy_py_files.using_fy_py_parser_fy import 
 from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_parsed_fy_py_files_fy import (
     ParsedFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin,
 )
+from fy_library.mixins.property.parsed_fy_py_files_with_own_abstract_mixin.using_parsed_fy_py_files_map_by_key_fy import (
+    ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyMixin,
+)
 from fy_library.mixins.property.project_root_folder.using_setter import (
     ProjectRootFolder_UsingSetter_PropertyMixin,
 )
 from fy_library.mixins.property.required_property_setters_fy_py.using_parsed_fy_py_files_fy import (
     RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin,
 )
-
-from fy_library.mixins.property.parsed_fy_py_files_with_own_abstract_mixin.using_parsed_fy_py_files_map_by_key_fy import (
-    ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyMixin,
-)
-
 from fy_library.mixins.property.required_setters.using_parsed_fy_py_files_fy import (
     RequiredSetters_UsingParsedFyPyFiles_PropertyMixin,
-)
-
-from fy_library.mixins.property.required_constants.using_parsed_fy_py_files_fy import (
-    RequiredConstants_UsingParsedFyPyFiles_PropertyMixin,
 )
 
 
@@ -80,7 +73,6 @@ class FyPy_Main_Flow(
     ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyMixin,
     AbstractEntitiesOrderingIndex_UsingParsedFyPyFilesMapByKey_PropertyMixin,
     RequiredSetters_UsingParsedFyPyFiles_PropertyMixin,
-    RequiredConstants_UsingParsedFyPyFiles_PropertyMixin,
     RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin,
     MixinImportMap_UsingParsedFyPyFiles_PropertyMixin,
     # Base

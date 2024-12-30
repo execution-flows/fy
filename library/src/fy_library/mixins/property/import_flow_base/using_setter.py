@@ -2,7 +2,7 @@
 from typing import List
 
 
-class ImportFlowBase_UsingConstant_PropertyMixin:
+class ImportFlowBase_UsingSetter_PropertyMixin:
     @property
     def _import_flow_base(self) -> List[str]:
         return self.__import_flow_base

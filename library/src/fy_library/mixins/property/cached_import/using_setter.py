@@ -2,7 +2,7 @@
 from typing import List
 
 
-class CachedImport_UsingConstant_PropertyMixin:
+class CachedImport_UsingSetter_PropertyMixin:
     @property
     def _cached_import(self) -> List[str]:
         return self.__cached_import

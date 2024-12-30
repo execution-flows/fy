@@ -10,7 +10,7 @@ flow MethodImports -> List[str]:
     property abstract_method_mixins using setter
     property mixin_import_map using setter
     property parsed_method_fy_py_file using setter
-    property import_generic using generic_constant
+    property import_generic using constant(["from typing import Generic"])
     property import_abc using when_abstract_property_and_abstract_method_exists
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
     property import_abstract_method_mixins using abstract_method_mixin_and_mixin_import_map
@@ -44,8 +44,9 @@ from fy_library.domain.parsed_fy_py_file import ParsedMethodFyPyFile
 from fy_library.mixins.property.parsed_method_fy_py_file.using_setter import (
     ParsedMethodFyPyFile_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.imports.import_generic__using_generic_constant_fy import (
-    ImportGeneric_UsingGenericConstant_PropertyMixin,
+
+from fy_library.mixins.property.import_generic.using_setter import (
+    ImportGeneric_UsingSetter_PropertyMixin,
 )
 
 
@@ -56,7 +57,7 @@ class MethodImports_Flow(
     AbstractMethodMixins_UsingSetter_PropertyMixin,
     MixinImportMap_UsingSetter_PropertyMixin,
     ParsedMethodFyPyFile_UsingSetter_PropertyMixin,
-    ImportGeneric_UsingGenericConstant_PropertyMixin,
+    ImportGeneric_UsingSetter_PropertyMixin,
     ImportAbc_UsingWhenAbstractPropertyAndAbstractMethodExists_PropertyMixin,
     ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_PropertyMixin,
     ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_PropertyMixin,
@@ -76,6 +77,7 @@ class MethodImports_Flow(
         self._abstract_method_mixins = abstract_method_mixins
         self._mixin_import_map = mixin_import_map
         self._parsed_method_fy_py_file = parsed_method_fy_py_file
+        self._import_generic = ["from typing import Generic"]
         super().__init__(*args, **kwargs)
 
     def __call__(self) -> List[str]:
