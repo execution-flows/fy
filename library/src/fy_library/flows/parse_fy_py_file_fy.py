@@ -5,7 +5,7 @@
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 
 
-flow ParseFyPyFile -> ParsedFyPyFile:
+flow parse_fy_py_file -> ParsedFyPyFile:
     property fy_py_file_to_parse using setter
     property fy_py_file_parts using fy_file_to_parse_docstring
     property pre_fy_code using fy_py_file_parts

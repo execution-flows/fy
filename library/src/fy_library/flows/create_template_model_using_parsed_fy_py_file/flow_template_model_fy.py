@@ -5,7 +5,7 @@
 from fy_library.domain.fy_py_template_models import FlowTemplateModel
 
 
-flow CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModels -> FlowTemplateModel:
+flow create_flow_template_model__using_parsed_fy_py_file_and_property_setters_template_models -> FlowTemplateModel:
     property parsed_fy_py_file using setter
     property parsed_fy_py_files_map_by_key using setter
     property property_mixins using template_model_properties
@@ -75,12 +75,15 @@ class CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModel
         # fy:end <<<===
         parsed_flow_fy_py_file = self._parsed_fy_py_file
         assert isinstance(parsed_flow_fy_py_file, ParsedFlowFyPyFile)
+        declared_base_flow = PythonEntityName.from_snake_case(
+            parsed_flow_fy_py_file.declared_base_flow
+        )
         return FlowTemplateModel(
             python_class_name=parsed_flow_fy_py_file.python_class_name,
             flow_name=parsed_flow_fy_py_file.flow_name,
             generics_def=parsed_flow_fy_py_file.generics_def,
             declared_base_flow=PythonEntityName.from_pascal_case(
-                f"{parsed_flow_fy_py_file.declared_base_flow}_BaseFlow"
+                f"{declared_base_flow.pascal_case}_BaseFlow"
             )
             if parsed_flow_fy_py_file.declared_base_flow != ""
             else None,

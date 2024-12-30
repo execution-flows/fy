@@ -3,7 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 @callable
-base flow Ordering -> str:
+base flow ordering -> str:
     property property_required_2
     property property_required_1
     method method_required_2

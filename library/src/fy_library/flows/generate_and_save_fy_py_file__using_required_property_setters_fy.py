@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-flow GenerateAndSaveFyPyFile_UsingRequiredPropertySetters -> None:
+flow generate_and_save_fy_py_file__using_required_property_setters -> None:
     property parsed_fy_py_file using setter
     property import_generic using constant(["from typing import Generic"])
     property jinja2_template_file_name using property_setter_constant

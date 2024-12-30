@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-flow GenerateAndSaveFyPyFile_UsingParsedFyPyFile -> None:
+flow generate_and_save_fy_py_file__using_parsed_fy_py_file -> None:
     property parsed_fy_py_file using setter
     property mixin_import_map using setter
     property parsed_fy_py_files_map_by_key using setter

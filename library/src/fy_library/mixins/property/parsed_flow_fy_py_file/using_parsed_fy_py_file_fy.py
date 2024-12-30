@@ -65,7 +65,7 @@ class ParsedFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
     def _parsed_flow_fy_py_file(self) -> ParsedFlowFyPyFile:
         # fy:end <<<===
 
-        flow_name = PythonEntityName.from_pascal_case(self._flow_file_split.flow_name)
+        flow_name = PythonEntityName.from_snake_case(self._flow_file_split.flow_name)
 
         parsed_fy_py_file = ParsedFlowFyPyFile(
             pre_fy_code=self._pre_fy_code,

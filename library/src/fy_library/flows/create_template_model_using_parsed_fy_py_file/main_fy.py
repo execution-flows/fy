@@ -5,7 +5,7 @@
 from fy_library.domain.fy_py_template_models import BaseTemplateModel
 
 
-flow CreateTemplateModelUsingParsedFyPyFile -> BaseTemplateModel:
+flow create_template_model_using_parsed_fy_py_file -> BaseTemplateModel:
     property parsed_fy_py_file using setter
     property parsed_fy_py_files_map_by_key using setter
     property abstract_entities_ordering_index using setter

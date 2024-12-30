@@ -5,7 +5,7 @@
 from .greetings_t import FrenchGreeting
 
 
-flow SetterUsesGenericTest -> None:
+flow setter_uses_generic_test -> None:
     property greeting using setter[FrenchGreeting]
 fy"""
 

@@ -5,7 +5,7 @@
 from typing import List
 
 
-flow AbstractMethodImportsFlow -> List[str]:
+flow abstract_method_imports_flow -> List[str]:
     property parsed_abstract_method_fy_py_file using setter
     property import_abc using constant(["import abc"])
     property import_generic using constant(["from typing import Generic"])

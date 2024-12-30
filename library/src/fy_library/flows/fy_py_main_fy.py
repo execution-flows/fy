@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 
-flow FyPy_Main -> None:
+flow fy_py__main -> None:
     property folder_to_parse using setter
     property project_root_folder using setter
     property fy_py_files_to_parse using files_discovery

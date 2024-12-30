@@ -5,7 +5,7 @@
 from .greetings_t import GreetingT, Greet
 
 
-flow HelloWorld[GreetingT] -> None:
+flow hello_world[GreetingT] -> None:
     property greeting using greeting_message[GreetingT]
     method greet using greeting[Greet]
 fy"""

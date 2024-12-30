@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-flow CreatePropertyTemplateModel_UsingParsedFyPyFile -> PropertyTemplateModel:
+flow create_property_template_model__using_parsed_fy_py_file -> PropertyTemplateModel:
     property parsed_fy_py_file using setter
     property abstract_entities_ordering_index using setter
     property abstract_mixins using parsed_property_fy_py_file
