@@ -10,7 +10,6 @@ property required_property_setters_fy_py: List[PropertySetterFyPyFile] using par
     property parsed_fy_py_files
     property parsed_fy_py_files_map_by_key
     property required_setters
-    property required_constants
 fy"""
 
 import abc
@@ -54,5 +53,5 @@ class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
     def _required_property_setters_fy_py(self) -> List[PropertySetterFyPyFile]:
         # fy:end <<<===
         required_setters = self._required_setters
-        required_constants = self._required_constants
-        return list(required_setters.values()) + list(required_constants.values())
+        # required_constants = self._required_constants
+        return list(required_setters.values())

@@ -3,7 +3,6 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import abc
 from enum import Enum
-from typing import Any
 
 from pydantic import BaseModel, computed_field
 
@@ -62,7 +61,7 @@ class AbstractPropertyModel(BaseMixinModel):
 
 class PropertyMixinModel(AbstractPropertyModel):
     implementation_name: PythonEntityName
-    constant_value: Any
+    constant_value: str
 
     @computed_field
     @property

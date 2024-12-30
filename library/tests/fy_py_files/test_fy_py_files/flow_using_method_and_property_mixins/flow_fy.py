@@ -8,8 +8,8 @@ from fy_core.base.flow_base import FlowBase
 from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.greet_fy import (
     Greet_UsingGreeting_MethodMixin,
 )
-from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.greeting_fy import (
-    Greeting_UsingConstant_PropertyMixin,
+from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.using_setter import (
+    Greeting_UsingSetter_PropertyMixin,
 )
 from typing import Any
 
@@ -17,7 +17,7 @@ from typing import Any
 # fy:start ===>>>
 class HelloWorld_Flow(
     # Property Mixins
-    Greeting_UsingConstant_PropertyMixin,
+    Greeting_UsingSetter_PropertyMixin,
     # Method Mixins
     Greet_UsingGreeting_MethodMixin,
     # Base

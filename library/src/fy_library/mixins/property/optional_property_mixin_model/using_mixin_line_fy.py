@@ -18,6 +18,7 @@ from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,
     PROPERTY_CONSTANT_IMPLEMENTATION_NAME,
+    PROPERTY_SETTER_IMPLEMENTATION_NAME,
 )
 from fy_library.domain.mixin_models import MixinModelKind, PropertyMixinModel
 from fy_library.domain.python_entity_name import PythonEntityName
@@ -30,9 +31,9 @@ from fy_library.mixins.property.optional_property_mixin_model.abc_fy import (
 
 _FLOW_PROPERTY_REGEX: Final = re.compile(
     rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
-    rf"using\s+(?P<implementation_name>(?!constant\b){FY_ENTITY_REGEX_STRING})?\s*"
+    rf"using\s+(?P<implementation_name>(?!constant\b){FY_ENTITY_REGEX_STRING})?"
     rf"(?:\[(?P<generics_impl>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?"
-    rf"(?:constant\((?P<constant_value>.*)\))?$"
+    rf"(?:constant\((?P<constant_value>.*)\))?\s*$"
 )
 
 
@@ -54,27 +55,25 @@ class OptionalPropertyMixinModel_UsingMixinLine_PropertyMixin(
         property_name: PythonEntityName = PythonEntityName.from_snake_case(
             flow_property_fy_search.group("property_name")
         )
+        maybe_constant_value = flow_property_fy_search.group("constant_value")
+        maybe_implementation_name = flow_property_fy_search.group("implementation_name")
 
-        constant: PythonEntityName = PythonEntityName.from_snake_case(
-            PROPERTY_CONSTANT_IMPLEMENTATION_NAME
-        )
-        implementation_name: PythonEntityName = (
-            PythonEntityName.from_snake_case(
-                flow_property_fy_search.group("implementation_name")
-            )
-            if flow_property_fy_search.group("implementation_name") is not None
-            else constant
+        assert maybe_implementation_name is not None or maybe_constant_value is not None
+
+        python_class_implementation_name = PythonEntityName.from_snake_case(
+            flow_property_fy_search.group("implementation_name")
+            or PROPERTY_SETTER_IMPLEMENTATION_NAME
         )
 
-        python_class_name = (
-            PythonEntityName.from_pascal_case(
-                f"{ property_name.pascal_case }_Using{ implementation_name.pascal_case }_PropertyMixin"
-            )
-            if implementation_name is not None
-            else PythonEntityName.from_pascal_case(
-                f"{ property_name.pascal_case }_Using{ constant.pascal_case }_PropertyMixin"
-            )
+        python_class_name = PythonEntityName.from_pascal_case(
+            f"{ property_name.pascal_case }_Using{ python_class_implementation_name.pascal_case }_PropertyMixin"
         )
+
+        implementation_name: PythonEntityName = PythonEntityName.from_snake_case(
+            flow_property_fy_search.group("implementation_name")
+            or PROPERTY_CONSTANT_IMPLEMENTATION_NAME
+        )
+
         return PropertyMixinModel(
             python_class_name=python_class_name,
             kind=MixinModelKind.PROPERTY,

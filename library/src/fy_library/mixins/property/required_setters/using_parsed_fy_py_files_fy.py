@@ -11,7 +11,10 @@ import abc
 from functools import cached_property
 from typing import List, cast
 
-from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
+from fy_library.constants import (
+    PROPERTY_SETTER_IMPLEMENTATION_NAME,
+    PROPERTY_CONSTANT_IMPLEMENTATION_NAME,
+)
 from fy_library.domain.entity_key import entity_key
 from fy_library.domain.fy_py_template_models import TemporaryBaseTemplateModel
 from fy_library.domain.mixin_models import PropertyMixinModel
@@ -21,7 +24,6 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedAbstractPropertyFyPyFile,
     ParsedFyPyFileKind,
 )
-from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.required_setters.abc_fy import (
     RequiredSetters_PropertyMixin_ABC,
 )
@@ -63,9 +65,7 @@ class RequiredSetters_UsingParsedFyPyFiles_PropertyMixin(
                 user_imports=self._parsed_fy_py_files_map_by_key[
                     flow_property.property_name.snake_case
                 ].user_imports,
-                python_class_name=PythonEntityName.from_pascal_case(
-                    f"{flow_property.property_name.pascal_case}_UsingSetter_PropertyMixin"
-                ),
+                python_class_name=flow_property.python_class_name,
                 generics_def=cast(
                     ParsedAbstractPropertyFyPyFile,
                     self._parsed_fy_py_files_map_by_key[
@@ -81,9 +81,7 @@ class RequiredSetters_UsingParsedFyPyFiles_PropertyMixin(
                 property_name=flow_property.property_name,
                 implementation_name=flow_property.implementation_name,
                 template_model=TemporaryBaseTemplateModel(
-                    python_class_name=PythonEntityName.from_pascal_case(
-                        f"{flow_property.property_name.pascal_case}_UsingSetter_PropertyMixin"
-                    ),
+                    python_class_name=flow_property.python_class_name,
                     entity_key_value=entity_key(
                         mixin_name__snake_case=flow_property.property_name.snake_case,
                         mixin_implementation_name__snake_case=PROPERTY_SETTER_IMPLEMENTATION_NAME,
@@ -96,7 +94,10 @@ class RequiredSetters_UsingParsedFyPyFiles_PropertyMixin(
             for flow_property in get_properties(parsed_fy_py_file)
             if (
                 flow_property.implementation_name.snake_case
-                == PROPERTY_SETTER_IMPLEMENTATION_NAME
+                in {
+                    PROPERTY_SETTER_IMPLEMENTATION_NAME,
+                    PROPERTY_CONSTANT_IMPLEMENTATION_NAME,
+                }
                 and f"{flow_property.property_name.snake_case}.setter"
                 not in self._parsed_fy_py_files_map_by_key
             )

@@ -14,17 +14,15 @@ fy"""
 from typing import List, Any
 
 from fy_core.base.flow_base import FlowBase
-
 from fy_library.domain.parsed_fy_py_file import ParsedAbstractPropertyFyPyFile
+from fy_library.mixins.property.import_abc.using_constant_import_abc import (
+    ImportAbc_UsingConstant_PropertyMixin,
+)
 from fy_library.mixins.property.imports.import_generic__using_generic_constant_fy import (
     ImportGeneric_UsingGenericConstant_PropertyMixin,
 )
 from fy_library.mixins.property.parsed_abstract_property_fy_py_file.using_setter import (
     ParsedAbstractPropertyFyPyFile_UsingSetter_PropertyMixin,
-)
-
-from fy_library.mixins.property.imports.using_constant_import_abc import (
-    ImportAbc_UsingConstant_PropertyMixin,
 )
 
 

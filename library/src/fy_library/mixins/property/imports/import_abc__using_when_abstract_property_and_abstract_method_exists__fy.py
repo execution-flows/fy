@@ -22,9 +22,8 @@ from fy_library.mixins.property.abstract_property_mixins.abc_fy import (
 )
 import abc
 
-from fy_library.mixins.property.imports.abc_for_import_abc_fy import (
-    ImportAbc_PropertyMixin_ABC,
-)
+
+from fy_library.mixins.property.import_abc.abc_fy import ImportAbc_PropertyMixin_ABC
 
 
 # fy:start ===>>>

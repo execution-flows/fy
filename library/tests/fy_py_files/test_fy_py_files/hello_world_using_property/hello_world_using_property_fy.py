@@ -4,8 +4,8 @@ flow HelloWorld -> None:
 fy"""
 
 from fy_core.base.flow_base import FlowBase
-from fy_py_files.test_fy_py_files.hello_world_using_property.property.using_constant_fy import (
-    Greeting_UsingConstant_PropertyMixin,
+from fy_py_files.test_fy_py_files.hello_world_using_property.property.using_setter import (
+    Greeting_UsingSetter_PropertyMixin,
 )
 from typing import Any
 
@@ -13,7 +13,7 @@ from typing import Any
 # fy:start ===>>>
 class HelloWorld_Flow(
     # Property Mixins
-    Greeting_UsingConstant_PropertyMixin,
+    Greeting_UsingSetter_PropertyMixin,
     # Base
     FlowBase[None],
 ):

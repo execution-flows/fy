@@ -21,7 +21,6 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedAbstractPropertyFyPyFile,
     ParsedFyPyFileKind,
 )
-from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.parsed_fy_py_files.abc_fy import (
     ParsedFyPyFiles_PropertyMixin_ABC,
 )
@@ -64,9 +63,7 @@ class RequiredConstants_UsingParsedFyPyFiles_PropertyMixin(
                 user_imports=self._parsed_fy_py_files_map_by_key[
                     flow_property.property_name.snake_case
                 ].user_imports,
-                python_class_name=PythonEntityName.from_pascal_case(
-                    f"{flow_property.property_name.pascal_case}_UsingConstant_PropertyMixin"
-                ),
+                python_class_name=flow_property.python_class_name,
                 generics_def=cast(
                     ParsedAbstractPropertyFyPyFile,
                     self._parsed_fy_py_files_map_by_key[
@@ -82,9 +79,7 @@ class RequiredConstants_UsingParsedFyPyFiles_PropertyMixin(
                 property_name=flow_property.property_name,
                 implementation_name=flow_property.implementation_name,
                 template_model=TemporaryBaseTemplateModel(
-                    python_class_name=PythonEntityName.from_pascal_case(
-                        f"{flow_property.property_name.pascal_case}_UsingConstant_PropertyMixin"
-                    ),
+                    python_class_name=flow_property.python_class_name,
                     entity_key_value=entity_key(
                         mixin_name__snake_case=flow_property.property_name.snake_case,
                         mixin_implementation_name__snake_case=PROPERTY_CONSTANT_IMPLEMENTATION_NAME,
@@ -98,7 +93,7 @@ class RequiredConstants_UsingParsedFyPyFiles_PropertyMixin(
             if (
                 flow_property.implementation_name.snake_case
                 == PROPERTY_CONSTANT_IMPLEMENTATION_NAME
-                and f"{flow_property.property_name.snake_case}.constant"
+                and f"{flow_property.property_name.snake_case}.setter"
                 not in self._parsed_fy_py_files_map_by_key
             )
         }
