@@ -70,8 +70,7 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
         all_annotations = re.findall(_CHECK_ANNOTATIONS, base_flow_file_split[0])
         for annotation in all_annotations:
             annotation_object = Annotation(
-                kind=AnnotationKind.CALLABLE,
-                name=annotation,
+                kind=AnnotationKind(annotation),
             )
             annotations.append(annotation_object)
 

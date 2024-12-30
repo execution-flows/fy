@@ -6,10 +6,9 @@ from enum import Enum
 from pydantic import BaseModel
 
 
-class AnnotationKind(Enum):
-    CALLABLE = "callable"
+class AnnotationKind(str, Enum):
+    CALLABLE = "@callable"
 
 
 class Annotation(BaseModel):
     kind: AnnotationKind
-    name: str
