@@ -1,5 +1,5 @@
 """fy
-flow HelloWorld -> str:
+flow hello_world -> str:
     property greeting using constant("Hello World")
 fy"""
 
