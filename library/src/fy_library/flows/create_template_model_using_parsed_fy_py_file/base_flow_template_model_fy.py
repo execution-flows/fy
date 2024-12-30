@@ -21,6 +21,7 @@ from typing import Dict
 
 from fy_core.base.flow_base import FlowBase
 
+from fy_library.domain.annotation_object import AnnotationKind
 from fy_library.domain.fy_py_template_models import (
     BaseFlowTemplateModel,
 )
@@ -89,7 +90,7 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
         assert isinstance(parsed_base_flow_fy_py_file, ParsedBaseFlowFyPyFile)
 
         callable_annotation = any(
-            "@callable" == annotation.name
+            AnnotationKind.CALLABLE == annotation.kind
             for annotation in parsed_base_flow_fy_py_file.annotations
         )
 

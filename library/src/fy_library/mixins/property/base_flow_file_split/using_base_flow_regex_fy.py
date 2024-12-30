@@ -18,7 +18,7 @@ from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,
 )
-from fy_library.domain.annotation_object import Annotation
+from fy_library.domain.annotation_object import Annotation, AnnotationKind
 from fy_library.mixins.property.base_flow_file_split.abc_fy import (
     BaseFlowFileSplitModel,
     BaseFlowFileSplit_PropertyMixin_ABC,
@@ -70,7 +70,7 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
         all_annotations = re.findall(_CHECK_ANNOTATIONS, base_flow_file_split[0])
         for annotation in all_annotations:
             annotation_object = Annotation(
-                name=annotation,
+                kind=AnnotationKind(annotation),
             )
             annotations.append(annotation_object)
 
