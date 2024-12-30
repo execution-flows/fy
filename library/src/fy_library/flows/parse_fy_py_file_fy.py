@@ -129,7 +129,7 @@ class ParseFyPyFile_Flow(
                 )
             case _:
                 raise NotImplementedError(
-                    f"Unimplemented fy file kind parser for {self._fy_file_kind}"
+                    f"No parser implemented for file kind '{self._fy_file_kind}' in file '{self._fy_py_file_to_parse}'"
                 )
 
         return parse_fy_code()

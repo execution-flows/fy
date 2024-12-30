@@ -3,6 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property property_file_split: PropertyFileSplitModel using property_regex:
+    property fy_py_file_to_parse
     property fy_code
 fy"""
 
@@ -23,6 +24,9 @@ from fy_library.mixins.property.property_file_split.abc_fy import (
 from fy_library.mixins.property.fy_code.abc_fy import (
     FyCode_PropertyMixin_ABC,
 )
+from fy_library.mixins.property.fy_py_file_to_parse.abc_fy import (
+    FyPyFileToParse_PropertyMixin_ABC,
+)
 
 _PROPERTY_REGEX: Final = re.compile(
     rf"property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})"
@@ -36,6 +40,7 @@ _PROPERTY_REGEX: Final = re.compile(
 class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
     # Property_mixins
     FyCode_PropertyMixin_ABC,
+    FyPyFileToParse_PropertyMixin_ABC,
     PropertyFileSplit_PropertyMixin_ABC,
     abc.ABC,
 ):
@@ -46,7 +51,7 @@ class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
 
         assert (
             len(property_file_split) == 6
-        ), f"Property file split length {len(property_file_split)} is invalid"
+        ), f"Property file split length {len(property_file_split)} is invalid in {self._fy_py_file_to_parse}"
 
         property_file_split_model = PropertyFileSplitModel(
             user_imports=property_file_split[0],
