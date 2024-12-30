@@ -18,6 +18,7 @@ from fy_library.constants import (
     FY_START_MARKER,
     FY_END_MARKER,
 )
+from fy_library.domain.annotation_object import AnnotationKind
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFileKind,
     ParsedBaseFlowFyPyFile,
@@ -54,22 +55,23 @@ class FyPyFileContent_UsingParsedFyPyFile_PropertyMixin(
             self._parsed_fy_py_file.pre_marker_file_content.strip()
         )
 
-        parsed_blow_fy_py_file = (
-            cast(ParsedBaseFlowFyPyFile, self._parsed_fy_py_file)
-            if self._parsed_fy_py_file.file_type == ParsedFyPyFileKind.BASE_FLOW
-            else None
-        )
+        if self._parsed_fy_py_file.file_type == ParsedFyPyFileKind.BASE_FLOW:
+            parsed_base_flow_fy_py_file = cast(
+                ParsedBaseFlowFyPyFile, self._parsed_fy_py_file
+            )
 
-        maybe_annotations = (
-            parsed_blow_fy_py_file.annotations if parsed_blow_fy_py_file else None
-        )
-
-        end_marker_space = " " * (
-            4
-            if not maybe_annotations
-            and self._parsed_fy_py_file.file_type == ParsedFyPyFileKind.BASE_FLOW
-            else 8
-        )
+            end_marker_space = " " * (
+                4
+                if not any(
+                    [
+                        annotation.kind == AnnotationKind.CALLABLE
+                        for annotation in parsed_base_flow_fy_py_file.annotations
+                    ]
+                )
+                else 8
+            )
+        else:
+            end_marker_space = " " * 8
 
         fy_py_file_content = (
             f"{self._parsed_fy_py_file.pre_fy_code}"
