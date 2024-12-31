@@ -67,3 +67,13 @@ class TestRaisesAssertionError(MainFyPyTestCase):
                 target_folder="invalid_fy_code_raises_correct_error/property_has_duplicate_name",
                 perform_fy_code_deletion=False,
             )
+
+    def test_flow_uses_multiple_same_entities(self) -> None:
+        with self.assertRaisesRegex(
+            expected_exception=AssertionError,
+            expected_regex=r"Duplicate found in .*.",
+        ):
+            self._test_main_flow(
+                target_folder="invalid_fy_code_raises_correct_error/flow_uses_multiple_same_entities",
+                perform_fy_code_deletion=False,
+            )
