@@ -36,13 +36,12 @@ class ParsedFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin(
         # fy:end <<<===
         parsed_fy_py_files_map_by_key: dict[str, ParsedFyPyFile] = {}
         for parsed_fy_py_file in self._parsed_fy_py_files:
-            if parsed_fy_py_file.entity_key not in parsed_fy_py_files_map_by_key:
-                parsed_fy_py_files_map_by_key[parsed_fy_py_file.entity_key] = (
-                    parsed_fy_py_file
-                )
-            else:
+            if parsed_fy_py_file.entity_key in parsed_fy_py_files_map_by_key:
                 raise AssertionError(
                     f"Duplicate key {parsed_fy_py_file.entity_key} found."
                 )
+            parsed_fy_py_files_map_by_key[parsed_fy_py_file.entity_key] = (
+                parsed_fy_py_file
+            )
 
         return parsed_fy_py_files_map_by_key
