@@ -72,6 +72,13 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                         ],
                     )
 
+                    if any(
+                        abstract_method_mixin.python_class_name.pascal_case
+                        == parsed_abstract_method_fy_py_file.python_class_name.pascal_case
+                        for abstract_method_mixin in parsed_method_fy_py_file.abstract_method_mixins
+                    ):
+                        return parsed_fy_py_file
+
                     return ParsedMethodFyPyFile.model_validate(
                         {
                             **parsed_method_fy_py_file.model_dump(),
