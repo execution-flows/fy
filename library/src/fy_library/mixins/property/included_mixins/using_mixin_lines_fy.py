@@ -34,12 +34,11 @@ class IncludedMixins_UsingMixinModels_PropertyMixin(
         # fy:end <<<===
         check_for_duplicates_dict: dict[str, BaseMixinModel] = {}
         for mixin_model in self._mixin_models:
-            if mixin_model.entity_key not in check_for_duplicates_dict:
-                check_for_duplicates_dict[mixin_model.entity_key] = mixin_model
-            else:
+            if mixin_model.entity_key in check_for_duplicates_dict:
                 raise AssertionError(
                     f"Duplicate found in {mixin_model.entity_key, mixin_model.kind.name}."
                 )
+            check_for_duplicates_dict[mixin_model.entity_key] = mixin_model
 
         included_mixins = IncludedMixinsModel(
             abstract_method_mixins=[
