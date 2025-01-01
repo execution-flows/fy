@@ -3,6 +3,7 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 flow Message -> str:
+    property property_required_1_generics using required_1
     property property_required_1 using required_1
     property property_required_2 using required_2
     property property_impl_1 using impl_1
@@ -12,6 +13,9 @@ fy"""
 from fy_core.base.flow_base import FlowBase
 from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property1.property_required_1_fy import (
     PropertyRequired1_UsingRequired1_PropertyMixin,
+)
+from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property1_generics.property_required_1_fy import (
+    PropertyRequired1Generics_UsingRequired1_PropertyMixin,
 )
 from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property2.property_required_2_fy import (
     PropertyRequired2_UsingRequired2_PropertyMixin,
@@ -27,6 +31,7 @@ from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property4.prope
 # fy:start ===>>>
 class Message_Flow(
     # Property Mixins
+    PropertyRequired1Generics_UsingRequired1_PropertyMixin,
     PropertyRequired1_UsingRequired1_PropertyMixin,
     PropertyRequired2_UsingRequired2_PropertyMixin,
     PropertyImpl1_UsingImpl1_PropertyMixin,
