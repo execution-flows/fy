@@ -93,7 +93,8 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                                     method_name=parsed_abstract_method_fy_py_file.abstract_method_name,
                                     generics_impl=(
                                         parsed_method_fy_py_file.generics_def
-                                        if parsed_method_fy_py_file.generics_def != ""
+                                        if parsed_abstract_method_fy_py_file.generics_def
+                                        != ""
                                         else ""
                                     ),
                                 )
