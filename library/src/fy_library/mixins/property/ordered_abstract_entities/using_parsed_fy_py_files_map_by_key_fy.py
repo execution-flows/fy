@@ -39,21 +39,32 @@ class AbstractEntitiesOrderingIndex_UsingParsedFyPyFilesMapByKey_PropertyMixin(
     @cached_property
     def _abstract_entities_ordering_index(self) -> Dict[str, int]:
         # fy:end <<<===
-        def sorting_mixin_key(mixin_key: str) -> str:
+        def sorting_mixin_key(mixin_key: str) -> tuple[int, str]:
             parsed_fy_py_file = self._parsed_fy_py_files_map_by_key[mixin_key]
+            prefix_index: int
             match parsed_fy_py_file.file_type:
                 case ParsedFyPyFileKind.ABSTRACT_PROPERTY:
                     abstract_property_parsed_fy_py_file = cast(
                         ParsedAbstractPropertyFyPyFile, parsed_fy_py_file
                     )
-                    return f"{0 if len(abstract_property_parsed_fy_py_file.generics_def) == 0 else 1}-{mixin_key}"
+                    prefix_index = (
+                        1
+                        if len(abstract_property_parsed_fy_py_file.generics_def) > 0
+                        else 0
+                    )
                 case ParsedFyPyFileKind.ABSTRACT_METHOD:
                     abstract_method_parsed_fy_py_file = cast(
                         ParsedAbstractMethodFyPyFile, parsed_fy_py_file
                     )
-                    return f"{0 if len(abstract_method_parsed_fy_py_file.generics_def) == 0 else 1}-{mixin_key}"
+                    prefix_index = (
+                        1
+                        if len(abstract_method_parsed_fy_py_file.generics_def) > 0
+                        else 0
+                    )
                 case _:
-                    return f"0-{mixin_key}"
+                    prefix_index = 0
+
+            return prefix_index, mixin_key
 
         abstract_entities_ordering_index = {
             entity_key: entity_num

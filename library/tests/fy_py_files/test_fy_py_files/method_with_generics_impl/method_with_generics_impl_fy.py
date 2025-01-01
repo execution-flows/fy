@@ -23,9 +23,9 @@ from .greetings_t import GreetT
 
 # fy:start ===>>>
 class Greet_UsingConstant_MethodMixin(
-    # Property_mixins
+    # Generic Property Mixins
     FrenchGreeting_PropertyMixin_ABC[FrenchGreeting],
-    # Method_mixins
+    # Generic Method Mixins
     Greet_MethodMixin_ABC[GreetT],
     Generic[GreetT],
     abc.ABC,

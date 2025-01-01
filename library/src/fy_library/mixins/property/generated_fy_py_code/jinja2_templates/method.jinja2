@@ -1,23 +1,33 @@
 class {{ python_class_name.pascal_case }}
-{%- if abstract_property_mixins or  abstract_method_mixins or generics_def-%}
+{%- if abstract_property_generic_mixins or abstract_property_non_generic_mixins or abstract_method_non_generic_mixins or abstract_method_generic_mixins or generics_def-%}
     (
 {%- endif %}
-{%- if abstract_property_mixins %}
+{%- if abstract_property_non_generic_mixins %}
     # Property_mixins
-    {%- for abstract_property in abstract_property_mixins %}
+    {%- for abstract_property in abstract_property_non_generic_mixins %}
+    {{ abstract_property.python_class_name.pascal_case }},
+    {%- endfor %}{% endif -%}
+{%- if abstract_method_non_generic_mixins %}
+    # Method_mixins
+    {%- for abstract_method in abstract_method_non_generic_mixins %}
+    {{ abstract_method.python_class_name.pascal_case }},{% endfor -%}
+{%- endif -%}
+{%- if abstract_property_generic_mixins %}
+    # Generic Property Mixins
+    {%- for abstract_property in abstract_property_generic_mixins %}
     {{ abstract_property.python_class_name.pascal_case }}{% if abstract_property.generics_impl %}[{{ abstract_property.generics_impl }}]{% endif %},
     {%- endfor %}{% endif -%}
-{%- if abstract_method_mixins %}
-    # Method_mixins
-    {%- for abstract_method in abstract_method_mixins %}
+{%- if abstract_method_generic_mixins %}
+    # Generic Method Mixins
+    {%- for abstract_method in abstract_method_generic_mixins %}
     {{ abstract_method.python_class_name.pascal_case }}{% if abstract_method.generics_impl %}[{{ abstract_method.generics_impl }}]{% endif %},{% endfor -%}
 {%- endif -%}
 {% if generics_def %}
     Generic[{{ generics_def }}],
 {%- endif -%}
-{%- if abstract_property_mixins or abstract_method_mixins %}
+{%- if abstract_property_generic_mixins or abstract_property_non_generic_mixins or abstract_method_non_generic_mixins or abstract_method_generic_mixins %}
     abc.ABC,
-){%- elif generics_def %}
+{%- endif -%}{%- if abstract_property_generic_mixins or abstract_property_non_generic_mixins or abstract_method_non_generic_mixins or abstract_method_generic_mixins or generics_def %}
 )
 {%- endif -%}:
     def _{{ method_name.snake_case }}(self{% if arguments %}, {{ arguments }}{% endif %}) -> {{ return_type }}:

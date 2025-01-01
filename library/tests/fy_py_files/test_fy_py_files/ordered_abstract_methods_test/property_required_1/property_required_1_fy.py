@@ -2,20 +2,25 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-property property_required_1: str using required_1:
+from ..greetings_t import GreetingT
+
+property property_required_1[GreetingT]: str using required_1:
 fy"""
 
 import abc
 from functools import cached_property
-from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property1.abc_fy import (
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property_required_1.abc_fy import (
     PropertyRequired1_PropertyMixin_ABC,
 )
+from typing import Generic
+from ..greetings_t import GreetingT
 
 
 # fy:start ===>>>
 class PropertyRequired1_UsingRequired1_PropertyMixin(
     # Property_mixins
-    PropertyRequired1_PropertyMixin_ABC,
+    PropertyRequired1_PropertyMixin_ABC[GreetingT],
+    Generic[GreetingT],
     abc.ABC,
 ):
     @cached_property

@@ -6,7 +6,7 @@ method method_required_2 -> str using required_2:
 fy"""
 
 import abc
-from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method2.abc_fy import (
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method_required_2.abc_fy import (
     MethodRequired2_MethodMixin_ABC,
 )
 

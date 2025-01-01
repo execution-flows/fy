@@ -9,12 +9,16 @@ flow create_method_template_model__using_parsed_fy_py_file -> MethodTemplateMode
     property mro_ordered_abstract_mixins using abstract_mixins_and_ordered_abstract_entities
 fy"""
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, cast
 
 from fy_core.base.flow_base import FlowBase
 
 from fy_library.domain.fy_py_template_models import MethodTemplateModel
-from fy_library.domain.mixin_models import BaseMixinModel, MixinModelKind
+from fy_library.domain.mixin_models import (
+    MixinModelKind,
+    AbstractPropertyModel,
+    AbstractMethodModel,
+)
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     ParsedMethodFyPyFile,
@@ -59,22 +63,32 @@ class CreateMethodTemplateModel_UsingParsedFyPyFile_Flow(
         parsed_method_fy_py_file = self._parsed_fy_py_file
         assert isinstance(parsed_method_fy_py_file, ParsedMethodFyPyFile)
 
-        abstract_method_mixins: List[BaseMixinModel] = [
-            abstract_property
+        abstract_method_mixins: List[AbstractMethodModel] = [
+            cast(AbstractMethodModel, abstract_property)
             for abstract_property in self._mro_ordered_abstract_mixins
             if abstract_property.kind == MixinModelKind.ABSTRACT_METHOD
         ]
-        abstract_property_mixins: List[BaseMixinModel] = [
-            abstract_method
-            for abstract_method in self._mro_ordered_abstract_mixins
-            if abstract_method.kind == MixinModelKind.ABSTRACT_PROPERTY
+        abstract_property_mixins: List[AbstractPropertyModel] = [
+            cast(AbstractPropertyModel, abstract_property)
+            for abstract_property in self._mro_ordered_abstract_mixins
+            if abstract_property.kind == MixinModelKind.ABSTRACT_PROPERTY
         ]
 
         return MethodTemplateModel(
             python_class_name=parsed_method_fy_py_file.python_class_name,
             method_name=parsed_method_fy_py_file.method_name,
-            abstract_method_mixins=abstract_method_mixins,
-            abstract_property_mixins=abstract_property_mixins,
+            abstract_method_non_generic_mixins=[
+                m for m in abstract_method_mixins if m.generics_impl == ""
+            ],
+            abstract_method_generic_mixins=[
+                m for m in abstract_method_mixins if m.generics_impl != ""
+            ],
+            abstract_property_non_generic_mixins=[
+                m for m in abstract_property_mixins if m.generics_impl == ""
+            ],
+            abstract_property_generic_mixins=[
+                m for m in abstract_property_mixins if m.generics_impl != ""
+            ],
             generics_def=parsed_method_fy_py_file.generics_def,
             arguments=parsed_method_fy_py_file.arguments,
             implementation_name=parsed_method_fy_py_file.implementation_name,
