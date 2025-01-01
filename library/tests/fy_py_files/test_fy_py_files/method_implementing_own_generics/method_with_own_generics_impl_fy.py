@@ -18,7 +18,7 @@ from .greetings_t import SpanishGreeting
 
 # fy:start ===>>>
 class Greet_UsingSpanishGreeting_MethodMixin(
-    # Method_mixins
+    # Generic Method Mixins
     Greet_MethodMixin_ABC[SpanishGreeting],
     abc.ABC,
 ):

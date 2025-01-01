@@ -15,12 +15,15 @@ import abc
 from functools import cached_property
 from typing import List, cast
 
-from fy_library.domain.mixin_models import AbstractPropertyModel, MixinModelKind
+from fy_library.domain.mixin_models import (
+    AbstractPropertyModel,
+    MixinModelKind,
+    AbstractMethodModel,
+)
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     ParsedFyPyFileKind,
     ParsedMethodFyPyFile,
-    convert_parsed_abstract_method_fy_py_file_to_abstract_method_mixin,
     ParsedAbstractMethodFyPyFile,
     ParsedAbstractPropertyFyPyFile,
     ParsedPropertyFyPyFile,
@@ -84,8 +87,15 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                             **parsed_method_fy_py_file.model_dump(),
                             "abstract_method_mixins": parsed_method_fy_py_file.abstract_method_mixins
                             + [
-                                convert_parsed_abstract_method_fy_py_file_to_abstract_method_mixin(
-                                    parsed_abstract_method_fy_py_file=parsed_abstract_method_fy_py_file
+                                AbstractMethodModel(
+                                    python_class_name=parsed_abstract_method_fy_py_file.python_class_name,
+                                    kind=MixinModelKind.ABSTRACT_METHOD,
+                                    method_name=parsed_abstract_method_fy_py_file.abstract_method_name,
+                                    generics_impl=(
+                                        parsed_method_fy_py_file.generics_def
+                                        if parsed_method_fy_py_file.generics_def != ""
+                                        else ""
+                                    ),
                                 )
                             ],
                         }

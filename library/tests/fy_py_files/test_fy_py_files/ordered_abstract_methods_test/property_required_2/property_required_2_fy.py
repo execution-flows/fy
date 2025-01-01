@@ -3,15 +3,15 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
 property property_required_2: str using required_2:
-    property property_required_1
+    property property_required_1[str]
 fy"""
 
 import abc
 from functools import cached_property
-from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property1.abc_fy import (
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property_required_1.abc_fy import (
     PropertyRequired1_PropertyMixin_ABC,
 )
-from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property2.abc_fy import (
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property_required_2.abc_fy import (
     PropertyRequired2_PropertyMixin_ABC,
 )
 
@@ -19,8 +19,8 @@ from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property2.abc_fy
 # fy:start ===>>>
 class PropertyRequired2_UsingRequired2_PropertyMixin(
     # Property_mixins
-    PropertyRequired1_PropertyMixin_ABC,
     PropertyRequired2_PropertyMixin_ABC,
+    PropertyRequired1_PropertyMixin_ABC[str],
     abc.ABC,
 ):
     @cached_property

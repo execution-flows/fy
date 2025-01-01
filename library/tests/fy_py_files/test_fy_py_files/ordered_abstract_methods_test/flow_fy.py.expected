@@ -4,7 +4,7 @@
 """fy
 flow Message -> str:
     property property_required_2 using required_2
-    property property_required_1 using required_1
+    property property_required_1 using required_1[str]
     method method_impl_1 using impl_1
     method method_impl_2 using impl_2
     method method_required_1 using required_1
@@ -12,22 +12,22 @@ flow Message -> str:
 fy"""
 
 from fy_core.base.flow_base import FlowBase
-from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method1.method_required_1_fy import (
-    MethodRequired1_UsingRequired1_MethodMixin,
-)
-from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method2.method_required_2_fy import (
-    MethodRequired2_UsingRequired2_MethodMixin,
-)
-from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method3.method_impl_1_fy import (
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method_impl_1.method_impl_1_fy import (
     MethodImpl1_UsingImpl1_MethodMixin,
 )
-from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method4.method_impl_2_fy import (
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method_impl_2.method_impl_2_fy import (
     MethodImpl2_UsingImpl2_MethodMixin,
 )
-from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property1.property_required_1_fy import (
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method_required_1.method_required_1_fy import (
+    MethodRequired1_UsingRequired1_MethodMixin,
+)
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.method_required_2.method_required_2_fy import (
+    MethodRequired2_UsingRequired2_MethodMixin,
+)
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property_required_1.property_required_1_fy import (
     PropertyRequired1_UsingRequired1_PropertyMixin,
 )
-from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property2.property_required_2_fy import (
+from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property_required_2.property_required_2_fy import (
     PropertyRequired2_UsingRequired2_PropertyMixin,
 )
 
@@ -36,7 +36,7 @@ from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property2.proper
 class Message_Flow(
     # Property Mixins
     PropertyRequired2_UsingRequired2_PropertyMixin,
-    PropertyRequired1_UsingRequired1_PropertyMixin,
+    PropertyRequired1_UsingRequired1_PropertyMixin[str],
     # Method Mixins
     MethodImpl1_UsingImpl1_MethodMixin,
     MethodImpl2_UsingImpl2_MethodMixin,

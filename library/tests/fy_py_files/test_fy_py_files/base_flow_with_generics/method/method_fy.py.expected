@@ -18,7 +18,7 @@ from ..greetings_t import GreetT
 
 # fy:start ===>>>
 class Greet_UsingGreeting_MethodMixin(
-    # Method_mixins
+    # Generic Method Mixins
     Greet_MethodMixin_ABC[GreetT],
     Generic[GreetT],
     abc.ABC,

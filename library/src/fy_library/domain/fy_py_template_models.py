@@ -26,8 +26,10 @@ class TemporaryBaseTemplateModel(BaseTemplateModel):
 
 class MethodTemplateModel(BaseTemplateModel):
     method_name: PythonEntityName
-    abstract_property_mixins: List[AbstractPropertyModel]
-    abstract_method_mixins: List[AbstractMethodModel]
+    abstract_property_non_generic_mixins: List[AbstractPropertyModel]
+    abstract_property_generic_mixins: List[AbstractPropertyModel]
+    abstract_method_non_generic_mixins: List[AbstractMethodModel]
+    abstract_method_generic_mixins: List[AbstractMethodModel]
     generics_def: str
     arguments: str | None
     implementation_name: PythonEntityName
