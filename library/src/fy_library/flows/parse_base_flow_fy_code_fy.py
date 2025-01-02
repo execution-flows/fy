@@ -18,41 +18,40 @@ flow parse_base_flow_fy_code -> ParsedFyPyFile:
     property parsed_base_flow_fy_py_file using parsed_fy_py_file
 fy"""
 
-from fy_core.base.flow_base import FlowBase
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
-
-from fy_library.mixins.property.fy_code.using_setter import (
-    FyCode_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.fy_py_file_to_parse.using_setter import (
-    FyPyFileToParse_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.included_mixins.using_mixin_lines_fy import (
-    IncludedMixins_UsingMixinModels_PropertyMixin,
-)
-from fy_library.mixins.property.mixin_lines.using_base_flow_file_split_fy import (
-    MixinLines_UsingBaseFlowFileSplit_PropertyMixin,
-)
-from fy_library.mixins.property.mixin_models.using_mixin_lines_fy import (
-    MixinModels_UsingMixinLines_PropertyMixin,
-)
-from fy_library.mixins.property.parsed_base_flow_fy_py_file.using_parsed_fy_py_file_fy import (
-    ParsedBaseFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin,
-)
-from fy_library.mixins.property.post_marker_file_content.using_setter import (
-    PostMarkerFileContent_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.pre_fy_code.using_setter import (
-    PreFyCode_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.pre_marker_file_content.using_setter import (
-    PreMarkerFileContent_UsingSetter_PropertyMixin,
-)
 from pathlib import Path
 from typing import Any
 
-from fy_library.mixins.property.base_flow_file_split.using_base_flow_regex_fy import (
+from fy_core.base.flow_base import FlowBase
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.mixins.property.fy_file.fy_code.using_setter import (
+    FyCode_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.fy_file.post_marker_file_content.using_setter import (
+    PostMarkerFileContent_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.fy_file.pre_fy_code.using_setter import (
+    PreFyCode_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.fy_file.pre_marker_file_content.using_setter import (
+    PreMarkerFileContent_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.fy_py_file.fy_py_file_to_parse.using_setter import (
+    FyPyFileToParse_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_entity_fy_py_file.parsed_base_flow_fy_py_file.using_parsed_fy_py_file_fy import (
+    ParsedBaseFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_file_split.base_flow_file_split.using_base_flow_regex_fy import (
     BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin,
+)
+from fy_library.mixins.property.parsing_mixin_model.included_mixins.using_mixin_lines_fy import (
+    IncludedMixins_UsingMixinModels_PropertyMixin,
+)
+from fy_library.mixins.property.parsing_mixin_model.mixin_lines.using_base_flow_file_split_fy import (
+    MixinLines_UsingBaseFlowFileSplit_PropertyMixin,
+)
+from fy_library.mixins.property.parsing_mixin_model.mixin_models.using_mixin_lines_fy import (
+    MixinModels_UsingMixinLines_PropertyMixin,
 )
 
 
