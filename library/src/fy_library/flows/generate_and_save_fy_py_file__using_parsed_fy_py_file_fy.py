@@ -17,7 +17,7 @@ flow generate_and_save_fy_py_file__using_parsed_fy_py_file -> None:
     method generate_and_save_fy_py_code using parsed_fy_py_file__and__fy_py_file_content
 fy"""
 
-from typing import Any, Dict
+from typing import Any
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.parsed_fy_py_file import (
@@ -61,6 +61,8 @@ from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
     AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
 )
 
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+
 
 # fy:start ===>>>
 class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
@@ -85,9 +87,11 @@ class GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow(
         self,
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
-        mixin_import_map: Dict[str, str],
-        parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
-        abstract_entities_ordering_index: Dict[str, int],
+        mixin_import_map: dict[tuple[ParsedFyPyFileKind, str], str],
+        parsed_fy_py_files_map_by_key: dict[
+            tuple[ParsedFyPyFileKind, str], ParsedFyPyFile
+        ],
+        abstract_entities_ordering_index: dict[tuple[ParsedFyPyFileKind, str], int],
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file

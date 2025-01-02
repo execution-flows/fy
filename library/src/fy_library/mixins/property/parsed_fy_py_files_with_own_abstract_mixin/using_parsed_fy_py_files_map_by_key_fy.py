@@ -63,15 +63,16 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                         ParsedMethodFyPyFile, parsed_fy_py_file
                     )
                     if (
-                        parsed_method_fy_py_file.method_name.snake_case
-                        not in self._parsed_fy_py_files_map_by_key
-                    ):
+                        parsed_method_fy_py_file.file_type,
+                        parsed_method_fy_py_file.method_name.snake_case,
+                    ) not in self._parsed_fy_py_files_map_by_key:
                         return parsed_fy_py_file
 
                     parsed_abstract_method_fy_py_file = cast(
                         ParsedAbstractMethodFyPyFile,
                         self._parsed_fy_py_files_map_by_key[
-                            parsed_method_fy_py_file.method_name.snake_case
+                            parsed_method_fy_py_file.file_type,
+                            parsed_method_fy_py_file.method_name.snake_case,
                         ],
                     )
 
@@ -106,15 +107,16 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                         ParsedPropertyFyPyFile, parsed_fy_py_file
                     )
                     if (
-                        parsed_property_fy_py_file.property_name.snake_case
-                        not in self._parsed_fy_py_files_map_by_key
-                    ):
+                        parsed_property_fy_py_file.file_type,
+                        parsed_property_fy_py_file.property_name.snake_case,
+                    ) not in self._parsed_fy_py_files_map_by_key:
                         return parsed_fy_py_file
 
                     parsed_abstract_property_fy_py_file = cast(
                         ParsedAbstractPropertyFyPyFile,
                         self._parsed_fy_py_files_map_by_key[
-                            parsed_property_fy_py_file.property_name.snake_case
+                            parsed_property_fy_py_file.file_type,
+                            parsed_property_fy_py_file.property_name.snake_case,
                         ],
                     )
 

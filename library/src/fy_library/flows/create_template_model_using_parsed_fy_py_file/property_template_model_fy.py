@@ -9,7 +9,7 @@ flow create_property_template_model__using_parsed_fy_py_file -> PropertyTemplate
     property mro_ordered_abstract_mixins using abstract_mixins_and_ordered_abstract_entities
 fy"""
 
-from typing import Any, Dict
+from typing import Any
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import PropertyTemplateModel
@@ -29,6 +29,8 @@ from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
     AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
 )
 
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+
 
 # fy:start ===>>>
 class CreatePropertyTemplateModel_UsingParsedFyPyFile_Flow(
@@ -44,7 +46,7 @@ class CreatePropertyTemplateModel_UsingParsedFyPyFile_Flow(
         self,
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
-        abstract_entities_ordering_index: Dict[str, int],
+        abstract_entities_ordering_index: dict[tuple[ParsedFyPyFileKind, str], int],
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file

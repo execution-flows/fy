@@ -12,14 +12,14 @@ property parsed_fy_py_files: List[ParsedFyPyFile] using property_setter_mixins__
 fy"""
 
 from functools import cached_property
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, PropertySetterFyPyFile
 from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
 from fy_library.mixins.property.property_setter_mixins.abc_fy import (
     PropertySetterMixins_PropertyMixin_ABC,
 )
-from typing import List
+from typing import List, cast
 import abc
 
 from fy_library.mixins.property.parsed_fy_py_files.abc_fy import (
@@ -40,7 +40,8 @@ class ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_Propert
         # fy:end <<<===
         return [
             self._parsed_fy_py_files_map_by_key[
-                property_setter.property_name.snake_case
+                cast(PropertySetterFyPyFile, property_setter).file_type,
+                property_setter.property_name.snake_case,
             ]
             for property_setter in self._property_setter_mixins
         ]

@@ -2,19 +2,17 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from typing import Dict
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
 
 
-property parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile] using parsed_fy_py_files:
+property parsed_fy_py_files_map_by_key: dict[tuple[ParsedFyPyFileKind, str], ParsedFyPyFile] using parsed_fy_py_files:
     property parsed_fy_py_files
 fy"""
 
 import abc
 from functools import cached_property
-from typing import Dict
 
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
 from fy_library.mixins.property.parsed_fy_py_files.abc_fy import (
     ParsedFyPyFiles_PropertyMixin_ABC,
 )
@@ -32,9 +30,13 @@ class ParsedFyPyFilesMapByKey_UsingParsedFyPyFiles_PropertyMixin(
     abc.ABC,
 ):
     @cached_property
-    def _parsed_fy_py_files_map_by_key(self) -> Dict[str, ParsedFyPyFile]:
+    def _parsed_fy_py_files_map_by_key(
+        self,
+    ) -> dict[tuple[ParsedFyPyFileKind, str], ParsedFyPyFile]:
         # fy:end <<<===
-        parsed_fy_py_files_map_by_key: dict[str, ParsedFyPyFile] = {}
+        parsed_fy_py_files_map_by_key: dict[
+            tuple[ParsedFyPyFileKind, str], ParsedFyPyFile
+        ] = {}
         for parsed_fy_py_file in self._parsed_fy_py_files:
             if parsed_fy_py_file.entity_key in parsed_fy_py_files_map_by_key:
                 raise AssertionError(

@@ -43,7 +43,7 @@ class ParsedFyPyFile(FyPyFileParts):
 
     @property
     @abc.abstractmethod
-    def entity_key(self) -> str:
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
         raise NotImplementedError()
 
 
@@ -58,8 +58,8 @@ class ParsedFlowFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
-        return self.flow_name.snake_case
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
+        return self.file_type, self.flow_name.snake_case
 
 
 class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
@@ -76,8 +76,8 @@ class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
-        return self.base_flow_name.snake_case
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
+        return self.file_type, self.base_flow_name.snake_case
 
 
 class ParsedMethodFyPyFile(ParsedFyPyFile):
@@ -92,8 +92,9 @@ class ParsedMethodFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
         return entity_key(
+            fy_py_kind=self.file_type,
             mixin_name__snake_case=self.method_name.snake_case,
             mixin_implementation_name__snake_case=self.implementation_name.snake_case,
         )
@@ -110,8 +111,8 @@ class ParsedAbstractMethodFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
-        return self.abstract_method_name.snake_case
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
+        return self.file_type, self.abstract_method_name.snake_case
 
 
 class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):
@@ -124,8 +125,8 @@ class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
-        return self.abstract_property_name.snake_case
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
+        return self.file_type, self.abstract_property_name.snake_case
 
 
 class ParsedPropertyFyPyFile(ParsedFyPyFile):
@@ -138,8 +139,9 @@ class ParsedPropertyFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
         return entity_key(
+            fy_py_kind=self.file_type,
             mixin_name__snake_case=self.property_name.snake_case,
             mixin_implementation_name__snake_case=self.implementation_name.snake_case,
         )
@@ -156,8 +158,9 @@ class PropertySetterFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
         return entity_key(
+            fy_py_kind=self.file_type,
             mixin_name__snake_case=self.property_name.snake_case,
             mixin_implementation_name__snake_case=self.implementation_name.snake_case,
         )

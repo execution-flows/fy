@@ -2,21 +2,23 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from typing import Dict
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
 
 
-property abstract_entities_ordering_index: Dict[str, int]
+property abstract_entities_ordering_index: dict[tuple[ParsedFyPyFileKind, str], int]
 fy"""
 
 import abc
 
-from typing import Dict
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
 
 
 # fy:start ===>>>
 class AbstractEntitiesOrderingIndex_PropertyMixin_ABC(abc.ABC):
     @property
     @abc.abstractmethod
-    def _abstract_entities_ordering_index(self) -> Dict[str, int]:
+    def _abstract_entities_ordering_index(
+        self,
+    ) -> dict[tuple[ParsedFyPyFileKind, str], int]:
         raise NotImplementedError()
         # fy:end <<<===

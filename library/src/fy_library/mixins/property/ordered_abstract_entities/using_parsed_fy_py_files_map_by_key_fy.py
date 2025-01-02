@@ -2,30 +2,24 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from typing import Dict
-
-
-property abstract_entities_ordering_index: Dict[str, int] using parsed_fy_py_files_map_by_key:
+property abstract_entities_ordering_index: dict[tuple[ParsedFyPyFileKind, str], int] using parsed_fy_py_files_map_by_key:
     property parsed_fy_py_files_map_by_key
 fy"""
 
-from functools import cached_property
-
-from typing import Dict, cast
-
 import abc
+from functools import cached_property
+from typing import cast
 
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFileKind,
     ParsedAbstractPropertyFyPyFile,
     ParsedAbstractMethodFyPyFile,
 )
-from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
-    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
-)
-
 from fy_library.mixins.property.ordered_abstract_entities.abc_fy import (
     AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
+)
+from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
+    ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
 
 
@@ -37,9 +31,13 @@ class AbstractEntitiesOrderingIndex_UsingParsedFyPyFilesMapByKey_PropertyMixin(
     abc.ABC,
 ):
     @cached_property
-    def _abstract_entities_ordering_index(self) -> Dict[str, int]:
+    def _abstract_entities_ordering_index(
+        self,
+    ) -> dict[tuple[ParsedFyPyFileKind, str], int]:
         # fy:end <<<===
-        def sorting_mixin_key(mixin_key: str) -> tuple[int, str]:
+        def sorting_mixin_key(
+            mixin_key: tuple[ParsedFyPyFileKind, str],
+        ) -> tuple[int, tuple[ParsedFyPyFileKind, str]]:
             parsed_fy_py_file = self._parsed_fy_py_files_map_by_key[mixin_key]
             prefix_index: int
             match parsed_fy_py_file.file_type:

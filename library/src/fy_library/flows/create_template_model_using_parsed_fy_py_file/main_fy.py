@@ -12,7 +12,6 @@ flow create_template_model_using_parsed_fy_py_file -> BaseTemplateModel:
 fy"""
 
 from typing import Any
-from typing import Dict
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import (
@@ -62,8 +61,10 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
         self,
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
-        parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
-        abstract_entities_ordering_index: Dict[str, int],
+        parsed_fy_py_files_map_by_key: dict[
+            tuple[ParsedFyPyFileKind, str], ParsedFyPyFile
+        ],
+        abstract_entities_ordering_index: dict[tuple[ParsedFyPyFileKind, str], int],
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file

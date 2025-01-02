@@ -15,7 +15,7 @@ flow property_imports -> List[str]:
     property import_abstract_property_mixins using abstract_property_mixin_and_mixin_import_map
 fy"""
 
-from typing import List, Any, Dict
+from typing import List, Any
 
 from fy_core.base.flow_base import FlowBase
 
@@ -45,6 +45,8 @@ from fy_library.mixins.property.import_generic.using_setter import (
     ImportGeneric_UsingSetter_PropertyMixin,
 )
 
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+
 
 # fy:start ===>>>
 class PropertyImports_Flow(
@@ -63,7 +65,7 @@ class PropertyImports_Flow(
         self,
         *args: Any,
         abstract_property_mixins: List[AbstractPropertyModel],
-        mixin_import_map: Dict[str, str],
+        mixin_import_map: dict[tuple[ParsedFyPyFileKind, str], str],
         parsed_property_fy_py_file: ParsedPropertyFyPyFile,
         **kwargs: Any,
     ):

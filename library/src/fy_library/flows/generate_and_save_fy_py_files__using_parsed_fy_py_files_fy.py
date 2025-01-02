@@ -9,7 +9,7 @@ flow generate_and_save_fy_py_files__using_parsed_fy_py_files -> None:
     property abstract_entities_ordering_index using setter
 fy"""
 
-from typing import List, Any, Dict
+from typing import List, Any
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.parsed_fy_py_file import (
@@ -32,6 +32,8 @@ from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
     AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
 )
 
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+
 
 # fy:start ===>>>
 class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
@@ -47,9 +49,11 @@ class GenerateAndSaveFyPyFiles_UsingParsedFyPyFiles_Flow(
         self,
         *args: Any,
         parsed_fy_py_files: List[ParsedFyPyFile],
-        mixin_import_map: Dict[str, str],
-        parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
-        abstract_entities_ordering_index: Dict[str, int],
+        mixin_import_map: dict[tuple[ParsedFyPyFileKind, str], str],
+        parsed_fy_py_files_map_by_key: dict[
+            tuple[ParsedFyPyFileKind, str], ParsedFyPyFile
+        ],
+        abstract_entities_ordering_index: dict[tuple[ParsedFyPyFileKind, str], int],
         **kwargs: Any,
     ):
         self._parsed_fy_py_files = parsed_fy_py_files

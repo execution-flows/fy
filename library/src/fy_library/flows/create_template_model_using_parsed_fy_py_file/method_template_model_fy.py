@@ -9,7 +9,7 @@ flow create_method_template_model__using_parsed_fy_py_file -> MethodTemplateMode
     property mro_ordered_abstract_mixins using abstract_mixins_and_ordered_abstract_entities
 fy"""
 
-from typing import Any, Dict, List, cast
+from typing import Any, List, cast
 
 from fy_core.base.flow_base import FlowBase
 
@@ -36,6 +36,8 @@ from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
 
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+
 
 # fy:start ===>>>
 class CreateMethodTemplateModel_UsingParsedFyPyFile_Flow(
@@ -51,7 +53,7 @@ class CreateMethodTemplateModel_UsingParsedFyPyFile_Flow(
         self,
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
-        abstract_entities_ordering_index: Dict[str, int],
+        abstract_entities_ordering_index: dict[tuple[ParsedFyPyFileKind, str], int],
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file
