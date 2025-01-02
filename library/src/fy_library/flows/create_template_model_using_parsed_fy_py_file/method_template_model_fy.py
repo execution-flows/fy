@@ -36,7 +36,7 @@ from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
 
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 
 
 # fy:start ===>>>

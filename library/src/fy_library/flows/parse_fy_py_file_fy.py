@@ -19,7 +19,8 @@ from pathlib import Path
 from typing import Any
 
 from fy_core.base.flow_base import FlowBase
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.flows.parse_abstract_method_fy_code_fy import (
     ParseAbstractMethodFyCode_Flow,
 )

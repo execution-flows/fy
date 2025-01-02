@@ -8,7 +8,8 @@ from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKi
 property parsed_fy_py_files_map_by_key: dict[tuple[ParsedFyPyFileKind, str], ParsedFyPyFile]
 fy"""
 
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 import abc
 
 

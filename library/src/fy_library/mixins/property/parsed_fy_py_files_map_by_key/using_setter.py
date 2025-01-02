@@ -1,5 +1,6 @@
 # fy:start ===>>>
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 
 
 class ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin:

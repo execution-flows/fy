@@ -7,7 +7,7 @@ from enum import Enum
 from pydantic import BaseModel, computed_field
 
 from fy_library.domain.entity_key import entity_key
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
 
 

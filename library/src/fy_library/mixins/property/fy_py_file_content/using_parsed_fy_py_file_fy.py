@@ -20,9 +20,9 @@ from fy_library.constants import (
 )
 from fy_library.domain.annotation_object import AnnotationKind
 from fy_library.domain.parsed_fy_py_file import (
-    ParsedFyPyFileKind,
     ParsedBaseFlowFyPyFile,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.fy_py_file_content.abc_fy import (
     FyPyFileContent_PropertyMixin_ABC,
 )

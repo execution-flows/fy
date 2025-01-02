@@ -16,7 +16,7 @@ from functools import cached_property
 import abc
 from typing import List
 
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.mixin_import_map.abc_fy import (
     MixinImportMap_PropertyMixin_ABC,
 )

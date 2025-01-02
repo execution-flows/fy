@@ -22,9 +22,9 @@ from fy_library.domain.parsed_fy_py_file import (
     PropertySetterFyPyFile,
     ParsedFyPyFile,
     ParsedAbstractPropertyFyPyFile,
-    ParsedFyPyFileKind,
     ParsedPropertyFyPyFile,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.required_setters.abc_fy import (
     RequiredSetters_PropertyMixin_ABC,
 )

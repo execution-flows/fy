@@ -11,10 +11,10 @@ from functools import cached_property
 from typing import cast
 
 from fy_library.domain.parsed_fy_py_file import (
-    ParsedFyPyFileKind,
     ParsedAbstractPropertyFyPyFile,
     ParsedAbstractMethodFyPyFile,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.ordered_abstract_entities.abc_fy import (
     AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
 )

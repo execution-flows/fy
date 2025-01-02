@@ -12,7 +12,8 @@ fy"""
 import abc
 from functools import cached_property
 
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.parsed_fy_py_files.abc_fy import (
     ParsedFyPyFiles_PropertyMixin_ABC,
 )

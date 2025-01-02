@@ -22,12 +22,12 @@ from fy_library.domain.mixin_models import (
 )
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
-    ParsedFyPyFileKind,
     ParsedMethodFyPyFile,
     ParsedAbstractMethodFyPyFile,
     ParsedAbstractPropertyFyPyFile,
     ParsedPropertyFyPyFile,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )

@@ -16,7 +16,6 @@ from functools import cached_property
 from typing import List, cast
 
 from fy_library.domain.parsed_fy_py_file import (
-    ParsedFyPyFileKind,
     ParsedMethodFyPyFile,
     ParsedFlowFyPyFile,
     ParsedPropertyFyPyFile,
@@ -24,6 +23,7 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedAbstractPropertyFyPyFile,
     ParsedAbstractMethodFyPyFile,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.flows.imports.abstract_method_imports_fy import (
     AbstractMethodImportsFlow_Flow,
 )

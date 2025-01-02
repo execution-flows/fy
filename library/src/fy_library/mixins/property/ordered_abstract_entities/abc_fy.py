@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 
 
 property abstract_entities_ordering_index: dict[tuple[ParsedFyPyFileKind, str], int]
@@ -10,7 +10,7 @@ fy"""
 
 import abc
 
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 
 
 # fy:start ===>>>

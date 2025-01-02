@@ -1,7 +1,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from enum import Enum
 from pathlib import Path
 from typing import Literal, List
 import abc
@@ -15,17 +14,8 @@ from fy_library.domain.mixin_models import (
     AbstractPropertyModel,
     PropertyMixinModel,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
-
-
-class ParsedFyPyFileKind(Enum):
-    FLOW = "flow"
-    BASE_FLOW = "base_flow"
-    METHOD = "method"
-    ABSTRACT_METHOD = "abstract_method"
-    ABSTRACT_PROPERTY = "abstract_property"
-    PROPERTY = "property"
-    PROPERTY_SETTER = "property_setter"
 
 
 class FyPyFileParts(BaseModel):

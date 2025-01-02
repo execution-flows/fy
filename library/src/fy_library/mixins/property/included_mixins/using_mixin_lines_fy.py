@@ -13,7 +13,7 @@ import abc
 from functools import cached_property
 
 from fy_library.domain.mixin_models import MixinModelKind, BaseMixinModel
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.included_mixins.abc_fy import (
     IncludedMixinsModel,
     IncludedMixins_PropertyMixin_ABC,

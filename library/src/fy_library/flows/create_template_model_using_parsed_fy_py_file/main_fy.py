@@ -17,7 +17,8 @@ from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import (
     BaseTemplateModel,
 )
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.flows.create_template_model_using_parsed_fy_py_file.abstract_method_template_model_fy import (
     CreateAbstractMethodTemplateModel_UsingParsedFyPyFile_Flow,
 )

@@ -11,7 +11,7 @@ import abc
 from functools import cached_property
 
 from fy_library.domain.entity_key import entity_key
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.mixin_import_map.abc_fy import (
     MixinImportMap_PropertyMixin_ABC,
 )

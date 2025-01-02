@@ -23,8 +23,8 @@ from fy_library.domain.fy_py_template_models import (
 )
 from fy_library.domain.parsed_fy_py_file import (
     ParsedPropertyFyPyFile,
-    ParsedFyPyFileKind,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.entity_key import entity_key
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.fy_code.abc_fy import (

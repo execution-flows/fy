@@ -55,7 +55,7 @@ from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy i
     PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
 )
 
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 
 
 # fy:start ===>>>
