@@ -11,7 +11,7 @@ from fy_py_files.test_fy_py_files.method_with_abstract_method.abc_fy import (
 
 # fy:start ===>>>
 class Greet_UsingEncrypt_MethodMixin(
-    # Method_mixins
+    # Method Mixins
     Encrypt_MethodMixin_ABC,
     abc.ABC,
 ):

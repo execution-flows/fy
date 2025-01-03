@@ -1,7 +1,7 @@
 class {{ python_class_name.pascal_case }}
 {%- if abstract_property_mixins -%}
 (
-    # Property_mixins
+    # Property Mixins
 {%- for abstract_property_mixin in abstract_property_mixins %}
     {{ abstract_property_mixin.python_class_name.pascal_case }}{% if abstract_property_mixin.generics_impl %}[{{ abstract_property_mixin.generics_impl }}]{% endif %},
 {%- endfor %}

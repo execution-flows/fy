@@ -13,7 +13,7 @@ from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.method1.abc
 
 # fy:start ===>>>
 class MethodRequired1_UsingRequired1_MethodMixin(
-    # Method_mixins
+    # Method Mixins
     MethodRequired1_MethodMixin_ABC,
     abc.ABC,
 ):
