@@ -9,12 +9,11 @@ fy"""
 from typing import Any, List
 
 from fy_core.base.flow_base import FlowBase
-
 from fy_library.domain.parsed_fy_py_file import PropertySetterFyPyFile
 from fy_library.flows.generate_and_save_fy_py_file__using_required_property_setters_fy import (
     GenerateAndSaveFyPyFile_UsingRequiredPropertySetters_Flow,
 )
-from fy_library.mixins.property.required_property_setters_fy_py.using_setter import (
+from fy_library.mixins.property.property_setters.required_property_setters_fy_py.using_setter import (
     RequiredPropertySettersFyPy_UsingSetter_PropertyMixin,
 )
 

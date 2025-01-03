@@ -18,7 +18,6 @@ from typing import Any
 from typing import Dict
 
 from fy_core.base.flow_base import FlowBase
-
 from fy_library.domain.fy_py_template_models import (
     FlowTemplateModel,
 )
@@ -27,24 +26,23 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedFlowFyPyFile,
 )
 from fy_library.domain.python_entity_name import PythonEntityName
-from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
-    ParsedFyPyFile_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.parsed_fy_py_files.using_property_setter_mixins__mapped_to_abstract_property__fy import (
-    ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_PropertyMixin,
-)
-from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
-    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.property_mixins.using_template_model_properties_fy import (
+from fy_library.mixins.property.entity_mixins.property_mixins.using_template_model_properties_fy import (
     PropertyMixins_UsingTemplateModelProperties_PropertyMixin,
 )
-from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy import (
-    PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_file.using_setter import (
+    ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
-
-from fy_library.mixins.property.property_constant_setter_mixins.using_property_mixins_fy import (
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files.using_property_setter_mixins__mapped_to_abstract_property__fy import (
+    ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files_map_by_key.using_setter import (
+    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.property_setters.property_constant_setter_mixins.using_property_mixins_fy import (
     PropertyConstantSetterMixins_UsingPropertyMixins_PropertyMixin,
+)
+from fy_library.mixins.property.property_setters.property_setter_mixins.using_property_mixin_fy import (
+    PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
 )
 
 

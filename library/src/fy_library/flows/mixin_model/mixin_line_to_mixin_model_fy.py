@@ -16,24 +16,23 @@ from typing import Any
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.mixin_models import BaseMixinModel
-from fy_library.mixins.property.fy_py_file_to_parse.using_setter import (
+from fy_library.mixins.property.fy_py_file.fy_py_file_to_parse.using_setter import (
     FyPyFileToParse_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.mixin_line.using_setter import (
-    MixinLine_UsingSetter_PropertyMixin,
+from fy_library.mixins.property.optional_mixin_models.optional_abstract_method_mixin_model.using_mixin_line_fy import (
+    OptionalAbstractMethodMixinModel_UsingMixinLine_PropertyMixin,
 )
-from fy_library.mixins.property.optional_abstract_property_mixin_model.using_mixin_line_fy import (
+from fy_library.mixins.property.optional_mixin_models.optional_abstract_property_mixin_model.using_mixin_line_fy import (
     OptionalAbstractPropertyMixinModel_UsingMixinLine_PropertyMixin,
 )
-from fy_library.mixins.property.optional_method_mixin_model.using_mixin_line_fy import (
+from fy_library.mixins.property.optional_mixin_models.optional_method_mixin_model.using_mixin_line_fy import (
     OptionalMethodMixinModel_UsingMixinLine_PropertyMixin,
 )
-from fy_library.mixins.property.optional_property_mixin_model.using_mixin_line_fy import (
+from fy_library.mixins.property.optional_mixin_models.optional_property_mixin_model.using_mixin_line_fy import (
     OptionalPropertyMixinModel_UsingMixinLine_PropertyMixin,
 )
-
-from fy_library.mixins.property.optional_abstract_method_mixin_model.using_mixin_line_fy import (
-    OptionalAbstractMethodMixinModel_UsingMixinLine_PropertyMixin,
+from fy_library.mixins.property.parsing_mixin_model.mixin_line.using_setter import (
+    MixinLine_UsingSetter_PropertyMixin,
 )
 
 

@@ -14,19 +14,17 @@ from typing import Any, Dict
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import PropertyTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, ParsedPropertyFyPyFile
-from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
-    ParsedFyPyFile_UsingSetter_PropertyMixin,
-)
-
-from fy_library.mixins.property.abstract_mixins.using_parsed_property_fy_py_file_fy import (
+from fy_library.mixins.property.entity_mixins.abstract_mixins.using_parsed_property_fy_py_file_fy import (
     AbstractMixins_UsingParsedPropertyFyPyFile_PropertyMixin,
 )
-from fy_library.mixins.property.mro_ordered_abstract_mixins.new_parsed_fy_py_file_and_ordered_abstract_entities_fy import (
+from fy_library.mixins.property.mro.mro_ordered_abstract_mixins.new_parsed_fy_py_file_and_ordered_abstract_entities_fy import (
     MroOrderedAbstractMixins_UsingAbstractMixinsAndOrderedAbstractEntities_PropertyMixin,
 )
-
-from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
+from fy_library.mixins.property.mro.ordered_abstract_entities.using_setter import (
     AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_file.using_setter import (
+    ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
 
 

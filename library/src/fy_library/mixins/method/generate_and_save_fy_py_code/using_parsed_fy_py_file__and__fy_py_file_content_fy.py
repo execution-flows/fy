@@ -9,10 +9,10 @@ fy"""
 
 import abc
 
-from fy_library.mixins.property.fy_py_file_content.abc_fy import (
+from fy_library.mixins.property.fy_py_file.fy_py_file_content.abc_fy import (
     FyPyFileContent_PropertyMixin_ABC,
 )
-from fy_library.mixins.property.parsed_fy_py_file.abc_fy import (
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_file.abc_fy import (
     ParsedFyPyFile_PropertyMixin_ABC,
 )
 
