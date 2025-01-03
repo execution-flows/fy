@@ -6,6 +6,9 @@ from enum import Enum
 
 from pydantic import BaseModel, computed_field
 
+from fy_library.constants import (
+    GENERATED_PROPERTY_FILE_IMPLEMENTATION_NAMES,
+)
 from fy_library.domain.entity_key import entity_key
 from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
@@ -68,8 +71,14 @@ class PropertyMixinModel(AbstractPropertyModel):
     @computed_field
     @property
     def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
+        fy_py_kind = (
+            ParsedFyPyFileKind.PROPERTY_SETTER
+            if self.implementation_name.snake_case
+            in GENERATED_PROPERTY_FILE_IMPLEMENTATION_NAMES
+            else ParsedFyPyFileKind.PROPERTY
+        )
         return entity_key(
-            fy_py_kind=ParsedFyPyFileKind(self.kind.value),
+            fy_py_kind=fy_py_kind,
             mixin_name__snake_case=self.property_name.snake_case,
             mixin_implementation_name__snake_case=self.implementation_name.snake_case,
         )

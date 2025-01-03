@@ -10,8 +10,6 @@ fy"""
 import abc
 from functools import cached_property
 
-from fy_library.domain.entity_key import entity_key
-from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.method_mixins.abc_fy import (
     MethodMixins_PropertyMixin_ABC,
 )
@@ -32,12 +30,6 @@ class MethodMixinsImport_UsingMethodMixinsAndMixinImportMap_PropertyMixin(
         # fy:end <<<===
         return [
             # method mixins
-            self._mixin_import_map[
-                entity_key(
-                    fy_py_kind=ParsedFyPyFileKind(method_mixin.kind.value),
-                    mixin_name__snake_case=method_mixin.method_name.snake_case,
-                    mixin_implementation_name__snake_case=method_mixin.implementation_name.snake_case,
-                )
-            ]
+            self._mixin_import_map[method_mixin.entity_key]
             for method_mixin in self._method_mixins
         ]

@@ -12,8 +12,8 @@ from functools import cached_property
 from typing import List, cast
 
 from fy_library.constants import (
+    GENERATED_PROPERTY_FILE_IMPLEMENTATION_NAMES,
     PROPERTY_SETTER_IMPLEMENTATION_NAME,
-    PROPERTY_CONSTANT_IMPLEMENTATION_NAME,
 )
 from fy_library.domain.entity_key import entity_key
 from fy_library.domain.fy_py_template_models import TemporaryBaseTemplateModel
@@ -22,7 +22,6 @@ from fy_library.domain.parsed_fy_py_file import (
     PropertySetterFyPyFile,
     ParsedFyPyFile,
     ParsedAbstractPropertyFyPyFile,
-    ParsedPropertyFyPyFile,
 )
 from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.required_setters.abc_fy import (
@@ -61,25 +60,25 @@ class RequiredSetters_UsingParsedFyPyFiles_PropertyMixin(
                 pre_marker_file_content="",
                 post_marker_file_content="",
                 file_path=self._parsed_fy_py_files_map_by_key[
-                    cast(ParsedPropertyFyPyFile, flow_property).file_type,
+                    ParsedFyPyFileKind.ABSTRACT_PROPERTY,
                     flow_property.property_name.snake_case,
                 ].file_path.with_name("using_setter.py"),
                 user_imports=self._parsed_fy_py_files_map_by_key[
-                    cast(ParsedPropertyFyPyFile, flow_property).file_type,
+                    ParsedFyPyFileKind.ABSTRACT_PROPERTY,
                     flow_property.property_name.snake_case,
                 ].user_imports,
                 python_class_name=flow_property.python_class_name,
                 generics_def=cast(
                     ParsedAbstractPropertyFyPyFile,
                     self._parsed_fy_py_files_map_by_key[
-                        cast(ParsedPropertyFyPyFile, flow_property).file_type,
+                        ParsedFyPyFileKind.ABSTRACT_PROPERTY,
                         flow_property.property_name.snake_case,
                     ],
                 ).generics_def,
                 property_type=cast(
                     ParsedAbstractPropertyFyPyFile,
                     self._parsed_fy_py_files_map_by_key[
-                        cast(ParsedPropertyFyPyFile, flow_property).file_type,
+                        ParsedFyPyFileKind.ABSTRACT_PROPERTY,
                         flow_property.property_name.snake_case,
                     ],
                 ).property_type,
@@ -100,12 +99,9 @@ class RequiredSetters_UsingParsedFyPyFiles_PropertyMixin(
             for flow_property in get_properties(parsed_fy_py_file)
             if (
                 flow_property.implementation_name.snake_case
-                in {
-                    PROPERTY_SETTER_IMPLEMENTATION_NAME,
-                    PROPERTY_CONSTANT_IMPLEMENTATION_NAME,
-                }
+                in GENERATED_PROPERTY_FILE_IMPLEMENTATION_NAMES
                 and (
-                    ParsedFyPyFileKind(flow_property.kind.value),
+                    flow_property.entity_key[0],
                     f"{flow_property.property_name.snake_case}.setter",
                 )
                 not in self._parsed_fy_py_files_map_by_key

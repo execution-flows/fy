@@ -13,6 +13,7 @@ from fy_library.domain.mixin_models import (
     PropertyMixinModel,
 )
 from fy_library.domain.parsed_fy_py_file import ParsedAbstractPropertyFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
 
 
@@ -21,7 +22,7 @@ class BaseTemplateModel(BaseModel, abc.ABC):
 
 
 class TemporaryBaseTemplateModel(BaseTemplateModel):
-    entity_key_value: str
+    entity_key_value: tuple[ParsedFyPyFileKind, str]
 
 
 class MethodTemplateModel(BaseTemplateModel):

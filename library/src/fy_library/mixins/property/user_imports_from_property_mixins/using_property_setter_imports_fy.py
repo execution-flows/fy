@@ -9,9 +9,9 @@ fy"""
 
 import abc
 from functools import cached_property
-from typing import Set, cast
+from typing import Set
 
-from fy_library.domain.parsed_fy_py_file import PropertySetterFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.parsed_fy_py_files_map_by_key.abc_fy import (
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
 )
@@ -37,7 +37,7 @@ class UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin(
                 [
                     user_import
                     for user_import in user_imports_split[
-                        cast(PropertySetterFyPyFile, property_setter).file_type,
+                        ParsedFyPyFileKind.ABSTRACT_PROPERTY,
                         property_setter.property_name.snake_case,
                     ].user_imports.split("\n")
                     if user_import != ""

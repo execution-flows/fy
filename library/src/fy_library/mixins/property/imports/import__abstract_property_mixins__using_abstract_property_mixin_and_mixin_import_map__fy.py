@@ -11,9 +11,9 @@ property import_abstract_property_mixins: List[str] using abstract_property_mixi
 fy"""
 
 from functools import cached_property
-from typing import List, cast
+from typing import List
 
-from fy_library.domain.parsed_fy_py_file import ParsedAbstractPropertyFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.abstract_property_mixins.abc_fy import (
     AbstractPropertyMixins_PropertyMixin_ABC,
 )
@@ -39,9 +39,7 @@ class ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_P
             # property mixins
             self._mixin_import_map[
                 (
-                    cast(
-                        ParsedAbstractPropertyFyPyFile, abstract_property_mixin
-                    ).file_type,
+                    ParsedFyPyFileKind(abstract_property_mixin.kind.value),
                     abstract_property_mixin.property_name.snake_case,
                 )
             ]

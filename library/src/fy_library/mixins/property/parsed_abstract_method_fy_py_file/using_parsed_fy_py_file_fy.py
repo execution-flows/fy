@@ -19,6 +19,7 @@ from functools import cached_property
 
 from fy_library.domain.fy_py_template_models import TemporaryBaseTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedAbstractMethodFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.abstract_method_file_split.abc_fy import (
     AbstractMethodFileSplit_PropertyMixin_ABC,
@@ -81,7 +82,10 @@ class ParsedAbstractMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{abstract_method_name.pascal_case}_MethodMixin_ABC"
                 ),
-                entity_key_value=abstract_method_name.snake_case,
+                entity_key_value=(
+                    ParsedFyPyFileKind.ABSTRACT_METHOD,
+                    abstract_method_name.snake_case,
+                ),
             ),
         )
 

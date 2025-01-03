@@ -4,7 +4,7 @@
 from enum import Enum
 
 
-class ParsedFyPyFileKind(Enum):
+class ParsedFyPyFileKind(str, Enum):
     FLOW = "flow"
     BASE_FLOW = "base_flow"
     METHOD = "method"

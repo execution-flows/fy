@@ -9,9 +9,8 @@ fy"""
 
 import abc
 from functools import cached_property
-from typing import cast
 
-from fy_library.domain.parsed_fy_py_file import ParsedAbstractMethodFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.abstract_method_mixins.abc_fy import (
     AbstractMethodMixins_PropertyMixin_ABC,
 )
@@ -33,7 +32,7 @@ class ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_Prope
         return [
             # method mixins
             self._mixin_import_map[
-                cast(ParsedAbstractMethodFyPyFile, abstract_method_mixin).file_type,
+                ParsedFyPyFileKind(abstract_method_mixin.kind.value),
                 abstract_method_mixin.method_name.snake_case,
             ]
             for abstract_method_mixin in self._abstract_method_mixins

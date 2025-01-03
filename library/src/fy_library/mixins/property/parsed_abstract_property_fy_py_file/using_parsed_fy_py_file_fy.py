@@ -19,6 +19,7 @@ from functools import cached_property
 
 from fy_library.domain.fy_py_template_models import TemporaryBaseTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedAbstractPropertyFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.abstract_property_file_split.abc_fy import (
     AbstractPropertyFileSplit_PropertyMixin_ABC,
@@ -79,7 +80,10 @@ class ParsedAbstractPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{abstract_property_name.pascal_case}_PropertyMixin_ABC"
                 ),
-                entity_key_value=abstract_property_name.snake_case,
+                entity_key_value=(
+                    ParsedFyPyFileKind.ABSTRACT_PROPERTY,
+                    abstract_property_name.snake_case,
+                ),
             ),
         )
 
