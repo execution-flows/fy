@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from fy_library.mixins.property.base_flow_file_split.abc_fy import BaseFlowFileSplitModel
+from fy_library.mixins.property.parsed_file_split.base_flow_file_split.abc_fy import BaseFlowFileSplitModel
 
 
 property base_flow_file_split: BaseFlowFileSplitModel using base_flow_regex:

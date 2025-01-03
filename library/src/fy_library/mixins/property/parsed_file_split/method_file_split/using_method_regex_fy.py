@@ -12,6 +12,7 @@ import re
 from functools import cached_property
 from typing import Final
 
+
 from fy_library.constants import (
     FY_ENTITY_REGEX_STRING,
     PYTHON_MULTI_ENTITY_REGEX_STRING,
