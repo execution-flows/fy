@@ -19,24 +19,23 @@ from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 from fy_library.mixins.method.generate_and_save_fy_py_code.using_parsed_fy_py_file__and__fy_py_file_content_fy import (
     GenerateAndSaveFyPyCode_UsingParsedFyPyFile_And_FyPyFileContent_MethodMixin,
 )
-from fy_library.mixins.property.fy_py_file_content.using_required_property_setter_fy import (
+from fy_library.mixins.property.fy_py_file.fy_py_file_content.using_required_property_setter_fy import (
     FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin,
 )
-from fy_library.mixins.property.generated_fy_py_code.using_jinja2_templates_fy import (
-    GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
+from fy_library.mixins.property.imports_and_user_imports.import_generic.using_setter import (
+    ImportGeneric_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.jinja2_template_file_name.using_property_setter_constant_fy import (
-    Jinja2TemplateFileName_UsingPropertySetterConstant_PropertyMixin,
-)
-from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.template_model.using_parsed_fy_py_file_fy__for_setter_fy import (
-    TemplateModel_UsingParsedFyPyFile_ForSetter_PropertyMixin,
+from fy_library.mixins.property.templates.generated_fy_py_code.using_jinja2_templates_fy import (
+    GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
 )
-
-from fy_library.mixins.property.import_generic.using_setter import (
-    ImportGeneric_UsingSetter_PropertyMixin,
+from fy_library.mixins.property.templates.jinja2_template_file_name.using_property_setter_constant_fy import (
+    Jinja2TemplateFileName_UsingPropertySetterConstant_PropertyMixin,
+)
+from fy_library.mixins.property.templates.template_model.using_parsed_fy_py_file_fy__for_setter_fy import (
+    TemplateModel_UsingParsedFyPyFile_ForSetter_PropertyMixin,
 )
 
 

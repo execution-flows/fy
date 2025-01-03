@@ -23,45 +23,43 @@ from fy_core.base.flow_base import FlowBase
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.method.generate_and_save_fy_py_code.using_parsed_fy_py_file__and__fy_py_file_content_fy import (
     GenerateAndSaveFyPyCode_UsingParsedFyPyFile_And_FyPyFileContent_MethodMixin,
 )
-from fy_library.mixins.property.filtered_mixin_imports.using_remove_existing_imports_fy import (
-    FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
-)
-from fy_library.mixins.property.fy_py_file_content.using_parsed_fy_py_file_fy import (
+from fy_library.mixins.property.fy_py_file.fy_py_file_content.using_parsed_fy_py_file_fy import (
     FyPyFileContent_UsingParsedFyPyFile_PropertyMixin,
 )
-from fy_library.mixins.property.generated_fy_py_code.using_jinja2_templates_fy import (
-    GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
+from fy_library.mixins.property.imports_and_user_imports.filtered_mixin_imports.using_remove_existing_imports_fy import (
+    FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin,
 )
-from fy_library.mixins.property.jinja2_template_file_name.using_parsed_fy_py_file_fy import (
-    Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
-)
-from fy_library.mixins.property.mixin_import_map.using_setter import (
+from fy_library.mixins.property.imports_and_user_imports.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.mixin_imports.using_parsed_fy_py_file_fy import (
+from fy_library.mixins.property.imports_and_user_imports.mixin_imports.using_parsed_fy_py_file_fy import (
     MixinImports_UsingParsedFyPyFile_PropertyMixin,
 )
-from fy_library.mixins.property.mixin_imports_code.using_filtered_mixin_imports_fy import (
+from fy_library.mixins.property.imports_and_user_imports.mixin_imports_code.using_filtered_mixin_imports_fy import (
     MixinImportsCode_UsingFilteredMixinImports_PropertyMixin,
 )
-from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
-    ParsedFyPyFile_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
-    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.template_model.using_parsed_fy_py_file_fy import (
-    TemplateModel_UsingParsedFyPyFile_PropertyMixin,
-)
-
-from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
+from fy_library.mixins.property.mro.ordered_abstract_entities.using_setter import (
     AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
 )
-
-from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_file.using_setter import (
+    ParsedFyPyFile_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files_map_by_key.using_setter import (
+    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.templates.generated_fy_py_code.using_jinja2_templates_fy import (
+    GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin,
+)
+from fy_library.mixins.property.templates.jinja2_template_file_name.using_parsed_fy_py_file_fy import (
+    Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin,
+)
+from fy_library.mixins.property.templates.template_model.using_parsed_fy_py_file_fy import (
+    TemplateModel_UsingParsedFyPyFile_PropertyMixin,
+)
 
 
 # fy:start ===>>>

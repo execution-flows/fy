@@ -37,15 +37,14 @@ from fy_library.flows.create_template_model_using_parsed_fy_py_file.method_templ
 from fy_library.flows.create_template_model_using_parsed_fy_py_file.property_template_model_fy import (
     CreatePropertyTemplateModel_UsingParsedFyPyFile_Flow,
 )
-from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
+from fy_library.mixins.property.mro.ordered_abstract_entities.using_setter import (
+    AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files_map_by_key.using_setter import (
     ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
-)
-
-from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
-    AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
 )
 
 

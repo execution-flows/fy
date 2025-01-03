@@ -6,11 +6,12 @@ flow create_property_setter_template_model__using_parsed_fy_py_file -> PropertyS
     property parsed_fy_py_file using setter
 fy"""
 
+from typing import Any
+
+from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import PropertySetterTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile, PropertySetterFyPyFile
-from typing import Any
-from fy_core.base.flow_base import FlowBase
-from fy_library.mixins.property.parsed_fy_py_file.using_setter import (
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_file.using_setter import (
     ParsedFyPyFile_UsingSetter_PropertyMixin,
 )
 

@@ -15,24 +15,22 @@ from fy_core.base.flow_base import FlowBase
 from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.flows.generate_and_save_fy_py_file__using_parsed_fy_py_file_fy import (
     GenerateAndSaveFyPyFile_UsingParsedFyPyFile_Flow,
 )
-from fy_library.mixins.property.mixin_import_map.using_setter import (
+from fy_library.mixins.property.imports_and_user_imports.mixin_import_map.using_setter import (
     MixinImportMap_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.parsed_fy_py_files.using_setter import (
-    ParsedFyPyFiles_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
-    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
-)
-
-from fy_library.mixins.property.ordered_abstract_entities.using_setter import (
+from fy_library.mixins.property.mro.ordered_abstract_entities.using_setter import (
     AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin,
 )
-
-from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files.using_setter import (
+    ParsedFyPyFiles_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files_map_by_key.using_setter import (
+    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
+)
 
 
 # fy:start ===>>>

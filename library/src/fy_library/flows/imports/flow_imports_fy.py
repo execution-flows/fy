@@ -26,59 +26,55 @@ fy"""
 from typing import List, Any
 
 from fy_core.base.flow_base import FlowBase
-
 from fy_library.domain.mixin_models import MethodMixinModel, PropertyMixinModel
 from fy_library.domain.parsed_fy_py_file import ParsedFlowFyPyFile
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
-from fy_library.mixins.property.declared_base_flow_name.using_parsed_flow_fy_py_file_fy import (
-    DeclaredBaseFlowName_UsingParsedFlowFyPyFile_PropertyMixin,
-)
-from fy_library.mixins.property.import_flow_base.using_setter import (
-    ImportFlowBase_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.imports.import_any__using_property_setters_exists_fy import (
-    ImportAny_UsingPropertySettersExists_PropertyMixin,
-)
-from fy_library.mixins.property.imports.import_base_flow__using_declared_base_flow_name_fy import (
-    ImportBaseFlow_UsingDeclaredBaseFlowName_PropertyMixin,
-)
-
-from fy_library.mixins.property.imports.method_mixins_imports__using_method_mixins_and_mixin_import_map_fy import (
-    MethodMixinsImport_UsingMethodMixinsAndMixinImportMap_PropertyMixin,
-)
-from fy_library.mixins.property.imports.property_mixins_imports__using_property_mixins_and_mixin_import_map_fy import (
-    PropertyMixinsImport_UsingPropertyMixinsAndMixinImportMap_PropertyMixin,
-)
-from fy_library.mixins.property.method_mixins.using_setter import (
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
+from fy_library.mixins.property.entity_mixins.method_mixins.using_setter import (
     MethodMixins_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.mixin_import_map.using_setter import (
-    MixinImportMap_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.parsed_flow_fy_py_file.using_setter import (
-    ParsedFlowFyPyFile_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.parsed_fy_py_files_map_by_key.using_setter import (
-    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.property_constant_setter_mixins.using_property_mixins_fy import (
-    PropertyConstantSetterMixins_UsingPropertyMixins_PropertyMixin,
-)
-from fy_library.mixins.property.property_mixins.using_setter import (
+from fy_library.mixins.property.entity_mixins.property_mixins.using_setter import (
     PropertyMixins_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.property_setter_mixins.using_property_mixin_fy import (
-    PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
+from fy_library.mixins.property.imports_and_user_imports.import_flow_base.using_setter import (
+    ImportFlowBase_UsingSetter_PropertyMixin,
 )
-from fy_library.mixins.property.user_imports_from_property_mixins.using_property_setter_imports_fy import (
-    UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
-)
-
-from fy_library.mixins.property.import_generic.using_setter import (
+from fy_library.mixins.property.imports_and_user_imports.import_generic.using_setter import (
     ImportGeneric_UsingSetter_PropertyMixin,
 )
-
-from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
+from fy_library.mixins.property.imports_and_user_imports.imports.import_any__using_property_setters_exists_fy import (
+    ImportAny_UsingPropertySettersExists_PropertyMixin,
+)
+from fy_library.mixins.property.imports_and_user_imports.imports.import_base_flow__using_declared_base_flow_name_fy import (
+    ImportBaseFlow_UsingDeclaredBaseFlowName_PropertyMixin,
+)
+from fy_library.mixins.property.imports_and_user_imports.imports.method_mixins_imports__using_method_mixins_and_mixin_import_map_fy import (
+    MethodMixinsImport_UsingMethodMixinsAndMixinImportMap_PropertyMixin,
+)
+from fy_library.mixins.property.imports_and_user_imports.imports.property_mixins_imports__using_property_mixins_and_mixin_import_map_fy import (
+    PropertyMixinsImport_UsingPropertyMixinsAndMixinImportMap_PropertyMixin,
+)
+from fy_library.mixins.property.imports_and_user_imports.mixin_import_map.using_setter import (
+    MixinImportMap_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.imports_and_user_imports.user_imports_from_property_mixins.using_property_setter_imports_fy import (
+    UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_entity_fy_py_file.declared_base_flow_name.using_parsed_flow_fy_py_file_fy import (
+    DeclaredBaseFlowName_UsingParsedFlowFyPyFile_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_entity_fy_py_file.parsed_flow_fy_py_file.using_setter import (
+    ParsedFlowFyPyFile_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files_map_by_key.using_setter import (
+    ParsedFyPyFilesMapByKey_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.property_setters.property_constant_setter_mixins.using_property_mixins_fy import (
+    PropertyConstantSetterMixins_UsingPropertyMixins_PropertyMixin,
+)
+from fy_library.mixins.property.property_setters.property_setter_mixins.using_property_mixin_fy import (
+    PropertySetterMixins_UsingPropertyMixins_PropertyMixin,
+)
 
 
 # fy:start ===>>>

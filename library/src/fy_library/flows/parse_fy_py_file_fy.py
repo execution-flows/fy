@@ -31,26 +31,26 @@ from fy_library.flows.parse_base_flow_fy_code_fy import ParseBaseFlowFyCode_Flow
 from fy_library.flows.parse_flow_fy_code_fy import ParseFlowFyCode_Flow
 from fy_library.flows.parse_method_fy_code_fy import ParseMethodFyCode_Flow
 from fy_library.flows.parse_property_fy_code_fy import ParsePropertyFyCode_Flow
-from fy_library.mixins.property.fy_code.using_fy_py_file_parts_fy import (
+from fy_library.mixins.property.fy_file.fy_code.using_fy_py_file_parts_fy import (
     FyCode_UsingFyPyFileParts_PropertyMixin,
 )
-from fy_library.mixins.property.fy_file_kind.using_fy_code_fy import (
+from fy_library.mixins.property.fy_file.fy_file_kind.using_fy_code_fy import (
     FyFileKind_UsingFyCode_PropertyMixin,
 )
-from fy_library.mixins.property.fy_py_file_parts.using_fy_file_to_parse_docstring_fy import (
-    FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin,
-)
-from fy_library.mixins.property.fy_py_file_to_parse.using_setter import (
-    FyPyFileToParse_UsingSetter_PropertyMixin,
-)
-from fy_library.mixins.property.post_marker_file_content.using_fy_py_file_parts_fy import (
+from fy_library.mixins.property.fy_file.post_marker_file_content.using_fy_py_file_parts_fy import (
     PostMarkerFileContent_UsingFyPyFileParts_PropertyMixin,
 )
-from fy_library.mixins.property.pre_fy_code.using_fy_py_file_parts_fy import (
+from fy_library.mixins.property.fy_file.pre_fy_code.using_fy_py_file_parts_fy import (
     PreFyCode_UsingFyPyFileParts_PropertyMixin,
 )
-from fy_library.mixins.property.pre_marker_file_content.using_fy_py_file_parts_fy import (
+from fy_library.mixins.property.fy_file.pre_marker_file_content.using_fy_py_file_parts_fy import (
     PreMarkerFileContent_UsingFyPyFileParts_PropertyMixin,
+)
+from fy_library.mixins.property.fy_py_file.fy_py_file_parts.using_fy_file_to_parse_docstring_fy import (
+    FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin,
+)
+from fy_library.mixins.property.fy_py_file.fy_py_file_to_parse.using_setter import (
+    FyPyFileToParse_UsingSetter_PropertyMixin,
 )
 
 

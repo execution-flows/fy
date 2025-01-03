@@ -15,16 +15,14 @@ from typing import List, Any
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.parsed_fy_py_file import ParsedAbstractMethodFyPyFile
-from fy_library.mixins.property.import_abc.using_setter import (
+from fy_library.mixins.property.imports_and_user_imports.import_abc.using_setter import (
     ImportAbc_UsingSetter_PropertyMixin,
 )
-
-from fy_library.mixins.property.parsed_abstract_method_fy_py_file.using_setter import (
-    ParsedAbstractMethodFyPyFile_UsingSetter_PropertyMixin,
-)
-
-from fy_library.mixins.property.import_generic.using_setter import (
+from fy_library.mixins.property.imports_and_user_imports.import_generic.using_setter import (
     ImportGeneric_UsingSetter_PropertyMixin,
+)
+from fy_library.mixins.property.parsed_entity_fy_py_file.parsed_abstract_method_fy_py_file.using_setter import (
+    ParsedAbstractMethodFyPyFile_UsingSetter_PropertyMixin,
 )
 
 
