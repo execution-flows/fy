@@ -39,7 +39,7 @@ _ABSTRACT_METHOD_REGEX: Final = re.compile(
 
 # fy:start ===>>>
 class AbstractMethodFileSplit_UsingAbstractMethodRegex_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     AbstractMethodFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     FyPyFileToParse_PropertyMixin_ABC,

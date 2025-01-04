@@ -26,7 +26,7 @@ from fy_library.mixins.property.parsing_mixin_model.mixin_models.abc_fy import (
 
 # fy:start ===>>>
 class IncludedMixins_UsingMixinModels_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     IncludedMixins_PropertyMixin_ABC,
     MixinModels_PropertyMixin_ABC,
     abc.ABC,

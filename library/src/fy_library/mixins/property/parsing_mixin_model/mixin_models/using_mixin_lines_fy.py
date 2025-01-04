@@ -32,7 +32,7 @@ from fy_library.mixins.property.parsing_mixin_model.mixin_models.abc_fy import (
 
 # fy:start ===>>>
 class MixinModels_UsingMixinLines_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     FyPyFileToParse_PropertyMixin_ABC,
     MixinLines_PropertyMixin_ABC,
     MixinModels_PropertyMixin_ABC,

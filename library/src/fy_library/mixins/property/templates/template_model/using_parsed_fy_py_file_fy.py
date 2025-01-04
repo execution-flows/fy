@@ -36,7 +36,7 @@ from fy_library.mixins.property.templates.template_model.abc_fy import (
 
 # fy:start ===>>>
 class TemplateModel_UsingParsedFyPyFile_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,

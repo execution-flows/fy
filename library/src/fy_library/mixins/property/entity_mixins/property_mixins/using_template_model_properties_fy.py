@@ -25,7 +25,7 @@ from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_file.abc_fy import (
 
 # fy:start ===>>>
 class PropertyMixins_UsingTemplateModelProperties_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     ParsedFyPyFile_PropertyMixin_ABC,
     PropertyMixins_PropertyMixin_ABC,
     abc.ABC,

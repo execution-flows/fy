@@ -35,7 +35,7 @@ _PROPERTY_REGEX: Final = re.compile(
 
 # fy:start ===>>>
 class PropertyFileSplit_UsingPropertyRegex_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     FyCode_PropertyMixin_ABC,
     FyPyFileToParse_PropertyMixin_ABC,
     PropertyFileSplit_PropertyMixin_ABC,

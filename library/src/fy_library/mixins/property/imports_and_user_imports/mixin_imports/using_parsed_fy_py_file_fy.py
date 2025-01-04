@@ -50,7 +50,7 @@ from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files_map_by_key.abc_f
 
 # fy:start ===>>>
 class MixinImports_UsingParsedFyPyFile_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     MixinImportMap_PropertyMixin_ABC,
     MixinImports_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,

@@ -29,7 +29,7 @@ from fy_library.mixins.property.property_setters.required_property_setters_fy_py
 
 # fy:start ===>>>
 class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     MixinImportMap_PropertyMixin_ABC,
     ParsedFyPyFiles_PropertyMixin_ABC,
     ProjectRootFolder_PropertyMixin_ABC,

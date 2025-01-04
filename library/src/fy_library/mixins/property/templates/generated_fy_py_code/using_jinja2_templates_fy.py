@@ -34,7 +34,7 @@ _JINJA2_TEMPLATE_ENVIRONMENT: Final = Environment(
 
 # fy:start ===>>>
 class GeneratedFyPyCode_UsingJinja2Templates_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     GeneratedFyPyCode_PropertyMixin_ABC,
     Jinja2TemplateFileName_PropertyMixin_ABC,
     TemplateModel_PropertyMixin_ABC,

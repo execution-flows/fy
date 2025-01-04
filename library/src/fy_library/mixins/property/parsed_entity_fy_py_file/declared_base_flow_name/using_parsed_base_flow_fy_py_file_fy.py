@@ -19,7 +19,7 @@ from fy_library.mixins.property.parsed_entity_fy_py_file.parsed_base_flow_fy_py_
 
 # fy:start ===>>>
 class DeclaredBaseFlowName_UsingParsedBaseFlowFyPyFile_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     DeclaredBaseFlowName_PropertyMixin_ABC,
     ParsedBaseFlowFyPyFile_PropertyMixin_ABC,
     abc.ABC,

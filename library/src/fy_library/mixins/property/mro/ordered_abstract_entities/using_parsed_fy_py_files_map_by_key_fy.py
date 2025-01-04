@@ -25,7 +25,7 @@ from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files_map_by_key.abc_f
 
 # fy:start ===>>>
 class AbstractEntitiesOrderingIndex_UsingParsedFyPyFilesMapByKey_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     abc.ABC,

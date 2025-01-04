@@ -35,7 +35,7 @@ from fy_library.mixins.property.property_setters.required_setters.abc_fy import 
 
 # fy:start ===>>>
 class RequiredPropertySettersFyPy_UsingParsedFyPyFiles_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     ParsedFyPyFiles_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     RequiredPropertySettersFyPy_PropertyMixin_ABC,

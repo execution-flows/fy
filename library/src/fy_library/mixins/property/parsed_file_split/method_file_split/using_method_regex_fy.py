@@ -38,7 +38,7 @@ _METHOD_STRING_SPLIT_REGEX: Final = re.compile(
 
 # fy:start ===>>>
 class MethodFileSplit_UsingMethodRegex_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     FyCode_PropertyMixin_ABC,
     FyPyFileToParse_PropertyMixin_ABC,
     MethodFileSplit_PropertyMixin_ABC,

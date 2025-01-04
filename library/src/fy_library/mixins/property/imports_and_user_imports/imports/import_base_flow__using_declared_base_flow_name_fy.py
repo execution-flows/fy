@@ -26,7 +26,7 @@ from fy_library.mixins.property.parsed_entity_fy_py_file.declared_base_flow_name
 
 # fy:start ===>>>
 class ImportBaseFlow_UsingDeclaredBaseFlowName_PropertyMixin(
-    # Property Mixins
+    # Property_mixins
     DeclaredBaseFlowName_PropertyMixin_ABC,
     MixinImportMap_PropertyMixin_ABC,
     abc.ABC,
