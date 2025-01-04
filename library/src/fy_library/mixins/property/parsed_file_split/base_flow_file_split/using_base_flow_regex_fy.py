@@ -41,7 +41,7 @@ _CHECK_ANNOTATIONS: Final = re.compile(r"(?P<annotations>@\w+)")
 
 # fy:start ===>>>
 class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     BaseFlowFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     FyPyFileToParse_PropertyMixin_ABC,

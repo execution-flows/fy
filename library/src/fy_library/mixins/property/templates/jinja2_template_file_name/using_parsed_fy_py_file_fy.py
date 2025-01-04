@@ -20,7 +20,7 @@ from fy_library.mixins.property.templates.jinja2_template_file_name.abc_fy impor
 
 # fy:start ===>>>
 class Jinja2TemplateFileName_UsingParsedFyPyFile_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     Jinja2TemplateFileName_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,
     abc.ABC,
