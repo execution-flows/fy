@@ -2,10 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from typing import Dict
-
-
-property mixin_import_map: Dict[str, str] using parsed_fy_py_files:
+property mixin_import_map: dict[tuple[ParsedFyPyFileKind, str], str] using parsed_fy_py_files:
     property parsed_fy_py_files
     property required_property_setters_fy_py
     property project_root_folder
@@ -13,9 +10,9 @@ fy"""
 
 import abc
 from functools import cached_property
-from typing import Dict
 
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.fy_file.project_root_folder.abc_fy import (
     ProjectRootFolder_PropertyMixin_ABC,
 )
@@ -40,7 +37,7 @@ class MixinImportMap_UsingParsedFyPyFiles_PropertyMixin(
     abc.ABC,
 ):
     @cached_property
-    def _mixin_import_map(self) -> Dict[str, str]:
+    def _mixin_import_map(self) -> dict[tuple[ParsedFyPyFileKind, str], str]:
         # fy:end <<<===
         mixin_import_map = {
             parsed_fy_py_file.entity_key: self.__parsed_file_python_import(

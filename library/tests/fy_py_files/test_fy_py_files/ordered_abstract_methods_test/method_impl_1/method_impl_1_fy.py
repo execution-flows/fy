@@ -29,9 +29,9 @@ from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property_require
 
 # fy:start ===>>>
 class MethodImpl1_UsingImpl1_MethodMixin(
-    # Property_mixins
+    # Property Mixins
     PropertyRequired2_PropertyMixin_ABC,
-    # Method_mixins
+    # Method Mixins
     MethodImpl1_MethodMixin_ABC,
     MethodRequired2_MethodMixin_ABC,
     # Generic Property Mixins

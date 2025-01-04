@@ -11,7 +11,7 @@ from fy_py_files.test_fy_py_files.mixins.method.with_property.abc_fy import (
 
 # fy:start ===>>>
 class Greet_UsingGreeting_MethodMixin(
-    # Property_mixins
+    # Property Mixins
     Greeting_PropertyMixin_ABC,
     abc.ABC,
 ):

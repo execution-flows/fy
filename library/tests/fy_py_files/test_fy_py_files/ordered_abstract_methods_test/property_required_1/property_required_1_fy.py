@@ -18,7 +18,7 @@ from ..greetings_t import GreetingT
 
 # fy:start ===>>>
 class PropertyRequired1_UsingRequired1_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     PropertyRequired1_PropertyMixin_ABC[GreetingT],
     Generic[GreetingT],
     abc.ABC,

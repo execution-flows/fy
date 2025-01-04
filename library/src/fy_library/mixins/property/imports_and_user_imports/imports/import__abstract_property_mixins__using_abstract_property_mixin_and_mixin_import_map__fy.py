@@ -14,6 +14,7 @@ import abc
 from functools import cached_property
 from typing import List
 
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.entity_mixins.abstract_property_mixins.abc_fy import (
     AbstractPropertyMixins_PropertyMixin_ABC,
 )
@@ -34,6 +35,11 @@ class ImportAbstractPropertyMixins_UsingAbstractPropertyMixinAndMixinImportMap_P
         # fy:end <<<===
         return [
             # property mixins
-            self._mixin_import_map[abstract_property_mixin.property_name.snake_case]
+            self._mixin_import_map[
+                (
+                    ParsedFyPyFileKind(abstract_property_mixin.kind.value),
+                    abstract_property_mixin.property_name.snake_case,
+                )
+            ]
             for abstract_property_mixin in self._abstract_property_mixins
         ]

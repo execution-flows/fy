@@ -15,6 +15,7 @@ import abc
 from functools import cached_property
 from typing import List
 
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.imports_and_user_imports.mixin_import_map.abc_fy import (
     MixinImportMap_PropertyMixin_ABC,
 )
@@ -35,4 +36,8 @@ class ImportBaseFlow_UsingDeclaredBaseFlowName_PropertyMixin(
         # fy:end <<<===
         if self._declared_base_flow_name == "":
             return []
-        return [self._mixin_import_map[self._declared_base_flow_name]]
+        return [
+            self._mixin_import_map[
+                ParsedFyPyFileKind.BASE_FLOW, self._declared_base_flow_name
+            ]
+        ]

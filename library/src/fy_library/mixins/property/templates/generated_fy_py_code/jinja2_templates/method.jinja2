@@ -3,12 +3,12 @@ class {{ python_class_name.pascal_case }}
     (
 {%- endif %}
 {%- if abstract_property_non_generic_mixins %}
-    # Property_mixins
+    # Property Mixins
     {%- for abstract_property in abstract_property_non_generic_mixins %}
     {{ abstract_property.python_class_name.pascal_case }},
     {%- endfor %}{% endif -%}
 {%- if abstract_method_non_generic_mixins %}
-    # Method_mixins
+    # Method Mixins
     {%- for abstract_method in abstract_method_non_generic_mixins %}
     {{ abstract_method.python_class_name.pascal_case }},{% endfor -%}
 {%- endif -%}

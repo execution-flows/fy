@@ -16,6 +16,7 @@ from functools import cached_property
 from typing import List
 
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files.abc_fy import (
     ParsedFyPyFiles_PropertyMixin_ABC,
 )
@@ -40,7 +41,8 @@ class ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_Propert
         # fy:end <<<===
         return [
             self._parsed_fy_py_files_map_by_key[
-                property_setter.property_name.snake_case
+                ParsedFyPyFileKind.ABSTRACT_PROPERTY,
+                property_setter.property_name.snake_case,
             ]
             for property_setter in self._property_setter_mixins
         ]

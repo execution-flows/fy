@@ -12,7 +12,7 @@ from fy_py_files.test_fy_py_files.property_with_property.abc_fy import (
 
 # fy:start ===>>>
 class Greeting_UsingFrenchGreeting_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     FrenchGreeting_PropertyMixin_ABC,
     abc.ABC,
 ):

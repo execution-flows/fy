@@ -33,9 +33,9 @@ from ..greetings_t import GreetingT2
 
 # fy:start ===>>>
 class MethodImpl2_UsingImpl2_MethodMixin(
-    # Property_mixins
+    # Property Mixins
     PropertyRequired2_PropertyMixin_ABC,
-    # Method_mixins
+    # Method Mixins
     MethodImpl2_MethodMixin_ABC,
     MethodRequired2_MethodMixin_ABC,
     # Generic Property Mixins

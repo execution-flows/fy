@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 
 
 property fy_file_kind: ParsedFyPyFileKind using fy_code:
@@ -20,7 +20,7 @@ from fy_library.constants import (
     PYTHON_MULTI_ENTITY_REGEX_STRING,
     PYTHON_ARGUMENTS_REGEX_STRING,
 )
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFileKind
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.fy_file.fy_code.abc_fy import FyCode_PropertyMixin_ABC
 from fy_library.mixins.property.fy_file.fy_file_kind.abc_fy import (
     FyFileKind_PropertyMixin_ABC,

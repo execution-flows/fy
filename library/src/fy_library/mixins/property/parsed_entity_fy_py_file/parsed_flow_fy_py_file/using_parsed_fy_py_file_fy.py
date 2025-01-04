@@ -20,6 +20,7 @@ from functools import cached_property
 
 from fy_library.domain.fy_py_template_models import TemporaryBaseTemplateModel
 from fy_library.domain.parsed_fy_py_file import ParsedFlowFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.fy_file.fy_code.abc_fy import FyCode_PropertyMixin_ABC
 from fy_library.mixins.property.fy_file.post_marker_file_content.abc_fy import (
@@ -85,7 +86,7 @@ class ParsedFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                 python_class_name=PythonEntityName.from_pascal_case(
                     f"{flow_name.pascal_case}_Flow"
                 ),
-                entity_key_value=flow_name.snake_case,
+                entity_key_value=(ParsedFyPyFileKind.FLOW, flow_name.snake_case),
             ),
         )
 

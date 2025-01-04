@@ -2,18 +2,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from typing import List
 from fy_library.domain.mixin_models import BaseMixinModel
 
 
-property mro_ordered_abstract_mixins: List[BaseMixinModel] using abstract_mixins_and_ordered_abstract_entities:
+property mro_ordered_abstract_mixins: list[BaseMixinModel] using abstract_mixins_and_ordered_abstract_entities:
     property abstract_mixins
     property abstract_entities_ordering_index
 fy"""
 
 import abc
 from functools import cached_property
-from typing import List
 
 from fy_library.domain.mixin_models import BaseMixinModel
 from fy_library.mixins.property.entity_mixins.abstract_mixins.abc_fy import (
@@ -36,7 +34,7 @@ class MroOrderedAbstractMixins_UsingAbstractMixinsAndOrderedAbstractEntities_Pro
     abc.ABC,
 ):
     @cached_property
-    def _mro_ordered_abstract_mixins(self) -> List[BaseMixinModel]:
+    def _mro_ordered_abstract_mixins(self) -> list[BaseMixinModel]:
         # fy:end <<<===
         return sorted(
             self._abstract_mixins,

@@ -18,7 +18,7 @@ from fy_py_files.test_fy_py_files.multiple_imports.abc_fy import Hello_PropertyM
 
 # fy:start ===>>>
 class Hello_UsingDomain_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     Hello_PropertyMixin_ABC,
     abc.ABC,
 ):

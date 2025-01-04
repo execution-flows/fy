@@ -14,7 +14,7 @@ from fy_py_files.test_fy_py_files.base_flow_ordering_abstract_mixins.property2.a
 
 # fy:start ===>>>
 class PropertyRequired2_UsingRequired2_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     PropertyRequired2_PropertyMixin_ABC,
     abc.ABC,
 ):

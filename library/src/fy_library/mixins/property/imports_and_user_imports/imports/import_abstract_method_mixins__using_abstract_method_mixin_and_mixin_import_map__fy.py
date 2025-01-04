@@ -2,18 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from typing import List
-
-
-property import_abstract_method_mixins: List[str] using abstract_method_mixin_and_mixin_import_map:
+property import_abstract_method_mixins: list[str] using abstract_method_mixin_and_mixin_import_map:
     property mixin_import_map
     property abstract_method_mixins
 fy"""
 
 import abc
 from functools import cached_property
-from typing import List
 
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.entity_mixins.abstract_method_mixins.abc_fy import (
     AbstractMethodMixins_PropertyMixin_ABC,
 )
@@ -30,10 +27,13 @@ class ImportAbstractMethodMixins_UsingAbstractMethodMixinAndMixinImportMap_Prope
     abc.ABC,
 ):
     @cached_property
-    def _import_abstract_method_mixins(self) -> List[str]:
+    def _import_abstract_method_mixins(self) -> list[str]:
         # fy:end <<<===
         return [
             # method mixins
-            self._mixin_import_map[abstract_method_mixin.method_name.snake_case]
+            self._mixin_import_map[
+                ParsedFyPyFileKind(abstract_method_mixin.kind.value),
+                abstract_method_mixin.method_name.snake_case,
+            ]
             for abstract_method_mixin in self._abstract_method_mixins
         ]

@@ -12,7 +12,9 @@ fy"""
 import abc
 from functools import cached_property
 
+
 from fy_library.domain.mixin_models import MixinModelKind, BaseMixinModel
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.parsing_mixin_model.included_mixins.abc_fy import (
     IncludedMixins_PropertyMixin_ABC,
     IncludedMixinsModel,
@@ -32,7 +34,9 @@ class IncludedMixins_UsingMixinModels_PropertyMixin(
     @cached_property
     def _included_mixins(self) -> IncludedMixinsModel:
         # fy:end <<<===
-        check_for_duplicates_dict: dict[str, BaseMixinModel] = {}
+        check_for_duplicates_dict: dict[
+            tuple[ParsedFyPyFileKind, str], BaseMixinModel
+        ] = {}
         for mixin_model in self._mixin_models:
             if mixin_model.entity_key in check_for_duplicates_dict:
                 raise AssertionError(

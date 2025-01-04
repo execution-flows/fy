@@ -15,7 +15,6 @@ flow create_flow_template_model__using_parsed_fy_py_file_and_property_setters_te
 fy"""
 
 from typing import Any
-from typing import Dict
 
 from fy_core.base.flow_base import FlowBase
 from fy_library.domain.fy_py_template_models import (
@@ -25,6 +24,7 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedFyPyFile,
     ParsedFlowFyPyFile,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.entity_mixins.property_mixins.using_template_model_properties_fy import (
     PropertyMixins_UsingTemplateModelProperties_PropertyMixin,
@@ -62,7 +62,9 @@ class CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModel
         self,
         *args: Any,
         parsed_fy_py_file: ParsedFyPyFile,
-        parsed_fy_py_files_map_by_key: Dict[str, ParsedFyPyFile],
+        parsed_fy_py_files_map_by_key: dict[
+            tuple[ParsedFyPyFileKind, str], ParsedFyPyFile
+        ],
         **kwargs: Any,
     ):
         self._parsed_fy_py_file = parsed_fy_py_file

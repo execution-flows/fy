@@ -14,6 +14,7 @@ from typing import Final
 
 import jinja2
 from jinja2 import Environment, FileSystemLoader
+
 from fy_library.mixins.property.templates.generated_fy_py_code.abc_fy import (
     GeneratedFyPyCode_PropertyMixin_ABC,
 )

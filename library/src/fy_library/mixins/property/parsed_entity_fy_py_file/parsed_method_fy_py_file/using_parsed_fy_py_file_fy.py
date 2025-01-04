@@ -23,6 +23,7 @@ from fy_library.domain.fy_py_template_models import (
     TemporaryBaseTemplateModel,
 )
 from fy_library.domain.parsed_fy_py_file import ParsedMethodFyPyFile
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.fy_file.fy_code.abc_fy import FyCode_PropertyMixin_ABC
 from fy_library.mixins.property.fy_file.post_marker_file_content.abc_fy import (
@@ -94,6 +95,7 @@ class ParsedMethodFyPyFile_UsingParsedFyPyFile_PropertyMixin(
                     f"{method_name.pascal_case}_Using{implementation_name.pascal_case}_MethodMixin"
                 ),
                 entity_key_value=entity_key(
+                    fy_py_kind=ParsedFyPyFileKind.METHOD,
                     mixin_name__snake_case=method_name.snake_case,
                     mixin_implementation_name__snake_case=implementation_name.snake_case,
                 ),

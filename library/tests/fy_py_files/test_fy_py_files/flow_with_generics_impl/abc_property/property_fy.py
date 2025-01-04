@@ -19,7 +19,7 @@ from ..greetings_t import GreetingT
 
 # fy:start ===>>>
 class Greeting_UsingGreetingMessage_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     Greeting_PropertyMixin_ABC[GreetingT],
     Generic[GreetingT],
     abc.ABC,

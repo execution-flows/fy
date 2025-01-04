@@ -1,7 +1,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from enum import Enum
 from pathlib import Path
 from typing import Literal, List
 import abc
@@ -15,17 +14,8 @@ from fy_library.domain.mixin_models import (
     AbstractPropertyModel,
     PropertyMixinModel,
 )
+from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
-
-
-class ParsedFyPyFileKind(Enum):
-    FLOW = "flow"
-    BASE_FLOW = "base_flow"
-    METHOD = "method"
-    ABSTRACT_METHOD = "abstract_method"
-    ABSTRACT_PROPERTY = "abstract_property"
-    PROPERTY = "property"
-    PROPERTY_SETTER = "property_setter"
 
 
 class FyPyFileParts(BaseModel):
@@ -43,7 +33,7 @@ class ParsedFyPyFile(FyPyFileParts):
 
     @property
     @abc.abstractmethod
-    def entity_key(self) -> str:
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
         raise NotImplementedError()
 
 
@@ -58,8 +48,8 @@ class ParsedFlowFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
-        return self.flow_name.snake_case
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
+        return self.file_type, self.flow_name.snake_case
 
 
 class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
@@ -76,8 +66,8 @@ class ParsedBaseFlowFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
-        return self.base_flow_name.snake_case
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
+        return self.file_type, self.base_flow_name.snake_case
 
 
 class ParsedMethodFyPyFile(ParsedFyPyFile):
@@ -92,8 +82,9 @@ class ParsedMethodFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
         return entity_key(
+            fy_py_kind=self.file_type,
             mixin_name__snake_case=self.method_name.snake_case,
             mixin_implementation_name__snake_case=self.implementation_name.snake_case,
         )
@@ -110,8 +101,8 @@ class ParsedAbstractMethodFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
-        return self.abstract_method_name.snake_case
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
+        return self.file_type, self.abstract_method_name.snake_case
 
 
 class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):
@@ -124,8 +115,8 @@ class ParsedAbstractPropertyFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
-        return self.abstract_property_name.snake_case
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
+        return self.file_type, self.abstract_property_name.snake_case
 
 
 class ParsedPropertyFyPyFile(ParsedFyPyFile):
@@ -138,8 +129,9 @@ class ParsedPropertyFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
         return entity_key(
+            fy_py_kind=self.file_type,
             mixin_name__snake_case=self.property_name.snake_case,
             mixin_implementation_name__snake_case=self.implementation_name.snake_case,
         )
@@ -156,8 +148,9 @@ class PropertySetterFyPyFile(ParsedFyPyFile):
 
     @computed_field
     @property
-    def entity_key(self) -> str:
+    def entity_key(self) -> tuple[ParsedFyPyFileKind, str]:
         return entity_key(
+            fy_py_kind=self.file_type,
             mixin_name__snake_case=self.property_name.snake_case,
             mixin_implementation_name__snake_case=self.implementation_name.snake_case,
         )
