@@ -11,7 +11,7 @@ from fy_py_files.test_fy_py_files.cached_properties.abc_fy import (
 
 # fy:start ===>>>
 class Greeting_UsingGreeting_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     Greeting_PropertyMixin_ABC,
     abc.ABC,
 ):

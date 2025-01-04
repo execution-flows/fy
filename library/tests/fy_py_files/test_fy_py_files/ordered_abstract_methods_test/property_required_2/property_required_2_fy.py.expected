@@ -18,7 +18,7 @@ from fy_py_files.test_fy_py_files.ordered_abstract_methods_test.property_require
 
 # fy:start ===>>>
 class PropertyRequired2_UsingRequired2_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     PropertyRequired2_PropertyMixin_ABC,
     PropertyRequired1_PropertyMixin_ABC[str],
     abc.ABC,

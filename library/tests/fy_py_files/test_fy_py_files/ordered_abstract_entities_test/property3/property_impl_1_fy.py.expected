@@ -22,7 +22,7 @@ from fy_py_files.test_fy_py_files.ordered_abstract_entities_test.property3.abc_f
 
 # fy:start ===>>>
 class PropertyImpl1_UsingImpl1_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     PropertyImpl1_PropertyMixin_ABC,
     PropertyRequired1_PropertyMixin_ABC,
     PropertyRequired2_PropertyMixin_ABC,

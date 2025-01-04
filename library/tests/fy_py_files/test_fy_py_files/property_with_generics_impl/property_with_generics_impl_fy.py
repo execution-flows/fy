@@ -21,7 +21,7 @@ from .greetings_t import SpanishGreeting
 
 # fy:start ===>>>
 class HelloWorld_UsingSpanishGreeting_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     Greeting_PropertyMixin_ABC[SpanishGreeting],
     Generic[GreetingT],
     abc.ABC,
