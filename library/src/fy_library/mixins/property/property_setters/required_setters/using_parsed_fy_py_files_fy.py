@@ -5,6 +5,7 @@
 property required_setters: dict[str, PropertySetterFyPyFile] using parsed_fy_py_files:
     property parsed_fy_py_files
     property parsed_fy_py_files_map_by_key
+    property project_root_folder
 fy"""
 
 import abc
@@ -24,6 +25,9 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedAbstractPropertyFyPyFile,
 )
 from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
+from fy_library.mixins.property.fy_file.project_root_folder.abc_fy import (
+    ProjectRootFolder_PropertyMixin_ABC,
+)
 from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files.abc_fy import (
     ParsedFyPyFiles_PropertyMixin_ABC,
 )
@@ -40,6 +44,7 @@ class RequiredSetters_UsingParsedFyPyFiles_PropertyMixin(
     # Property_mixins
     ParsedFyPyFiles_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
+    ProjectRootFolder_PropertyMixin_ABC,
     RequiredSetters_PropertyMixin_ABC,
     abc.ABC,
 ):
@@ -51,6 +56,23 @@ class RequiredSetters_UsingParsedFyPyFiles_PropertyMixin(
         ) -> List[PropertyMixinModel]:
             assert hasattr(parsed_fy_py_file, "properties")
             return cast(List[PropertyMixinModel], parsed_fy_py_file.properties)
+
+        def get_file_path(flow_property) -> str:
+            parsed_fy_py_file_path = cast(
+                ParsedAbstractPropertyFyPyFile,
+                self._parsed_fy_py_files_map_by_key[
+                    ParsedFyPyFileKind.ABSTRACT_PROPERTY,
+                    flow_property.property_name.snake_case,
+                ],
+            )
+            relative_file_folder_path = (
+                parsed_fy_py_file_path.file_path.parent.relative_to(
+                    self._project_root_folder
+                )
+            )
+            file_name = parsed_fy_py_file_path.file_path.stem
+            python_file_path = ".".join(relative_file_folder_path.parts + (file_name,))
+            return f"from {python_file_path} import (\n {' ' * 4}{parsed_fy_py_file_path.python_class_name.pascal_case}\n)"
 
         required_setters = {
             flow_property.property_name.snake_case: PropertySetterFyPyFile(
@@ -83,6 +105,14 @@ class RequiredSetters_UsingParsedFyPyFiles_PropertyMixin(
                 ).property_type,
                 property_name=flow_property.property_name,
                 implementation_name=flow_property.implementation_name,
+                abstract_mixin_name=cast(
+                    ParsedAbstractPropertyFyPyFile,
+                    self._parsed_fy_py_files_map_by_key[
+                        ParsedFyPyFileKind.ABSTRACT_PROPERTY,
+                        flow_property.property_name.snake_case,
+                    ],
+                ).python_class_name,
+                abstract_mixin_import=get_file_path(flow_property),
                 template_model=TemporaryBaseTemplateModel(
                     python_class_name=flow_property.python_class_name,
                     entity_key_value=entity_key(

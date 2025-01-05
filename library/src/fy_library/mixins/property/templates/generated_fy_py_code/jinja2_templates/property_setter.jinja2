@@ -1,6 +1,8 @@
-class {{ python_class_name.pascal_case }}{% if generics_def -%}(
+class {{ python_class_name.pascal_case }}(
+    {{ abstract_mixin_name.pascal_case }},
+{%- if generics_def %}
     Generic[{{ generics_def }}]
-){% endif -%}:
+{% endif -%}):
     @property
     def _{{ property_name.snake_case }}(self) -> {{ property_type }}:
         return self.__{{ property_name.snake_case }}

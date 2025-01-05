@@ -145,6 +145,8 @@ class PropertySetterFyPyFile(ParsedFyPyFile):
     generics_def: str
     property_type: str
     implementation_name: PythonEntityName
+    abstract_mixin_name: PythonEntityName
+    abstract_mixin_import: str
 
     @computed_field
     @property
