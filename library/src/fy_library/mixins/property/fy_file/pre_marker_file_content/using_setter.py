@@ -1,5 +1,12 @@
 # fy:start ===>>>
-class PreMarkerFileContent_UsingSetter_PropertyMixin:
+from fy_library.mixins.property.fy_file.pre_marker_file_content.abc_fy import (
+    PreMarkerFileContent_PropertyMixin_ABC,
+)
+
+
+class PreMarkerFileContent_UsingSetter_PropertyMixin(
+    PreMarkerFileContent_PropertyMixin_ABC,
+):
     @property
     def _pre_marker_file_content(self) -> str:
         return self.__pre_marker_file_content

@@ -1,8 +1,13 @@
 # fy:start ===>>>
+from fy_library.mixins.property.fy_file.project_root_folder.abc_fy import (
+    ProjectRootFolder_PropertyMixin_ABC,
+)
 from pathlib import Path
 
 
-class ProjectRootFolder_UsingSetter_PropertyMixin:
+class ProjectRootFolder_UsingSetter_PropertyMixin(
+    ProjectRootFolder_PropertyMixin_ABC,
+):
     @property
     def _project_root_folder(self) -> Path:
         return self.__project_root_folder

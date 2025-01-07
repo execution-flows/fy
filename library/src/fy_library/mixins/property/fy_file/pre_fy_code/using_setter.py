@@ -1,5 +1,12 @@
 # fy:start ===>>>
-class PreFyCode_UsingSetter_PropertyMixin:
+from fy_library.mixins.property.fy_file.pre_fy_code.abc_fy import (
+    PreFyCode_PropertyMixin_ABC,
+)
+
+
+class PreFyCode_UsingSetter_PropertyMixin(
+    PreFyCode_PropertyMixin_ABC,
+):
     @property
     def _pre_fy_code(self) -> str:
         return self.__pre_fy_code

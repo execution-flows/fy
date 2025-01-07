@@ -32,7 +32,7 @@ _NEW_LINE: Final = "\n"
 
 # fy:start ===>>>
 class FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     FyPyFileContent_PropertyMixin_ABC,
     GeneratedFyPyCode_PropertyMixin_ABC,
     ImportGeneric_PropertyMixin_ABC,
@@ -47,7 +47,7 @@ class FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin(
         fy_py_file_content = (
             f"{FY_START_MARKER}\n"
             f"{self._import_generic[0] + _NEW_LINE if self._parsed_fy_py_file.generics_def != '' else ''}"
-            f"{self._parsed_fy_py_file.abstract_mixin_import}\n"
+            f"{self._parsed_fy_py_file.abstract_property_import}\n"
             f"{self._parsed_fy_py_file.user_imports}"
             f"{self._generated_fy_py_code}"
             f"{FY_END_MARKER}\n"

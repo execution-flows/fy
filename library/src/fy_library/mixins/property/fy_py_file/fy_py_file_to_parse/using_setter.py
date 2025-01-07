@@ -1,8 +1,13 @@
 # fy:start ===>>>
+from fy_library.mixins.property.fy_py_file.fy_py_file_to_parse.abc_fy import (
+    FyPyFileToParse_PropertyMixin_ABC,
+)
 from pathlib import Path
 
 
-class FyPyFileToParse_UsingSetter_PropertyMixin:
+class FyPyFileToParse_UsingSetter_PropertyMixin(
+    FyPyFileToParse_PropertyMixin_ABC,
+):
     @property
     def _fy_py_file_to_parse(self) -> Path:
         return self.__fy_py_file_to_parse

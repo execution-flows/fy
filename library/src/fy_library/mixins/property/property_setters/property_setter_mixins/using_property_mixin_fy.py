@@ -26,7 +26,7 @@ from fy_library.mixins.property.property_setters.property_setter_mixins.abc_fy i
 
 # fy:start ===>>>
 class PropertySetterMixins_UsingPropertyMixins_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     PropertyMixins_PropertyMixin_ABC,
     PropertySetterMixins_PropertyMixin_ABC,
     abc.ABC,

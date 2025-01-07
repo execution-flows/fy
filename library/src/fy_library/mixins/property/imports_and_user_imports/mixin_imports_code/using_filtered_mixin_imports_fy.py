@@ -19,7 +19,7 @@ from fy_library.mixins.property.imports_and_user_imports.mixin_imports_code.abc_
 
 # fy:start ===>>>
 class MixinImportsCode_UsingFilteredMixinImports_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     FilteredMixinImports_PropertyMixin_ABC,
     MixinImportsCode_PropertyMixin_ABC,
     abc.ABC,

@@ -36,7 +36,7 @@ _FLOW_METHOD_REGEX: Final = re.compile(
 
 # fy:start ===>>>
 class OptionalMethodMixinModel_UsingMixinLine_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     MixinLine_PropertyMixin_ABC,
     OptionalMethodMixinModel_PropertyMixin_ABC,
     abc.ABC,

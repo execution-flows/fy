@@ -1,9 +1,14 @@
 # fy:start ===>>>
+from fy_library.mixins.property.entity_mixins.abstract_property_mixins.abc_fy import (
+    AbstractPropertyMixins_PropertyMixin_ABC,
+)
 from typing import List
 from fy_library.domain.mixin_models import AbstractPropertyModel
 
 
-class AbstractPropertyMixins_UsingSetter_PropertyMixin:
+class AbstractPropertyMixins_UsingSetter_PropertyMixin(
+    AbstractPropertyMixins_PropertyMixin_ABC,
+):
     @property
     def _abstract_property_mixins(self) -> List[AbstractPropertyModel]:
         return self.__abstract_property_mixins

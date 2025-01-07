@@ -6,6 +6,7 @@ property required_setters: dict[str, PropertySetterFyPyFile] using parsed_fy_py_
     property parsed_fy_py_files
     property parsed_fy_py_files_map_by_key
     property project_root_folder
+    property mixin_import_map
 fy"""
 
 import abc
@@ -38,10 +39,15 @@ from fy_library.mixins.property.property_setters.required_setters.abc_fy import 
     RequiredSetters_PropertyMixin_ABC,
 )
 
+from fy_library.mixins.property.imports_and_user_imports.mixin_import_map.abc_fy import (
+    MixinImportMap_PropertyMixin_ABC,
+)
+
 
 # fy:start ===>>>
 class RequiredSetters_UsingParsedFyPyFiles_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
+    MixinImportMap_PropertyMixin_ABC,
     ParsedFyPyFiles_PropertyMixin_ABC,
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     ProjectRootFolder_PropertyMixin_ABC,
@@ -105,14 +111,8 @@ class RequiredSetters_UsingParsedFyPyFiles_PropertyMixin(
                 ).property_type,
                 property_name=flow_property.property_name,
                 implementation_name=flow_property.implementation_name,
-                abstract_mixin_name=cast(
-                    ParsedAbstractPropertyFyPyFile,
-                    self._parsed_fy_py_files_map_by_key[
-                        ParsedFyPyFileKind.ABSTRACT_PROPERTY,
-                        flow_property.property_name.snake_case,
-                    ],
-                ).python_class_name,
-                abstract_mixin_import=get_file_path(flow_property),
+                abstract_property_import="",
+                abstract_property_mixins=[],
                 template_model=TemporaryBaseTemplateModel(
                     python_class_name=flow_property.python_class_name,
                     entity_key_value=entity_key(

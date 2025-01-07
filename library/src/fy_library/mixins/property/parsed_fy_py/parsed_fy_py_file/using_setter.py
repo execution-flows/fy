@@ -1,8 +1,13 @@
 # fy:start ===>>>
+from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_file.abc_fy import (
+    ParsedFyPyFile_PropertyMixin_ABC,
+)
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
 
 
-class ParsedFyPyFile_UsingSetter_PropertyMixin:
+class ParsedFyPyFile_UsingSetter_PropertyMixin(
+    ParsedFyPyFile_PropertyMixin_ABC,
+):
     @property
     def _parsed_fy_py_file(self) -> ParsedFyPyFile:
         return self.__parsed_fy_py_file

@@ -1,8 +1,13 @@
 # fy:start ===>>>
+from fy_library.mixins.property.mro.ordered_abstract_entities.abc_fy import (
+    AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
+)
 from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 
 
-class AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin:
+class AbstractEntitiesOrderingIndex_UsingSetter_PropertyMixin(
+    AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
+):
     @property
     def _abstract_entities_ordering_index(
         self,

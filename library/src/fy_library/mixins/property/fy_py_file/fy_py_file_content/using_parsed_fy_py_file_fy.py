@@ -41,7 +41,7 @@ _NEW_LINE: Final = "\n"
 
 # fy:start ===>>>
 class FyPyFileContent_UsingParsedFyPyFile_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     FyPyFileContent_PropertyMixin_ABC,
     GeneratedFyPyCode_PropertyMixin_ABC,
     MixinImportsCode_PropertyMixin_ABC,
