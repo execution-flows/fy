@@ -86,4 +86,4 @@ class PropertySetterTemplateModel(BaseTemplateModel):
     property_name: PythonEntityName
     property_type: str
     generics_def: str
-    abstract_property_mixins: list[AbstractPropertyModel]
+    own_abstract_property_mixin: AbstractPropertyModel
