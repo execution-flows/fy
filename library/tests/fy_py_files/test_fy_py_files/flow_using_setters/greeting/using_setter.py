@@ -1,13 +1,8 @@
 # fy:start ===>>>
-from fy_py_files.test_fy_py_files.flow_using_setters.greeting.abc_fy import (
-    Greeting_PropertyMixin_ABC,
-)
 import datetime
 
 
-class Greeting_UsingSetter_PropertyMixin(
-    Greeting_PropertyMixin_ABC,
-):
+class Greeting_UsingSetter_PropertyMixin:
     @property
     def _greeting(self) -> datetime.datetime:
         return self.__greeting
