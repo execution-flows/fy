@@ -64,7 +64,7 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
                 first_annotation_found = True
             if not is_annotation and first_annotation_found:
                 raise AssertionError(
-                    f"Base flow has unordered annotations in {base_flow_file_split[1]}_BaseFlow."
+                    f"Base flow {base_flow_file_split[1]} has unordered annotations."
                 )
 
         annotations: List[Annotation] = []

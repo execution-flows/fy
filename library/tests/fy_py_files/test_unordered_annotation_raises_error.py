@@ -8,7 +8,7 @@ class TestRaisesAssertionError(MainFyPyTestCase):
     def test_invalid_annotation_placement_raises_error(self) -> None:
         with self.assertRaisesRegex(
             expected_exception=AssertionError,
-            expected_regex=r"Base flow has unordered annotations in HelloError_BaseFlow.",
+            expected_regex="Base flow hello_error has unordered annotations.",
         ):
             self._test_main_flow(
                 target_folder="unordered_annotation_raises_error",

@@ -1,5 +1,5 @@
 """fy
-base flow HelloWorld -> None:
+base flow hello_world -> None:
     method greet using constant
 fy"""
 # fy:start ===>>>

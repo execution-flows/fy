@@ -6,5 +6,5 @@
 from typing import List
 
 @callable
-base flow HelloError -> None:
+base flow hello_error -> None:
 fy"""

@@ -29,7 +29,6 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedBaseFlowFyPyFile,
 )
 from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
-from fy_library.domain.python_entity_name import PythonEntityName
 from fy_library.mixins.property.entity_mixins.abstract_mixins.using_parsed_base_flow_fy_py_file_fy import (
     AbstractMixins_UsingParsedBaseFlowFyPyFile_PropertyMixin,
 )
@@ -106,15 +105,20 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
             if abstract_method.kind == MixinModelKind.ABSTRACT_PROPERTY
         ]
 
+        declared_base_flow_python_class_name = (
+            self._parsed_fy_py_files_map_by_key[
+                ParsedFyPyFileKind.BASE_FLOW,
+                parsed_base_flow_fy_py_file.declared_base_flow,
+            ].python_class_name
+            if parsed_base_flow_fy_py_file.declared_base_flow != ""
+            else None
+        )
+
         return BaseFlowTemplateModel(
             python_class_name=parsed_base_flow_fy_py_file.python_class_name,
             base_flow_name=parsed_base_flow_fy_py_file.base_flow_name,
             generics_def=parsed_base_flow_fy_py_file.generics_def,
-            declared_base_flow=PythonEntityName.from_pascal_case(
-                f"{parsed_base_flow_fy_py_file.declared_base_flow}_BaseFlow"
-            )
-            if parsed_base_flow_fy_py_file.declared_base_flow != ""
-            else None,
+            declared_base_flow_python_class_name=declared_base_flow_python_class_name,
             callable_annotation=callable_annotation,
             return_type=parsed_base_flow_fy_py_file.return_type,
             properties=parsed_base_flow_fy_py_file.properties,

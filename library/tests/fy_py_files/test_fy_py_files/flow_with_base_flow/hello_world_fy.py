@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-flow hello_world(Greeting) -> None:
+flow hello_world(greeting) -> None:
 fy"""
 
 from fy_py_files.test_fy_py_files.flow_with_base_flow.greeting_base_flow_fy import (
