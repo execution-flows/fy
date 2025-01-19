@@ -9,7 +9,6 @@ flow setter_uses_generic_test -> None:
     property greeting using setter[FrenchGreeting]
 fy"""
 
-from ..greetings_t import GreetingT
 from fy_core.base.flow_base import FlowBase
 from fy_py_files.test_fy_py_files.flow_uses_setters_with_generics_impl.greeting.using_setter import (
     Greeting_UsingSetter_PropertyMixin,
@@ -28,7 +27,7 @@ class SetterUsesGenericTest_Flow(
     def __init__(
         self,
         *args: Any,
-        greeting: GreetingT,
+        greeting: FrenchGreeting,
         **kwargs: Any,
     ):
         self._greeting = greeting

@@ -13,9 +13,13 @@ fy"""
 
 import abc
 from functools import cached_property
-from typing import List
+from typing import List, cast
 
-from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile
+from fy_library.domain.mixin_models import PropertyMixinModel
+from fy_library.domain.parsed_fy_py_file import (
+    ParsedFyPyFile,
+    ParsedAbstractPropertyFyPyFile,
+)
 from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files.abc_fy import (
     ParsedFyPyFiles_PropertyMixin_ABC,
@@ -39,10 +43,27 @@ class ParsedFyPyFiles_UsingPropertySetterMixins_MappedToAbstractProperty_Propert
     @cached_property
     def _parsed_fy_py_files(self) -> List[ParsedFyPyFile]:
         # fy:end <<<===
+        def replace_generics_impl_type(
+            parsed_abstract_property: ParsedAbstractPropertyFyPyFile,
+            property_mixin: PropertyMixinModel,
+        ) -> ParsedAbstractPropertyFyPyFile:
+            if property_mixin.generics_impl == "":
+                return parsed_abstract_property
+            return ParsedAbstractPropertyFyPyFile(
+                **parsed_abstract_property.model_dump(exclude={"property_type"}),
+                property_type=property_mixin.generics_impl,
+            )
+
         return [
-            self._parsed_fy_py_files_map_by_key[
-                ParsedFyPyFileKind.ABSTRACT_PROPERTY,
-                property_setter.property_name.snake_case,
-            ]
+            replace_generics_impl_type(
+                parsed_abstract_property=cast(
+                    ParsedAbstractPropertyFyPyFile,
+                    self._parsed_fy_py_files_map_by_key[
+                        ParsedFyPyFileKind.ABSTRACT_PROPERTY,
+                        property_setter.property_name.snake_case,
+                    ],
+                ),
+                property_mixin=property_setter,
+            )
             for property_setter in self._property_setter_mixins
         ]
