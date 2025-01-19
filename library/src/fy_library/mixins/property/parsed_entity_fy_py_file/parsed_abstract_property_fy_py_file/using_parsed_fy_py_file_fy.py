@@ -44,7 +44,7 @@ from fy_library.mixins.property.parsed_file_split.abstract_property_file_split.a
 
 # fy:start ===>>>
 class ParsedAbstractPropertyFyPyFile_UsingParsedFyPyFile_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     AbstractPropertyFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     FyPyFileToParse_PropertyMixin_ABC,

@@ -32,7 +32,7 @@ _NEW_LINE: Final = "\n"
 
 # fy:start ===>>>
 class FyPyFileContent_UsingRequiredPropertySetter_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     FyPyFileContent_PropertyMixin_ABC,
     GeneratedFyPyCode_PropertyMixin_ABC,
     ImportGeneric_PropertyMixin_ABC,

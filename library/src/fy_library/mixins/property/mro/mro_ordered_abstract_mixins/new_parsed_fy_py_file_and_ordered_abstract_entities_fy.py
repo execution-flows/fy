@@ -27,7 +27,7 @@ from fy_library.mixins.property.mro.ordered_abstract_entities.abc_fy import (
 
 # fy:start ===>>>
 class MroOrderedAbstractMixins_UsingAbstractMixinsAndOrderedAbstractEntities_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     AbstractEntitiesOrderingIndex_PropertyMixin_ABC,
     AbstractMixins_PropertyMixin_ABC,
     MroOrderedAbstractMixins_PropertyMixin_ABC,

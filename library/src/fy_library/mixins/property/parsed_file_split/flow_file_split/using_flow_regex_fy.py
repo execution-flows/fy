@@ -35,7 +35,7 @@ _FLOW_STRING_SPLIT_REGEX: Final = re.compile(
 
 # fy:start ===>>>
 class FlowFileSplit_UsingFlowRegex_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     FlowFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     FyPyFileToParse_PropertyMixin_ABC,

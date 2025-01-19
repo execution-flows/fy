@@ -22,7 +22,7 @@ from fy_library.mixins.property.property_setters.property_setter_mixins.abc_fy i
 
 # fy:start ===>>>
 class UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     PropertySetterMixins_PropertyMixin_ABC,
     abc.ABC,

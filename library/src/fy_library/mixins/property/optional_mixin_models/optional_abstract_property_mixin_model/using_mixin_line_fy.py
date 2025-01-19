@@ -34,7 +34,7 @@ _ABSTRACT_PROPERTY_MIXIN_REGEX: Final = re.compile(
 
 # fy:start ===>>>
 class OptionalAbstractPropertyMixinModel_UsingMixinLine_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     MixinLine_PropertyMixin_ABC,
     OptionalAbstractPropertyMixinModel_PropertyMixin_ABC,
     abc.ABC,

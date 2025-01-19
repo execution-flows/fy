@@ -20,7 +20,7 @@ from fy_library.mixins.property.imports_and_user_imports.mixin_import_map.abc_fy
 
 # fy:start ===>>>
 class PropertyMixinsImport_UsingPropertyMixinsAndMixinImportMap_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     MixinImportMap_PropertyMixin_ABC,
     PropertyMixins_PropertyMixin_ABC,
     abc.ABC,

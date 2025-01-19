@@ -19,6 +19,7 @@ fy"""
 from typing import Any, List
 
 from fy_core.base.flow_base import FlowBase
+
 from fy_library.domain.annotation_object import AnnotationKind
 from fy_library.domain.fy_py_template_models import (
     BaseFlowTemplateModel,

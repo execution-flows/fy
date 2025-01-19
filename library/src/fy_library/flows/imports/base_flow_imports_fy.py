@@ -31,6 +31,7 @@ fy"""
 from typing import List, Any
 
 from fy_core.base.flow_base import FlowBase
+
 from fy_library.domain.mixin_models import (
     MethodMixinModel,
     AbstractMethodModel,
