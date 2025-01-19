@@ -8,6 +8,7 @@ from pydantic import BaseModel, computed_field
 
 from fy_library.constants import (
     GENERATED_PROPERTY_FILE_IMPLEMENTATION_NAMES,
+    PROPERTY_SETTER_IMPLEMENTATION_NAME,
 )
 from fy_library.domain.entity_key import entity_key
 from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
@@ -80,5 +81,7 @@ class PropertyMixinModel(AbstractPropertyModel):
         return entity_key(
             fy_py_kind=fy_py_kind,
             mixin_name__snake_case=self.property_name.snake_case,
-            mixin_implementation_name__snake_case=self.implementation_name.snake_case,
+            mixin_implementation_name__snake_case=self.implementation_name.snake_case
+            if fy_py_kind != ParsedFyPyFileKind.PROPERTY_SETTER
+            else PROPERTY_SETTER_IMPLEMENTATION_NAME,
         )

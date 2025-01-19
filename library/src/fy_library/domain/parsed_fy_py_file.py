@@ -6,6 +6,7 @@ from typing import Literal, List
 import abc
 from pydantic import BaseModel, computed_field
 
+from fy_library.constants import PROPERTY_SETTER_IMPLEMENTATION_NAME
 from fy_library.domain.annotation_object import Annotation
 from fy_library.domain.entity_key import entity_key
 from fy_library.domain.mixin_models import (
@@ -152,5 +153,5 @@ class PropertySetterFyPyFile(ParsedFyPyFile):
         return entity_key(
             fy_py_kind=self.file_type,
             mixin_name__snake_case=self.property_name.snake_case,
-            mixin_implementation_name__snake_case=self.implementation_name.snake_case,
+            mixin_implementation_name__snake_case=PROPERTY_SETTER_IMPLEMENTATION_NAME,
         )
