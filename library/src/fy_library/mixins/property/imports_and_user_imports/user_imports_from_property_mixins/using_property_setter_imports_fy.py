@@ -33,6 +33,10 @@ class UserImportsFromMixins_UsingPropertySetterMixins_PropertyMixin(
         user_imports_split = self._parsed_fy_py_files_map_by_key
         user_imports: Set[str] = set()
         for property_setter in self._property_setter_mixins:
+            if property_setter.generics_impl != "":
+                # Generic property setters that have generics_impl
+                # will have an import defined in the flow.
+                continue
             user_imports.update(
                 [
                     user_import
