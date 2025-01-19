@@ -22,24 +22,24 @@ repos:
     hooks:
       - id: mypy-library
         name: mypy (library)
-        files: ^library/src/
-        entry: poetry --directory library/src run mypy --config-file library/mypy.ini
+        files: ^library/src/fy_library/
+        entry: poetry run mypy --config-file library/mypy.ini
         require_serial: true
         language: system
         types: [python]
 
       - id: mypy-core
         name: mypy (core)
-        files: ^core/src/
-        entry: poetry --directory core/src run mypy --config-file core/mypy.ini
+        files: ^core/src/fy_core/
+        entry: poetry run mypy --config-file core/mypy.ini
         require_serial: true
         language: system
         types: [python]
 
       - id: mypy-cli
         name: mypy (cli)
-        files: ^cli/src/
-        entry: poetry --directory cli/src run mypy --config-file cli/mypy.ini
+        files: ^cli/src/fy_tool_cli/
+        entry: poetry run mypy --config-file cli/mypy.ini
         require_serial: true
         language: system
         types: [python]
