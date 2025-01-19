@@ -33,7 +33,7 @@ _IMPORT_REGEX: Final = re.compile(
 
 # fy:start ===>>>
 class FilteredMixinImports_UsingRemoveExistingImports_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     FilteredMixinImports_PropertyMixin_ABC,
     MixinImports_PropertyMixin_ABC,
     ParsedFyPyFile_PropertyMixin_ABC,

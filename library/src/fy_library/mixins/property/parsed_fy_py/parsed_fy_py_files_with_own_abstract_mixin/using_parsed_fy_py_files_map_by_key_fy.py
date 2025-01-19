@@ -38,7 +38,7 @@ from fy_library.mixins.property.parsed_fy_py.parsed_fy_py_files_with_own_abstrac
 
 # fy:start ===>>>
 class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     ParsedFyPyFilesMapByKey_PropertyMixin_ABC,
     ParsedFyPyFilesWithOwnAbstractMixin_PropertyMixin_ABC,
     abc.ABC,

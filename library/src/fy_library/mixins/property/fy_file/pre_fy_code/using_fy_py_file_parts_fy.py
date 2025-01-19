@@ -19,7 +19,7 @@ from fy_library.mixins.property.fy_py_file.fy_py_file_parts.abc_fy import (
 
 # fy:start ===>>>
 class PreFyCode_UsingFyPyFileParts_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     FyPyFileParts_PropertyMixin_ABC,
     PreFyCode_PropertyMixin_ABC,
     abc.ABC,

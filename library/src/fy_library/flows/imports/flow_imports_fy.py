@@ -26,6 +26,7 @@ fy"""
 from typing import List, Any
 
 from fy_core.base.flow_base import FlowBase
+
 from fy_library.domain.mixin_models import MethodMixinModel, PropertyMixinModel
 from fy_library.domain.parsed_fy_py_file import ParsedFlowFyPyFile
 from fy_library.domain.parsed_fy_py_file import ParsedFyPyFile

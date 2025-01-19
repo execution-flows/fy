@@ -48,7 +48,7 @@ from fy_library.mixins.property.parsing_mixin_model.included_mixins.abc_fy impor
 
 # fy:start ===>>>
 class ParsedBaseFlowFyPyFile_UsingParsedFyPyFile_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     BaseFlowFileSplit_PropertyMixin_ABC,
     FyCode_PropertyMixin_ABC,
     FyPyFileToParse_PropertyMixin_ABC,

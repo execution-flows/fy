@@ -40,7 +40,7 @@ _FY_END_MARKER_REGEX: Final = re.compile(rf"\s*{FY_END_MARKER}\n")
 
 # fy:start ===>>>
 class FyPyFileParts_UsingFyFileToParseDocstring_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     FyPyFileParts_PropertyMixin_ABC,
     FyPyFileToParse_PropertyMixin_ABC,
     abc.ABC,

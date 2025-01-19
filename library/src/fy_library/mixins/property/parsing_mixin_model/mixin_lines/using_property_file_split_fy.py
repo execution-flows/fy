@@ -23,7 +23,7 @@ from fy_library.mixins.property.parsing_mixin_model.mixin_lines.abc_fy import (
 
 # fy:start ===>>>
 class MixinLines_UsingPropertyFileSplit_PropertyMixin(
-    # Property_mixins
+    # Property Mixins
     MixinLines_PropertyMixin_ABC,
     PropertyFileSplit_PropertyMixin_ABC,
     abc.ABC,
