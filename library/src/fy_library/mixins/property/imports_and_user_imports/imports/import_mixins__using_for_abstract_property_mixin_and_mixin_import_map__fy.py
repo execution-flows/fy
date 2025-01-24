@@ -2,9 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """fy
-from typing import List
-
-
 property import_mixins: list[str] using for_abstract_property_mixin_and_mixin_import_map:
     property mixin_import_map
     property abstract_property_mixins

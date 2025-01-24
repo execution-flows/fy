@@ -13,7 +13,7 @@ class {{ python_class_name.pascal_case }}(
 {%- endif %}
     # Base
     {% if declared_base_flow is not none -%}
-    {{ declared_base_flow.pascal_case }},
+    {{ declared_base_flow.pascal_case }}{% if declared_base_flow_generics_def %}[{{ declared_base_flow_generics_def }}]{% endif %},
 {%- else -%}
     FlowBase[{{ return_type }}],
 {%- endif %}
