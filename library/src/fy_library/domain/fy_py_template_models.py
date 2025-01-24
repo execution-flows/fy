@@ -54,6 +54,7 @@ class FlowTemplateModel(BaseTemplateModel):
     flow_name: PythonEntityName
     generics_def: str
     declared_base_flow: PythonEntityName | None
+    declared_base_flow_generics_def: str
     return_type: str
     properties: List[PropertyMixinModel]
     methods: List[MethodMixinModel]

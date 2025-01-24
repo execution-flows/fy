@@ -43,6 +43,7 @@ class ParsedFlowFyPyFile(ParsedFyPyFile):
     flow_name: PythonEntityName
     generics_def: str
     declared_base_flow: str
+    declared_base_flow_generics_def: str
     return_type: str
     properties: List[PropertyMixinModel]
     methods: List[MethodMixinModel]

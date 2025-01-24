@@ -88,6 +88,7 @@ class CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModel
             )
             if parsed_flow_fy_py_file.declared_base_flow != ""
             else None,
+            declared_base_flow_generics_def=parsed_flow_fy_py_file.declared_base_flow_generics_def,
             return_type=parsed_flow_fy_py_file.return_type,
             properties=parsed_flow_fy_py_file.properties,
             methods=parsed_flow_fy_py_file.methods,

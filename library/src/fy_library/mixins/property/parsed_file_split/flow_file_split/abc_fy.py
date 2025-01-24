@@ -15,6 +15,7 @@ class FlowFileSplitModel(BaseModel):
     flow_name: str
     generics_def: str
     declared_base_flow: str
+    declared_base_flow_generics_def: str
     return_type: str
     mixins: str
 
