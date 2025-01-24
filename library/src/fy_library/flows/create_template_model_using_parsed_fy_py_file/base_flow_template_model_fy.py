@@ -120,6 +120,7 @@ class CreateBaseFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateM
             base_flow_name=parsed_base_flow_fy_py_file.base_flow_name,
             generics_def=parsed_base_flow_fy_py_file.generics_def,
             declared_base_flow_python_class_name=declared_base_flow_python_class_name,
+            declared_base_flow_generics_def=parsed_base_flow_fy_py_file.declared_base_flow_generics_def,
             callable_annotation=callable_annotation,
             return_type=parsed_base_flow_fy_py_file.return_type,
             properties=parsed_base_flow_fy_py_file.properties,

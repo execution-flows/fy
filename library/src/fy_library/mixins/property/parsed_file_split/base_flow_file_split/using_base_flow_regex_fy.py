@@ -32,7 +32,7 @@ from fy_library.mixins.property.parsed_file_split.base_flow_file_split.abc_fy im
 _BASE_FLOW_STRING_SPLIT_REGEX: Final = re.compile(
     rf"base\s+flow\s+(?P<flow_name>{FY_ENTITY_REGEX_STRING})\s*"
     rf"(?:\[(?P<generics_def>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?\s*"
-    rf"(?:\((?P<declared_base_flow>{FY_ENTITY_REGEX_STRING})\))?"
+    rf"(?:\((?P<declared_base_flow>{FY_ENTITY_REGEX_STRING})(?:\[(?P<declared_base_flow_generics_def>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?\))?"
     rf"(?:\s+->\s+(?P<return_type>{PYTHON_MULTI_ENTITY_REGEX_STRING}))?:\s*\n"
 )
 
@@ -79,7 +79,7 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
         user_imports = re.sub(_CHECK_ANNOTATIONS, "", base_flow_file_split[0])
 
         assert (
-            (len(base_flow_file_split)) == 6
+            (len(base_flow_file_split)) == 7
         ), f"Flow file split length {len(base_flow_file_split)} is invalid in {self._fy_py_file_to_parse}"
 
         base_flow_file_split_model = BaseFlowFileSplitModel(
@@ -88,8 +88,9 @@ class BaseFlowFileSplit_UsingBaseFlowRegex_PropertyMixin(
             base_flow_name=base_flow_file_split[1],
             generics_def=base_flow_file_split[2] or "",
             declared_base_flow=base_flow_file_split[3] or "",
-            return_type=base_flow_file_split[4],
-            mixins=base_flow_file_split[5],
+            declared_base_flow_generics_def=base_flow_file_split[4] or "",
+            return_type=base_flow_file_split[5],
+            mixins=base_flow_file_split[6],
         )
 
         return base_flow_file_split_model
