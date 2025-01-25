@@ -33,7 +33,8 @@ _FLOW_PROPERTY_REGEX: Final = re.compile(
     rf"^\s+property\s+(?P<property_name>{FY_ENTITY_REGEX_STRING})\s+"
     rf"using\s+(?P<implementation_name>(?!constant\b){FY_ENTITY_REGEX_STRING})?"
     rf"(?:\[(?P<generics_impl>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?"
-    rf"(?:constant\((?P<constant_value>.*)\))?\s*$"
+    rf"(?:constant(?:\[(?P<constant_generics_impl>{PYTHON_MULTI_ENTITY_REGEX_STRING})])?\((?P<constant_value>.*)\))?"
+    r"\s*$"
 )
 
 
@@ -74,11 +75,22 @@ class OptionalPropertyMixinModel_UsingMixinLine_PropertyMixin(
             or PROPERTY_CONSTANT_IMPLEMENTATION_NAME
         )
 
+        assert (
+            flow_property_fy_search.group("generics_impl") is None
+            or flow_property_fy_search.group("constant_generics_impl") is None
+        )
+
+        generics_impl = (
+            flow_property_fy_search.group("generics_impl")
+            if implementation_name.snake_case != PROPERTY_CONSTANT_IMPLEMENTATION_NAME
+            else flow_property_fy_search.group("constant_generics_impl")
+        )
+
         return PropertyMixinModel(
             python_class_name=python_class_name,
             kind=MixinModelKind.PROPERTY,
             property_name=property_name,
             implementation_name=implementation_name,
-            generics_impl=flow_property_fy_search.group("generics_impl") or "",
+            generics_impl=generics_impl or "",
             constant_value=flow_property_fy_search.group("constant_value") or "",
         )
