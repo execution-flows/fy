@@ -70,13 +70,21 @@ class CreatePropertyTemplateModel_UsingParsedFyPyFile_Flow(
         parsed_property_fy_py_file = self._parsed_fy_py_file
         assert isinstance(parsed_property_fy_py_file, ParsedPropertyFyPyFile)
 
+        def get_property_type(prop: AbstractPropertyModel) -> str:
+            abstract_prop = cast(
+                ParsedAbstractPropertyFyPyFile,
+                self._parsed_fy_py_files_map_by_key[prop.entity_key],
+            )
+            if abstract_prop.generics_def:
+                return prop.generics_impl
+            return abstract_prop.property_type
+
         abstract_property_mixins: list[AbstractPropertyModel] = [
             AbstractPropertyModel(
                 **abstract_property.model_dump(exclude={"property_type"}),
-                property_type=cast(
-                    ParsedAbstractPropertyFyPyFile,
-                    self._parsed_fy_py_files_map_by_key[abstract_property.entity_key],
-                ).property_type,
+                property_type=get_property_type(
+                    cast(AbstractPropertyModel, abstract_property)
+                ),
             )
             for abstract_property in self._mro_ordered_abstract_mixins
         ]

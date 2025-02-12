@@ -1,0 +1,30 @@
+from flow_compose import flow{% if property_setters or property_constant_setters %}, FlowArgument{% endif %}{% if property_mixins_in_use or method_mixins_in_use %}, FlowFunction{% endif %}
+
+
+@flow({%- if property_setters or property_constant_setters %}
+{%- for property_setter in  property_setters %}
+    {{ property_setter.abstract_property_name.snake_case }}=FlowArgument({{ property_setter.property_type }}),
+{%- endfor %}
+{%- for property_constant_setter in property_constant_setters %}
+    {{ property_constant_setter.property_name.snake_case }}=FlowArgument({{ property_constant_setter.property_type }}, value={{ property_constant_setter.constant_value }}),
+{%- endfor %}
+{%- endif %}
+{%- if properties_without_setters %}
+    {%- for property in properties_without_setters %}
+    {{ property.property_name.snake_case }}={{ property.property_name.snake_case }}__using_{{ property.implementation_name.snake_case }},
+    {%- endfor %}
+{%- endif -%}
+{%- if methods %}
+    {%- for method in methods %}
+    {{ method.method_name.snake_case}}={{ method.method_name.snake_case}}__using_{{ method.implementation_name.snake_case}},
+    {%- endfor %}
+{%- endif %}
+)
+def {{ flow_name.snake_case }}({% if property_mixins_in_use or method_mixins_in_use %}
+{%- for property in property_mixins_in_use %}
+    {{ property.property_name.snake_case }}: FlowFunction[{{ property.property_type }}],
+{%- endfor %}
+{%- for method in method_mixins_in_use %}
+    {{ method.method_name.snake_case }}: FlowFunction[{{ method.return_type }}],
+{%- endfor %}
+{% endif %}) -> {{ return_type }}:

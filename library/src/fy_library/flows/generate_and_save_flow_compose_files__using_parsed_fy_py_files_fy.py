@@ -65,6 +65,7 @@ class GenerateAndSaveFlowComposeFiles_UsingParsedFyPyFiles_Flow(
         # fy:end <<<===
         for parsed_fy_py_file in self._parsed_fy_py_files:
             if parsed_fy_py_file.file_type not in {
+                ParsedFyPyFileKind.FLOW,
                 ParsedFyPyFileKind.METHOD,
                 ParsedFyPyFileKind.PROPERTY,
             }:

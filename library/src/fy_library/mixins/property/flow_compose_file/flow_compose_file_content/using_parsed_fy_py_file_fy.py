@@ -14,6 +14,7 @@ from typing import cast
 from fy_library.domain.parsed_fy_py_file import (
     ParsedPropertyFyPyFile,
     ParsedMethodFyPyFile,
+    ParsedFlowFyPyFile,
 )
 from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.mixins.property.flow_compose_file.flow_compose_file_content.abc_fy import (
@@ -40,36 +41,59 @@ class FlowComposeFileContent_UsingParsedFyPyFile_PropertyMixin(
     def _flow_compose_file_content(self) -> str:
         # fy:end <<<===
         replaced_file_content = self._parsed_fy_py_file.post_marker_file_content
-        mixin_names: list[str] = []
-        if self._parsed_fy_py_file.file_type == ParsedFyPyFileKind.PROPERTY:
-            mixin_names = list(
-                map(
-                    lambda p: p.property_name.snake_case,
-                    cast(
-                        ParsedPropertyFyPyFile, self._parsed_fy_py_file
-                    ).abstract_property_mixins,
+        method_mixin_names: list[str] = []
+        property_mixin_names: list[str] = []
+        match self._parsed_fy_py_file.file_type:
+            case ParsedFyPyFileKind.PROPERTY:
+                property_mixin_names = list(
+                    map(
+                        lambda p: p.property_name.snake_case,
+                        cast(
+                            ParsedPropertyFyPyFile, self._parsed_fy_py_file
+                        ).abstract_property_mixins,
+                    )
                 )
-            )
-        if self._parsed_fy_py_file.file_type == ParsedFyPyFileKind.METHOD:
-            mixin_names = list(
-                map(
-                    lambda p: p.property_name.snake_case,
-                    cast(
-                        ParsedMethodFyPyFile, self._parsed_fy_py_file
-                    ).abstract_property_mixins,
+            case ParsedFyPyFileKind.METHOD:
+                property_mixin_names = list(
+                    map(
+                        lambda p: p.property_name.snake_case,
+                        cast(
+                            ParsedMethodFyPyFile, self._parsed_fy_py_file
+                        ).abstract_property_mixins,
+                    )
                 )
-            ) + list(
-                map(
-                    lambda p: p.method_name.snake_case,
-                    cast(
-                        ParsedMethodFyPyFile, self._parsed_fy_py_file
-                    ).abstract_method_mixins,
+                method_mixin_names = list(
+                    map(
+                        lambda p: p.method_name.snake_case,
+                        cast(
+                            ParsedMethodFyPyFile, self._parsed_fy_py_file
+                        ).abstract_method_mixins,
+                    )
                 )
-            )
+            case ParsedFyPyFileKind.FLOW:
+                property_mixin_names = list(
+                    map(
+                        lambda p: p.property_name.snake_case,
+                        cast(ParsedFlowFyPyFile, self._parsed_fy_py_file).properties,
+                    )
+                )
+                method_mixin_names = list(
+                    map(
+                        lambda p: p.method_name.snake_case,
+                        cast(ParsedFlowFyPyFile, self._parsed_fy_py_file).methods,
+                    )
+                )
 
-        for mixin_name in mixin_names:
+        for mixin_name in property_mixin_names:
             self_mixin = f"self._{mixin_name}"
             function_call = f"{mixin_name}()"
+            replaced_file_content = replaced_file_content.replace(
+                self_mixin, function_call
+            )
+
+        for mixin_name in method_mixin_names:
+            self_mixin = f"self._{mixin_name}"
+            function_call = mixin_name
             replaced_file_content = replaced_file_content.replace(
                 self_mixin, function_call
             )

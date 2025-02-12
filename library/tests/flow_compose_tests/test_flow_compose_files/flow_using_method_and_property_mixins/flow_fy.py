@@ -1,0 +1,36 @@
+"""fy
+flow hello_world -> None:
+    property greeting using constant("Hello world")
+    method greet using greeting
+fy"""
+
+from fy_core.base.flow_base import FlowBase
+from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.greet_fy import (
+    Greet_UsingGreeting_MethodMixin,
+)
+from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.using_setter import (
+    Greeting_UsingSetter_PropertyMixin,
+)
+from typing import Any
+
+
+# fy:start ===>>>
+class HelloWorld_Flow(
+    # Property Mixins
+    Greeting_UsingSetter_PropertyMixin,
+    # Method Mixins
+    Greet_UsingGreeting_MethodMixin,
+    # Base
+    FlowBase[None],
+):
+    def __init__(
+        self,
+        *args: Any,
+        **kwargs: Any,
+    ):
+        self._greeting = "Hello world"
+        super().__init__(*args, **kwargs)
+
+    def __call__(self) -> None:
+        # fy:end <<<===
+        self._greet()
