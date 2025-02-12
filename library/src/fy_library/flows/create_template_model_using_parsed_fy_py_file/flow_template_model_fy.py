@@ -27,6 +27,7 @@ from fy_library.domain.parsed_fy_py_file import (
     ParsedFlowFyPyFile,
     ParsedAbstractPropertyFyPyFile,
     ParsedMethodFyPyFile,
+    ParsedPropertyFyPyFile,
 )
 from fy_library.domain.parsed_fy_py_file_kind import ParsedFyPyFileKind
 from fy_library.domain.python_entity_name import PythonEntityName
@@ -90,6 +91,11 @@ class CreateFlowTemplateModel_UsingParsedFyPyFileAndPropertySettersTemplateModel
         )
 
         def get_property_type(prop: PropertyMixinModel) -> str:
+            if prop.entity_key in self._parsed_fy_py_files_map_by_key:
+                return cast(
+                    ParsedPropertyFyPyFile,
+                    self._parsed_fy_py_files_map_by_key[prop.entity_key],
+                ).property_type
             abstract_prop = cast(
                 ParsedAbstractPropertyFyPyFile,
                 self._parsed_fy_py_files_map_by_key[
