@@ -1,10 +1,10 @@
-from flow_compose import flow, FlowArgument, FlowFunction
+from flow_compose import flow, FlowArgument
 
 
 @flow(
     greeting=FlowArgument(SpanishGreeting, value="Hola Mundo!"),
 )
 def hello_world(
-    greeting: FlowFunction[SpanishGreeting],
+    greeting: FlowArgument[SpanishGreeting],
 ) -> None:
     print(greeting())
