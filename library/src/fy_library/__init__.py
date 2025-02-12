@@ -7,5 +7,6 @@
 # the tool.
 
 from fy_library.fy import fy
+from fy_library.fc import fc
 
-__all__ = ["fy"]
+__all__ = ["fy", "fc"]

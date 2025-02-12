@@ -1,0 +1,11 @@
+from flow_compose import flow_function{%- if abstract_property_mixins|length > 1 or abstract_property_mixins|length == 1 and abstract_property_mixins[0].property_name.snake_case != property_name.snake_case %}, FlowFunction{% endif %}
+
+
+@flow_function(cached=True)
+def {{ property_name.snake_case }}__using_{{ implementation_name.snake_case }}({%- if abstract_property_mixins|length > 1 or abstract_property_mixins|length == 1 and abstract_property_mixins[0].property_name.snake_case != property_name.snake_case -%}
+    {%- for abstract_property in abstract_property_mixins %}{% if abstract_property.property_name.snake_case != property_name.snake_case %}
+    {{ abstract_property.property_name.snake_case }}: FlowFunction[{{ abstract_property.property_type }}],
+    {%- endif -%}{%- endfor -%}
+{%- endif -%}
+{%- if abstract_property_mixins|length > 1 or abstract_property_mixins|length == 1 and abstract_property_mixins[0].property_name.snake_case != property_name.snake_case %}
+{% endif -%}) -> {{ property_type }}:

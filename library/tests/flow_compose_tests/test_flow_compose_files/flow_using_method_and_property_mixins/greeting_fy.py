@@ -1,0 +1,21 @@
+"""fy
+property greeting: str using constant:
+fy"""
+
+import abc
+from functools import cached_property
+from fy_py_files.test_fy_py_files.flow_using_method_and_property_mixins.abc_fy import (
+    Greeting_PropertyMixin_ABC,
+)
+
+
+# fy:start ===>>>
+class Greeting_UsingConstant_PropertyMixin(
+    # Property Mixins
+    Greeting_PropertyMixin_ABC,
+    abc.ABC,
+):
+    @cached_property
+    def _greeting(self) -> str:
+        # fy:end <<<===
+        return "Hello world!"

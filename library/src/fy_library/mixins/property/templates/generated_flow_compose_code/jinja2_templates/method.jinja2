@@ -1,0 +1,28 @@
+from flow_compose import flow_function{%- if abstract_property_generic_mixins or abstract_property_non_generic_mixins or abstract_method_non_generic_mixins or abstract_method_generic_mixins %}, FlowFunction{% endif %}
+
+
+@flow_function()
+def {{ method_name.snake_case }}__using_{{ implementation_name.snake_case }}({%- if arguments %}{%- if abstract_property_generic_mixins or abstract_property_non_generic_mixins or abstract_method_non_generic_mixins or abstract_method_generic_mixins %}
+    {% endif -%}{{ arguments }}{%- if abstract_property_generic_mixins or abstract_property_non_generic_mixins or abstract_method_non_generic_mixins or abstract_method_generic_mixins -%},{%- endif -%}{%- endif -%}
+{%- if abstract_property_non_generic_mixins -%}
+    {%- for abstract_property in abstract_property_non_generic_mixins %}
+    {{ abstract_property.property_name.snake_case }}: FlowFunction[{{ abstract_property.property_type }}],
+    {%- endfor -%}
+{%- endif -%}
+{%- if abstract_property_generic_mixins %}
+    {%- for abstract_property in abstract_property_generic_mixins %}
+    {{ abstract_property.property_name.snake_case }}: FlowFunction[{{ abstract_property.property_type }}],
+    {%- endfor -%}
+{%- endif -%}
+{%- if abstract_method_non_generic_mixins %}
+    {%- for abstract_method in abstract_method_non_generic_mixins %}{% if abstract_method.method_name.snake_case != method_name.snake_case %}
+    {{ abstract_method.method_name.snake_case }}: FlowFunction[{{ abstract_method.return_type }}],
+    {%- endif -%}{%- endfor -%}
+{%- endif -%}
+{%- if abstract_method_generic_mixins %}
+    {%- for abstract_method in abstract_method_generic_mixins %}
+    {{ abstract_method.method_name.snake_case }}: FlowFunction[{{ abstract_method.return_type }}],
+    {%- endfor -%}
+{%- endif -%}
+{%- if abstract_property_generic_mixins or abstract_property_non_generic_mixins or abstract_method_non_generic_mixins or abstract_method_generic_mixins %}
+{% endif -%}) -> {{ return_type }}:

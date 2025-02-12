@@ -9,7 +9,7 @@ class {{ python_class_name.pascal_case }}(
     # Method Mixins
     {%- for method in methods %}
     {{ method.python_class_name.pascal_case}}{% if method.generics_impl %}[{{ method.generics_impl }}]{% endif %},
-{%- endfor %}
+    {%- endfor %}
 {%- endif %}
     # Base
     {% if declared_base_flow is not none -%}

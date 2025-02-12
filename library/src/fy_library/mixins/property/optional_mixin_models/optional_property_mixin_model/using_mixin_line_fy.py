@@ -93,4 +93,5 @@ class OptionalPropertyMixinModel_UsingMixinLine_PropertyMixin(
             implementation_name=implementation_name,
             generics_impl=generics_impl or "",
             constant_value=flow_property_fy_search.group("constant_value") or "",
+            property_type="",
         )

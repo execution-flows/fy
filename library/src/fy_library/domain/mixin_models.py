@@ -35,6 +35,7 @@ class BaseMixinModel(BaseModel, abc.ABC):
 class AbstractMethodModel(BaseMixinModel):
     method_name: PythonEntityName
     generics_impl: str
+    return_type: str
 
     @computed_field
     @property
@@ -58,6 +59,7 @@ class MethodMixinModel(AbstractMethodModel):
 class AbstractPropertyModel(BaseMixinModel):
     property_name: PythonEntityName
     generics_impl: str
+    property_type: str
 
     @computed_field
     @property

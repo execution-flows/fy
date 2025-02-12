@@ -15,6 +15,7 @@ fy-core = {path = "../core"}
 
 [tool.poetry.group.dev.dependencies]
 ruff = "0.6.4"
+flow-compose = "0.2.10"
 
 [build-system]
 requires = ["poetry-core"]

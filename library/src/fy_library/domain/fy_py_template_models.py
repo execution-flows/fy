@@ -56,10 +56,13 @@ class FlowTemplateModel(BaseTemplateModel):
     declared_base_flow: PythonEntityName | None
     declared_base_flow_generics_def: str
     return_type: str
-    properties: List[PropertyMixinModel]
-    methods: List[MethodMixinModel]
-    property_setters: List[ParsedAbstractPropertyFyPyFile]
-    property_constant_setters: List[PropertyMixinModel]
+    properties: list[PropertyMixinModel]
+    properties_without_setters: list[PropertyMixinModel]
+    methods: list[MethodMixinModel]
+    property_setters: list[ParsedAbstractPropertyFyPyFile]
+    property_constant_setters: list[PropertyMixinModel]
+    property_mixins_in_use: list[PropertyMixinModel]
+    method_mixins_in_use: list[MethodMixinModel]
 
 
 class BaseFlowTemplateModel(BaseTemplateModel):

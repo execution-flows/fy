@@ -5,7 +5,7 @@
 import sys
 from pathlib import Path
 
-from fy_library import fy
+from fy_library import fy, fc
 
 
 def fy_cli() -> int:
@@ -18,12 +18,24 @@ def fy_cli() -> int:
             project_root_folder = sys.argv[2]
         folder_to_parse = sys.argv[folder_to_parse_index]
 
-    fy(
-        folder_to_parse=Path(folder_to_parse),
-        project_root_folder=(
-            Path(project_root_folder) if project_root_folder is not None else Path.cwd()
-        ),
-    )
+    if sys.argv[1] == "--fc":
+        fc(
+            folder_to_parse=Path(folder_to_parse),
+            project_root_folder=(
+                Path(project_root_folder)
+                if project_root_folder is not None
+                else Path.cwd()
+            ),
+        )
+    else:
+        fy(
+            folder_to_parse=Path(folder_to_parse),
+            project_root_folder=(
+                Path(project_root_folder)
+                if project_root_folder is not None
+                else Path.cwd()
+            ),
+        )
     return 0
 
 

@@ -68,7 +68,7 @@ class MainFyPyTestCase(TestCase):
             self.__test_fy_py_files_in_directory(folder_to_parse)
 
     def __assert_files_equal(
-        self, file_to_expect: Path, file_to_generate: Path, comparing_file_path: Path
+        self, file_to_expect: Path, file_to_generate: Path
     ) -> None:
         with (
             file_to_expect.open() as expected_py_file,
@@ -77,7 +77,7 @@ class MainFyPyTestCase(TestCase):
             self.assertEqual(
                 expected_py_file.read(),
                 generated_py_file.read(),
-                f"Comparing {comparing_file_path}",
+                f"Comparing {file_to_generate}",
             )
 
     def __remove_fy_generated_code_and_imports_from_generated_files(
@@ -125,5 +125,4 @@ class MainFyPyTestCase(TestCase):
             self.__assert_files_equal(
                 file_to_expect=fy_file_path.with_name(f"{fy_file_path.name}.expected"),
                 file_to_generate=fy_file_path,
-                comparing_file_path=fy_file_path,
             )
