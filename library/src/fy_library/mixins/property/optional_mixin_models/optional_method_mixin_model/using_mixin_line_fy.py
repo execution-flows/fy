@@ -63,4 +63,5 @@ class OptionalMethodMixinModel_UsingMixinLine_PropertyMixin(
             method_name=method_name,
             implementation_name=implementation_name,
             generics_impl=flow_method_fy_search.group("generics_impl") or "",
+            return_type="",
         )

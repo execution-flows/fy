@@ -58,4 +58,5 @@ class OptionalAbstractMethodMixinModel_UsingMixinLine_PropertyMixin(
             kind=MixinModelKind.ABSTRACT_METHOD,
             method_name=method_name,
             generics_impl=declared_abstract_method_mixin.group("generics_impl") or "",
+            return_type="",
         )

@@ -58,4 +58,5 @@ class OptionalAbstractPropertyMixinModel_UsingMixinLine_PropertyMixin(
             kind=MixinModelKind.ABSTRACT_PROPERTY,
             property_name=property_name,
             generics_impl=declared_abstract_property_mixin.group("generics_impl") or "",
+            property_type="",
         )

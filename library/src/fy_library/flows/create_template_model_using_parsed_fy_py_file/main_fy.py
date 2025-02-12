@@ -99,11 +99,13 @@ class CreateTemplateModelUsingParsedFyPyFile_Flow(
                 return CreatePropertyTemplateModel_UsingParsedFyPyFile_Flow(
                     parsed_fy_py_file=self._parsed_fy_py_file,
                     abstract_entities_ordering_index=self._abstract_entities_ordering_index,
+                    parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                 )()
             case ParsedFyPyFileKind.METHOD:
                 return CreateMethodTemplateModel_UsingParsedFyPyFile_Flow(
                     parsed_fy_py_file=self._parsed_fy_py_file,
                     abstract_entities_ordering_index=self._abstract_entities_ordering_index,
+                    parsed_fy_py_files_map_by_key=self._parsed_fy_py_files_map_by_key,
                 )()
 
         raise NotImplementedError(

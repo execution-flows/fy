@@ -100,6 +100,7 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                                         != ""
                                         else ""
                                     ),
+                                    return_type="",
                                 )
                             ],
                         }
@@ -147,6 +148,7 @@ class ParsedFyPyFilesWithOwnAbstractMixin_UsingParsedFyPyFilesMapByKey_PropertyM
                                     if parsed_abstract_property_fy_py_file.generics_def
                                     != ""
                                     else "",
+                                    property_type="",
                                 )
                             ],
                         }
