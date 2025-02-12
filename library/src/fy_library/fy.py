@@ -8,7 +8,7 @@ def fy(
     project_root_folder: Path,
 ) -> None:
     FyPy_Main_Flow(
-        folder_to_parse=Path(folder_to_parse),
+        folder_to_parse=folder_to_parse,
         project_root_folder=(
             Path(project_root_folder) if project_root_folder is not None else Path.cwd()
         ),

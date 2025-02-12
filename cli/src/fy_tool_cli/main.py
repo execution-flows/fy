@@ -18,8 +18,13 @@ def fy_cli() -> int:
             project_root_folder = sys.argv[2]
         folder_to_parse = sys.argv[folder_to_parse_index]
 
-    if any([a == "--fc" for a in sys.argv]):
+    try:
+        fc_index = sys.argv.index("--fc")
+    except ValueError:
+        fc_index = -1
+    if fc_index != -1:
         fc(
+            folder_to_generate=Path(sys.argv[fc_index + 1]),
             folder_to_parse=Path(folder_to_parse),
             project_root_folder=(
                 Path(project_root_folder)
