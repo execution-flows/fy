@@ -11,16 +11,24 @@ class MainFlowComposeTestCase(TestCase):
     def _test_main_flow(
         self,
         target_folder: str,
+        folder_to_generate: str | None = None,
     ) -> None:
         folder_to_parse = (
             Path(__file__).parent.parent / "test_flow_compose_files" / target_folder
         )
 
+        folder_to_generate_path = (
+            (folder_to_parse / folder_to_generate)
+            if folder_to_generate is not None
+            else folder_to_parse
+        )
+
         self.__remove_flow_compose_generated_code(
-            folder_to_parse,
+            folder_to_generate_path,
         )
 
         FlowCompose_Main_Flow(
+            folder_to_generate=folder_to_generate_path,
             folder_to_parse=folder_to_parse,
             project_root_folder=Path(__file__).parent.parent.parent,
         )()
