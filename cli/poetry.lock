@@ -28,20 +28,22 @@ url = "../core"
 
 [[package]]
 name = "fy-library"
-version = "0.5.19"
+version = "0.5.20-dev"
 description = "Implementation of fy tool functionality - parsing and generating."
 optional = false
-python-versions = "<3.14,>=3.10"
+python-versions = ">=3.10,<3.14"
 groups = ["main"]
-files = [
-    {file = "fy_library-0.5.19-py3-none-any.whl", hash = "sha256:5215b1efe257acaae1e88a2a0d1fbd00b8db08513a524d94878c3e8f3d467b10"},
-    {file = "fy_library-0.5.19.tar.gz", hash = "sha256:077c3cd4d81d480656ad196b26500edc1c12311d7c2794197b4e85a1d26d56de"},
-]
+files = []
+develop = false
 
 [package.dependencies]
-fy-core = "0.1.2"
-jinja2 = ">=3.1.4,<4.0.0"
-pydantic = ">=2.8.2,<3.0.0"
+fy-core = {path = "../core"}
+jinja2 = "^3.1.4"
+pydantic = "^2.8.2"
+
+[package.source]
+type = "directory"
+url = "../library"
 
 [[package]]
 name = "jinja2"
@@ -309,4 +311,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.14"
-content-hash = "50033609b8618e01fe8d12425a2553d4274deebea785777d2f0d71aeafd27509"
+content-hash = "ef20e4fffb3b58c22c4d673fcb57d47730a0d14e2216bbe4ba595badd444cdbc"
