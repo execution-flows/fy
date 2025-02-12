@@ -6,6 +6,8 @@ from flow_compose import flow, FlowArgument, FlowFunction
     greet=greet__using_greeting,
 )
 def hello_world(
+    greeting: FlowArgument[str],
     greet: FlowFunction[None],
 ) -> None:
     greet()
+    print(greeting())

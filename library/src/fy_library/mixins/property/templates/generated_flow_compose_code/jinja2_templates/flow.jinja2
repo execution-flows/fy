@@ -22,7 +22,11 @@ from flow_compose import flow{% if property_setters or property_constant_setters
 )
 def {{ flow_name.snake_case }}({% if property_mixins_in_use or method_mixins_in_use %}
 {%- for property in property_mixins_in_use %}
-    {{ property.property_name.snake_case }}: FlowFunction[{{ property.property_type }}],
+    {{ property.property_name.snake_case }}: {% if property.implementation_name.snake_case == 'setter' or property.implementation_name.snake_case == 'constant' -%}
+    FlowArgument
+        {%- else -%}
+    FlowFunction
+    {%- endif %}[{{ property.property_type }}],
 {%- endfor %}
 {%- for method in method_mixins_in_use %}
     {{ method.method_name.snake_case }}: FlowFunction[{{ method.return_type }}],
